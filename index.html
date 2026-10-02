@@ -193,13 +193,43 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
   var(--card); }
 
-/* about */
-.aboutroom { background: radial-gradient(circle at 15% 20%, var(--wall1) 0 30%, transparent 31%), var(--card); }
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(18px, 4vw, 36px); align-items: center; }
-.about-logo { width: 100%; max-width: 320px; height: auto; justify-self: center; border: 3px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); transform: rotate(-3deg); }
-.about-text { display: grid; gap: 12px; min-width: 0; }
-.about-text p { margin: 0; max-width: 60ch; font-weight: 600; }
-.placeholder-note { color: var(--hot); font-style: italic; }
+/* about: a cozy attic room — slanted wood ceilings, striped wallpaper, plank floor */
+.attic { position: relative; overflow: hidden; min-height: 560px; padding-bottom: 130px;
+  background: repeating-linear-gradient(90deg, var(--w1) 0 30px, var(--blush) 30px 34px); }
+.attic > .room-nav, .attic > .about-grid { position: relative; z-index: 2; }
+.attic-slope { position: absolute; top: 0; height: 62%; width: 30%; z-index: 1; filter: drop-shadow(0 4px 0 var(--ink)); pointer-events: none; }
+.attic-slope span { display: block; width: 100%; height: 100%;
+  background: repeating-linear-gradient(90deg, var(--roof) 0 34px, var(--brick) 34px 37px); }
+.attic-slope.left { left: 0; } .attic-slope.left span { clip-path: polygon(0 0, 100% 0, 0 100%); }
+.attic-slope.right { right: 0; } .attic-slope.right span { clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.attic-window { position: absolute; top: 14px; left: 50%; width: 96px; height: 96px; transform: translateX(-50%); z-index: 1; }
+.attic-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; z-index: 1; border-top: 4px solid var(--ink);
+  background: repeating-linear-gradient(90deg, var(--floor) 0 120px, var(--trunk) 120px 123px); }
+.attic-deco { position: absolute; z-index: 2; pointer-events: none; }
+.attic-deco.yarn { left: 4%; bottom: 40px; width: 130px; height: auto; }
+.attic-deco.dressform { right: 5%; bottom: 46px; width: 84px; height: auto; }
+.attic .room-nav { margin-bottom: 70px; }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: center; }
+.about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
+.about-frame::before { content: ""; position: absolute; top: -34px; left: 50%; width: 80px; height: 36px; transform: translateX(-50%);
+  background: linear-gradient(to top right, transparent 48%, var(--ink) 49% 52%, transparent 53%) left / 50% 100% no-repeat,
+              linear-gradient(to top left, transparent 48%, var(--ink) 49% 52%, transparent 53%) right / 50% 100% no-repeat; }
+.about-frame img { display: block; width: 100%; height: auto; border: 16px solid var(--frame); outline: 3px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--ink), 8px 10px 0 rgba(0,0,0,.18); }
+.note-card { position: relative; min-width: 0; max-width: 560px; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
+  padding: 30px clamp(18px, 4vw, 30px) 22px; box-shadow: 6px 6px 0 var(--ink); transform: rotate(1deg);
+  background-image: repeating-linear-gradient(transparent 0 29px, var(--line) 29px 30px); background-position: 0 14px; }
+.note-card::before { content: ""; position: absolute; top: -14px; left: 50%; width: 110px; height: 26px; transform: translateX(-50%) rotate(-3deg);
+  background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border: 2px solid var(--ink); }
+.note-card h2 { color: var(--hot); margin-bottom: 6px; }
+.note-card p { margin: 0 0 10px; line-height: 30px; font-weight: 600; max-width: 60ch; }
+.note-card a { color: var(--hot); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.note-card .signoff { font-family: var(--font-script); font-size: 1.6rem; color: var(--hot); margin: 6px 0 0; }
+@media (max-width: 640px) {
+  .attic-slope { width: 34%; height: 34%; }
+  .attic-deco.dressform { display: none; }
+  .attic-deco.yarn { width: 100px; }
+}
 .arch.about .opening { background: var(--pink); }
 
 /* contact */
@@ -584,17 +614,50 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="room-about" class="room aboutroom" hidden aria-labelledby="aboutTitle">
+    <!-- ABOUT: the attic room behind the round window -->
+    <section id="room-about" class="room aboutroom attic" hidden aria-labelledby="aboutTitle">
+      <div class="attic-slope left" aria-hidden="true"><span></span></div>
+      <div class="attic-slope right" aria-hidden="true"><span></span></div>
+      <svg class="attic-window" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="f-sky1" style="fill: var(--sky1)" cx="50" cy="50" r="34"/>
+        <path class="s-ink" stroke-width="9" d="M50 16 V84 M16 50 H84"/><path class="s-trim" stroke-width="5" d="M50 16 V84 M16 50 H84"/>
+        <circle fill="none" class="s-ink" stroke-width="12" cx="50" cy="50" r="34"/><circle fill="none" class="s-trim" stroke-width="8" cx="50" cy="50" r="34"/>
+        <path class="f-blush s-ink" stroke-width="1.6" d="M36 67 l-7 -7 a4.6 4.6 0 0 1 7 -6.2 a4.6 4.6 0 0 1 7 6.2 z"/>
+      </svg>
+
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
+
       <div class="about-grid">
-        <img class="about-logo" src="images/mo-coyotes-logo.jpg" alt="MO Coyotes logo: pink script over the shape of Missouri" width="900" height="900">
-        <div class="about-text">
-          <h2 id="aboutTitle">Hi, I'm MO Coyotes</h2>
-          <p>MO Coyotes is a little Missouri shop for handmade pieces and thrifted treasures. The handmade work lives on Etsy, the thrifted finds are on eBay, and you can see everything in person at Union Studio in Webster Groves and Node O in St. Louis.</p>
-          <p class="placeholder-note">Your story goes here: who you are, how MO Coyotes started and what you love making.</p>
+        <figure class="about-frame">
+          <img src="images/mo-coyotes-logo.jpg" alt="MO Coyotes logo: pink script over the shape of Missouri" width="900" height="900">
+        </figure>
+        <div class="note-card">
+          <h2 id="aboutTitle">Hi, I'm Coyote</h2>
+          <p><b>MO Coyotes</b> (Missouri Coyotes) is a blend of thrifted, altered, and handmade. I'm a STL Neurodivergent Leo who wanders in the land of textiles.</p>
+          <p>Specialties include sewing, knitting, weaving, crocheting, felting, fashion &amp; Barbies. You will mostly find me in my studio with Ca$h at Node O.</p>
+          <p>You can shop in person at <a href="https://stlunionstudio.com" target="_blank" rel="noopener">Union Studio</a>, check my <a href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">Etsy</a> for other pieces, or find thrifted items in our <a href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">eBay shop</a>. Check out <a href="#barbie">Coyote in Barbie Land</a> on YouTube.</p>
+          <p class="signoff">Ok Byeeeeeeee</p>
         </div>
       </div>
+
+      <div class="attic-floor" aria-hidden="true"></div>
+      <!-- yarn basket -->
+      <svg class="attic-deco yarn" viewBox="0 0 130 90" aria-hidden="true">
+        <circle class="f-pink s-ink" stroke-width="2.5" cx="40" cy="38" r="20"/><path class="s-ink" stroke-width="1.5" fill="none" d="M24 30 q16 10 32 0 M22 40 q18 10 36 -2 M28 22 q14 8 26 2"/>
+        <circle class="f-orange s-ink" stroke-width="2.5" cx="76" cy="34" r="18"/><path class="s-ink" stroke-width="1.5" fill="none" d="M62 28 q14 8 28 0 M60 38 q16 8 32 -2"/>
+        <circle class="f-marigold s-ink" stroke-width="2.5" cx="100" cy="44" r="14"/><path class="s-ink" stroke-width="1.5" fill="none" d="M88 40 q12 6 24 0"/>
+        <path class="s-ink" stroke-width="2" fill="none" d="M84 20 l22 -16 M88 22 l24 -12"/>
+        <path class="f-rust s-ink" stroke-width="3" stroke-linejoin="round" d="M10 46 H122 L112 88 H20 Z"/>
+        <path class="s-ink" stroke-width="1.5" fill="none" d="M14 58 H118 M16 70 H115 M40 46 L44 88 M66 46 V88 M92 46 L88 88"/>
+      </svg>
+      <!-- dress form -->
+      <svg class="attic-deco dressform" viewBox="0 0 90 170" aria-hidden="true">
+        <path class="s-ink" stroke-width="4" stroke-linecap="round" fill="none" d="M45 112 V158 M24 166 L45 150 L66 166"/>
+        <path class="f-hot s-ink" stroke-width="3" stroke-linejoin="round" d="M38 8 h14 v8 c14 2 26 8 28 22 c2 14 -10 26 -10 38 c0 14 10 22 8 36 h-66 c-2 -14 8 -22 8 -36 c0 -12 -12 -24 -10 -38 c2 -14 14 -20 28 -22 z"/>
+        <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="4 4" d="M45 18 V110"/>
+        <path class="f-marigold s-ink" stroke-width="2" d="M14 74 h62 v8 h-62 z"/>
+        <circle class="f-marigold s-ink" stroke-width="2" cx="45" cy="6" r="5"/>
+      </svg>
     </section>
 
     <!-- CONTACT -->
