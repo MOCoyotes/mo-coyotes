@@ -227,24 +227,25 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .qr-sun { top: 22px; right: 6%; width: 74px; height: 74px; }
 .qr-cloud { top: 60px; right: 22%; width: 120px; height: auto; opacity: .9; }
 .qr-yard { left: 0; right: 0; bottom: 0; width: 100%; height: 150px; display: block; }
-.qr-basket { left: 50%; bottom: 18px; width: 170px; height: auto; transform: translateX(-50%); z-index: 2; }
+.qr-basket { right: 4%; bottom: 12px; width: 170px; height: auto; z-index: 2; }
 
 /* quilting: photos hang from clotheslines with clothespins */
-.guild-link { margin: -10px 0 0; font-weight: 800; }
+.room.quiltroom > .guild-link { position: absolute; left: clamp(18px, 4vw, 40px); bottom: 22px; z-index: 2; margin: 0; font-weight: 800;
+  background: var(--card); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 14px; box-shadow: 3px 3px 0 var(--ink); }
 .guild-link a { color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .clotheslines { display: grid; gap: 34px; margin-top: 8px; }
-.line-row { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 3vw, 28px); padding: 30px 4% 0;
+.line-row { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 3vw, 28px); padding: 14px 4% 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M0 3 Q50 30 100 3' fill='none' stroke='%235A1F0E' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") top / 100% 34px no-repeat; }
-.photo.hung { position: relative; aspect-ratio: 4 / 5; font: inherit; color: var(--ink); cursor: zoom-in; border: 8px solid var(--card); outline: 2px solid var(--ink);
+.photo.hung { position: relative; aspect-ratio: 4 / 5; font: inherit; color: var(--ink); cursor: zoom-in; border: 0; outline: 2px solid var(--ink);
   box-shadow: 5px 7px 0 rgba(0,0,0,.18); display: grid; place-items: end center; padding: 8px; background-size: cover; background-position: center;
   transform-origin: top center; transition: transform .2s; }
 .photo.hung:not(.has-photo) { background-image: repeating-linear-gradient(45deg, var(--wall1) 0 12px, var(--wall2) 12px 24px); }
 .photo.hung span { background: var(--card); border-radius: 6px; padding: 2px 8px; font-weight: 800; font-size: .8rem; }
-.line-row .photo.hung:nth-child(1) { transform: translateY(4px) rotate(-2deg); }
-.line-row .photo.hung:nth-child(2) { transform: translateY(16px) rotate(1deg); }
-.line-row .photo.hung:nth-child(3) { transform: translateY(4px) rotate(2.5deg); }
-.line-row .photo.hung:hover, .line-row .photo.hung:focus-visible { transform: translateY(10px) rotate(0) scale(1.04); }
-.photo.hung::before, .photo.hung::after { content: ""; position: absolute; top: -26px; width: 10px; height: 30px; border-radius: 3px;
+.line-row .photo.hung:nth-child(1) { transform: translateY(2px) rotate(-1.5deg); }
+.line-row .photo.hung:nth-child(2) { transform: translateY(8px) rotate(.8deg); }
+.line-row .photo.hung:nth-child(3) { transform: translateY(2px) rotate(1.5deg); }
+.line-row .photo.hung:hover, .line-row .photo.hung:focus-visible { transform: translateY(4px) rotate(0) scale(1.03); }
+.photo.hung::before, .photo.hung::after { content: ""; position: absolute; top: -18px; z-index: 1; width: 10px; height: 30px; border-radius: 3px;
   background: linear-gradient(var(--frame-lt), var(--frame-md)); border: 2px solid var(--ink); box-shadow: inset 0 9px 0 -6px var(--ink); }
 .photo.hung::before { left: 18%; } .photo.hung::after { right: 18%; }
 /* framed photos (mitered gold corners like the SHOP frames) + click to enlarge */
