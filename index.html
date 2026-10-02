@@ -226,6 +226,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
   var(--card); }
 
+/* framed photos (mitered gold corners like the SHOP frames) + click to enlarge */
+.photo.framed { font: inherit; color: var(--ink); cursor: zoom-in; border: 12px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame);
+  outline: 3px solid var(--ink); box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); background-size: cover; background-position: center;
+  transition: transform .15s; }
+.photo.framed:not(.has-photo) { background-image: repeating-linear-gradient(45deg, var(--wall1) 0 12px, var(--wall2) 12px 24px); }
+.photo.framed:hover, .photo.framed:focus-visible { transform: rotate(-1.5deg) scale(1.03); }
+.photo.framed span { font-weight: 800; font-size: .85rem; }
+.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 720px); width: 100%; }
+.lightbox::backdrop { background: rgba(40, 12, 20, .7); }
+.lb-frame { position: relative; border: 18px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame); outline: 3px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--ink); background: var(--card); }
+.lb-frame img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: contain; }
+.lb-placeholder { aspect-ratio: 4 / 5; max-height: 70vh; display: grid; place-items: center; font: 400 clamp(1.6rem, 5vw, 2.4rem) var(--font-display); color: var(--hot);
+  background: repeating-linear-gradient(45deg, var(--wall1) 0 16px, var(--wall2) 16px 32px); }
+.lb-caption { margin: 10px 0 0; text-align: center; font-weight: 800; color: var(--trim); }
+.lb-close { position: absolute; top: -14px; right: -14px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--ink); background: var(--hot); color: var(--trim);
+  font: 800 1.3rem/1 var(--font-body); cursor: pointer; }
 /* about: a cozy attic room — slanted wood ceilings, striped wallpaper, plank floor */
 .attic { position: relative; overflow: hidden; min-height: 560px; padding-top: 128px; padding-bottom: 130px;
   background: repeating-linear-gradient(90deg, var(--w1) 0 30px, var(--blush) 30px 34px); }
@@ -698,12 +715,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="quiltingTitle">QUILTING</h2>
       <p class="lede">Quilts and quilted goods, made by hand.</p>
       <div class="photos">
-        <div class="photo"><span>Quilt photo coming soon</span></div>
-        <div class="photo"><span>Quilt photo coming soon</span></div>
-        <div class="photo"><span>Quilt photo coming soon</span></div>
-        <div class="photo"><span>Quilt photo coming soon</span></div>
-        <div class="photo"><span>Quilt photo coming soon</span></div>
-        <div class="photo"><span>Quilt photo coming soon</span></div>
+        <button class="photo framed" type="button" data-caption="Quilt 1" aria-label="Quilt 1: open larger"><span>Coming soon</span></button>
+        <button class="photo framed" type="button" data-caption="Quilt 2" aria-label="Quilt 2: open larger"><span>Coming soon</span></button>
+        <button class="photo framed" type="button" data-caption="Quilt 3" aria-label="Quilt 3: open larger"><span>Coming soon</span></button>
+        <button class="photo framed" type="button" data-caption="Quilt 4" aria-label="Quilt 4: open larger"><span>Coming soon</span></button>
+        <button class="photo framed" type="button" data-caption="Quilt 5" aria-label="Quilt 5: open larger"><span>Coming soon</span></button>
+        <button class="photo framed" type="button" data-caption="Quilt 6" aria-label="Quilt 6: open larger"><span>Coming soon</span></button>
       </div>
     </section>
 
@@ -811,6 +828,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   <p class="hint" id="hint">Click the door, the windows, the mailbox, the quilt, the pink bike or the airplane.</p>
 </div>
+
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged photo">
+  <div class="lb-frame">
+    <button class="lb-close" type="button" id="lbClose" aria-label="Close">×</button>
+    <img id="lbImg" alt="" hidden>
+    <div class="lb-placeholder" id="lbPlaceholder">Coming soon</div>
+  </div>
+  <p class="lb-caption" id="lbCaption"></p>
+</dialog>
 
 <dialog class="mapcard" id="mapDialog" aria-labelledby="mapTitle">
   <div class="mapcard-in">
@@ -925,6 +951,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the crayon note in the shop opens the letter with "A Custom Order" picked
   document.getElementById("customLink").addEventListener("click", function () { document.getElementById("cTopic").value = "A Custom Order"; });
+  // framed photos open big in the lightbox (data-src = photo file once added)
+  var lightbox = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"),
+      lbPh = document.getElementById("lbPlaceholder"), lbCap = document.getElementById("lbCaption");
+  document.querySelectorAll(".photo.framed").forEach(function (b) {
+    if (b.dataset.src) { b.classList.add("has-photo"); b.style.backgroundImage = "url(" + b.dataset.src + ")"; b.querySelector("span").hidden = true; }
+    b.addEventListener("click", function () {
+      var src = b.dataset.src;
+      lbImg.hidden = !src; lbPh.hidden = !!src;
+      if (src) { lbImg.src = src; lbImg.alt = b.dataset.caption || ""; }
+      lbCap.textContent = src ? (b.dataset.caption || "") : "";
+      if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
+    });
+  });
+  document.getElementById("lbClose").addEventListener("click", function () { lightbox.close(); });
+  lightbox.addEventListener("click", function (e) { if (e.target === lightbox) lightbox.close(); });
+
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
 
