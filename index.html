@@ -11,7 +11,7 @@
 <link rel="icon" href="images/mo-coyotes-logo.jpg">
 <title>MO Coyotes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Nunito:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Schoolbell&family=Nunito:wght@400;600;800&display=swap">
 <style>
 /* Layout: one storybook "stage" (a 1000x620 illustrated scene) that zooms into rooms; rooms reuse the same stage frame. */
 :root {
@@ -38,6 +38,7 @@
   --font-display: "Shrikhand", "Cooper Black", Georgia, serif;
   --font-script: "Pacifico", "Brush Script MT", cursive;
   --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --font-crayon: "Schoolbell", "Comic Sans MS", cursive;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -168,6 +169,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
 .frame .art::after { content: ""; position: absolute; left: 50%; top: -50px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
+/* crayon note on the wall */
+.crayon-note { font: 400 clamp(1.15rem, 2.6vw, 1.6rem)/1.15 var(--font-crayon); color: var(--hot); margin: 0; max-width: 15em; text-align: center;
+  transform: rotate(-5deg); filter: url(#crayonTexture); letter-spacing: .02em; }
+@media (min-width: 641px) { .shoproom > .crayon-note { position: absolute; right: 5%; bottom: 104px; } }
+@media (max-width: 640px) { .crayon-note { justify-self: end; margin-top: 18px; } }
 /* mat colors per shop */
 .frame.etsy .art { background: var(--rust); }
 .frame.etsy .logo { background: #F1641E; }
@@ -636,6 +642,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </svg></span>
         </a>
       </div>
+      <p class="crayon-note">For Custom Inquiries<br>Click the Mailbox Outside</p>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="crayonTexture"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 .85 1 1"/></feComponentTransfer></filter></svg>
       <svg class="shop-floor" aria-hidden="true" preserveAspectRatio="none">
         <defs><pattern id="shopFloorPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
           <rect class="fl-board" width="200" height="50"/>
