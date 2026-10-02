@@ -1341,8 +1341,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   burnDialog.addEventListener("cancel", function () { burnText.value = ""; });
   burnPaper.addEventListener("submit", function (e) {
     e.preventDefault();
-    burnText.value = "";            // gone for good, before anything else happens
-    burnText.blur();
+    burnText.blur();               // the words crumple up with the paper; closeBurn() clears them once it hits the fire
     var flames = document.querySelectorAll(".hot-fire .flames");
     function flare() { flames.forEach(function (fl) { fl.classList.remove("flare"); void fl.getBBox(); fl.classList.add("flare"); setTimeout(function () { fl.classList.remove("flare"); }, 1500); }); }
     if (reduce || !paperBall.animate) { closeBurn(); flare(); return; }
