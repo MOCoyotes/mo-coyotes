@@ -717,7 +717,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-gallery" class="room galleryroom" hidden aria-labelledby="galleryTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
       <h2 id="galleryTitle">GALLERY</h2>
-      <svg class="gallery-scene" viewBox="0 0 1000 560" role="img" aria-label="A sewing room with a dress form, a framed picture, a sewing machine on a table and a rocking chair with a basket of yarn">
+      <svg class="gallery-scene" viewBox="0 0 1000 560" role="img" aria-label="A sewing room with a dress form, a sewing machine on a table, a fireplace with a framed picture above the mantel, and a rocking chair with a basket of yarn">
         <defs>
           <pattern id="galStripes" width="64" height="20" patternUnits="userSpaceOnUse"><rect class="f-w1" width="64" height="20"/><rect class="g-stripe" width="30" height="20"/></pattern>
           <pattern id="galPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -726,6 +726,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="fl-board2" x="100" y="25" width="100" height="25" opacity=".3"/><rect class="fl-board2" x="0" y="25" width="30" height="25" opacity=".3"/>
             <path class="fl-line" d="M0 25 H200 M0 50 H200 M70 0 V25 M170 0 V25 M100 25 V50 M30 25 V50"/>
           </pattern>
+          <pattern id="galBricks" width="40" height="20" patternUnits="userSpaceOnUse">
+            <rect class="f-rust" width="40" height="20"/><path class="s-ink" stroke-width="1.5" fill="none" d="M0 10 H40 M0 20 H40 M20 0 V10 M0 10 V20 M40 10 V20"/>
+          </pattern>
         </defs>
         <rect width="1000" height="410" fill="url(#galStripes)"/>
         <rect y="410" width="1000" height="150" fill="url(#galPlanks)"/>
@@ -733,94 +736,130 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
         <!-- orange rug -->
         <g class="rug">
-          <ellipse class="f-orange s-ink" stroke-width="3" cx="520" cy="500" rx="300" ry="44"/>
-          <ellipse fill="none" class="s-trim" stroke-width="3" stroke-dasharray="10 8" cx="520" cy="500" rx="270" ry="34"/>
-          <ellipse class="f-rust" cx="520" cy="500" rx="200" ry="22" opacity=".45"/>
+          <ellipse class="f-orange s-ink" stroke-width="3" cx="500" cy="500" rx="300" ry="44"/>
+          <ellipse fill="none" class="s-trim" stroke-width="3" stroke-dasharray="10 8" cx="500" cy="500" rx="270" ry="34"/>
+          <ellipse class="f-rust" cx="500" cy="500" rx="200" ry="22" opacity=".45"/>
         </g>
 
-        <!-- ART: framed picture on the wall -->
+        <!-- fireplace (decor) -->
+        <g class="fireplace">
+          <rect fill="url(#galBricks)" class="s-ink" stroke-width="3" x="438" y="404" width="264" height="18"/>
+          <path class="f-trim s-ink" stroke-width="3" d="M458 252 H682 V406 H458 Z"/>
+          <path class="s-ink" stroke-width="2" fill="none" d="M480 260 V406 M660 260 V406"/>
+          <path class="f-tire s-ink" stroke-width="3" d="M512 406 V320 Q 512 290 542 290 H598 Q 628 290 628 320 V406 Z"/>
+          <path fill="url(#galBricks)" opacity=".55" d="M516 404 V322 Q 516 294 542 294 H598 Q 624 294 624 322 V404 Z"/>
+          <path class="f-tire" opacity=".55" d="M516 404 V322 Q 516 294 542 294 H598 Q 624 294 624 322 V404 Z"/>
+          <g class="flames">
+            <path class="f-orange" d="M538 396 C 530 372, 548 360, 546 340 C 560 356, 562 368, 570 352 C 580 372, 594 360, 592 344 C 608 366, 606 384, 600 396 Z"/>
+            <path class="f-marigold" d="M552 396 C 548 380, 560 372, 560 360 C 568 372, 572 378, 578 366 C 586 380, 590 388, 586 396 Z"/>
+            <path class="f-w1" d="M562 396 C 560 388, 566 384, 568 376 C 572 384, 576 388, 574 396 Z"/>
+          </g>
+          <rect class="f-trunk s-ink" stroke-width="2.5" x="532" y="394" width="76" height="10" rx="5"/>
+          <rect class="f-trunk s-ink" stroke-width="3" x="440" y="236" width="260" height="18" rx="3"/>
+          <path class="s-ink" stroke-width="2" d="M446 254 H694" opacity=".5"/>
+          <!-- little things on the mantel -->
+          <rect class="f-pink s-ink" stroke-width="2" x="466" y="214" width="14" height="22" rx="3"/><path class="f-marigold" d="M470 214 q3 -10 6 0 z"/>
+          <rect class="f-blush s-ink" stroke-width="2" x="664" y="220" width="22" height="16" rx="2"/><path class="s-ink" stroke-width="1.5" fill="none" d="M675 220 q-6 -10 0 -14 q6 4 0 14"/>
+        </g>
+
+        <!-- ART: framed picture above the mantel -->
         <a class="hot" href="#art" aria-label="Framed picture: ART gallery">
           <g class="glow">
-            <path class="s-ink" stroke-width="2.5" fill="none" d="M560 70 L516 104 M560 70 L604 104"/>
-            <circle class="f-marigold s-ink" stroke-width="2" cx="560" cy="68" r="6"/>
-            <g stroke="#5A1F0E" stroke-width="0">
-              <polygon style="fill: var(--frame-lt)" points="470,100 650,100 632,118 488,118"/>
-              <polygon style="fill: var(--frame-md)" points="650,100 650,250 632,232 632,118"/>
-              <polygon style="fill: var(--frame-dk)" points="650,250 470,250 488,232 632,232"/>
-              <polygon style="fill: var(--frame)" points="470,250 470,100 488,118 488,232"/>
-            </g>
-            <rect fill="none" class="s-ink" stroke-width="3" x="470" y="100" width="180" height="150"/>
-            <rect class="f-sky1" style="fill: var(--sky1)" x="488" y="118" width="144" height="114"/>
-            <circle class="f-sun" cx="600" cy="148" r="16"/>
-            <path class="f-pink" d="M488 196 Q 530 160 570 190 T 632 182 V232 H488 Z"/>
-            <path class="f-orange" d="M488 214 Q 540 192 590 214 T 632 210 V232 H488 Z"/>
-            <rect fill="none" class="s-ink" stroke-width="2.5" x="488" y="118" width="144" height="114"/>
-            <path class="s-ink" stroke-width="1.5" d="M470 100 L488 118 M650 100 L632 118 M650 250 L632 232 M470 250 L488 232"/>
+            <path class="s-ink" stroke-width="2.5" fill="none" d="M570 52 L532 84 M570 52 L608 84"/>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="570" cy="50" r="6"/>
+            <polygon style="fill: var(--frame-lt)" points="490,80 650,80 634,96 506,96"/>
+            <polygon style="fill: var(--frame-md)" points="650,80 650,214 634,198 634,96"/>
+            <polygon style="fill: var(--frame-dk)" points="650,214 490,214 506,198 634,198"/>
+            <polygon style="fill: var(--frame)" points="490,214 490,80 506,96 506,198"/>
+            <rect fill="none" class="s-ink" stroke-width="3" x="490" y="80" width="160" height="134"/>
+            <rect style="fill: var(--sky1)" x="506" y="96" width="128" height="102"/>
+            <circle class="f-sun" cx="604" cy="124" r="14"/>
+            <path class="f-pink" d="M506 168 Q 544 136 580 162 T 634 156 V198 H506 Z"/>
+            <path class="f-orange" d="M506 184 Q 552 164 596 184 T 634 180 V198 H506 Z"/>
+            <rect fill="none" class="s-ink" stroke-width="2.5" x="506" y="96" width="128" height="102"/>
+            <path class="s-ink" stroke-width="1.5" d="M490 80 L506 96 M650 80 L634 96 M650 214 L634 198 M490 214 L506 198"/>
           </g>
-          <g class="tag"><rect x="522" y="262" width="76" height="28" rx="14"/><text x="560" y="281" text-anchor="middle">ART</text></g>
+          <g class="tag"><rect x="660" y="132" width="76" height="28" rx="14"/><text x="698" y="151" text-anchor="middle">ART</text></g>
         </a>
 
-        <!-- FASHION: dress form -->
+        <!-- FASHION: off-white dress form -->
         <a class="hot" href="#fashion" aria-label="Dress form: FASHION gallery">
-          <g class="glow" transform="translate(70,190) scale(1.75)">
-            <path class="s-ink" stroke-width="4" stroke-linecap="round" fill="none" d="M45 112 V158 M24 166 L45 150 L66 166"/>
-            <path class="f-hot s-ink" stroke-width="3" stroke-linejoin="round" d="M38 8 h14 v8 c14 2 26 8 28 22 c2 14 -10 26 -10 38 c0 14 10 22 8 36 h-66 c-2 -14 8 -22 8 -36 c0 -12 -12 -24 -10 -38 c2 -14 14 -20 28 -22 z"/>
-            <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="4 4" d="M45 18 V110"/>
-            <path class="s-marigold" stroke-width="3" fill="none" stroke-linecap="round" d="M20 30 C 30 44, 60 44, 70 30 C 74 46, 70 64, 66 80"/>
-            <circle class="f-marigold s-ink" stroke-width="2" cx="45" cy="6" r="5"/>
-          </g>
-          <g class="tag"><rect x="98" y="150" width="124" height="28" rx="14"/><text x="160" y="169" text-anchor="middle">FASHION</text></g>
-        </a>
-
-        <!-- SEWN: sewing machine on a table -->
-        <g class="table">
-          <rect class="f-trunk s-ink" stroke-width="3" x="262" y="350" width="12" height="130"/><rect class="f-trunk s-ink" stroke-width="3" x="438" y="350" width="12" height="130"/>
-          <rect class="f-floor s-ink" style="fill: var(--floor)" stroke-width="3" x="240" y="336" width="232" height="18" rx="3"/>
-        </g>
-        <a class="hot" href="#sewn" aria-label="Sewing machine: SEWN gallery">
           <g class="glow">
-            <rect class="f-trim s-ink" stroke-width="3" x="276" y="320" width="170" height="16" rx="4"/>
-            <rect class="f-pink s-ink" stroke-width="3" x="398" y="258" width="40" height="64" rx="8"/>
-            <rect class="f-pink s-ink" stroke-width="3" x="296" y="252" width="142" height="28" rx="12"/>
-            <rect class="f-pink s-ink" stroke-width="3" x="292" y="256" width="30" height="50" rx="7"/>
-            <path class="s-ink" stroke-width="2.5" stroke-linecap="round" d="M306 306 V318"/>
-            <circle class="f-trim s-ink" stroke-width="3" cx="446" cy="282" r="15"/><circle class="f-hot" cx="446" cy="282" r="5"/>
-            <rect class="f-hot s-ink" stroke-width="2" x="352" y="236" width="12" height="18" rx="2"/>
-            <path class="s-trim" stroke-width="3" d="M330 266 H392"/>
-            <path class="f-hot" d="M372 304 l-5 -5 a3.3 3.3 0 0 1 5 -4.4 a3.3 3.3 0 0 1 5 4.4 z"/>
+            <path class="s-ink" stroke-width="7" stroke-linecap="round" fill="none" d="M110 350 V468 M110 466 L76 500 M110 466 L144 500 M110 466 V504"/>
+            <path stroke-width="4" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M110 350 V468 M110 466 L76 500 M110 466 L144 500 M110 466 V504"/>
+            <circle class="f-tire" cx="76" cy="502" r="4"/><circle class="f-tire" cx="144" cy="502" r="4"/><circle class="f-tire" cx="110" cy="506" r="4"/>
+            <rect class="f-marigold s-ink" stroke-width="2" x="102" y="392" width="16" height="10" rx="3"/>
+            <path fill="#F4ECDD" class="s-ink" stroke-width="3" stroke-linejoin="round" d="M110 180 C 100 180 96 188 92 190 C 76 192 62 196 58 206 C 54 218 58 228 60 236 C 62 252 72 262 76 272 C 78 286 64 300 60 318 C 58 330 62 340 66 346 L 154 346 C 158 340 162 330 160 318 C 156 300 142 286 144 272 C 148 262 158 252 160 236 C 162 228 166 218 162 206 C 158 196 144 192 128 190 C 124 188 120 180 110 180 Z"/>
+            <path fill="#E4D6BF" d="M128 192 C 144 194 158 198 162 208 C 166 220 160 230 160 238 C 158 252 148 262 144 272 C 142 286 156 300 160 318 C 162 330 158 340 154 346 H136 C 138 330 130 300 128 280 C 126 250 136 220 128 192 Z" opacity=".8"/>
+            <path class="s-ink" stroke-width="1.4" fill="none" opacity=".6" d="M90 196 C 94 230 100 258 96 288 C 94 310 92 330 94 346 M130 196 C 126 230 120 258 124 288 C 126 310 128 330 126 346"/>
+            <path class="s-ink" stroke-width="1.4" fill="none" stroke-dasharray="3 3" opacity=".6" d="M110 186 V346"/>
+            <ellipse fill="#F4ECDD" class="s-ink" stroke-width="2.5" cx="110" cy="346" rx="44" ry="6"/>
+            <path class="s-ink" stroke-width="2" fill="none" opacity=".45" d="M76 272 Q 110 280 144 272"/>
+            <rect class="f-trunk s-ink" stroke-width="2.5" x="102" y="170" width="16" height="12" rx="3"/>
+            <circle class="f-trunk s-ink" stroke-width="2.5" cx="110" cy="166" r="7"/>
+            <path class="s-hot" style="stroke: var(--hot)" stroke-width="3" fill="none" stroke-linecap="round" d="M64 210 C 84 230, 136 230, 156 210 C 160 232, 156 256, 150 270"/>
           </g>
-          <g class="tag"><rect x="320" y="198" width="90" height="28" rx="14"/><text x="365" y="217" text-anchor="middle">SEWN</text></g>
+          <g class="tag"><rect x="48" y="126" width="124" height="28" rx="14"/><text x="110" y="145" text-anchor="middle">FASHION</text></g>
         </a>
 
-        <!-- rocking chair (decor) -->
-        <g class="rocker">
-          <path class="f-trunk s-ink" stroke-width="3" d="M836 210 H880 V370 H836 Z"/>
-          <path class="s-ink" stroke-width="2" d="M850 214 V366 M866 214 V366"/>
-          <path class="f-trunk s-ink" stroke-width="3" d="M770 370 H884 V388 H770 Z"/>
-          <path class="f-pink s-ink" stroke-width="3" d="M776 356 Q 826 340 876 356 L 876 372 H776 Z"/>
-          <path class="s-ink" stroke-width="5" stroke-linecap="round" fill="none" d="M780 388 L772 470 M874 388 L880 470"/>
-          <path class="s-trunk" stroke-width="5" stroke-linecap="round" fill="none" d="M780 388 L772 470 M874 388 L880 470" style="stroke: var(--trunk)"/>
-          <path class="s-ink" stroke-width="9" stroke-linecap="round" fill="none" d="M730 466 Q 826 494 930 458"/>
-          <path stroke-width="5" stroke-linecap="round" fill="none" d="M730 466 Q 826 494 930 458" style="stroke: var(--trunk)"/>
-          <path class="s-ink" stroke-width="5" stroke-linecap="round" fill="none" d="M770 330 Q 760 340 772 352 M884 330 V352"/>
-          <path stroke-width="3" stroke-linecap="round" fill="none" d="M770 330 Q 760 340 772 352 M884 330 V352" style="stroke: var(--trunk)"/>
-          <path class="f-trunk s-ink" stroke-width="3" d="M764 326 H890 V334 H764 Z"/>
+        <!-- table -->
+        <g class="table">
+          <rect class="f-trunk s-ink" stroke-width="3" x="222" y="350" width="12" height="130"/><rect class="f-trunk s-ink" stroke-width="3" x="398" y="350" width="12" height="130"/>
+          <rect class="s-ink" style="fill: var(--floor)" stroke-width="3" x="204" y="336" width="224" height="18" rx="3"/>
+        </g>
+
+        <!-- SEWN: vintage pink sewing machine -->
+        <a class="hot" href="#sewn" aria-label="Sewing machine: SEWN gallery">
+          <g class="glow" stroke-linejoin="round">
+            <path class="s-hot" style="stroke: var(--hot)" stroke-width="1.5" fill="none" d="M318 228 C 290 222, 262 232, 258 252"/>
+            <rect class="f-trim s-ink" stroke-width="3" x="224" y="320" width="186" height="16" rx="5"/>
+            <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="246" y="324" width="28" height="6" rx="2"/>
+            <path class="f-pink s-ink" stroke-width="3" d="M362 320 L366 258 Q 368 248 380 248 H392 Q 402 248 402 258 V320 Z"/>
+            <path class="f-pink s-ink" stroke-width="3" d="M254 252 Q 254 238 268 238 H390 Q 404 238 404 252 V268 H262 Q 254 268 254 260 Z"/>
+            <path class="f-pink s-ink" stroke-width="3" d="M242 248 Q 242 238 252 238 H282 V298 Q 282 306 274 306 H250 Q 242 306 242 298 Z"/>
+            <rect class="f-trim s-ink" stroke-width="2" x="292" y="246" width="60" height="9" rx="4"/>
+            <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="256" y="306" width="6" height="12"/>
+            <path class="s-ink" stroke-width="1.5" d="M259 318 V324"/>
+            <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="250" y="314" width="18" height="5" rx="2"/>
+            <circle class="f-trim s-ink" stroke-width="2.5" cx="386" cy="292" r="9"/><path class="s-ink" stroke-width="2" d="M386 292 l4 -5"/>
+            <ellipse class="f-trim s-ink" stroke-width="3" cx="408" cy="262" rx="9" ry="20"/><ellipse class="f-hot" cx="408" cy="262" rx="4" ry="9"/>
+            <path class="s-ink" stroke-width="2" d="M318 238 V222"/>
+            <rect class="f-hot s-ink" stroke-width="2" x="311" y="218" width="14" height="14" rx="2"/><path class="s-ink" stroke-width="1" d="M311 222 H325 M311 228 H325" opacity=".5"/>
+            <circle class="f-trim s-ink" stroke-width="2" cx="372" cy="232" r="4"/>
+            <path class="f-hot" d="M330 300 l-4.5 -4.5 a3 3 0 0 1 4.5 -4 a3 3 0 0 1 4.5 4 z" opacity=".9"/>
+          </g>
+          <g class="tag"><rect x="272" y="178" width="90" height="28" rx="14"/><text x="317" y="197" text-anchor="middle">SEWN</text></g>
+        </a>
+
+        <!-- rocking chair, turned to face forward (decor) -->
+        <g class="rocker" stroke-linejoin="round">
+          <path class="s-ink" stroke-width="8" stroke-linecap="round" fill="none" d="M812 458 Q 840 476 872 466 M918 466 Q 950 476 978 458"/>
+          <path stroke-width="4.5" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M812 458 Q 840 476 872 466 M918 466 Q 950 476 978 458"/>
+          <path class="f-trunk s-ink" stroke-width="3" d="M834 228 Q 895 206 956 228 V348 H834 Z"/>
+          <path class="s-ink" stroke-width="5" stroke-linecap="round" d="M856 228 V346 M878 222 V346 M900 220 V346 M922 222 V346 M944 226 V346"/>
+          <path stroke-width="2.5" stroke-linecap="round" style="stroke: var(--floor)" d="M856 228 V346 M878 222 V346 M900 220 V346 M922 222 V346 M944 226 V346"/>
+          <path class="f-trunk s-ink" stroke-width="3" d="M834 222 Q 895 198 956 222 V234 Q 895 212 834 234 Z"/>
+          <path class="f-trunk s-ink" stroke-width="3" d="M826 348 H964 L976 374 H814 Z"/>
+          <path class="f-pink s-ink" stroke-width="2.5" d="M834 350 H956 L966 370 H824 Z"/>
+          <rect class="f-trunk s-ink" stroke-width="3" x="814" y="374" width="162" height="12" rx="2"/>
+          <path class="s-ink" stroke-width="7" stroke-linecap="round" d="M824 386 L820 462 M966 386 L970 462 M846 386 V448 M944 386 V448"/>
+          <path stroke-width="4" stroke-linecap="round" style="stroke: var(--trunk)" d="M824 386 L820 462 M966 386 L970 462 M846 386 V448 M944 386 V448"/>
+          <path class="s-ink" stroke-width="7" stroke-linecap="round" fill="none" d="M836 300 Q 816 304 816 330 V372 M954 300 Q 974 304 974 330 V372"/>
+          <path stroke-width="4" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M836 300 Q 816 304 816 330 V372 M954 300 Q 974 304 974 330 V372"/>
         </g>
 
         <!-- FIBER: basket of yarn beside the chair -->
         <a class="hot" href="#fiber" aria-label="Basket of yarn: FIBER gallery">
           <g class="glow">
-            <path class="s-ink" stroke-width="2" d="M640 400 l26 -34 M650 402 l30 -30"/>
-            <circle class="f-pink s-ink" stroke-width="2.5" cx="640" cy="414" r="20"/><path class="s-ink" stroke-width="1.5" fill="none" d="M624 406 q16 10 32 0 M622 416 q18 10 36 -2"/>
-            <circle class="f-orange s-ink" stroke-width="2.5" cx="676" cy="410" r="18"/><path class="s-ink" stroke-width="1.5" fill="none" d="M662 404 q14 8 28 0 M660 414 q16 8 32 -2"/>
-            <circle class="f-marigold s-ink" stroke-width="2.5" cx="704" cy="420" r="14"/><path class="s-ink" stroke-width="1.5" fill="none" d="M692 416 q12 6 24 0"/>
-            <path class="f-rust s-ink" stroke-width="3" stroke-linejoin="round" d="M606 422 H728 L716 476 H618 Z"/>
-            <path class="s-ink" stroke-width="1.5" fill="none" d="M610 438 H724 M613 454 H721 M615 466 H719 M640 422 L644 476 M667 422 V476 M694 422 L690 476"/>
+            <path class="s-ink" stroke-width="2" d="M736 424 l26 -34 M746 426 l30 -30"/>
+            <circle class="f-pink s-ink" stroke-width="2.5" cx="736" cy="438" r="20"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M721.9 425.2 q14.1 5.6 28.3 0 M718.6 431.6 q17.4 5.6 34.9 0 M717.6 438.0 q18.4 5.6 36.8 0 M718.6 444.4 q17.4 5.6 34.9 0 M721.9 450.8 q14.1 5.6 28.3 0 M727.6 421.7 q-6.0 16.3 0 32.7 M736.0 420.0 q-6.0 18.0 0 36.0 M744.4 421.7 q-6.0 16.3 0 32.7"/><path class="f-trim" opacity=".55" d="M725.0 431.0 q3.0 -7.0 10.0 -8.4 q-2.0 0 -10.0 8.4 z"/><circle class="f-orange s-ink" stroke-width="2.5" cx="772" cy="434" r="18"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M759.3 422.5 q12.7 5.0 25.4 0 M756.3 428.2 q15.7 5.0 31.4 0 M755.4 434.0 q16.6 5.0 33.1 0 M756.3 439.8 q15.7 5.0 31.4 0 M759.3 445.5 q12.7 5.0 25.4 0 M764.4 419.3 q-5.4 14.7 0 29.4 M772.0 417.8 q-5.4 16.2 0 32.4 M779.6 419.3 q-5.4 14.7 0 29.4"/><path class="f-trim" opacity=".55" d="M762.1 427.7 q2.7 -6.3 9.0 -7.6 q-1.8 0 -9.0 7.6 z"/><circle class="f-marigold s-ink" stroke-width="2.5" cx="796" cy="446" r="13"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M786.8 437.7 q9.2 3.6 18.4 0 M784.7 441.8 q11.3 3.6 22.7 0 M784.0 446.0 q12.0 3.6 23.9 0 M784.7 450.2 q11.3 3.6 22.7 0 M786.8 454.3 q9.2 3.6 18.4 0 M790.5 435.4 q-3.9 10.6 0 21.2 M796.0 434.3 q-3.9 11.7 0 23.4 M801.5 435.4 q-3.9 10.6 0 21.2"/><path class="f-trim" opacity=".55" d="M788.9 441.4 q1.9 -4.5 6.5 -5.5 q-1.3 0 -6.5 5.5 z"/><path class="s-hot" style="stroke: var(--hot)" stroke-width="2" fill="none" stroke-linecap="round" d="M720 452 C 700 470, 690 500, 670 506 S 640 512, 628 504"/>
+            <path class="f-rust s-ink" stroke-width="3" stroke-linejoin="round" d="M704 446 H812 L802 498 H714 Z"/>
+            <path class="s-ink" stroke-width="1.5" fill="none" d="M707 462 H809 M710 476 H806 M712 488 H804 M734 446 L738 498 M758 446 V498 M782 446 L778 498"/>
           </g>
-          <g class="tag"><rect x="624" y="348" width="88" height="28" rx="14"/><text x="668" y="367" text-anchor="middle">FIBER</text></g>
+          <g class="tag"><rect x="714" y="370" width="88" height="28" rx="14"/><text x="758" y="389" text-anchor="middle">FIBER</text></g>
         </a>
       </svg>
-      <p class="hint gallery-hint">Click the dress form, the picture, the sewing machine or the yarn.</p>
+      <p class="hint gallery-hint">Click the dress form, the sewing machine, the picture over the fireplace or the yarn.</p>
     </section>
 
     <!-- GALLERY collections -->
