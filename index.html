@@ -176,8 +176,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .crayon-note { font: 400 clamp(1.15rem, 2.6vw, 1.6rem)/1.15 var(--font-crayon); color: var(--hot); margin: 0; max-width: 15em; text-align: center; display: block; text-decoration: none; transition: transform .15s;
   transform: rotate(-5deg); filter: url(#crayonTexture); letter-spacing: .02em; }
 .crayon-note:hover, .crayon-note:focus-visible { transform: rotate(-2deg) scale(1.08); text-decoration: underline wavy; }
-@media (min-width: 641px) { .room.shoproom > .crayon-note { position: absolute; right: 5%; bottom: 104px; } }
+@media (min-width: 641px) { .room.shoproom > .crayon-note { position: absolute; right: 5%; bottom: 88px; } }
 @media (max-width: 640px) { .crayon-note { justify-self: end; margin-top: 18px; } }
+.room.shoproom > .floor-crayon { position: absolute; right: 9%; bottom: 26px; width: 84px; height: auto; transform: rotate(-9deg); z-index: 2; pointer-events: none; }
 /* mat colors per shop */
 .frame.etsy .art { background: var(--rust); }
 .frame.etsy .logo { background: #F1641E; }
@@ -648,6 +649,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </div>
       <a class="crayon-note" href="#contact" id="customLink">For Custom Inquiries</a>
       <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="crayonTexture"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 .85 1 1"/></feComponentTransfer></filter></svg>
+      <svg class="floor-crayon" viewBox="0 0 90 22" aria-hidden="true"><path class="f-hot s-ink" stroke-width="2" stroke-linejoin="round" d="M14 3 H84 a3 3 0 0 1 3 3 V16 a3 3 0 0 1 -3 3 H14 Z"/><path class="f-pink s-ink" stroke-width="2" d="M26 3 H70 V19 H26 Z"/><path class="s-ink" stroke-width="1.4" fill="none" d="M32 3 V19 M64 3 V19"/><path class="f-hot s-ink" stroke-width="2" stroke-linejoin="round" d="M14 3 L3 9.5 Q1 11 3 12.5 L14 19 Z"/></svg>
       <svg class="shop-floor" aria-hidden="true" preserveAspectRatio="none">
         <defs><pattern id="shopFloorPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
           <rect class="fl-board" width="200" height="50"/>
