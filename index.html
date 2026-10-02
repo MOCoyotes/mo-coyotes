@@ -717,7 +717,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-gallery" class="room galleryroom" hidden aria-labelledby="galleryTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
       <h2 id="galleryTitle">GALLERY</h2>
-      <svg class="gallery-scene" viewBox="0 0 1000 560" role="img" aria-label="A sewing room with a dress form, a sewing machine on a table, a fireplace with a framed picture above the mantel, and a rocking chair with a basket of yarn">
+      <svg class="gallery-scene" viewBox="0 0 1000 560" role="img" aria-label="A sewing room with a dress form, a sewing machine on a table, a fireplace with a framed picture above the mantel, and a vintage armchair with a basket of yarn">
         <defs>
           <pattern id="galStripes" width="64" height="20" patternUnits="userSpaceOnUse"><rect class="f-w1" width="64" height="20"/><rect class="g-stripe" width="30" height="20"/></pattern>
           <pattern id="galPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -831,21 +831,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="272" y="178" width="90" height="28" rx="14"/><text x="317" y="197" text-anchor="middle">SEWN</text></g>
         </a>
 
-        <!-- rocking chair, turned to face forward (decor) -->
-        <g class="rocker" stroke-linejoin="round">
-          <path class="s-ink" stroke-width="8" stroke-linecap="round" fill="none" d="M812 458 Q 840 476 872 466 M918 466 Q 950 476 978 458"/>
-          <path stroke-width="4.5" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M812 458 Q 840 476 872 466 M918 466 Q 950 476 978 458"/>
-          <path class="f-trunk s-ink" stroke-width="3" d="M834 228 Q 895 206 956 228 V348 H834 Z"/>
-          <path class="s-ink" stroke-width="5" stroke-linecap="round" d="M856 228 V346 M878 222 V346 M900 220 V346 M922 222 V346 M944 226 V346"/>
-          <path stroke-width="2.5" stroke-linecap="round" style="stroke: var(--floor)" d="M856 228 V346 M878 222 V346 M900 220 V346 M922 222 V346 M944 226 V346"/>
-          <path class="f-trunk s-ink" stroke-width="3" d="M834 222 Q 895 198 956 222 V234 Q 895 212 834 234 Z"/>
-          <path class="f-trunk s-ink" stroke-width="3" d="M826 348 H964 L976 374 H814 Z"/>
-          <path class="f-pink s-ink" stroke-width="2.5" d="M834 350 H956 L966 370 H824 Z"/>
-          <rect class="f-trunk s-ink" stroke-width="3" x="814" y="374" width="162" height="12" rx="2"/>
-          <path class="s-ink" stroke-width="7" stroke-linecap="round" d="M824 386 L820 462 M966 386 L970 462 M846 386 V448 M944 386 V448"/>
-          <path stroke-width="4" stroke-linecap="round" style="stroke: var(--trunk)" d="M824 386 L820 462 M966 386 L970 462 M846 386 V448 M944 386 V448"/>
-          <path class="s-ink" stroke-width="7" stroke-linecap="round" fill="none" d="M836 300 Q 816 304 816 330 V372 M954 300 Q 974 304 974 330 V372"/>
-          <path stroke-width="4" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M836 300 Q 816 304 816 330 V372 M954 300 Q 974 304 974 330 V372"/>
+        <!-- vintage cushioned armchair (decor) -->
+        <g class="armchair" stroke-linejoin="round">
+          <path class="s-ink" stroke-width="7" stroke-linecap="round" fill="none" d="M826 410 Q 820 432 830 448 M964 410 Q 970 432 960 448"/>
+          <path stroke-width="4" stroke-linecap="round" fill="none" style="stroke: var(--trunk)" d="M826 410 Q 820 432 830 448 M964 410 Q 970 432 960 448"/>
+          <path class="f-pink s-ink" stroke-width="3" d="M834 362 V252 Q 834 216 866 212 Q 895 194 924 212 Q 956 216 956 252 V362 Z"/>
+          <path class="s-ink" stroke-width="1.4" fill="none" opacity=".35" d="M872 248 L895 280 L918 248 M872 248 L895 216 L918 248 M872 312 L895 280 L918 312 M872 312 L895 344 L918 312"/>
+          <g class="f-hot s-ink" stroke-width="1.2"><circle cx="872" cy="248" r="3.2"/><circle cx="918" cy="248" r="3.2"/><circle cx="895" cy="280" r="3.2"/><circle cx="872" cy="312" r="3.2"/><circle cx="918" cy="312" r="3.2"/><circle cx="895" cy="218" r="3.2"/></g>
+          <path class="f-pink s-ink" stroke-width="3" d="M810 306 Q 810 286 830 286 Q 848 286 848 306 V404 H810 Z"/>
+          <path class="f-pink s-ink" stroke-width="3" d="M942 306 Q 942 286 960 286 Q 980 286 980 306 V404 H942 Z"/>
+          <circle class="f-blush s-ink" stroke-width="2.5" cx="829" cy="304" r="12"/><path class="s-ink" stroke-width="1.6" fill="none" d="M829 304 m-6 0 a6 6 0 1 1 6 6 a3 3 0 1 1 -3 -3"/>
+          <circle class="f-blush s-ink" stroke-width="2.5" cx="961" cy="304" r="12"/><path class="s-ink" stroke-width="1.6" fill="none" d="M961 304 m6 0 a6 6 0 1 0 -6 6 a3 3 0 1 0 3 -3"/>
+          <path class="f-orange s-ink" stroke-width="2.5" d="M872 318 Q 895 304 918 318 Q 924 334 918 350 Q 895 360 872 350 Q 866 334 872 318 Z"/>
+          <path class="s-ink" stroke-width="1.2" fill="none" opacity=".5" d="M880 334 H910"/>
+          <path class="f-blush s-ink" stroke-width="3" d="M848 352 H942 Q 950 352 950 360 V380 Q 950 388 942 388 H848 Q 840 388 840 380 V360 Q 840 352 848 352 Z"/>
+          <path class="f-pink s-ink" stroke-width="3" d="M810 386 H980 V412 Q 980 418 974 418 H816 Q 810 418 810 412 Z"/>
+          <path style="stroke: var(--hot)" stroke-width="2.5" fill="none" d="M812 392 H978"/>
+          <path class="s-ink" stroke-width="1.2" fill="none" opacity=".45" d="M846 400 q6 8 12 0 q6 8 12 0 M920 400 q6 8 12 0 q6 8 12 0"/>
         </g>
 
         <!-- FIBER: basket of yarn beside the chair -->
