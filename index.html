@@ -157,12 +157,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .shoproom { position: relative; overflow: hidden; background:
   repeating-linear-gradient(90deg, var(--wall-lt) 0 34px, var(--wall1) 34px 68px);
   padding-bottom: 96px; }
-.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 0; margin-top: -6px; max-width: 760px; }
+.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 40px; margin-top: -6px; max-width: 760px; }
 @media (max-width: 520px) { .frames { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
 .frame { position: relative; display: grid; gap: 12px; justify-items: center; text-decoration: none; color: var(--ink); min-width: 0; }
 .frame .art { box-sizing: border-box; width: 100%; max-width: 200px; aspect-ratio: 1; display: grid; place-items: center;
   background: var(--hot); border: 12px solid var(--frame); outline: 3px solid var(--ink); padding: clamp(10px, 2.4vw, 18px);
   box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); transition: transform .2s; }
+.frame .art { position: relative; }
+.frame .art::before { content: ""; position: absolute; left: 50%; top: -44px; width: 76px; height: 32px; transform: translateX(-50%);
+  background: linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
+              linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
+.frame .art::after { content: ""; position: absolute; left: 50%; top: -50px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
 .frame .logo { width: 100%; height: 100%; display: block; background: #FFFFFF; outline: 2px solid var(--ink); box-shadow: inset 2px 2px 0 rgba(0,0,0,.12); }
 .frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.04); }
 .frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: clamp(.7rem, 1.8vw, .85rem); text-align: center; }
