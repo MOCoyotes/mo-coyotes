@@ -332,12 +332,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .attic .room-nav { justify-content: center; }
 .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: start; margin-top: 20px; }
 .about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
-.about-frame::before { content: ""; position: absolute; top: -36px; left: 50%; width: 84px; height: 38px; transform: translateX(-50%);
+.about-frame::before { content: ""; position: absolute; top: -42px; left: 50%; width: 84px; height: 39px; transform: translateX(-50%);
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
-.about-frame::after { content: ""; position: absolute; left: 50%; top: -42px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
-.about-frame img { display: block; width: 100%; height: auto; border: 16px solid var(--frame); outline: 3px solid var(--ink);
-  box-shadow: inset 0 0 0 3px var(--ink), 8px 10px 0 rgba(0,0,0,.18); }
+.about-frame::after { content: ""; position: absolute; left: 50%; top: -48px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
+.about-frame img { display: block; box-sizing: border-box; width: 100%; height: auto; padding: 14px; background: var(--hot);
+  border: 14px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame); outline: 3px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); }
 .note-card { position: relative; min-width: 0; max-width: 560px; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
   padding: 30px clamp(18px, 4vw, 30px) 22px; box-shadow: 6px 6px 0 var(--ink); transform: rotate(1deg);
   background-image: repeating-linear-gradient(transparent 0 29px, var(--line) 29px 30px); background-position: 0 14px; }
