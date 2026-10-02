@@ -179,7 +179,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (min-width: 400px) { .room.shoproom > .crayon-note { position: absolute; right: 5%; bottom: 88px; } }
 @media (max-width: 399px) { .crayon-note { justify-self: end; margin-top: 18px; } }
 .room.shoproom > .floor-crayon { position: absolute; right: 9%; bottom: 26px; width: 84px; height: auto; transform: rotate(-9deg); z-index: 2; pointer-events: none; }
-.room.shoproom > .plush { position: absolute; left: 6%; bottom: 22px; width: 92px; height: auto; z-index: 2; pointer-events: none; }
+.room.shoproom > .doll { position: absolute; left: 8%; bottom: 16px; width: 56px; height: auto; z-index: 2; pointer-events: none; }
 /* mat colors per shop */
 .frame.etsy .art { background: var(--rust); }
 .frame.etsy .logo { background: #F1641E; }
@@ -651,25 +651,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <a class="crayon-note" href="#contact" id="customLink">For Custom Inquiries</a>
       <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="crayonTexture"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 .85 1 1"/></feComponentTransfer></filter></svg>
       <svg class="floor-crayon" viewBox="0 0 90 22" aria-hidden="true"><path class="f-hot s-ink" stroke-width="2" stroke-linejoin="round" d="M14 3 H84 a3 3 0 0 1 3 3 V16 a3 3 0 0 1 -3 3 H14 Z"/><path class="f-pink s-ink" stroke-width="2" d="M26 3 H70 V19 H26 Z"/><path class="s-ink" stroke-width="1.4" fill="none" d="M32 3 V19 M64 3 V19"/><path class="f-hot s-ink" stroke-width="2" stroke-linejoin="round" d="M14 3 L3 9.5 Q1 11 3 12.5 L14 19 Z"/></svg>
-      <svg class="plush" viewBox="0 0 100 100" aria-hidden="true">
-        <g class="s-ink" stroke-width="2.2" stroke-linejoin="round">
-          <path class="f-pink" d="M68 80 C 92 76, 98 54, 86 42 C 84 58, 76 68, 62 72 Z"/>
-          <path class="f-blush" d="M86 42 C 90 46, 92 52, 90 58 C 86 54, 84 48, 86 42 Z"/>
-          <ellipse class="f-pink" cx="50" cy="75" rx="24" ry="19"/>
-          <ellipse class="f-blush" cx="50" cy="78" rx="13" ry="11"/>
-          <ellipse class="f-pink" cx="37" cy="92" rx="10" ry="5.5"/><ellipse class="f-pink" cx="63" cy="92" rx="10" ry="5.5"/>
-          <path class="f-pink" d="M31 34 L26 7 L45 25 Z"/><path class="f-pink" d="M69 34 L74 7 L55 25 Z"/>
-          <ellipse class="f-pink" cx="50" cy="42" rx="23" ry="19"/>
-          <path class="f-blush" d="M32 28 L29 13 L40 25 Z" stroke-width="1.4"/><path class="f-blush" d="M68 28 L71 13 L60 25 Z" stroke-width="1.4"/>
-          <ellipse class="f-blush" cx="50" cy="50" rx="10" ry="7.5"/>
+      <svg class="doll" viewBox="0 0 60 120" aria-hidden="true">
+        <g stroke-linecap="round" fill="none">
+          <path class="s-ink" stroke-width="7" d="M27 76 V106 M33 76 V106 M23 37 L16 60 M37 37 L44 60"/>
+          <path stroke="#F6D2B8" stroke-width="4.2" d="M27 76 V106 M33 76 V106 M23 37 L16 60 M37 37 L44 60"/>
         </g>
-        <ellipse class="f-ink" cx="50" cy="46" rx="4" ry="3"/>
-        <circle class="f-ink" cx="41" cy="38" r="3.2"/><circle class="f-ink" cx="59" cy="38" r="3.2"/>
-        <circle fill="#FFFFFF" cx="42" cy="37" r="1"/><circle fill="#FFFFFF" cx="60" cy="37" r="1"/>
-        <path class="s-ink" stroke-width="1.8" fill="none" stroke-linecap="round" d="M46 52 q4 4 8 0"/>
-        <circle class="f-hot" cx="35" cy="47" r="3" opacity=".55"/><circle class="f-hot" cx="65" cy="47" r="3" opacity=".55"/>
-        <path class="f-hot s-ink" stroke-width="1.2" d="M50 84 l-4.5 -4.5 a3 3 0 0 1 4.5 -4 a3 3 0 0 1 4.5 4 z"/>
-        <path class="s-ink" stroke-width="1.2" fill="none" stroke-dasharray="2 2.5" d="M50 61 V67"/>
+        <g class="s-ink" stroke-width="1.8" stroke-linejoin="round">
+          <path class="f-marigold" d="M17 18 C 12 40, 13 60, 17 68 L43 68 C 47 60, 48 40, 43 18 Z"/>
+          <rect fill="#F6D2B8" x="27" y="28" width="6" height="8"/>
+          <circle fill="#F6D2B8" cx="30" cy="19" r="11"/>
+          <path class="f-marigold" d="M18.5 19 C 19 5, 41 5, 41.5 19 C 38 12, 31 10, 25 14 C 23 16, 20 17, 18.5 19 Z"/>
+          <path class="f-hot" d="M22 35 Q30 32 38 35 L45 77 Q30 81 15 77 Z"/>
+          <path class="f-blush" d="M21.5 44 H38.5 L39.2 48 H20.8 Z"/>
+          <ellipse class="f-hot" cx="26" cy="109" rx="4.5" ry="3"/><ellipse class="f-hot" cx="34" cy="109" rx="4.5" ry="3"/>
+        </g>
+        <circle class="f-ink" cx="26" cy="20" r="1.5"/><circle class="f-ink" cx="34" cy="20" r="1.5"/>
+        <path class="s-ink" stroke-width="1.3" fill="none" stroke-linecap="round" d="M27.5 24.5 q2.5 2 5 0"/>
+        <circle class="f-hot" cx="23.5" cy="23.5" r="1.8" opacity=".5"/><circle class="f-hot" cx="36.5" cy="23.5" r="1.8" opacity=".5"/>
+        <path class="f-pink s-ink" stroke-width="1" d="M38 9 l-3 -3 a2 2 0 0 1 3 -2.6 a2 2 0 0 1 3 2.6 z"/>
       </svg>
       <svg class="shop-floor" aria-hidden="true" preserveAspectRatio="none">
         <defs><pattern id="shopFloorPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
