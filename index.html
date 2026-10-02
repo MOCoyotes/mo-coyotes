@@ -96,11 +96,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .f-hot { fill: var(--hot); } .f-pink { fill: var(--pink); } .f-blush { fill: var(--blush); } .f-marigold { fill: var(--marigold); } .f-orange { fill: var(--orange); } .f-rust { fill: var(--rust); }
 .s-ink { stroke: var(--ink); } .s-trim { stroke: var(--trim); }
 .cloud { fill: var(--trim); opacity: .85; }
+.s-pinkline { stroke: var(--pink); }
 .f-willow { fill: var(--willow); } .f-willow2 { fill: var(--willow2); } .f-trunk { fill: var(--trunk); } .f-leaf { fill: var(--leaf); } .s-leafline { stroke: var(--leaf); }
 .strand path, .strand2 path { fill: none; stroke-linecap: round; }
 .strand2 path { stroke: var(--willow2); stroke-width: 9; stroke-dasharray: 0 10; }
 .strand path { stroke: var(--willow); stroke-width: 8; stroke-dasharray: 0 9; }
-.banner-text { font: 400 21px var(--font-script); fill: var(--hot); }
 .prop { transform-box: fill-box; transform-origin: center; }
 .hot-plane:hover .prop, .hot-plane:focus-visible .prop { animation: spin .18s linear infinite; }
 @keyframes spin { 50% { transform: scaleY(.15); } }
@@ -239,22 +239,21 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <!-- OUTSIDE -->
     <section id="room-outside" aria-label="Outside the MO Coyotes house">
       <svg class="scene" id="scene" viewBox="0 0 1000 620" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">A pink cottage with a weeping willow, a mailbox, a pink convertible in the driveway and a pink airplane in the sky</title>
+        <title id="sceneTitle">A pink cottage with a MO Coyotes yard sign, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f-sky1"/><stop offset="1" class="f-sky2"/></linearGradient>
           <!-- cartoon flower: set --petal on the <use> to recolor -->
           <g id="flower">
-            <g style="fill: var(--petal, var(--pink))" class="s-ink" stroke-width="1.4">
+            <g style="fill: var(--petal, var(--pink))">
               <circle cx="0" cy="-5" r="4.4"/><circle cx="4.8" cy="-1.5" r="4.4"/><circle cx="2.9" cy="4" r="4.4"/><circle cx="-2.9" cy="4" r="4.4"/><circle cx="-4.8" cy="-1.5" r="4.4"/>
             </g>
-            <circle class="f-marigold s-ink" stroke-width="1.2" r="2.8"/>
+            <circle class="f-marigold" r="2.8"/>
           </g>
           <g id="stemflower">
             <path class="s-leafline" stroke-width="2.5" fill="none" d="M0 0 V16"/>
-            <path class="f-leaf s-ink" stroke-width="1.2" d="M0 10 q8 -8 12 -2 q-6 6 -12 2z"/>
+            <path class="f-leaf" d="M0 10 q8 -8 12 -2 q-6 6 -12 2z"/>
             <use href="#flower"/>
           </g>
-          <clipPath id="logoClip"><rect x="224" y="399" width="40" height="40" rx="8"/></clipPath>
         </defs>
         <rect width="1000" height="620" fill="url(#sky)"/>
         <circle class="f-sun" cx="850" cy="105" r="58"/>
@@ -286,20 +285,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <polygon class="f-roof s-ink" stroke-width="4" stroke-linejoin="round" points="272,294 480,158 688,294"/>
         <polyline fill="none" class="s-trim" stroke-width="5" stroke-linejoin="round" points="290,287 480,166 670,287"/>
 
-        <!-- weeping willow -->
-        <g class="willow">
-          <path class="f-trunk s-ink" stroke-width="3" d="M84 486 C 90 450, 82 410, 92 360 L 110 360 C 106 410, 116 450, 124 486 Z"/>
-          <path class="s-ink" stroke-width="3" fill="none" d="M96 380 C 80 360, 66 350, 56 334 M106 372 C 124 352, 140 344, 152 330"/>
-          <path class="f-willow2 s-ink" stroke-width="3" d="M14 336 C 14 262, 60 236, 102 236 C 150 236, 192 262, 192 336 C 160 318, 44 318, 14 336 Z"/>
-          <g class="strand2">
-            <path d="M22 326 q-6 50 4 108"/><path d="M42 318 q-8 60 0 128"/><path d="M64 314 q-4 66 6 140"/><path d="M88 312 q-6 70 -2 146"/>
-            <path d="M118 312 q6 70 2 146"/><path d="M142 314 q4 66 -6 140"/><path d="M164 318 q8 60 0 128"/><path d="M184 326 q6 50 -4 108"/>
-          </g>
-          <g class="strand">
-            <path d="M30 322 q-6 54 2 116"/><path d="M52 316 q-6 62 4 134"/><path d="M76 312 q-4 70 2 144"/><path d="M102 310 q0 72 0 150"/>
-            <path d="M128 312 q4 70 -2 144"/><path d="M152 316 q6 62 -4 134"/><path d="M174 322 q6 54 -2 116"/>
-          </g>
-          <path class="f-willow" d="M40 262 q30 -22 62 -20 q-34 10 -50 30z" opacity=".8"/>
+        <!-- yard sign with logo -->
+        <g>
+          <rect class="f-ink" x="72" y="430" width="8" height="70"/><rect class="f-ink" x="132" y="430" width="8" height="70"/>
+          <rect class="f-trim s-ink" stroke-width="4" x="44" y="318" width="124" height="124" rx="8"/>
+          <image href="images/mo-coyotes-logo.jpg" x="52" y="326" width="108" height="108"/>
         </g>
 
         <!-- bushes: outlined clusters, then fills on top hide the inner lines -->
@@ -333,9 +323,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- AIRPLANE to Barbie Land -->
         <a class="hot hot-plane" href="#barbie" data-to="barbie" aria-label="Pink airplane: fly to Coyote in Barbie Land">
           <g class="glow">
-            <path class="s-ink" stroke-width="2" fill="none" d="M232 96 H256"/>
-            <path class="f-trim" style="stroke: var(--hot)" stroke-width="3" stroke-linejoin="round" d="M256 74 H412 L400 96 L412 118 H256 Z"/>
-            <text x="332" y="104" text-anchor="middle" class="banner-text">Barbie Land</text>
             <path class="f-hot s-ink" stroke-width="3" stroke-linejoin="round" d="M206 92 L224 66 L234 68 L230 94 Z"/>
             <path class="f-pink s-ink" stroke-width="3" d="M150 96 C 150 82, 170 80, 190 82 L226 88 Q236 92 226 102 L190 108 C 170 110, 150 108, 150 96 Z"/>
             <circle class="f-glass s-ink" stroke-width="2" cx="170" cy="92" r="6"/>
@@ -370,7 +357,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="f-trim s-ink" stroke-width="2" x="392" y="330" width="22" height="22"/>
             <path class="s-trim" stroke-width="5" d="M375 315 V401 M326 360 H424"/>
             <rect class="f-rust s-ink" stroke-width="3" x="318" y="401" width="114" height="16" rx="3"/>
-            <g class="f-leaf"><ellipse cx="340" cy="401" rx="7" ry="3"/><ellipse cx="372" cy="401" rx="7" ry="3"/><ellipse cx="408" cy="401" rx="7" ry="3"/></g>
             <use href="#flower" transform="translate(332,396) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(352,392) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(375,396) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(398,392) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(418,396) scale(.85)" style="--petal: var(--marigold)"/>
           </g>
           <g class="tag"><rect x="320" y="278" width="110" height="28" rx="14"/><text x="375" y="297" text-anchor="middle">Shop room</text></g>
@@ -385,7 +371,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g class="s-ink" stroke-width="2"><rect class="f-blush" x="546" y="326" width="16" height="20"/><rect class="f-marigold" x="568" y="330" width="14" height="14"/><rect class="f-pink" x="606" y="326" width="18" height="22"/></g>
             <path class="s-trim" stroke-width="5" d="M585 315 V401 M536 360 H634"/>
             <rect class="f-rust s-ink" stroke-width="3" x="528" y="401" width="114" height="16" rx="3"/>
-            <g class="f-leaf"><ellipse cx="550" cy="401" rx="7" ry="3"/><ellipse cx="582" cy="401" rx="7" ry="3"/><ellipse cx="618" cy="401" rx="7" ry="3"/></g>
             <use href="#flower" transform="translate(542,396) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(562,392) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(585,396) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(608,392) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(628,396) scale(.85)" style="--petal: var(--pink)"/>
           </g>
           <g class="tag"><rect x="540" y="278" width="90" height="28" rx="14"/><text x="585" y="297" text-anchor="middle">Gallery</text></g>
@@ -411,44 +396,52 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- MAILBOX -->
         <a class="hot hot-mail" href="#contact" data-to="contact" aria-label="Mailbox: contact MO Coyotes">
           <g class="glow">
-            <rect class="f-trunk s-ink" stroke-width="2.5" x="237" y="446" width="14" height="66"/>
-            <use href="#stemflower" transform="translate(228,500) scale(.8)" style="--petal: var(--pink)"/>
-            <use href="#stemflower" transform="translate(260,504) scale(.8)" style="--petal: var(--marigold)"/>
-            <path class="f-trim s-ink" stroke-width="3" d="M200 448 V412 a26 26 0 0 1 26 -26 H262 a26 26 0 0 1 26 26 V448 Z"/>
-            <path class="s-ink" stroke-width="2.5" fill="none" d="M212 448 V414 a14 14 0 0 1 8 -14"/>
-            <rect class="f-blush" x="222" y="397" width="44" height="44" rx="10"/>
-            <image href="images/mo-coyotes-logo.jpg" x="224" y="399" width="40" height="40" clip-path="url(#logoClip)"/>
-            <rect fill="none" class="s-ink" stroke-width="2" x="224" y="399" width="40" height="40" rx="8"/>
-            <g class="flag"><rect class="f-hot s-ink" stroke-width="2" x="288" y="392" width="5" height="34"/><rect class="f-hot s-ink" stroke-width="2" x="288" y="392" width="20" height="12"/></g>
+            <rect class="f-ink" x="202" y="436" width="12" height="74"/>
+            <path class="f-marigold s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 18 -18 H226 a18 18 0 0 1 18 18 V440 Z"/>
+            <path class="f-orange s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 36 0 V440 Z"/>
+            <g class="flag"><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="5" height="30"/><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="18" height="11"/></g>
           </g>
-          <g class="tag"><rect x="204" y="350" width="80" height="28" rx="14"/><text x="244" y="369" text-anchor="middle">Contact</text></g>
+          <g class="tag"><rect x="168" y="366" width="80" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">Contact</text></g>
         </a>
 
-        <!-- CAR -->
-        <a class="hot hot-car" href="#where" id="carLink" aria-label="Pink car: where to find MO Coyotes in person" aria-haspopup="dialog">
+        <!-- BIKE -->
+        <a class="hot hot-car" href="#where" id="carLink" aria-label="Pink bike: where to find MO Coyotes in person" aria-haspopup="dialog">
           <g class="glow">
-            <ellipse cx="832" cy="560" rx="110" ry="9" fill="#000" opacity=".15"/>
-            <g class="car" transform="translate(728,486)">
-              <!-- seats and steering wheel peek over the open top -->
-              <path class="f-hot s-ink" stroke-width="2.5" d="M46 34 V18 q0 -10 10 -10 h6 q10 0 10 10 V34 Z"/>
-              <path class="f-hot s-ink" stroke-width="2.5" d="M92 34 V20 q0 -9 9 -9 h6 q9 0 9 9 V34 Z"/>
-              <ellipse class="s-ink" fill="none" stroke-width="3" cx="130" cy="24" rx="3" ry="9" transform="rotate(-20 130 24)"/>
-              <path class="f-glass s-ink" stroke-width="2.5" stroke-linejoin="round" d="M138 34 L150 8 L156 8 L148 34 Z"/>
-              <!-- body -->
-              <path class="f-pink s-ink" stroke-width="3" d="M0 54 Q0 36 16 34 L196 34 Q212 36 214 50 L214 62 Q214 70 206 70 L8 70 Q0 70 0 62 Z"/>
-              <path class="s-trim" d="M10 48 H204" stroke-width="4" fill="none"/>
-              <path class="s-ink" stroke-width="2" fill="none" d="M84 38 V66"/>
-              <path class="f-hot" d="M60 60 l-7 -7 a4.6 4.6 0 0 1 7 -6 a4.6 4.6 0 0 1 7 6 z"/>
-              <rect class="f-trim s-ink" stroke-width="2" x="-4" y="58" width="14" height="8" rx="4"/>
-              <rect class="f-trim s-ink" stroke-width="2" x="206" y="58" width="14" height="8" rx="4"/>
-              <circle class="f-lamp s-ink" stroke-width="2" cx="208" cy="44" r="5"/>
-              <circle class="f-hot s-ink" stroke-width="2" cx="5" cy="44" r="3.5"/>
-              <!-- whitewall tires -->
-              <circle class="f-tire" cx="46" cy="70" r="18"/><circle class="f-trim" cx="46" cy="70" r="11"/><circle class="f-pink s-ink" stroke-width="2" cx="46" cy="70" r="5"/>
-              <circle class="f-tire" cx="168" cy="70" r="18"/><circle class="f-trim" cx="168" cy="70" r="11"/><circle class="f-pink s-ink" stroke-width="2" cx="168" cy="70" r="5"/>
+            <g transform="translate(748,466)">
+              <!-- wheels -->
+              <g fill="none">
+                <circle class="s-ink" stroke-width="7" cx="40" cy="62" r="30"/>
+                <circle class="s-ink" stroke-width="7" cx="152" cy="62" r="30"/>
+                <circle class="s-trim" stroke-width="2.5" cx="40" cy="62" r="24"/>
+                <circle class="s-trim" stroke-width="2.5" cx="152" cy="62" r="24"/>
+                <path class="s-trim" stroke-width="1.6" d="M40 38 V86 M16 62 H64 M23 45 L57 79 M57 45 L23 79 M152 38 V86 M128 62 H176 M135 45 L169 79 M169 45 L135 79"/>
+              </g>
+              <!-- fenders -->
+              <path class="s-pinkline" stroke-width="5" fill="none" stroke-linecap="round" d="M12 50 A32 32 0 0 1 64 36"/>
+              <path class="s-pinkline" stroke-width="5" fill="none" stroke-linecap="round" d="M128 36 A32 32 0 0 1 180 50"/>
+              <!-- frame: dark outline underneath, pink on top -->
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path class="s-ink" stroke-width="11" d="M40 62 L88 64 L70 16 M40 62 L68 22 M88 64 C 104 64, 118 42, 134 16 L152 62 M134 16 L131 2"/>
+                <path class="s-pinkline" stroke-width="6" d="M40 62 L88 64 L70 16 M40 62 L68 22 M88 64 C 104 64, 118 42, 134 16 L152 62 M134 16 L131 2"/>
+              </g>
+              <!-- handlebars + grip -->
+              <path class="s-ink" stroke-width="4" fill="none" stroke-linecap="round" d="M131 2 q-8 -8 -22 -6"/>
+              <circle class="f-hot s-ink" stroke-width="2" cx="108" cy="-4" r="4"/>
+              <!-- seat -->
+              <path class="f-hot s-ink" stroke-width="2.5" d="M54 12 q16 -10 30 0 q-14 6 -30 0z"/>
+              <!-- basket with flowers -->
+              <use href="#flower" transform="translate(146,-12) scale(.9)" style="--petal: var(--pink)"/>
+              <use href="#flower" transform="translate(160,-16) scale(.9)" style="--petal: var(--marigold)"/>
+              <use href="#flower" transform="translate(172,-10) scale(.9)" style="--petal: var(--hot)"/>
+              <path class="f-marigold s-ink" stroke-width="2.5" stroke-linejoin="round" d="M138 -6 H182 L178 18 H142 Z"/>
+              <path class="s-ink" stroke-width="1.5" fill="none" d="M139 2 H181 M140 10 H179 M152 -6 L151 18 M166 -6 L167 18"/>
+              <!-- crank, pedal, kickstand -->
+              <circle class="f-trim s-ink" stroke-width="2.5" cx="88" cy="64" r="8"/>
+              <path class="s-ink" stroke-width="3" stroke-linecap="round" d="M88 64 L96 76 M92 76 H102 M86 66 L76 92"/>
+              <circle class="f-hot" cx="40" cy="62" r="4"/><circle class="f-hot" cx="152" cy="62" r="4"/>
             </g>
           </g>
-          <g class="tag"><rect x="737" y="440" width="190" height="28" rx="14"/><text x="832" y="459" text-anchor="middle">Find us in person</text></g>
+          <g class="tag"><rect x="752" y="404" width="190" height="28" rx="14"/><text x="847" y="423" text-anchor="middle">Find us in person</text></g>
         </a>
       </svg>
     </section>
@@ -544,7 +537,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </section>
   </main>
 
-  <p class="hint" id="hint">Click the door, the windows, the mailbox, the pink car or the airplane.</p>
+  <p class="hint" id="hint">Click the door, the windows, the mailbox, the pink bike or the airplane.</p>
 </div>
 
 <dialog class="mapcard" id="mapDialog" aria-labelledby="mapTitle">
