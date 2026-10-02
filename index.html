@@ -240,7 +240,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <!-- OUTSIDE -->
     <section id="room-outside" aria-label="Outside the MO Coyotes house">
       <svg class="scene" id="scene" viewBox="0 0 1000 620" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">A pink cottage with a log cabin quilt on the clothesline, a pink coyote, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
+        <title id="sceneTitle">A pink cottage with a log cabin quilt on the clothesline, a white picket fence, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f-sky1"/><stop offset="1" class="f-sky2"/></linearGradient>
           <!-- cartoon flower: set --petal on the <use> to recolor -->
@@ -304,9 +304,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
         </g>
 
-        <!-- pink coyote, howling -->
-        <path class="f-hot" transform="translate(676,368)" d="M22 100 L24 70 Q22 52 28 40 L14 20 L4 5 Q3 0 8 1 L22 10 L28 7 L32 -6 L37 9 Q42 18 44 28 Q56 40 64 58 Q72 72 72 88 Q80 88 92 94 Q98 100 88 100 Z"/>
-
         <!-- bushes: outlined clusters, then fills on top hide the inner lines -->
         <g transform="translate(330,476)">
           <g class="f-bush s-ink" stroke-width="3"><circle cx="-26" cy="6" r="17"/><circle cx="-6" cy="-8" r="22"/><circle cx="18" cy="-3" r="19"/><circle cx="36" cy="8" r="14"/></g>
@@ -334,6 +331,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <use href="#stemflower" transform="translate(286,582)" style="--petal: var(--blush)"/>
         <use href="#stemflower" transform="translate(170,500)" style="--petal: var(--marigold)"/>
         <use href="#stemflower" transform="translate(56,520)" style="--petal: var(--pink)"/>
+
+        <!-- white picket fence, front left -->
+        <g class="fence">
+          <g class="f-trim s-ink" stroke-width="2.5"><rect x="-10" y="584" width="396" height="9" rx="2"/><rect x="-10" y="604" width="396" height="9" rx="2"/></g>
+          <g class="f-trim s-ink" stroke-width="2.5" stroke-linejoin="round"><path d="M-6 620 V578 L1 566 L8 578 V620 Z"/><path d="M18 620 V578 L25 566 L32 578 V620 Z"/><path d="M42 620 V578 L49 566 L56 578 V620 Z"/><path d="M66 620 V578 L73 566 L80 578 V620 Z"/><path d="M90 620 V578 L97 566 L104 578 V620 Z"/><path d="M114 620 V578 L121 566 L128 578 V620 Z"/><path d="M138 620 V578 L145 566 L152 578 V620 Z"/><path d="M162 620 V578 L169 566 L176 578 V620 Z"/><path d="M186 620 V578 L193 566 L200 578 V620 Z"/><path d="M210 620 V578 L217 566 L224 578 V620 Z"/><path d="M234 620 V578 L241 566 L248 578 V620 Z"/><path d="M258 620 V578 L265 566 L272 578 V620 Z"/><path d="M282 620 V578 L289 566 L296 578 V620 Z"/><path d="M306 620 V578 L313 566 L320 578 V620 Z"/><path d="M330 620 V578 L337 566 L344 578 V620 Z"/><path d="M354 620 V578 L361 566 L368 578 V620 Z"/></g>
+        </g>
 
         <!-- AIRPLANE to Barbie Land -->
         <a class="hot hot-plane" href="#barbie" data-to="barbie" aria-label="Pink airplane: fly to Coyote in Barbie Land">
