@@ -1352,8 +1352,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var throwIt = paperBall.animate([
         { transform: "translate(0,0) scale(1.35) rotate(0deg)", opacity: 0, offset: 0 },
         { transform: "translate(0,-14px) scale(1) rotate(-25deg)", opacity: 1, offset: .14 },
-        { transform: "translate(" + dx * .5 + "px," + lift + "px) scale(.75) rotate(-230deg)", offset: .55 },
-        { transform: "translate(" + dx + "px," + dy + "px) scale(.42) rotate(-430deg)", filter: "brightness(.75) sepia(1) saturate(5) hue-rotate(-25deg)", offset: .9 },
+        { transform: "translate(" + dx * .5 + "px," + lift + "px) scale(.75) rotate(-230deg)", opacity: 1, offset: .55 },
+        { transform: "translate(" + dx + "px," + dy + "px) scale(.42) rotate(-430deg)", filter: "brightness(.75) sepia(1) saturate(5) hue-rotate(-25deg)", opacity: 1, offset: .9 },
         { transform: "translate(" + dx + "px," + (dy + 8) + "px) scale(.15) rotate(-470deg)", filter: "brightness(.3) sepia(1)", opacity: 0, offset: 1 }
       ], { duration: 1150, easing: "cubic-bezier(.35,0,.65,1)", fill: "forwards" });
       setTimeout(flare, 1000);
