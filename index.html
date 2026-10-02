@@ -848,34 +848,41 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="s-ink" style="fill: var(--floor)" stroke-width="3" x="204" y="336" width="224" height="18" rx="3"/>
         </g>
 
-        <!-- SEWN: vintage pink sewing machine -->
+        <!-- SEWN: vintage pink sewing machine (one-piece body) -->
         <a class="hot" href="#sewn" aria-label="Sewing machine: STITCHED gallery">
           <g class="glow" stroke-linejoin="round">
             <ellipse class="f-ink" cx="318" cy="337" rx="100" ry="5" opacity=".2"/>
-            <path class="s-hot" style="stroke: var(--hot)" stroke-width="1.5" fill="none" d="M318 228 C 290 222, 262 232, 258 252"/>
             <rect class="f-trim s-ink" stroke-width="3" x="224" y="320" width="186" height="16" rx="5"/>
             <rect class="f-ink" x="227" y="329" width="180" height="5" rx="2" opacity=".13"/>
             <path class="s-trim" stroke-width="2" stroke-linecap="round" opacity=".8" d="M232 323 H402"/>
             <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="246" y="324" width="28" height="6" rx="2"/>
-            <path class="f-pink s-ink" stroke-width="3" d="M362 320 L366 258 Q 368 248 380 248 H392 Q 402 248 402 258 V320 Z"/>
-            <path class="f-hot" opacity=".35" d="M391 250 Q 400 252 400 260 V318 H391 Z"/>
-            <path class="f-pink s-ink" stroke-width="3" d="M254 252 Q 254 238 268 238 H390 Q 404 238 404 252 V268 H262 Q 254 268 254 260 Z"/>
-            <path class="f-hot" opacity=".3" d="M262 260 H402 V266 H262 Z"/>
-            <path stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".55" d="M272 243 H386"/>
-            <path class="f-pink s-ink" stroke-width="3" d="M242 248 Q 242 238 252 238 H282 V298 Q 282 306 274 306 H250 Q 242 306 242 298 Z"/>
-            <path class="f-hot" opacity=".3" d="M273 241 H280 V298 Q 280 304 274 304 H273 Z"/>
-            <path stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity=".55" d="M247 246 V296"/>
+            <!-- body: head, arm and pillar as one shape -->
+            <path class="f-pink s-ink" stroke-width="3" d="M252 238 H390 Q 404 238 404 252 V320 H362 L 365 268 H282 V298 Q 282 306 274 306 H250 Q 242 306 242 298 V248 Q 242 238 252 238 Z"/>
+            <path class="f-hot" opacity=".33" d="M392 244 Q 401 248 401 256 V318 H392 Z"/>
+            <path class="f-hot" opacity=".28" d="M282 260 H392 V266 H282 Z"/>
+            <path class="f-hot" opacity=".28" d="M273 268 H280 V298 Q 280 304 274 304 H273 Z"/>
+            <path stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".55" d="M256 242.5 H386"/>
+            <path stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity=".55" d="M247 248 V296"/>
             <rect class="f-trim s-ink" stroke-width="2" x="292" y="246" width="60" height="9" rx="4"/>
+            <path class="f-hot" d="M322 266 l-4 -4 a2.7 2.7 0 0 1 4 -3.6 a2.7 2.7 0 0 1 4 3.6 z"/>
+            <!-- needle and presser foot -->
             <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="256" y="306" width="6" height="12"/>
             <path class="s-ink" stroke-width="1.5" d="M259 318 V324"/>
             <rect class="s-ink" fill="#C9CED6" stroke-width="2" x="250" y="314" width="18" height="5" rx="2"/>
-            <circle class="f-trim s-ink" stroke-width="2.5" cx="386" cy="292" r="9"/><path class="s-ink" stroke-width="2" d="M386 292 l4 -5"/>
-            <ellipse class="f-ink" cx="412" cy="262" rx="9" ry="20" opacity=".25"/>
-            <ellipse class="f-trim s-ink" stroke-width="3" cx="408" cy="262" rx="9" ry="20"/><ellipse class="f-hot" cx="408" cy="262" rx="4" ry="9"/>
-            <path class="s-ink" stroke-width="2" d="M318 238 V222"/>
-            <rect class="f-hot s-ink" stroke-width="2" x="311" y="218" width="14" height="14" rx="2"/><path class="s-ink" stroke-width="1" d="M311 222 H325 M311 228 H325" opacity=".5"/>
-            <circle class="f-trim s-ink" stroke-width="2" cx="372" cy="232" r="4"/>
-            <path class="f-hot" d="M330 300 l-4.5 -4.5 a3 3 0 0 1 4.5 -4 a3 3 0 0 1 4.5 4 z" opacity=".9"/>
+            <!-- stitch dial -->
+            <circle class="f-trim s-ink" stroke-width="2.5" cx="384" cy="292" r="9"/><path class="s-ink" stroke-width="2" d="M384 292 l4 -5"/>
+            <!-- handwheel as a cylinder on the side -->
+            <path class="f-trim s-ink" stroke-width="2.5" d="M403 242 H417 A 6 20 0 0 1 417 282 H403 Z"/>
+            <path class="f-ink" opacity=".14" d="M403 272 H417 A 6 20 0 0 1 413 281 H403 Z"/>
+            <path class="s-ink" stroke-width="1.2" opacity=".5" d="M406 242 V282 M410 242 V282 M414 242 V282"/>
+            <ellipse fill="#FFFFFF" class="s-ink" stroke-width="2.5" cx="417" cy="262" rx="6" ry="20"/>
+            <ellipse class="f-hot" cx="417" cy="262" rx="2.5" ry="8"/>
+            <!-- thread spool on top, thread down to the needle -->
+            <path class="s-hot" style="stroke: var(--hot)" stroke-width="1.5" fill="none" d="M365 226 C 320 220, 266 230, 258 252"/>
+            <path class="s-ink" stroke-width="2" d="M372 238 V218"/>
+            <rect class="f-trim s-ink" stroke-width="1.5" x="363" y="216" width="18" height="4" rx="1.5"/>
+            <rect class="f-hot s-ink" stroke-width="2" x="365" y="220" width="14" height="14" rx="2"/><path class="s-ink" stroke-width="1" d="M365 224 H379 M365 230 H379" opacity=".5"/>
+            <rect class="f-trim s-ink" stroke-width="1.5" x="363" y="233" width="18" height="4" rx="1.5"/>
           </g>
           <g class="tag"><rect x="257" y="178" width="120" height="28" rx="14"/><text x="317" y="197" text-anchor="middle">STITCHED</text></g>
         </a>
