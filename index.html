@@ -319,8 +319,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: repeating-linear-gradient(90deg, var(--w1) 0 30px, var(--blush) 30px 34px); }
 .attic > .room-nav, .attic > .about-grid { position: relative; z-index: 2; }
 .attic-slope { position: absolute; top: 0; height: 320px; width: 30%; z-index: 1; pointer-events: none; background: var(--ink); }
-.attic-slope span { display: block; width: 100%; height: 100%;
-  background: repeating-linear-gradient(90deg, var(--roof) 0 34px, var(--brick) 34px 37px); }
+.attic-slope span { display: block; width: 100%; height: 100%; }
+.attic-slope.left span { background: repeating-linear-gradient(to bottom right, var(--roof) 0 30px, var(--brick) 30px 33px); }
+.attic-slope.right span { background: repeating-linear-gradient(to bottom left, var(--roof) 0 30px, var(--brick) 30px 33px); }
 .attic-slope.left { left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); } .attic-slope.left span { clip-path: polygon(0 0, calc(100% - 8px) 0, 0 calc(100% - 8px)); }
 .attic-slope.right { right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); } .attic-slope.right span { clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px)); }
 .attic-window { position: absolute; top: 14px; left: 50%; width: 96px; height: 96px; transform: translateX(-50%); z-index: 1; }
