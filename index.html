@@ -167,16 +167,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .frame .art::before { content: ""; position: absolute; left: 50%; top: -44px; width: 76px; height: 32px; transform: translateX(-50%);
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
-.frame .art::after { content: ""; position: absolute; left: 50%; top: -50px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
 .frame .logo { width: 100%; height: 100%; display: block; background: #FFFFFF; outline: 2px solid var(--ink); box-shadow: inset 2px 2px 0 rgba(0,0,0,.12); }
 .frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.04); }
 .frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: clamp(.7rem, 1.8vw, .85rem); text-align: center; }
 .shop-floor { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 76px; border-top: 4px solid var(--ink); display: block; }
-.shoproom > :not(.shop-floor):not(.shop-trim) { position: relative; z-index: 1; }
-.shop-trim { position: absolute; left: 0; right: 0; bottom: 76px; height: 20px; background: var(--trim); border-top: 3px solid var(--ink); }
-.shop-trim::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 11px;
-  background: radial-gradient(circle at 50% 100%, var(--pink) 0 7px, var(--ink) 7px 9.5px, transparent 10px) 0 0 / 22px 11px repeat-x; }
-.shop-trim::after { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 3px; background: var(--blush); }
+.shoproom > :not(.shop-floor) { position: relative; z-index: 1; }
 .shoproom .lede { background: var(--wall-lt); padding: 4px 10px; border-radius: 8px; justify-self: start; color: var(--ink); }
 .fl-board { fill: var(--floor); } .fl-board2 { fill: var(--rust); }
 .fl-line { stroke: var(--ink); stroke-width: 2.5; fill: none; }
@@ -631,7 +626,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </svg></span>
         </a>
       </div>
-      <div class="shop-trim" aria-hidden="true"></div>
       <svg class="shop-floor" aria-hidden="true" preserveAspectRatio="none">
         <defs><pattern id="shopFloorPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
           <rect class="fl-board" width="200" height="50"/>
