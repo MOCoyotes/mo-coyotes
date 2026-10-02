@@ -226,6 +226,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
   var(--card); }
 
+/* quilting: photos hang from clotheslines with clothespins */
+.guild-link { margin: -10px 0 0; font-weight: 800; }
+.guild-link a { color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.clotheslines { display: grid; gap: 34px; margin-top: 8px; }
+.line-row { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 3vw, 28px); padding: 30px 4% 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M0 3 Q50 30 100 3' fill='none' stroke='%235A1F0E' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") top / 100% 34px no-repeat; }
+.photo.hung { position: relative; aspect-ratio: 4 / 5; font: inherit; color: var(--ink); cursor: zoom-in; border: 8px solid var(--card); outline: 2px solid var(--ink);
+  box-shadow: 5px 7px 0 rgba(0,0,0,.18); display: grid; place-items: end center; padding: 8px; background-size: cover; background-position: center;
+  transform-origin: top center; transition: transform .2s; }
+.photo.hung:not(.has-photo) { background-image: repeating-linear-gradient(45deg, var(--wall1) 0 12px, var(--wall2) 12px 24px); }
+.photo.hung span { background: var(--card); border-radius: 6px; padding: 2px 8px; font-weight: 800; font-size: .8rem; }
+.line-row .photo.hung:nth-child(1) { transform: translateY(4px) rotate(-2deg); }
+.line-row .photo.hung:nth-child(2) { transform: translateY(16px) rotate(1deg); }
+.line-row .photo.hung:nth-child(3) { transform: translateY(4px) rotate(2.5deg); }
+.line-row .photo.hung:hover, .line-row .photo.hung:focus-visible { transform: translateY(10px) rotate(0) scale(1.04); }
+.photo.hung::before, .photo.hung::after { content: ""; position: absolute; top: -26px; width: 10px; height: 30px; border-radius: 3px;
+  background: linear-gradient(var(--frame-lt), var(--frame-md)); border: 2px solid var(--ink); box-shadow: inset 0 9px 0 -6px var(--ink); }
+.photo.hung::before { left: 18%; } .photo.hung::after { right: 18%; }
 /* framed photos (mitered gold corners like the SHOP frames) + click to enlarge */
 .photo.framed { font: inherit; color: var(--ink); cursor: zoom-in; border: 12px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame);
   outline: 3px solid var(--ink); box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); background-size: cover; background-position: center;
@@ -714,13 +732,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="quiltingTitle">QUILTING</h2>
       <p class="lede">Quilts and quilted goods, made by hand.</p>
-      <div class="photos">
-        <button class="photo framed" type="button" data-caption="Quilt 1" aria-label="Quilt 1: open larger"><span>Coming soon</span></button>
-        <button class="photo framed" type="button" data-caption="Quilt 2" aria-label="Quilt 2: open larger"><span>Coming soon</span></button>
-        <button class="photo framed" type="button" data-caption="Quilt 3" aria-label="Quilt 3: open larger"><span>Coming soon</span></button>
-        <button class="photo framed" type="button" data-caption="Quilt 4" aria-label="Quilt 4: open larger"><span>Coming soon</span></button>
-        <button class="photo framed" type="button" data-caption="Quilt 5" aria-label="Quilt 5: open larger"><span>Coming soon</span></button>
-        <button class="photo framed" type="button" data-caption="Quilt 6" aria-label="Quilt 6: open larger"><span>Coming soon</span></button>
+      <p class="guild-link"><a href="https://sites.google.com/site/flowervalleyquiltguild" target="_blank" rel="noopener">Flower Valley Quilt Guild</a></p>
+      <div class="clotheslines">
+        <div class="line-row"><button class="photo hung" type="button" data-caption="Quilt 1" aria-label="Quilt 1: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 2" aria-label="Quilt 2: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 3" aria-label="Quilt 3: open larger"><span>Coming soon</span></button></div>
+        <div class="line-row"><button class="photo hung" type="button" data-caption="Quilt 4" aria-label="Quilt 4: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 5" aria-label="Quilt 5: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 6" aria-label="Quilt 6: open larger"><span>Coming soon</span></button></div>
       </div>
     </section>
 
@@ -954,7 +969,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   // framed photos open big in the lightbox (data-src = photo file once added)
   var lightbox = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"),
       lbPh = document.getElementById("lbPlaceholder"), lbCap = document.getElementById("lbCaption");
-  document.querySelectorAll(".photo.framed").forEach(function (b) {
+  document.querySelectorAll(".photo.framed, .photo.hung").forEach(function (b) {
     if (b.dataset.src) { b.classList.add("has-photo"); b.style.backgroundImage = "url(" + b.dataset.src + ")"; b.querySelector("span").hidden = true; }
     b.addEventListener("click", function () {
       var src = b.dataset.src;
