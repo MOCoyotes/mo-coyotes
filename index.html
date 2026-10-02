@@ -287,7 +287,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <polyline fill="none" class="s-trim" stroke-width="5" stroke-linejoin="round" points="290,287 480,166 670,287"/>
 
         <!-- yard sign with logo -->
-        <g>
+        <g transform="translate(-26,0)">
+          <path class="f-hot" d="M10 80 L13 50 Q14 36 18 28 L3 6 Q2 1 7 2 L20 10 L26 -4 L31 9 Q36 14 40 24 Q50 34 56 46 Q64 58 64 70 Q74 70 84 80 Z" transform="translate(64,246) scale(.9)"/>
           <rect class="f-ink" x="72" y="430" width="8" height="70"/><rect class="f-ink" x="132" y="430" width="8" height="70"/>
           <rect class="f-trim s-ink" stroke-width="4" x="44" y="318" width="124" height="124" rx="8"/>
           <image href="images/mo-coyotes-logo.jpg" x="52" y="326" width="108" height="108"/>
@@ -333,7 +334,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g class="prop"><ellipse class="f-trim s-ink" stroke-width="2" cx="146" cy="96" rx="3.5" ry="16"/></g>
             <circle class="f-marigold s-ink" stroke-width="2" cx="148" cy="96" r="4"/>
           </g>
-          <g class="tag"><rect x="146" y="132" width="230" height="28" rx="14"/><text x="261" y="151" text-anchor="middle">Take me to Barbie Land</text></g>
+          <g class="tag"><rect x="126" y="132" width="270" height="28" rx="14"/><text x="261" y="151" text-anchor="middle">TAKE ME TO BARBIE LAND</text></g>
         </a>
 
         <!-- ABOUT: round attic window -->
@@ -372,9 +373,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g class="s-ink" stroke-width="2"><rect class="f-blush" x="546" y="326" width="16" height="20"/><rect class="f-marigold" x="568" y="330" width="14" height="14"/><rect class="f-pink" x="606" y="326" width="18" height="22"/></g>
             <path class="s-trim" stroke-width="5" d="M585 315 V401 M536 360 H634"/>
             <rect class="f-rust s-ink" stroke-width="3" x="528" y="401" width="114" height="16" rx="3"/>
-            <use href="#flower" transform="translate(542,396) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(562,392) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(585,396) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(608,392) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(628,396) scale(.85)" style="--petal: var(--pink)"/>
+            <use href="#flower" transform="translate(522,397) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(542,396) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(562,392) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(585,396) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(608,392) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(628,396) scale(.85)" style="--petal: var(--pink)"/>
           </g>
-          <g class="tag"><rect x="540" y="278" width="90" height="28" rx="14"/><text x="585" y="297" text-anchor="middle">Gallery</text></g>
+          <g class="tag"><rect x="533" y="278" width="104" height="28" rx="14"/><text x="585" y="297" text-anchor="middle">GALLERY</text></g>
         </a>
 
         <!-- DOOR -->
@@ -389,9 +390,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
               <circle class="f-marigold s-ink" stroke-width="2" cx="500" cy="448" r="4"/>
             </g>
             <rect class="f-trim s-ink" stroke-width="3" x="428" y="484" width="104" height="10" rx="3"/>
-            <circle class="f-lamp s-ink" stroke-width="2" cx="530" cy="392" r="7"/>
           </g>
-          <g class="tag"><rect x="425" y="344" width="110" height="28" rx="14"/><text x="480" y="363" text-anchor="middle">Come inside</text></g>
+          <g class="tag"><rect x="408" y="344" width="144" height="28" rx="14"/><text x="480" y="363" text-anchor="middle">COME INSIDE</text></g>
         </a>
 
         <!-- MAILBOX -->
@@ -402,7 +402,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="f-orange s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 36 0 V440 Z"/>
             <g class="flag"><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="5" height="30"/><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="18" height="11"/></g>
           </g>
-          <g class="tag"><rect x="168" y="366" width="80" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">Contact</text></g>
+          <g class="tag"><rect x="156" y="366" width="104" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">CONTACT</text></g>
         </a>
 
         <!-- BIKE -->
@@ -426,23 +426,26 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
                 <path class="s-pinkline" stroke-width="6" d="M40 62 L88 64 L70 16 M40 62 L68 22 M88 64 C 104 64, 118 42, 134 16 L152 62 M134 16 L131 2"/>
               </g>
               <!-- handlebars + grip -->
-              <path class="s-ink" stroke-width="4" fill="none" stroke-linecap="round" d="M131 2 q-8 -8 -22 -6"/>
-              <circle class="f-hot s-ink" stroke-width="2" cx="108" cy="-4" r="4"/>
+              
               <!-- seat -->
               <path class="f-hot s-ink" stroke-width="2.5" d="M54 12 q16 -10 30 0 q-14 6 -30 0z"/>
               <!-- basket with flowers -->
-              <use href="#flower" transform="translate(146,-12) scale(.9)" style="--petal: var(--pink)"/>
-              <use href="#flower" transform="translate(160,-16) scale(.9)" style="--petal: var(--marigold)"/>
-              <use href="#flower" transform="translate(172,-10) scale(.9)" style="--petal: var(--hot)"/>
-              <path class="f-marigold s-ink" stroke-width="2.5" stroke-linejoin="round" d="M138 -6 H182 L178 18 H142 Z"/>
-              <path class="s-ink" stroke-width="1.5" fill="none" d="M139 2 H181 M140 10 H179 M152 -6 L151 18 M166 -6 L167 18"/>
+              <use href="#flower" transform="translate(148,2) scale(.9)" style="--petal: var(--pink)"/>
+              <use href="#flower" transform="translate(162,-2) scale(.9)" style="--petal: var(--marigold)"/>
+              <use href="#flower" transform="translate(175,3) scale(.9)" style="--petal: var(--hot)"/>
+              <path class="f-marigold s-ink" stroke-width="2.5" stroke-linejoin="round" d="M138 6 H182 L178 30 H142 Z"/>
+              <path class="s-ink" stroke-width="1.5" fill="none" d="M139 14 H181 M140 22 H179 M152 6 L151 30 M166 6 L167 30"/>
+              <!-- handlebars: near side swept back, far side swept forward -->
+              <path class="s-ink" stroke-width="4" fill="none" stroke-linecap="round" d="M131 2 q-8 -8 -22 -6 M131 2 q8 -10 22 -10"/>
+              <circle class="f-hot s-ink" stroke-width="2" cx="108" cy="-4" r="4"/>
+              <circle class="f-hot s-ink" stroke-width="2" cx="153" cy="-8" r="4"/>
               <!-- crank, pedal, kickstand -->
               <circle class="f-trim s-ink" stroke-width="2.5" cx="88" cy="64" r="8"/>
               <path class="s-ink" stroke-width="3" stroke-linecap="round" d="M88 64 L96 76 M92 76 H102 M86 66 L76 92"/>
               <circle class="f-hot" cx="40" cy="62" r="4"/><circle class="f-hot" cx="152" cy="62" r="4"/>
             </g>
           </g>
-          <g class="tag"><rect x="752" y="404" width="190" height="28" rx="14"/><text x="847" y="423" text-anchor="middle">Find us in person</text></g>
+          <g class="tag"><rect x="737" y="404" width="220" height="28" rx="14"/><text x="847" y="423" text-anchor="middle">FIND US IN PERSON</text></g>
         </a>
       </svg>
     </section>
@@ -453,11 +456,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="foyerTitle">Come on in!</h2>
       <p class="lede">Pick a door. Each one opens a different room of the shop.</p>
       <div class="arches">
-        <a class="arch shop" href="#shop"><span class="opening"></span><span class="plaque">Shop</span></a>
-        <a class="arch gallery" href="#gallery"><span class="opening"></span><span class="plaque">Gallery</span></a>
-        <a class="arch barbie" href="#barbie"><span class="opening"></span><span class="plaque">Barbie Land</span></a>
+        <a class="arch shop" href="#shop"><span class="opening"></span><span class="plaque">SHOP</span></a>
+        <a class="arch gallery" href="#gallery"><span class="opening"></span><span class="plaque">GALLERY</span></a>
+        <a class="arch barbie" href="#barbie"><span class="opening"></span><span class="plaque">BARBIE LAND</span></a>
         <a class="arch about" href="#about"><span class="opening"></span><span class="plaque">ABOUT</span></a>
-        <a class="arch" href="#contact"><span class="opening"></span><span class="plaque">Say hello</span></a>
+        <a class="arch" href="#contact"><span class="opening"></span><span class="plaque">SAY HELLO</span></a>
       </div>
     </section>
 
@@ -469,15 +472,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="frames">
         <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">
           <span class="art"><span><span class="name">eBay</span><span class="what" style="display:block">Thrifted finds</span></span></span>
-          <span class="plaque">The Good Ole Two →</span>
+          <span class="plaque">THE GOOD OLE TWO →</span>
         </a>
         <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">
           <span class="art"><span><span class="name">Etsy</span><span class="what" style="display:block">Handmade</span></span></span>
-          <span class="plaque">MoCoyotesMade →</span>
+          <span class="plaque">MOCOYOTESMADE →</span>
         </a>
         <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener">
           <span class="art"><span><span class="name">union studio</span><span class="what" style="display:block">Shop local · St. Louis</span></span></span>
-          <span class="plaque">Visit the studio →</span>
+          <span class="plaque">VISIT THE STUDIO →</span>
         </a>
       </div>
     </section>
@@ -565,15 +568,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <g transform="translate(110,178)">
         <path class="f-hot s-ink" stroke-width="2.5" d="M0 0 C -14 -16 -16 -24 -16 -30 a16 16 0 0 1 32 0 c0 6 -2 14 -16 30z"/>
         <circle class="f-trim" cx="0" cy="-30" r="6"/>
-        <rect class="m-chip" x="-58" y="6" width="116" height="24" rx="12"/>
-        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Union Studio</text>
+        <rect class="m-chip" x="-66" y="6" width="132" height="24" rx="12"/>
+        <text class="m-pin-label" x="0" y="23" text-anchor="middle">UNION STUDIO</text>
       </g>
       <!-- Node O pin -->
       <g transform="translate(392,150)">
         <path class="f-orange s-ink" stroke-width="2.5" d="M0 0 C -14 -16 -16 -24 -16 -30 a16 16 0 0 1 32 0 c0 6 -2 14 -16 30z"/>
         <circle class="f-trim" cx="0" cy="-30" r="6"/>
-        <rect class="m-chip" x="-40" y="6" width="80" height="24" rx="12"/>
-        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Node O</text>
+        <rect class="m-chip" x="-44" y="6" width="88" height="24" rx="12"/>
+        <text class="m-pin-label" x="0" y="23" text-anchor="middle">NODE O</text>
       </g>
     </svg>
     <div class="places">
