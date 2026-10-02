@@ -194,10 +194,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var(--card); }
 
 /* about: a cozy attic room — slanted wood ceilings, striped wallpaper, plank floor */
-.attic { position: relative; overflow: hidden; min-height: 560px; padding-bottom: 130px;
+.attic { position: relative; overflow: hidden; min-height: 560px; padding-top: 128px; padding-bottom: 130px;
   background: repeating-linear-gradient(90deg, var(--w1) 0 30px, var(--blush) 30px 34px); }
 .attic > .room-nav, .attic > .about-grid { position: relative; z-index: 2; }
-.attic-slope { position: absolute; top: 0; height: 62%; width: 30%; z-index: 1; filter: drop-shadow(0 4px 0 var(--ink)); pointer-events: none; }
+.attic-slope { position: absolute; top: 0; height: 320px; width: 30%; z-index: 1; filter: drop-shadow(0 4px 0 var(--ink)); pointer-events: none; }
 .attic-slope span { display: block; width: 100%; height: 100%;
   background: repeating-linear-gradient(90deg, var(--roof) 0 34px, var(--brick) 34px 37px); }
 .attic-slope.left { left: 0; } .attic-slope.left span { clip-path: polygon(0 0, 100% 0, 0 100%); }
@@ -208,8 +208,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .attic-deco { position: absolute; z-index: 2; pointer-events: none; }
 .attic-deco.yarn { left: 4%; bottom: 40px; width: 130px; height: auto; }
 .attic-deco.dressform { right: 5%; bottom: 46px; width: 84px; height: auto; }
-.attic .room-nav { margin-bottom: 70px; }
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: center; }
+.attic .room-nav { justify-content: center; }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: start; margin-top: 20px; }
 .about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
 .about-frame::before { content: ""; position: absolute; top: -34px; left: 50%; width: 80px; height: 36px; transform: translateX(-50%);
   background: linear-gradient(to top right, transparent 48%, var(--ink) 49% 52%, transparent 53%) left / 50% 100% no-repeat,
@@ -226,7 +226,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .note-card a { color: var(--hot); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .note-card .signoff { font-family: var(--font-script); font-size: 1.6rem; color: var(--hot); margin: 6px 0 0; }
 @media (max-width: 640px) {
-  .attic-slope { width: 34%; height: 34%; }
+  .attic-slope { width: 34%; height: 200px; }
   .attic-deco.dressform { display: none; }
   .attic-deco.yarn { width: 100px; }
 }
