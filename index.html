@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="MO Coyotes: handmade and thrifted goods from Missouri. Shop on Etsy and eBay, visit us at Union Studio and Node O Studio, and step into Coyote in Barbie Land.">
+<meta name="description" content="MO Coyotes: handmade and thrifted goods from Missouri. Shop on Etsy and eBay, visit us at Union Studio and Node O, and step into Coyote in Barbie Land.">
 <meta property="og:title" content="MO Coyotes">
 <meta property="og:description" content="Handmade and thrifted goods from Missouri.">
 <meta property="og:image" content="https://www.mocoyotes.com/images/mo-coyotes-logo.jpg">
@@ -215,6 +215,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .place { border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--bg); }
 .place b { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
 .place b::before { content: ""; width: 14px; height: 14px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--dot); border: 2px solid var(--ink); flex: none; }
+.place .appt { font-weight: 800; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--hot); margin-top: -4px; }
 .place address { font-style: normal; font-weight: 600; user-select: all; }
 .place .btn { justify-self: start; font-size: .85rem; }
 .m-note { margin: 0; font-size: .8rem; color: var(--muted); font-weight: 600; }
@@ -332,7 +333,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g class="prop"><ellipse class="f-trim s-ink" stroke-width="2" cx="146" cy="96" rx="3.5" ry="16"/></g>
             <circle class="f-marigold s-ink" stroke-width="2" cx="148" cy="96" r="4"/>
           </g>
-          <g class="tag"><rect x="176" y="132" width="170" height="28" rx="14"/><text x="261" y="151" text-anchor="middle">Fly to Barbie Land</text></g>
+          <g class="tag"><rect x="146" y="132" width="230" height="28" rx="14"/><text x="261" y="151" text-anchor="middle">Take me to Barbie Land</text></g>
         </a>
 
         <!-- ABOUT: round attic window -->
@@ -346,7 +347,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
 
         <!-- SHOP: left window -->
-        <a class="hot" href="#shop" data-to="shop" aria-label="Left window: the shop room">
+        <a class="hot" href="#shop" data-to="shop" aria-label="Left window: SHOP">
           <g class="glow">
             <rect class="f-hot s-ink" stroke-width="3" x="306" y="312" width="16" height="92"/>
             <rect class="f-hot s-ink" stroke-width="3" x="428" y="312" width="16" height="92"/>
@@ -359,7 +360,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="f-rust s-ink" stroke-width="3" x="318" y="401" width="114" height="16" rx="3"/>
             <use href="#flower" transform="translate(332,396) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(352,392) scale(.85)" style="--petal: var(--marigold)"/><use href="#flower" transform="translate(375,396) scale(.85)" style="--petal: var(--hot)"/><use href="#flower" transform="translate(398,392) scale(.85)" style="--petal: var(--pink)"/><use href="#flower" transform="translate(418,396) scale(.85)" style="--petal: var(--marigold)"/>
           </g>
-          <g class="tag"><rect x="320" y="278" width="110" height="28" rx="14"/><text x="375" y="297" text-anchor="middle">Shop room</text></g>
+          <g class="tag"><rect x="320" y="278" width="110" height="28" rx="14"/><text x="375" y="297" text-anchor="middle">SHOP</text></g>
         </a>
 
         <!-- GALLERY: right window -->
@@ -463,7 +464,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <!-- SHOP -->
     <section id="room-shop" class="room shoproom" hidden aria-labelledby="shopTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
-      <h2 id="shopTitle">The Shop Room</h2>
+      <h2 id="shopTitle">SHOP</h2>
       <p class="lede">Every frame on the wall is a door to a store. Click one to start shopping.</p>
       <div class="frames">
         <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">
@@ -519,7 +520,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <img class="about-logo" src="images/mo-coyotes-logo.jpg" alt="MO Coyotes logo: pink script over the shape of Missouri" width="900" height="900">
         <div class="about-text">
           <h2 id="aboutTitle">Hi, I'm MO Coyotes</h2>
-          <p>MO Coyotes is a little Missouri shop for handmade pieces and thrifted treasures. The handmade work lives on Etsy, the thrifted finds are on eBay, and you can see everything in person at Union Studio in Webster Groves and Node O Studio in St. Louis.</p>
+          <p>MO Coyotes is a little Missouri shop for handmade pieces and thrifted treasures. The handmade work lives on Etsy, the thrifted finds are on eBay, and you can see everything in person at Union Studio in Webster Groves and Node O in St. Louis.</p>
           <p class="placeholder-note">Your story goes here: who you are, how MO Coyotes started and what you love making.</p>
         </div>
       </div>
@@ -546,7 +547,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h3 id="mapTitle">Find MO Coyotes in person</h3>
       <button class="close" type="button" id="mapClose" aria-label="Close map">×</button>
     </div>
-    <svg class="minimap" viewBox="0 0 520 280" role="img" aria-label="Map of St. Louis showing Union Studio in Webster Groves and Node O Studio in south city">
+    <svg class="minimap" viewBox="0 0 520 280" role="img" aria-label="Map of St. Louis showing Union Studio in Webster Groves and Node O in south city">
       <rect class="m-land" width="520" height="280"/>
       <rect class="m-park" x="250" y="40" width="80" height="50" rx="10"/>
       <g class="m-street">
@@ -567,12 +568,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <rect class="m-chip" x="-58" y="6" width="116" height="24" rx="12"/>
         <text class="m-pin-label" x="0" y="23" text-anchor="middle">Union Studio</text>
       </g>
-      <!-- Node O Studio pin -->
+      <!-- Node O pin -->
       <g transform="translate(392,150)">
         <path class="f-orange s-ink" stroke-width="2.5" d="M0 0 C -14 -16 -16 -24 -16 -30 a16 16 0 0 1 32 0 c0 6 -2 14 -16 30z"/>
         <circle class="f-trim" cx="0" cy="-30" r="6"/>
-        <rect class="m-chip" x="-62" y="6" width="124" height="24" rx="12"/>
-        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Node O Studio</text>
+        <rect class="m-chip" x="-40" y="6" width="80" height="24" rx="12"/>
+        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Node O</text>
       </g>
     </svg>
     <div class="places">
@@ -582,7 +583,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=8517%20Big%20Bend%20Blvd%2C%20Webster%20Groves%2C%20MO%2063119" target="_blank" rel="noopener">Directions →</a>
       </div>
       <div class="place" style="--dot: var(--orange)">
-        <b>Node O Studio</b>
+        <b>Node O</b>
+        <span class="appt">Appointment only</span>
         <address>3744 Louisiana Ave<br>St. Louis, MO 63118</address>
         <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=3744%20Louisiana%20Ave%2C%20St.%20Louis%2C%20MO%2063118" target="_blank" rel="noopener">Directions →</a>
       </div>
