@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MO Coyotes: handmade and thrifted goods from Missouri. Shop on Etsy and eBay, visit us at Union Studio and Node O Studio, and step into Coyote in Barbie Land.">
+<meta property="og:title" content="MO Coyotes">
+<meta property="og:description" content="Handmade and thrifted goods from Missouri.">
+<meta property="og:image" content="https://www.mocoyotes.com/images/mo-coyotes-logo.jpg">
+<meta property="og:url" content="https://www.mocoyotes.com/">
+<link rel="icon" href="images/mo-coyotes-logo.jpg">
+<title>MO Coyotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: one storybook "stage" (a 1000x620 illustrated scene) that zooms into rooms; rooms reuse the same stage frame. */
+:root {
+  --bg: #FFF4D2;          /* page cream */
+  --ink: #5A1F0E;         /* logo brown outline */
+  --muted: #8A5A45;
+  --card: #FFFDF4;
+  --line: rgba(90, 31, 14, .16);
+  --marigold: #F2B705;
+  --orange: #E2780F;
+  --rust: #B9460F;
+  --blush: #F7C1CC;
+  --pink: #F48FB8;
+  --hot: #E0218A;         /* Barbie pink */
+  --sky1: #FFF3B8; --sky2: #FCD9C4;
+  --sun: #F8C53A;
+  --w1: #FDE7A6; --w2: #F2B705; --w3: #E2780F; --w4: #B9460F; --w5: #F7C1CC;
+  --grass: #B5CB72; --grass2: #97B55A; --bush: #6E9446;
+  --house: #FBD3DC; --trim: #FFFDF4; --roof: #B9460F; --brick: #9E3B12;
+  --door: #E0218A; --glass: #BFE4EC; --glass-in: #FFE9F0; --lamp: #FFE08A;
+  --road: #E5D6BE; --tire: #3B2620;
+  --wall1: #FBD3DC; --wall2: #F9C2CF; --floor: #C9874F; --frame: #D9A441; --mat: #FFFDF4;
+  --font-display: "Shrikhand", "Cooper Black", Georgia, serif;
+  --font-script: "Pacifico", "Brush Script MT", cursive;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #21101C; --ink: #FCE7D6; --muted: #D7B3A6; --card: #301A2A; --line: rgba(252, 231, 214, .16);
+    --sky1: #2A1736; --sky2: #6A2C4C; --sun: #F6E7B0;
+    --w1: #6B5530; --w2: #9C7A12; --w3: #9A5214; --w4: #7A2E10; --w5: #9C6170;
+    --grass: #3F4C2D; --grass2: #34422A; --bush: #2A3A20;
+    --house: #B0707F; --trim: #EAD8CC; --roof: #7A2E10; --brick: #5E220B;
+    --door: #B4176E; --glass: #FFD36E; --glass-in: #FFE7A3; --lamp: #FFD36E;
+    --road: #5E4E47; --tire: #120A08;
+    --wall1: #6E3550; --wall2: #5F2C45; --floor: #6A4026; --frame: #C08F33; --mat: #3A2234;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #21101C; --ink: #FCE7D6; --muted: #D7B3A6; --card: #301A2A; --line: rgba(252, 231, 214, .16);
+  --sky1: #2A1736; --sky2: #6A2C4C; --sun: #F6E7B0;
+  --w1: #6B5530; --w2: #9C7A12; --w3: #9A5214; --w4: #7A2E10; --w5: #9C6170;
+  --grass: #3F4C2D; --grass2: #34422A; --bush: #2A3A20;
+  --house: #B0707F; --trim: #EAD8CC; --roof: #7A2E10; --brick: #5E220B;
+  --door: #B4176E; --glass: #FFD36E; --glass-in: #FFE7A3; --lamp: #FFD36E;
+  --road: #5E4E47; --tire: #120A08;
+  --wall1: #6E3550; --wall2: #5F2C45; --floor: #6A4026; --frame: #C08F33; --mat: #3A2234;
+  color-scheme: dark;
+}
+
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1060px; margin: 0 auto; padding-inline: 16px; padding-block: 14px 32px; display: grid; gap: 14px; }
+
+.topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.brand { font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2rem); line-height: 1; color: var(--hot); text-shadow: 2px 2px 0 var(--marigold); }
+.tag-note { font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.btn { font: 800 .9rem/1 var(--font-body); color: var(--ink); background: var(--card); border: 2px solid var(--ink); border-radius: 999px; padding: .55em 1em; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .4em; box-shadow: 3px 3px 0 var(--ink); transition: transform .12s, box-shadow .12s; }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
+
+/* ---------- stage ---------- */
+.stage { position: relative; border: 3px solid var(--ink); border-radius: 22px; overflow: hidden; background: var(--sky1); box-shadow: 6px 6px 0 var(--ink); }
+.scene { display: block; width: 100%; height: auto; transform-origin: 50% 50%; transition: transform .6s cubic-bezier(.6,0,.4,1), opacity .6s; }
+.scene.zoom { transform: scale(3.2); opacity: 0; }
+.hint { text-align: center; color: var(--muted); font-weight: 600; margin: 0; }
+
+/* svg fills via tokens */
+.f-sky1 { stop-color: var(--sky1); } .f-sky2 { stop-color: var(--sky2); }
+.f-sun { fill: var(--sun); }
+.wave { fill: none; stroke-width: 30; stroke-linecap: round; }
+.w1 { stroke: var(--w1); } .w2 { stroke: var(--w2); } .w3 { stroke: var(--w3); } .w4 { stroke: var(--w4); } .w5 { stroke: var(--w5); }
+.f-grass { fill: var(--grass); } .f-grass2 { fill: var(--grass2); } .f-bush { fill: var(--bush); }
+.f-house { fill: var(--house); } .f-trim { fill: var(--trim); } .f-roof { fill: var(--roof); } .f-brick { fill: var(--brick); }
+.f-door { fill: var(--door); } .f-glass { fill: var(--glass); } .f-glass-in { fill: var(--glass-in); } .f-lamp { fill: var(--lamp); }
+.f-road { fill: var(--road); } .f-tire { fill: var(--tire); } .f-ink { fill: var(--ink); }
+.f-hot { fill: var(--hot); } .f-pink { fill: var(--pink); } .f-blush { fill: var(--blush); } .f-marigold { fill: var(--marigold); } .f-orange { fill: var(--orange); } .f-rust { fill: var(--rust); }
+.s-ink { stroke: var(--ink); } .s-trim { stroke: var(--trim); }
+.cloud { fill: var(--trim); opacity: .85; }
+
+/* hotspots */
+.hot { cursor: pointer; outline: none; }
+.hot .glow { transition: filter .2s; }
+.hot:hover .glow, .hot:focus-visible .glow, .show-hints .hot .glow { filter: drop-shadow(0 0 6px var(--hot)) drop-shadow(0 0 2px var(--trim)); }
+.tag { opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.tag rect { fill: var(--ink); }
+.tag text { fill: var(--bg); font: 800 15px var(--font-body); }
+.hot:hover .tag, .hot:focus-visible .tag, .show-hints .tag { opacity: 1; transform: none; }
+@media (hover: none) { .tag { opacity: 1; transform: none; } }
+
+.door-panel { transform-box: fill-box; transform-origin: left center; transition: transform .45s ease; }
+.hot-door:hover .door-panel, .hot-door.open .door-panel { transform: scaleX(.35); }
+.flag { transform-box: fill-box; transform-origin: 0% 100%; transition: transform .3s; transform: rotate(80deg); }
+.hot-mail:hover .flag, .hot-mail:focus-visible .flag { transform: rotate(0deg); }
+.smoke circle { fill: var(--trim); opacity: 0; animation: puff 4s linear infinite; transform-box: fill-box; transform-origin: center; }
+.smoke circle:nth-child(2) { animation-delay: 1.3s; } .smoke circle:nth-child(3) { animation-delay: 2.6s; }
+@keyframes puff { 0% { opacity: 0; transform: translate(0,0) scale(.5); } 20% { opacity: .8; } 100% { opacity: 0; transform: translate(26px,-70px) scale(1.6); } }
+.drift { animation: drift 40s linear infinite; }
+@keyframes drift { from { transform: translateX(-120px); } to { transform: translateX(1100px); } }
+
+/* ---------- rooms ---------- */
+.room { min-height: 420px; padding: clamp(18px, 4vw, 40px); display: grid; gap: 22px; align-content: start; }
+.room h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.05; margin: 0; text-wrap: balance; }
+.room .lede { margin: 0; max-width: 60ch; font-weight: 600; color: var(--muted); }
+.room-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* foyer */
+.foyer { background:
+  linear-gradient(to bottom, transparent 72%, var(--floor) 72%),
+  repeating-linear-gradient(90deg, var(--wall1) 0 34px, var(--wall2) 34px 68px); }
+.foyer h2, .foyer .lede { color: var(--ink); }
+.foyer .lede { color: var(--ink); opacity: .8; }
+.arches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; align-items: end; }
+.arch { display: grid; justify-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.arch .opening { width: 100%; max-width: 170px; aspect-ratio: 3 / 4.4; border: 6px solid var(--trim); border-bottom: 0; border-radius: 90px 90px 0 0; background: var(--door); position: relative; box-shadow: inset 0 0 0 3px var(--ink), 0 0 0 3px var(--ink); transition: transform .2s; }
+.arch .opening::after { content: ""; position: absolute; right: 16%; top: 55%; width: 12px; height: 12px; border-radius: 50%; background: var(--marigold); box-shadow: 0 0 0 2px var(--ink); }
+.arch.shop .opening { background: var(--orange); }
+.arch.gallery .opening { background: var(--marigold); }
+.arch.barbie .opening { background: var(--hot); }
+.arch:hover .opening, .arch:focus-visible .opening { transform: translateY(-6px); }
+.plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
+
+/* shop room */
+.shoproom { background:
+  linear-gradient(to bottom, transparent 80%, var(--floor) 80%),
+  repeating-linear-gradient(90deg, var(--wall1) 0 22px, var(--wall2) 22px 26px); }
+.frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 28px; padding-top: 34px; }
+.frame { position: relative; display: grid; gap: 12px; justify-items: center; text-decoration: none; color: var(--ink); }
+.frame::before { content: ""; position: absolute; top: -30px; left: 50%; width: 70px; height: 32px; transform: translateX(-50%); border: 2px solid var(--ink); border-bottom: 0; border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(to top right, transparent 48%, var(--ink) 49% 51%, transparent 52%) left/50% 100% no-repeat, linear-gradient(to top left, transparent 48%, var(--ink) 49% 51%, transparent 52%) right/50% 100% no-repeat; border: 0; }
+.frame .art { width: 100%; max-width: 230px; aspect-ratio: 1; display: grid; place-items: center; text-align: center; background: var(--mat); border: 16px solid var(--frame); outline: 3px solid var(--ink); box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 12px var(--mat), inset 0 0 0 14px var(--line), 8px 10px 0 rgba(0,0,0,.18); transition: transform .2s; padding: 18px; }
+.frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.03); }
+.art .name { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1; }
+.art .what { font-weight: 800; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.frame.ebay .name { color: var(--rust); } .frame.etsy .name { color: var(--orange); } .frame.union .name { color: var(--ink); font-family: Georgia, serif; letter-spacing: .12em; text-transform: lowercase; }
+.frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: .9rem; }
+
+/* gallery */
+.galleryroom { background: var(--card); }
+.photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
+.photo { aspect-ratio: 4 / 5; border: 10px solid var(--frame); outline: 2px solid var(--ink); background: repeating-linear-gradient(45deg, var(--wall1) 0 12px, var(--wall2) 12px 24px); display: grid; place-items: end center; padding: 10px; font-weight: 800; font-size: .8rem; text-align: center; }
+.photo span { background: var(--card); border-radius: 6px; padding: 2px 8px; }
+.socials { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* barbie land: one deliberate look in both themes */
+.barbieroom { background: #E0218A; color: #FFFFFF; }
+.barbieroom h2 { font-family: var(--font-script); font-size: clamp(2.2rem, 7vw, 4rem); color: #FFFFFF; text-shadow: 0 4px 0 #9C0F5C; }
+.barbieroom .lede { color: #FFE3F1; }
+.barbieroom .btn { background: #FFFFFF; color: #9C0F5C; border-color: #5C0634; box-shadow: 3px 3px 0 #5C0634; }
+.tv { max-width: 420px; width: 100%; justify-self: center; background: #FFB6DA; border: 4px solid #5C0634; border-radius: 26px; padding: 18px; position: relative; box-shadow: 6px 6px 0 #5C0634; margin-top: 30px; }
+.tv::before, .tv::after { content: ""; position: absolute; top: -36px; width: 4px; height: 44px; background: #5C0634; }
+.tv::before { left: 42%; transform: rotate(-28deg); } .tv::after { left: 54%; transform: rotate(28deg); }
+.screen { aspect-ratio: 16 / 9; border-radius: 16px; border: 4px solid #5C0634; display: grid; place-items: center; text-align: center; background: radial-gradient(circle at 50% 40%, #FFFFFF 0 8%, #FF7CC0 9% 100%); font-family: var(--font-script); font-size: clamp(1.2rem, 4vw, 1.7rem); color: #FFFFFF; text-shadow: 0 2px 0 #9C0F5C; padding: 10px; }
+.polaroids { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+.polaroid { width: 130px; background: #FFFFFF; padding: 8px 8px 26px; box-shadow: 4px 4px 0 #5C0634; color: #9C0F5C; font: 400 .9rem var(--font-script); text-align: center; }
+.polaroid div { aspect-ratio: 1; background: repeating-linear-gradient(-45deg, #FFD0E7 0 10px, #FFB6DA 10px 20px); margin-bottom: 6px; }
+.polaroid:nth-child(odd) { transform: rotate(-4deg); } .polaroid:nth-child(even) { transform: rotate(3deg); }
+
+/* contact */
+.contactroom { background: repeating-linear-gradient(135deg, var(--wall1) 0 18px, var(--card) 18px 36px); }
+.letter { background: var(--card); border: 3px solid var(--ink); border-radius: 14px; padding: clamp(16px, 4vw, 28px); max-width: 560px; width: 100%; justify-self: center; box-shadow: 6px 6px 0 var(--ink); display: grid; gap: 12px; }
+.letter label { font-weight: 800; font-size: .85rem; display: grid; gap: 4px; }
+.letter input, .letter textarea { font: 600 1rem var(--font-body); color: var(--ink); background: var(--bg); border: 2px solid var(--ink); border-radius: 10px; padding: .55em .7em; width: 100%; box-sizing: border-box; }
+.note { margin: 0; font-weight: 700; color: var(--hot); }
+
+/* car: little map pop-up */
+.mapcard { border: 3px solid var(--ink); border-radius: 20px; padding: 0; background: var(--card); color: var(--ink); width: min(560px, calc(100vw - 32px)); box-shadow: 8px 8px 0 var(--ink); }
+.mapcard::backdrop { background: rgba(40, 12, 20, .55); }
+.mapcard-in { padding: clamp(16px, 4vw, 24px); display: grid; gap: 14px; }
+.mapcard-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.mapcard h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.1; margin: 0; }
+.close { font: 800 1.2rem/1 var(--font-body); width: 40px; height: 40px; flex: none; border-radius: 50%; border: 2px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; }
+.minimap { width: 100%; height: auto; display: block; border: 2px solid var(--ink); border-radius: 14px; }
+.m-land { fill: var(--grass); } .m-park { fill: var(--grass2); } .m-river { fill: none; stroke: var(--glass); stroke-width: 22; stroke-linecap: round; }
+.m-street { fill: none; stroke: var(--trim); stroke-width: 4; } .m-big { fill: none; stroke: var(--marigold); stroke-width: 7; stroke-linecap: round; }
+.m-label { fill: var(--ink); font: 800 11px var(--font-body); letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
+.m-pin-label { fill: var(--ink); font: 800 13px var(--font-body); }
+.m-chip { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
+.places { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.place { border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--bg); }
+.place b { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
+.place b::before { content: ""; width: 14px; height: 14px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--dot); border: 2px solid var(--ink); flex: none; }
+.place address { font-style: normal; font-weight: 600; user-select: all; }
+.place .btn { justify-self: start; font-size: .85rem; }
+.m-note { margin: 0; font-size: .8rem; color: var(--muted); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <div>
+      <div class="brand">MO Coyotes</div>
+      <div class="tag-note">Handmade &amp; thrifted · Missouri</div>
+    </div>
+    <button class="btn" id="hintBtn" type="button" aria-pressed="false">Show what's clickable</button>
+  </header>
+
+  <main class="stage" id="stage">
+    <!-- OUTSIDE -->
+    <section id="room-outside" aria-label="Outside the MO Coyotes house">
+      <svg class="scene" id="scene" viewBox="0 0 1000 620" role="img" aria-labelledby="sceneTitle">
+        <title id="sceneTitle">A pink cottage with a yard sign, mailbox and a pink car in the driveway</title>
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f-sky1"/><stop offset="1" class="f-sky2"/></linearGradient>
+        </defs>
+        <rect width="1000" height="620" fill="url(#sky)"/>
+        <circle class="f-sun" cx="850" cy="105" r="58"/>
+        <g class="drift"><g class="cloud"><ellipse cx="0" cy="80" rx="60" ry="20"/><ellipse cx="35" cy="66" rx="36" ry="22"/></g></g>
+        <g class="drift" style="animation-delay:-22s"><g class="cloud"><ellipse cx="0" cy="140" rx="48" ry="16"/><ellipse cx="-24" cy="130" rx="28" ry="16"/></g></g>
+
+        <!-- retro waves from the logo -->
+        <g transform="translate(0,-10)">
+          <path class="wave w1" d="M-40 300 C 150 220, 330 380, 520 300 S 860 220, 1040 290"/>
+          <path class="wave w2" d="M-40 300 C 150 220, 330 380, 520 300 S 860 220, 1040 290" transform="translate(0,30)"/>
+          <path class="wave w3" d="M-40 300 C 150 220, 330 380, 520 300 S 860 220, 1040 290" transform="translate(0,60)"/>
+          <path class="wave w4" d="M-40 300 C 150 220, 330 380, 520 300 S 860 220, 1040 290" transform="translate(0,90)"/>
+          <path class="wave w5" d="M-40 300 C 150 220, 330 380, 520 300 S 860 220, 1040 290" transform="translate(0,120)"/>
+        </g>
+
+        <!-- ground -->
+        <path class="f-grass" d="M0 455 Q 250 430 500 458 T 1000 450 V620 H0 Z"/>
+        <path class="f-grass2" d="M0 520 Q 300 500 600 528 T 1000 515 V620 H0 Z"/>
+        <polygon class="f-road" points="462,488 498,488 560,620 400,620"/>
+        <polygon class="f-road" points="700,478 870,478 1000,620 690,620"/>
+
+        <!-- chimney + smoke -->
+        <g class="smoke"><circle cx="596" cy="150" r="12"/><circle cx="596" cy="150" r="12"/><circle cx="596" cy="150" r="12"/></g>
+        <rect class="f-brick s-ink" stroke-width="3" x="576" y="170" width="40" height="90"/>
+        <rect class="f-rust s-ink" stroke-width="3" x="569" y="162" width="54" height="14" rx="3"/>
+
+        <!-- house -->
+        <rect class="f-house s-ink" stroke-width="4" x="300" y="285" width="360" height="200"/>
+        <polygon class="f-roof s-ink" stroke-width="4" stroke-linejoin="round" points="272,294 480,158 688,294"/>
+        <polyline fill="none" class="s-trim" stroke-width="5" stroke-linejoin="round" points="290,287 480,166 670,287"/>
+
+        <!-- yard sign with logo -->
+        <g>
+          <rect class="f-ink" x="72" y="430" width="8" height="70"/><rect class="f-ink" x="132" y="430" width="8" height="70"/>
+          <rect class="f-trim s-ink" stroke-width="4" x="44" y="318" width="124" height="124" rx="8"/>
+          <image href="images/mo-coyotes-logo.jpg" x="52" y="326" width="108" height="108"/>
+        </g>
+
+        <!-- bushes -->
+        <g class="f-bush"><circle cx="318" cy="480" r="24"/><circle cx="350" cy="486" r="20"/><circle cx="612" cy="482" r="22"/><circle cx="642" cy="486" r="24"/></g>
+
+        <!-- BARBIE: attic window -->
+        <a class="hot" href="#barbie" data-to="barbie" aria-label="Upstairs window: Coyote in Barbie Land">
+          <g class="glow">
+            <circle class="f-hot s-trim" stroke-width="7" cx="480" cy="236" r="28"/>
+            <path class="s-trim" stroke-width="4" d="M480 208 V264 M452 236 H508"/>
+            <path class="f-trim" d="M470 230 q10 -12 20 0 q-10 12 -20 0z" opacity=".7"/>
+          </g>
+          <g class="tag"><rect x="390" y="176" width="180" height="28" rx="14"/><text x="480" y="195" text-anchor="middle">Coyote in Barbie Land</text></g>
+        </a>
+
+        <!-- SHOP: left window -->
+        <a class="hot" href="#shop" data-to="shop" aria-label="Left window: the shop room">
+          <g class="glow">
+            <rect class="f-hot s-ink" stroke-width="3" x="306" y="312" width="16" height="92"/>
+            <rect class="f-hot s-ink" stroke-width="3" x="428" y="312" width="16" height="92"/>
+            <rect class="f-glass-in s-trim" stroke-width="8" x="326" y="315" width="98" height="86"/>
+            <!-- tiny frames visible through the glass -->
+            <rect class="f-marigold s-ink" stroke-width="2" x="336" y="330" width="22" height="22"/>
+            <rect class="f-orange s-ink" stroke-width="2" x="364" y="326" width="22" height="22"/>
+            <rect class="f-trim s-ink" stroke-width="2" x="392" y="330" width="22" height="22"/>
+            <path class="s-trim" stroke-width="5" d="M375 315 V401 M326 360 H424"/>
+            <rect class="f-rust s-ink" stroke-width="3" x="318" y="401" width="114" height="16" rx="3"/>
+            <g class="f-pink"><circle cx="334" cy="398" r="7"/><circle cx="356" cy="396" r="7"/><circle cx="394" cy="396" r="7"/><circle cx="416" cy="398" r="7"/></g>
+            <g class="f-marigold"><circle cx="345" cy="394" r="6"/><circle cx="375" cy="394" r="6"/><circle cx="405" cy="394" r="6"/></g>
+          </g>
+          <g class="tag"><rect x="320" y="278" width="110" height="28" rx="14"/><text x="375" y="297" text-anchor="middle">Shop room</text></g>
+        </a>
+
+        <!-- GALLERY: right window -->
+        <a class="hot" href="#gallery" data-to="gallery" aria-label="Right window: the gallery">
+          <g class="glow">
+            <rect class="f-hot s-ink" stroke-width="3" x="516" y="312" width="16" height="92"/>
+            <rect class="f-hot s-ink" stroke-width="3" x="638" y="312" width="16" height="92"/>
+            <rect class="f-glass s-trim" stroke-width="8" x="536" y="315" width="98" height="86"/>
+            <g class="s-ink" stroke-width="2"><rect class="f-blush" x="546" y="326" width="16" height="20"/><rect class="f-marigold" x="568" y="330" width="14" height="14"/><rect class="f-pink" x="606" y="326" width="18" height="22"/></g>
+            <path class="s-trim" stroke-width="5" d="M585 315 V401 M536 360 H634"/>
+            <rect class="f-rust s-ink" stroke-width="3" x="528" y="401" width="114" height="16" rx="3"/>
+            <g class="f-pink"><circle cx="544" cy="398" r="7"/><circle cx="566" cy="396" r="7"/><circle cx="604" cy="396" r="7"/><circle cx="626" cy="398" r="7"/></g>
+            <g class="f-marigold"><circle cx="555" cy="394" r="6"/><circle cx="585" cy="394" r="6"/><circle cx="615" cy="394" r="6"/></g>
+          </g>
+          <g class="tag"><rect x="540" y="278" width="90" height="28" rx="14"/><text x="585" y="297" text-anchor="middle">Gallery</text></g>
+        </a>
+
+        <!-- DOOR -->
+        <a class="hot hot-door" href="#foyer" data-to="foyer" aria-label="Front door: come inside">
+          <g class="glow">
+            <path class="f-ink" d="M446 486 V404 a34 34 0 0 1 68 0 V486 Z"/>
+            <path class="f-lamp" d="M450 486 V404 a30 30 0 0 1 60 0 V486 Z" opacity=".9"/>
+            <g class="door-panel">
+              <path class="f-door s-ink" stroke-width="3" d="M450 486 V404 a30 30 0 0 1 60 0 V486 Z"/>
+              <circle class="f-glass s-trim" stroke-width="3" cx="480" cy="408" r="11"/>
+              <path class="f-trim" d="M480 452 l-9 -9 a6 6 0 0 1 9 -8 a6 6 0 0 1 9 8 z"/>
+              <circle class="f-marigold s-ink" stroke-width="2" cx="500" cy="448" r="4"/>
+            </g>
+            <rect class="f-trim s-ink" stroke-width="3" x="428" y="484" width="104" height="10" rx="3"/>
+            <circle class="f-lamp s-ink" stroke-width="2" cx="530" cy="392" r="7"/>
+          </g>
+          <g class="tag"><rect x="425" y="344" width="110" height="28" rx="14"/><text x="480" y="363" text-anchor="middle">Come inside</text></g>
+        </a>
+
+        <!-- MAILBOX -->
+        <a class="hot hot-mail" href="#contact" data-to="contact" aria-label="Mailbox: contact MO Coyotes">
+          <g class="glow">
+            <rect class="f-ink" x="202" y="436" width="12" height="74"/>
+            <path class="f-marigold s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 18 -18 H226 a18 18 0 0 1 18 18 V440 Z"/>
+            <path class="f-orange s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 36 0 V440 Z"/>
+            <g class="flag"><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="5" height="30"/><rect class="f-hot s-ink" stroke-width="2" x="244" y="398" width="18" height="11"/></g>
+          </g>
+          <g class="tag"><rect x="168" y="366" width="80" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">Contact</text></g>
+        </a>
+
+        <!-- CAR -->
+        <a class="hot hot-car" href="#where" id="carLink" aria-label="Pink car: where to find MO Coyotes in person" aria-haspopup="dialog">
+          <g class="glow">
+            <ellipse cx="832" cy="560" rx="110" ry="9" fill="#000" opacity=".15"/>
+            <g class="car" transform="translate(728,482)">
+              <path class="f-pink s-ink" stroke-width="3" d="M0 54 Q0 34 22 31 L54 28 Q74 2 106 2 L136 2 Q160 2 176 28 L196 32 Q210 35 210 54 L210 64 Q210 70 204 70 L6 70 Q0 70 0 64 Z"/>
+              <path class="f-glass s-ink" stroke-width="2" d="M62 28 Q78 9 102 9 L104 28 Z"/>
+              <path class="f-glass s-ink" stroke-width="2" d="M110 9 L134 9 Q154 11 166 28 L110 28 Z"/>
+              <path class="s-trim" d="M10 46 H200" stroke-width="4" fill="none"/>
+              <path class="f-hot" d="M98 52 l-8 -8 a5 5 0 0 1 8 -7 a5 5 0 0 1 8 7 z"/>
+              <circle class="f-lamp s-ink" stroke-width="2" cx="203" cy="44" r="5"/>
+              <circle class="f-tire" cx="48" cy="70" r="18"/><circle class="f-trim" cx="48" cy="70" r="7"/>
+              <circle class="f-tire" cx="164" cy="70" r="18"/><circle class="f-trim" cx="164" cy="70" r="7"/>
+            </g>
+          </g>
+          <g class="tag"><rect x="737" y="440" width="190" height="28" rx="14"/><text x="832" y="459" text-anchor="middle">Find us in person</text></g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- FOYER -->
+    <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
+      <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
+      <h2 id="foyerTitle">Come on in!</h2>
+      <p class="lede">Pick a door. Each one opens a different room of the shop.</p>
+      <div class="arches">
+        <a class="arch shop" href="#shop"><span class="opening"></span><span class="plaque">Shop</span></a>
+        <a class="arch gallery" href="#gallery"><span class="opening"></span><span class="plaque">Gallery</span></a>
+        <a class="arch barbie" href="#barbie"><span class="opening"></span><span class="plaque">Barbie Land</span></a>
+        <a class="arch" href="#contact"><span class="opening"></span><span class="plaque">Say hello</span></a>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="room-shop" class="room shoproom" hidden aria-labelledby="shopTitle">
+      <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
+      <h2 id="shopTitle">The Shop Room</h2>
+      <p class="lede">Every frame on the wall is a door to a store. Click one to start shopping.</p>
+      <div class="frames">
+        <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">
+          <span class="art"><span><span class="name">eBay</span><span class="what" style="display:block">Thrifted finds</span></span></span>
+          <span class="plaque">The Good Ole Two →</span>
+        </a>
+        <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">
+          <span class="art"><span><span class="name">Etsy</span><span class="what" style="display:block">Handmade</span></span></span>
+          <span class="plaque">MoCoyotesMade →</span>
+        </a>
+        <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener">
+          <span class="art"><span><span class="name">union studio</span><span class="what" style="display:block">Shop local · St. Louis</span></span></span>
+          <span class="plaque">Visit the studio →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="room-gallery" class="room galleryroom" hidden aria-labelledby="galleryTitle">
+      <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
+      <h2 id="galleryTitle">The Gallery</h2>
+      <p class="lede">Your portfolio photos would hang here. These frames are placeholders.</p>
+      <div class="photos">
+        <div class="photo"><span>Photo coming soon</span></div>
+        <div class="photo"><span>Photo coming soon</span></div>
+        <div class="photo"><span>Photo coming soon</span></div>
+        <div class="photo"><span>Photo coming soon</span></div>
+      </div>
+      <div class="socials" aria-label="Social media (links to add)">
+        <a class="btn" href="https://www.instagram.com/mo_coyotes_made/" target="_blank" rel="noopener">Instagram · @mo_coyotes_made</a>
+        <span class="btn">Facebook · link to add</span>
+        <span class="btn">TikTok · link to add</span>
+      </div>
+    </section>
+
+    <!-- BARBIE LAND -->
+    <section id="room-barbie" class="room barbieroom" hidden aria-labelledby="barbieTitle">
+      <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
+      <h2 id="barbieTitle">Coyote in Barbie Land</h2>
+      <p class="lede">The pinkest room in the house. Videos, photos and dream-house finds.</p>
+      <div class="tv"><div class="screen">YouTube channel<br>coming soon</div></div>
+      <div class="polaroids">
+        <div class="polaroid"><div></div>Photo here</div>
+        <div class="polaroid"><div></div>Photo here</div>
+        <div class="polaroid"><div></div>Photo here</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="room-contact" class="room contactroom" hidden aria-labelledby="contactTitle">
+      <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
+      <h2 id="contactTitle">You've got mail</h2>
+      <div class="letter">
+        <p style="margin:0;font-weight:600">Questions about an item, a custom order or where to find us? Send a message and we'll write back.</p>
+        <a class="btn" href="https://ig.me/m/mo_coyotes_made" target="_blank" rel="noopener">Message us on Instagram →</a>
+        <a class="btn" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">Message us on Etsy →</a>
+      </div>
+    </section>
+  </main>
+
+  <p class="hint" id="hint">Click the door, the windows, the mailbox or the pink car.</p>
+</div>
+
+<dialog class="mapcard" id="mapDialog" aria-labelledby="mapTitle">
+  <div class="mapcard-in">
+    <div class="mapcard-head">
+      <h3 id="mapTitle">Find MO Coyotes in person</h3>
+      <button class="close" type="button" id="mapClose" aria-label="Close map">×</button>
+    </div>
+    <svg class="minimap" viewBox="0 0 520 280" role="img" aria-label="Map of St. Louis showing Union Studio in Webster Groves and Node O Studio in south city">
+      <rect class="m-land" width="520" height="280"/>
+      <rect class="m-park" x="250" y="40" width="80" height="50" rx="10"/>
+      <g class="m-street">
+        <path d="M0 70 H520"/><path d="M0 140 H460"/><path d="M0 215 H440"/>
+        <path d="M120 0 V280"/><path d="M220 0 V280"/><path d="M340 0 V280"/>
+      </g>
+      <path class="m-big" d="M30 260 C 70 200, 110 170, 150 120 S 200 40, 230 0"/>
+      <path class="m-river" d="M500 -10 C 470 70, 505 140, 470 200 S 480 270, 470 300"/>
+      <text class="m-label" x="160" y="250">Webster Groves</text>
+      <text class="m-label" x="260" y="120">Tower Grove</text>
+      <text class="m-label" x="360" y="250">South City</text>
+      <text class="m-label" x="235" y="20" transform="rotate(-55 235 20)">Big Bend</text>
+      <text class="m-label" x="444" y="150" transform="rotate(80 444 150)">Mississippi</text>
+      <!-- Union Studio pin -->
+      <g transform="translate(110,178)">
+        <path class="f-hot s-ink" stroke-width="2.5" d="M0 0 C -14 -16 -16 -24 -16 -30 a16 16 0 0 1 32 0 c0 6 -2 14 -16 30z"/>
+        <circle class="f-trim" cx="0" cy="-30" r="6"/>
+        <rect class="m-chip" x="-58" y="6" width="116" height="24" rx="12"/>
+        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Union Studio</text>
+      </g>
+      <!-- Node O Studio pin -->
+      <g transform="translate(392,150)">
+        <path class="f-orange s-ink" stroke-width="2.5" d="M0 0 C -14 -16 -16 -24 -16 -30 a16 16 0 0 1 32 0 c0 6 -2 14 -16 30z"/>
+        <circle class="f-trim" cx="0" cy="-30" r="6"/>
+        <rect class="m-chip" x="-62" y="6" width="124" height="24" rx="12"/>
+        <text class="m-pin-label" x="0" y="23" text-anchor="middle">Node O Studio</text>
+      </g>
+    </svg>
+    <div class="places">
+      <div class="place" style="--dot: var(--hot)">
+        <b>Union Studio</b>
+        <address>8517 Big Bend Blvd<br>Webster Groves, MO 63119</address>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=8517%20Big%20Bend%20Blvd%2C%20Webster%20Groves%2C%20MO%2063119" target="_blank" rel="noopener">Directions →</a>
+      </div>
+      <div class="place" style="--dot: var(--orange)">
+        <b>Node O Studio</b>
+        <address>3744 Louisiana Ave<br>St. Louis, MO 63118</address>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=3744%20Louisiana%20Ave%2C%20St.%20Louis%2C%20MO%2063118" target="_blank" rel="noopener">Directions →</a>
+      </div>
+    </div>
+    <p class="m-note">Map is illustrated, not to scale. Directions open in Google Maps.</p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var rooms = ["outside", "foyer", "shop", "gallery", "barbie", "contact"];
+  var scene = document.getElementById("scene");
+  var hint = document.getElementById("hint");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function show(name) {
+    if (rooms.indexOf(name) < 0) name = "outside";
+    rooms.forEach(function (r) { document.getElementById("room-" + r).hidden = r !== name; });
+    scene.classList.remove("zoom");
+    document.querySelectorAll(".hot-door").forEach(function (d) { d.classList.remove("open"); });
+    hint.hidden = name !== "outside";
+    if (name !== "outside") {
+      var h = document.querySelector("#room-" + name + " h2");
+      if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+    }
+  }
+
+  // zoom into the clicked spot, then switch rooms
+  document.querySelectorAll(".hot[data-to]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var to = a.getAttribute("data-to");
+      if (reduce) { location.hash = to; return; }
+      var b = a.querySelector(".glow").getBBox();
+      scene.style.transformOrigin = ((b.x + b.width / 2) / 10) + "% " + ((b.y + b.height / 2) / 6.2) + "%";
+      if (a.classList.contains("hot-door")) a.classList.add("open");
+      setTimeout(function () { scene.classList.add("zoom"); }, a.classList.contains("hot-door") ? 250 : 0);
+      setTimeout(function () { location.hash = to; }, 800);
+    });
+  });
+
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+
+  var hintBtn = document.getElementById("hintBtn");
+  hintBtn.addEventListener("click", function () {
+    var on = scene.classList.toggle("show-hints");
+    hintBtn.setAttribute("aria-pressed", on);
+    hintBtn.textContent = on ? "Hide labels" : "Show what's clickable";
+    if (on && location.hash && location.hash !== "#outside") location.hash = "outside";
+  });
+
+  var mapDialog = document.getElementById("mapDialog");
+  document.getElementById("carLink").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (mapDialog.showModal) mapDialog.showModal(); else mapDialog.setAttribute("open", "");
+  });
+  document.getElementById("mapClose").addEventListener("click", function () { mapDialog.close(); });
+  mapDialog.addEventListener("click", function (e) { if (e.target === mapDialog) mapDialog.close(); });
+
+})();
+</script>
+
+</body>
+</html>
