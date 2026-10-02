@@ -157,7 +157,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .shoproom { position: relative; overflow: hidden; background:
   repeating-linear-gradient(90deg, var(--wall-lt) 0 34px, var(--wall1) 34px 68px);
   padding-bottom: 96px; }
-.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 10px; max-width: 760px; }
+.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 0; margin-top: -6px; max-width: 760px; }
 @media (max-width: 520px) { .frames { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
 .frame { position: relative; display: grid; gap: 12px; justify-items: center; text-decoration: none; color: var(--ink); min-width: 0; }
 .frame .art { box-sizing: border-box; width: 100%; max-width: 200px; aspect-ratio: 1; display: grid; place-items: center;
@@ -595,7 +595,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-shop" class="room shoproom" hidden aria-labelledby="shopTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
       <h2 id="shopTitle">SHOP</h2>
-      <p class="lede">Every frame on the wall is a door to a store. Click one to start shopping.</p>
       <div class="frames">
         <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener" aria-label="eBay: The Good Ole Two, thrifted finds">
           <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
@@ -631,8 +630,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="fl-board2" x="0" y="0" width="70" height="25" opacity=".22"/>
           <rect class="fl-board2" x="100" y="25" width="100" height="25" opacity=".3"/>
           <path class="fl-line" d="M0 25 H200 M0 50 H200 M70 0 V25 M170 0 V25 M100 25 V50 M30 25 V50"/>
-          <path class="fl-grain" d="M8 9 C 20 5, 32 13, 46 9 S 60 11, 64 10 M78 15 C 92 11, 106 18, 120 14 S 150 12, 162 15 M176 8 C 184 6, 192 10, 198 8 M38 36 C 50 32, 62 40, 76 36 S 92 38, 96 37 M108 34 C 122 30, 138 38, 152 34 S 180 32, 194 36"/>
-          <ellipse class="fl-grain" cx="132" cy="8" rx="4" ry="2.4"/><ellipse class="fl-grain" cx="14" cy="40" rx="3.5" ry="2"/>
         </pattern></defs>
         <rect width="100%" height="100%" fill="url(#shopFloorPlanks)"/>
       </svg>
