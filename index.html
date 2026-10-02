@@ -101,7 +101,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .strand path, .strand2 path { fill: none; stroke-linecap: round; }
 .strand2 path { stroke: var(--willow2); stroke-width: 9; stroke-dasharray: 0 10; }
 .strand path { stroke: var(--willow); stroke-width: 8; stroke-dasharray: 0 9; }
-.banner-text { font: 400 20px var(--font-script); fill: var(--hot); }
 .prop { transform-box: fill-box; transform-origin: center; }
 .hot-plane:hover .prop, .hot-plane:focus-visible .prop { animation: spin .18s linear infinite; }
 @keyframes spin { 50% { transform: scaleY(.15); } }
@@ -241,7 +240,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <!-- OUTSIDE -->
     <section id="room-outside" aria-label="Outside the MO Coyotes house">
       <svg class="scene" id="scene" viewBox="0 0 1000 620" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">A pink cottage with an Ohio Star quilt on the clothesline, a white picket fence, a mailbox, a pink bike in the driveway and a pink airplane pulling a Mo Coyotes banner</title>
+        <title id="sceneTitle">A pink cottage with an Ohio Star quilt on the clothesline, a white picket fence, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f-sky1"/><stop offset="1" class="f-sky2"/></linearGradient>
           <!-- cartoon flower: set --petal on the <use> to recolor -->
@@ -339,12 +338,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
 
         <!-- AIRPLANE to Barbie Land -->
-        <a class="hot hot-plane" href="#barbie" data-to="barbie" aria-label="Pink airplane pulling a Mo Coyotes banner: take me to Barbie Land">
+        <a class="hot hot-plane" href="#barbie" data-to="barbie" aria-label="Pink airplane: take me to Barbie Land">
           <g class="glow">
             <g transform="translate(190,100) scale(1.45) translate(-190,-100)">
-            <path class="s-ink" stroke-width="1.5" fill="none" d="M232 92 Q246 96 258 90 M232 96 Q246 104 258 112"/>
-            <path class="f-trim" style="stroke: var(--hot)" stroke-width="2.5" stroke-linejoin="round" d="M258 80 Q300 72 340 80 T 420 80 L410 101 L420 122 Q380 114 340 122 T 258 122 Z"/>
-            <text x="336" y="109" text-anchor="middle" class="banner-text">Mo Coyotes</text>
             <path class="f-hot s-ink" stroke-width="3" stroke-linejoin="round" d="M206 92 L224 66 L234 68 L230 94 Z"/>
             <path class="f-pink s-ink" stroke-width="3" d="M150 96 C 150 82, 170 80, 190 82 L226 88 Q236 92 226 102 L190 108 C 170 110, 150 108, 150 96 Z"/>
             <circle class="f-glass s-ink" stroke-width="2" cx="170" cy="92" r="6"/>
