@@ -240,7 +240,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <!-- OUTSIDE -->
     <section id="room-outside" aria-label="Outside the MO Coyotes house">
       <svg class="scene" id="scene" viewBox="0 0 1000 620" role="img" aria-labelledby="sceneTitle">
-        <title id="sceneTitle">A pink cottage with a MO Coyotes yard sign, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
+        <title id="sceneTitle">A pink cottage with a log cabin quilt on the clothesline, a pink coyote, a mailbox, a pink bike in the driveway and a pink airplane in the sky</title>
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="f-sky1"/><stop offset="1" class="f-sky2"/></linearGradient>
           <!-- cartoon flower: set --petal on the <use> to recolor -->
@@ -286,12 +286,26 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <polygon class="f-roof s-ink" stroke-width="4" stroke-linejoin="round" points="272,294 480,158 688,294"/>
         <polyline fill="none" class="s-trim" stroke-width="5" stroke-linejoin="round" points="290,287 480,166 670,287"/>
 
-        <!-- yard sign with logo -->
-        <g transform="translate(-26,0)">
-          <rect class="f-ink" x="72" y="430" width="8" height="70"/><rect class="f-ink" x="132" y="430" width="8" height="70"/>
-          <rect class="f-trim s-ink" stroke-width="4" x="44" y="318" width="124" height="124" rx="8"/>
-          <image href="images/mo-coyotes-logo.jpg" x="52" y="326" width="108" height="108"/>
+        <!-- clothesline with a log cabin quilt -->
+        <g class="clothesline">
+          <rect class="f-trunk s-ink" stroke-width="2.5" x="34" y="326" width="10" height="176"/>
+          <rect class="f-trunk s-ink" stroke-width="2.5" x="246" y="326" width="10" height="176"/>
+          <rect class="f-trunk s-ink" stroke-width="2.5" x="22" y="322" width="34" height="8" rx="3"/>
+          <rect class="f-trunk s-ink" stroke-width="2.5" x="234" y="322" width="34" height="8" rx="3"/>
+          <path class="s-ink" stroke-width="2" fill="none" d="M39 334 Q145 352 251 334"/>
+          <g transform="translate(85,348)">
+            <rect class="f-trim" x="-4" y="-4" width="128" height="128"/>
+            <g transform="translate(0,0) rotate(180 30 30)"><rect class="f-hot" x="24" y="24" width="12" height="12"/><rect class="f-trim" x="24" y="18" width="12" height="6"/><rect class="f-trim" x="36" y="18" width="6" height="18"/><rect class="f-orange" x="24" y="36" width="18" height="6"/><rect class="f-orange" x="18" y="18" width="6" height="24"/><rect class="f-blush" x="18" y="12" width="24" height="6"/><rect class="f-blush" x="42" y="12" width="6" height="30"/><rect class="f-rust" x="18" y="42" width="30" height="6"/><rect class="f-rust" x="12" y="12" width="6" height="36"/><rect class="f-trim" x="12" y="6" width="36" height="6"/><rect class="f-trim" x="48" y="6" width="6" height="42"/><rect class="f-marigold" x="12" y="48" width="42" height="6"/><rect class="f-marigold" x="6" y="6" width="6" height="48"/><rect class="f-blush" x="6" y="0" width="48" height="6"/><rect class="f-blush" x="54" y="0" width="6" height="54"/><rect class="f-hot" x="6" y="54" width="54" height="6"/><rect class="f-hot" x="0" y="0" width="6" height="60"/></g>
+            <g transform="translate(60,0) rotate(270 30 30)"><rect class="f-hot" x="24" y="24" width="12" height="12"/><rect class="f-trim" x="24" y="18" width="12" height="6"/><rect class="f-trim" x="36" y="18" width="6" height="18"/><rect class="f-orange" x="24" y="36" width="18" height="6"/><rect class="f-orange" x="18" y="18" width="6" height="24"/><rect class="f-blush" x="18" y="12" width="24" height="6"/><rect class="f-blush" x="42" y="12" width="6" height="30"/><rect class="f-rust" x="18" y="42" width="30" height="6"/><rect class="f-rust" x="12" y="12" width="6" height="36"/><rect class="f-trim" x="12" y="6" width="36" height="6"/><rect class="f-trim" x="48" y="6" width="6" height="42"/><rect class="f-marigold" x="12" y="48" width="42" height="6"/><rect class="f-marigold" x="6" y="6" width="6" height="48"/><rect class="f-blush" x="6" y="0" width="48" height="6"/><rect class="f-blush" x="54" y="0" width="6" height="54"/><rect class="f-hot" x="6" y="54" width="54" height="6"/><rect class="f-hot" x="0" y="0" width="6" height="60"/></g>
+            <g transform="translate(0,60) rotate(90 30 30)"><rect class="f-hot" x="24" y="24" width="12" height="12"/><rect class="f-trim" x="24" y="18" width="12" height="6"/><rect class="f-trim" x="36" y="18" width="6" height="18"/><rect class="f-orange" x="24" y="36" width="18" height="6"/><rect class="f-orange" x="18" y="18" width="6" height="24"/><rect class="f-blush" x="18" y="12" width="24" height="6"/><rect class="f-blush" x="42" y="12" width="6" height="30"/><rect class="f-rust" x="18" y="42" width="30" height="6"/><rect class="f-rust" x="12" y="12" width="6" height="36"/><rect class="f-trim" x="12" y="6" width="36" height="6"/><rect class="f-trim" x="48" y="6" width="6" height="42"/><rect class="f-marigold" x="12" y="48" width="42" height="6"/><rect class="f-marigold" x="6" y="6" width="6" height="48"/><rect class="f-blush" x="6" y="0" width="48" height="6"/><rect class="f-blush" x="54" y="0" width="6" height="54"/><rect class="f-hot" x="6" y="54" width="54" height="6"/><rect class="f-hot" x="0" y="0" width="6" height="60"/></g>
+            <g transform="translate(60,60) rotate(0 30 30)"><rect class="f-hot" x="24" y="24" width="12" height="12"/><rect class="f-trim" x="24" y="18" width="12" height="6"/><rect class="f-trim" x="36" y="18" width="6" height="18"/><rect class="f-orange" x="24" y="36" width="18" height="6"/><rect class="f-orange" x="18" y="18" width="6" height="24"/><rect class="f-blush" x="18" y="12" width="24" height="6"/><rect class="f-blush" x="42" y="12" width="6" height="30"/><rect class="f-rust" x="18" y="42" width="30" height="6"/><rect class="f-rust" x="12" y="12" width="6" height="36"/><rect class="f-trim" x="12" y="6" width="36" height="6"/><rect class="f-trim" x="48" y="6" width="6" height="42"/><rect class="f-marigold" x="12" y="48" width="42" height="6"/><rect class="f-marigold" x="6" y="6" width="6" height="48"/><rect class="f-blush" x="6" y="0" width="48" height="6"/><rect class="f-blush" x="54" y="0" width="6" height="54"/><rect class="f-hot" x="6" y="54" width="54" height="6"/><rect class="f-hot" x="0" y="0" width="6" height="60"/></g>
+            <rect fill="none" class="s-ink" stroke-width="3" x="-4" y="-4" width="128" height="128"/>
+            <g class="f-trim s-ink" stroke-width="2"><rect x="4" y="-10" width="7" height="16" rx="2"/><rect x="56" y="-8" width="7" height="16" rx="2"/><rect x="108" y="-10" width="7" height="16" rx="2"/></g>
+          </g>
         </g>
+
+        <!-- pink coyote, howling -->
+        <path class="f-hot" transform="translate(676,368)" d="M22 100 L24 70 Q22 52 28 40 L14 20 L4 5 Q3 0 8 1 L22 10 L28 7 L32 -6 L37 9 Q42 18 44 28 Q56 40 64 58 Q72 72 72 88 Q80 88 92 94 Q98 100 88 100 Z"/>
 
         <!-- bushes: outlined clusters, then fills on top hide the inner lines -->
         <g transform="translate(330,476)">
@@ -398,13 +412,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- MAILBOX -->
         <a class="hot hot-mail" href="#contact" data-to="contact" aria-label="Mailbox: contact MO Coyotes">
           <g class="glow">
+            <g transform="translate(440,84)">
             <rect class="f-ink" x="202" y="436" width="12" height="74"/>
             <path class="f-marigold s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 18 -18 H226 a18 18 0 0 1 18 18 V440 Z"/>
             <path class="f-orange s-ink" stroke-width="3" d="M172 440 V420 a18 18 0 0 1 36 0 V440 Z"/>
             <g class="flag"><rect class="f-hot s-ink" stroke-width="2" x="226" y="392" width="5" height="36"/><rect class="f-hot s-ink" stroke-width="2" x="226" y="392" width="18" height="11"/></g>
             <circle class="f-ink" cx="228.5" cy="426" r="3"/>
+            </g>
           </g>
-          <g class="tag"><rect x="156" y="366" width="104" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">CONTACT</text></g>
+          <g class="tag"><g transform="translate(440,84)"><rect x="156" y="366" width="104" height="28" rx="14"/><text x="208" y="385" text-anchor="middle">CONTACT</text></g></g>
         </a>
 
         <!-- BIKE -->
