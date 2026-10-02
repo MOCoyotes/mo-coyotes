@@ -762,10 +762,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="quiltingTitle">QUILTING</h2>
       <p class="lede">Quilts and quilted goods, made by hand.</p>
       <p class="guild-link"><a href="https://sites.google.com/site/flowervalleyquiltguild" target="_blank" rel="noopener">Flower Valley Quilt Guild</a></p>
-      <div class="clotheslines">
-        <div class="line-row"><button class="photo hung" type="button" data-caption="Quilt 1" aria-label="Quilt 1: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 2" aria-label="Quilt 2: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 3" aria-label="Quilt 3: open larger"><span>Coming soon</span></button></div>
-        <div class="line-row"><button class="photo hung" type="button" data-caption="Quilt 4" aria-label="Quilt 4: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 5" aria-label="Quilt 5: open larger"><span>Coming soon</span></button><button class="photo hung" type="button" data-caption="Quilt 6" aria-label="Quilt 6: open larger"><span>Coming soon</span></button></div>
-      </div>
+      <div class="clotheslines" id="quiltLines"></div>
     </section>
 
     <!-- ABOUT: the attic room behind the round window -->
@@ -995,6 +992,32 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the crayon note in the shop opens the letter with "A Custom Order" picked
   document.getElementById("customLink").addEventListener("click", function () { document.getElementById("cTopic").value = "A Custom Order"; });
+  // QUILTING: one entry per quilt photo. Every 3 quilts get their own clothesline,
+  // so adding entries here adds rows automatically. Photos live in www/images/quilts/.
+  var QUILTS = [
+    // { src: "images/quilts/my-quilt.jpg", caption: "Name of the quilt" },
+  ];
+  (function buildClotheslines() {
+    var box = document.getElementById("quiltLines");
+    var items = QUILTS.slice();
+    while (items.length < 6) items.push({});           // keep two lines of "Coming soon" until there are more photos
+    for (var i = 0; i < items.length; i += 3) {
+      var row = document.createElement("div");
+      row.className = "line-row";
+      items.slice(i, i + 3).forEach(function (q, j) {
+        var name = q.caption || ("Quilt " + (i + j + 1));
+        var b = document.createElement("button");
+        b.className = "photo hung"; b.type = "button";
+        b.dataset.caption = name;
+        b.setAttribute("aria-label", name + ": open larger");
+        if (q.src) b.dataset.src = q.src;
+        var label = document.createElement("span"); label.textContent = "Coming soon";
+        b.appendChild(label); row.appendChild(b);
+      });
+      box.appendChild(row);
+    }
+  })();
+
   // framed photos open big in the lightbox (data-src = photo file once added)
   var lightbox = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"),
       lbPh = document.getElementById("lbPlaceholder"), lbCap = document.getElementById("lbCaption");
