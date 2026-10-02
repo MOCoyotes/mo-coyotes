@@ -1321,7 +1321,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var burnDialog = document.getElementById("burnDialog"), burnPaper = document.getElementById("burnPaper"),
       burnText = document.getElementById("burnText");
   var paperBall = document.getElementById("paperBall");
-  function closeBurn() { burnText.value = ""; burnPaper.classList.remove("crumpling"); burnDialog.classList.remove("tossing"); paperBall.hidden = true; burnDialog.close(); }
+  function closeBurn() { burnText.value = ""; burnPaper.classList.remove("crumpling"); burnDialog.classList.remove("tossing"); paperBall.setAttribute("hidden", ""); burnDialog.close(); }
   document.querySelectorAll(".hot-fire").forEach(function (fire) {
     fire.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1348,7 +1348,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var fr = flames[0].getBoundingClientRect(), fx = fr.left + fr.width / 2, fy = fr.top + fr.height * .65;
       var dx = fx - cx, dy = fy - cy, lift = Math.min(dy * .5, 0) - 170;
       paperBall.style.left = (cx - 39) + "px"; paperBall.style.top = (cy - 39) + "px";
-      paperBall.hidden = false;
+      paperBall.removeAttribute("hidden");
       var throwIt = paperBall.animate([
         { transform: "translate(0,0) scale(1.35) rotate(0deg)", opacity: 0, offset: 0 },
         { transform: "translate(0,-14px) scale(1) rotate(-25deg)", opacity: 1, offset: .14 },
