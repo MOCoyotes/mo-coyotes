@@ -232,12 +232,50 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 }
 .arch.about .opening { background: var(--pink); }
 
-/* contact */
-.contactroom { background: repeating-linear-gradient(135deg, var(--wall1) 0 18px, var(--card) 18px 36px); }
-.letter { background: var(--card); border: 3px solid var(--ink); border-radius: 14px; padding: clamp(16px, 4vw, 28px); max-width: 560px; width: 100%; justify-self: center; box-shadow: 6px 6px 0 var(--ink); display: grid; gap: 12px; }
-.letter label { font-weight: 800; font-size: .85rem; display: grid; gap: 4px; }
-.letter input, .letter textarea { font: 600 1rem var(--font-body); color: var(--ink); background: var(--bg); border: 2px solid var(--ink); border-radius: 10px; padding: .55em .7em; width: 100%; box-sizing: border-box; }
-.note { margin: 0; font-weight: 700; color: var(--hot); }
+/* contact: a letter on a writing desk — wallpaper above, wood desk below */
+.desk-room { background:
+  linear-gradient(to bottom, transparent 0 180px, var(--ink) 180px 184px, transparent 184px),
+  repeating-linear-gradient(0deg, var(--floor) 0 26px, var(--trunk) 26px 28px) 0 184px / 100% 100% no-repeat,
+  radial-gradient(circle, var(--blush) 3px, transparent 3.5px) 0 0 / 26px 26px,
+  var(--w1);
+  padding-bottom: 40px; }
+.desk-room h2 { margin-bottom: 16px; }
+.desk { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: clamp(18px, 4vw, 40px); align-items: start; }
+@media (max-width: 680px) { .desk { grid-template-columns: 1fr; } .desk-side { order: 2; } }
+.desk-side { display: grid; gap: 14px; justify-items: center; align-content: start; }
+.envelope { width: 100%; max-width: 220px; height: auto; transform: rotate(-6deg); filter: drop-shadow(5px 6px 0 rgba(0,0,0,.18)); }
+.desk-note { margin: 4px 0 0; font-weight: 800; color: var(--trim); background: var(--ink); border-radius: 999px; padding: 4px 12px; font-size: .85rem; }
+.stamps { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.stamp { display: block; padding: 7px; background: var(--trim); text-decoration: none; transform: rotate(-4deg);
+  border: 2px solid var(--ink); box-shadow: 4px 4px 0 rgba(0,0,0,.2); transition: transform .15s;
+  -webkit-mask: radial-gradient(circle 4px at 50% 50%, transparent 97%, #000) -4px -4px / 10px 10px, linear-gradient(#000 0 0) 5px 5px / calc(100% - 10px) calc(100% - 10px) no-repeat;
+          mask: radial-gradient(circle 4px at 50% 50%, transparent 97%, #000) -4px -4px / 10px 10px, linear-gradient(#000 0 0) 5px 5px / calc(100% - 10px) calc(100% - 10px) no-repeat; }
+.stamp.etsy { transform: rotate(5deg); }
+.stamp:hover, .stamp:focus-visible { transform: rotate(0) scale(1.08); }
+.stamp-face { display: grid; place-items: center; width: 84px; height: 100px; border: 2px dashed var(--trim); }
+.stamp.ig .stamp-face { background: var(--hot); } .stamp.etsy .stamp-face { background: var(--orange); }
+.stamp-big { font: 400 2.2rem/1 var(--font-display); color: var(--trim); }
+.stamp-small { font: 800 .62rem/1 var(--font-body); letter-spacing: .1em; color: var(--trim); }
+.pen { width: 180px; height: auto; transform: rotate(-18deg); margin-top: 6px; }
+.stationery { position: relative; display: grid; gap: 12px; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
+  padding: clamp(20px, 4vw, 34px); box-shadow: 8px 8px 0 rgba(0,0,0,.22); transform: rotate(1deg); min-width: 0;
+  background-image: linear-gradient(90deg, transparent 0 34px, var(--pink) 34px 36px, transparent 36px); }
+.stationery::after { content: ""; position: absolute; inset: 8px; border: 2px dashed var(--blush); border-radius: 3px; pointer-events: none; }
+.stationery-to { margin: 0; font: 400 1.7rem var(--font-script); color: var(--hot); }
+.stationery label { font-weight: 800; font-size: .78rem; letter-spacing: .08em; display: grid; gap: 4px; }
+.stationery input, .stationery textarea, .stationery select { font: 600 1rem var(--font-body); color: var(--ink); background: transparent;
+  border: 0; border-bottom: 2px solid var(--ink); border-radius: 0; padding: .4em .1em; width: 100%; box-sizing: border-box; }
+.stationery textarea { border: 2px solid var(--ink); border-radius: 8px; padding: .5em .6em; resize: vertical;
+  background: repeating-linear-gradient(transparent 0 27px, var(--line) 27px 28px); line-height: 28px; }
+.stationery input:focus, .stationery textarea:focus, .stationery select:focus { outline: none; border-color: var(--hot); }
+.honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.stationery-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.seal { width: 86px; height: 86px; border-radius: 50%; border: 3px solid var(--ink); background: var(--hot); color: var(--trim); cursor: pointer;
+  font: 400 1.1rem var(--font-display); letter-spacing: .04em; box-shadow: inset 0 0 0 6px var(--door), 4px 4px 0 var(--ink);
+  transition: transform .15s; display: grid; place-items: center; }
+.seal:hover { transform: rotate(-8deg) scale(1.05); } .seal:active { transform: scale(.95); }
+.seal[disabled] { opacity: .6; cursor: wait; }
+.form-status { margin: 0; font-weight: 800; color: var(--hot); flex: 1; min-width: 180px; }
 
 /* car: little map pop-up */
 .mapcard { border: 3px solid var(--ink); border-radius: 20px; padding: 0; background: var(--card); color: var(--ink); width: min(560px, calc(100vw - 32px)); box-shadow: 8px 8px 0 var(--ink); }
@@ -660,14 +698,59 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </svg>
     </section>
 
-    <!-- CONTACT -->
-    <section id="room-contact" class="room contactroom" hidden aria-labelledby="contactTitle">
+    <!-- CONTACT: a letter on a writing desk -->
+    <section id="room-contact" class="room contactroom desk-room" hidden aria-labelledby="contactTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="contactTitle">You've got mail</h2>
-      <div class="letter">
-        <p style="margin:0;font-weight:600">Questions about an item, a custom order or where to find us? Send a message and we'll write back.</p>
-        <a class="btn" href="https://ig.me/m/mo_coyotes_made" target="_blank" rel="noopener">Message us on Instagram →</a>
-        <a class="btn" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">Message us on Etsy →</a>
+
+      <div class="desk">
+        <div class="desk-side">
+          <!-- envelope -->
+          <svg class="envelope" viewBox="0 0 220 150" aria-hidden="true">
+            <rect class="f-blush s-ink" stroke-width="3" x="6" y="20" width="208" height="124" rx="8"/>
+            <path class="f-pink s-ink" stroke-width="3" stroke-linejoin="round" d="M6 28 L110 92 L214 28 V136 a8 8 0 0 1 -8 8 H14 a8 8 0 0 1 -8 -8 Z"/>
+            <path class="s-ink" stroke-width="3" fill="none" stroke-linejoin="round" d="M6 144 L90 80 M214 144 L130 80"/>
+            <path class="f-blush s-ink" stroke-width="3" stroke-linejoin="round" d="M6 28 a8 8 0 0 1 8 -8 H206 a8 8 0 0 1 8 8 L110 94 Z"/>
+            <circle class="f-hot s-ink" stroke-width="3" cx="110" cy="92" r="17"/>
+            <path class="f-blush" d="M110 101 l-7 -7 a4.6 4.6 0 0 1 7 -6.2 a4.6 4.6 0 0 1 7 6.2 z"/>
+          </svg>
+
+          <p class="desk-note">Rather send a DM? Lick a stamp:</p>
+          <div class="stamps">
+            <a class="stamp ig" href="https://ig.me/m/mo_coyotes_made" target="_blank" rel="noopener"><span class="stamp-face"><span class="stamp-big">IG</span><span class="stamp-small">INSTAGRAM</span></span></a>
+            <a class="stamp etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener"><span class="stamp-face"><span class="stamp-big">E</span><span class="stamp-small">ETSY</span></span></a>
+          </div>
+
+          <!-- pen -->
+          <svg class="pen" viewBox="0 0 200 40" aria-hidden="true">
+            <path class="f-hot s-ink" stroke-width="2.5" stroke-linejoin="round" d="M30 10 H170 a10 10 0 0 1 0 20 H30 Z"/>
+            <path class="f-marigold s-ink" stroke-width="2.5" stroke-linejoin="round" d="M30 10 L6 20 L30 30 Z"/>
+            <path class="f-ink" d="M6 20 l7 -3 v6 z"/>
+            <rect class="f-marigold s-ink" stroke-width="2" x="140" y="6" width="8" height="28" rx="2"/>
+            <path class="s-trim" stroke-width="2" stroke-linecap="round" d="M48 15 H128"/>
+          </svg>
+        </div>
+
+        <form class="stationery" id="letterForm" novalidate>
+          <p class="stationery-to">Dear Coyote,</p>
+          <label for="cName">YOUR NAME<input id="cName" name="name" autocomplete="name" required></label>
+          <label for="cEmail">YOUR EMAIL<input id="cEmail" name="email" type="email" autocomplete="email" required></label>
+          <label for="cTopic">WHAT'S IT ABOUT?
+            <select id="cTopic" name="topic">
+              <option>A custom order</option>
+              <option>An item I saw</option>
+              <option>Visiting Node 0 (appointment only)</option>
+              <option>Just saying hi</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label for="cMsg">YOUR MESSAGE<textarea id="cMsg" name="message" rows="5" required></textarea></label>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honey" aria-hidden="true">
+          <div class="stationery-foot">
+            <button class="seal" type="submit"><span>SEND</span></button>
+            <p class="form-status" id="formStatus" role="status"></p>
+          </div>
+        </form>
       </div>
     </section>
   </main>
@@ -764,6 +847,26 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       setTimeout(function () { scene.classList.add("zoom"); }, a.classList.contains("hot-door") ? 250 : 0);
       setTimeout(function () { location.hash = to; }, 800);
     });
+  });
+
+  // Contact letter: sends through FormSubmit (formsubmit.co) once an email is set here.
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/ritagoodbook@gmail.com"; // swap in the FormSubmit alias after activation
+  var letterForm = document.getElementById("letterForm");
+  var formStatus = document.getElementById("formStatus");
+  letterForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!letterForm.checkValidity()) { formStatus.textContent = "Please fill in your name, email and message."; return; }
+    if (!FORM_ENDPOINT) { formStatus.textContent = "This form isn't connected yet. Please message us on Instagram for now."; return; }
+    var btn = letterForm.querySelector(".seal");
+    btn.disabled = true; formStatus.textContent = "Sending…";
+    var data = Object.fromEntries(new FormData(letterForm).entries());
+    data._subject = "New letter from mocoyotes.com: " + data.topic;
+    data._template = "table";
+    fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "Send failed"); }); })
+      .then(function () { letterForm.reset(); formStatus.textContent = "Your letter is in the mail! Coyote will write back soon."; })
+      .catch(function () { formStatus.textContent = "That didn't send. Please try again, or message us on Instagram."; })
+      .then(function () { btn.disabled = false; });
   });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
