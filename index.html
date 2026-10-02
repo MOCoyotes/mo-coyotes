@@ -336,7 +336,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: repeating-linear-gradient(90deg, var(--floor) 0 120px, var(--trunk) 120px 123px); }
 .attic-deco { position: absolute; z-index: 2; pointer-events: none; }
 .attic-deco.yarn { right: 3%; bottom: 22px; width: 330px; height: auto; }
-.attic-deco.dressform { left: 6%; bottom: 46px; width: 84px; height: auto; }
 .attic .room-nav { justify-content: center; }
 .about-grid { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(30px, 5vw, 46px); margin-top: 20px; }
 .about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
@@ -358,7 +357,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .note-card .signoff { font-family: var(--font-script); font-size: 1.6rem; color: var(--hot); margin: 6px 0 0; }
 @media (max-width: 640px) {
   .attic-slope { width: 34%; height: 200px; }
-  .attic-deco.dressform { display: none; }
   .attic-deco.yarn { width: 250px; }
 }
 .arch.about .opening { background: var(--pink); }
@@ -1058,14 +1056,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="s-ink" stroke-width="8" fill="none" stroke-linecap="round" d="M703 446 Q 758 464 813 446"/>
             <path stroke-width="4.5" fill="none" stroke-linecap="round" style="stroke: var(--orange)" d="M703 446 Q 758 464 813 446"/>
             <ellipse class="f-ink" cx="758" cy="507" rx="50" ry="5" opacity=".18"/>
-      </svg>
-      <!-- dress form -->
-      <svg class="attic-deco dressform" viewBox="0 0 90 170" aria-hidden="true">
-        <path class="s-ink" stroke-width="4" stroke-linecap="round" fill="none" d="M45 112 V158 M24 166 L45 150 L66 166"/>
-        <path class="f-hot s-ink" stroke-width="3" stroke-linejoin="round" d="M38 8 h14 v8 c14 2 26 8 28 22 c2 14 -10 26 -10 38 c0 14 10 22 8 36 h-66 c-2 -14 8 -22 8 -36 c0 -12 -12 -24 -10 -38 c2 -14 14 -20 28 -22 z"/>
-        <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="4 4" d="M45 18 V110"/>
-        <path class="f-marigold s-ink" stroke-width="2" d="M14 74 h62 v8 h-62 z"/>
-        <circle class="f-marigold s-ink" stroke-width="2" cx="45" cy="6" r="5"/>
       </svg>
     </section>
 
