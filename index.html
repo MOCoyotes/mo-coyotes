@@ -242,6 +242,32 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   linear-gradient(to bottom, transparent calc(100% - 60px), var(--floor) calc(100% - 60px)),
   repeating-linear-gradient(90deg, var(--w1) 0 34px, var(--gal-stripe) 34px 64px); }
 .gal-sub .photos { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 26px; }
+/* the fireplace: hover glows, click opens a scorched note that burns */
+.hot-fire { cursor: pointer; outline: none; }
+.hot-fire .flames { transform-box: fill-box; transform-origin: 50% 100%; transition: filter .2s; }
+.hot-fire:hover .flames, .hot-fire:focus-visible .flames { animation: flicker .3s ease-in-out infinite alternate; filter: drop-shadow(0 0 6px #FFC56B) drop-shadow(0 0 16px #FF7A1A); }
+.flames.flare { animation: flare 1.4s ease-out !important; filter: drop-shadow(0 0 10px #FFC56B) drop-shadow(0 0 26px #FF5A00); }
+@keyframes flicker { from { transform: scale(1.02, .94); } to { transform: scale(.97, 1.08); } }
+@keyframes flare { 0% { transform: scale(1); } 25% { transform: scale(1.5, 1.9); } 60% { transform: scale(1.2, 1.4); } 100% { transform: scale(1); } }
+.burn-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
+.burn-dialog::backdrop { background: rgba(30, 10, 10, .6); }
+.burn-paper { position: relative; width: min(420px, 86vw); padding: 44px 40px 38px; display: grid; gap: 14px; color: #3B2620;
+  background: radial-gradient(ellipse at 50% 45%, #FBF3DF 52%, #EFDDB4 70%, #C8964F 84%, #6B3A16 94%, #2A160B 100%);
+  clip-path: polygon(3% 6%, 9% 1%, 17% 4%, 24% 0%, 33% 3%, 41% 0%, 50% 4%, 58% 1%, 66% 3%, 74% 0%, 83% 4%, 91% 1%, 97% 5%, 100% 13%, 97% 22%, 100% 31%, 96% 40%, 99% 50%, 96% 59%, 100% 68%, 97% 77%, 99% 87%, 95% 95%, 87% 99%, 78% 96%, 69% 100%, 60% 96%, 51% 99%, 42% 95%, 33% 100%, 24% 96%, 15% 99%, 7% 96%, 1% 90%, 4% 80%, 0% 70%, 3% 60%, 0% 50%, 4% 40%, 1% 30%, 4% 20%, 0% 12%); }
+.burn-paper h3 { margin: 0; font: 400 1.6rem/1.2 var(--font-crayon); color: #3B2620; text-wrap: balance; }
+.burn-paper textarea { font: 400 1.15rem/1.4 var(--font-crayon); color: #3B2620; background: rgba(255,255,255,.45); border: 2px dashed #8A5A2B; border-radius: 8px; padding: .5em .6em; resize: none; min-height: 110px; }
+.burn-paper textarea:focus { outline: none; border-style: solid; }
+.burn-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.burn-btn { font: 400 1.3rem var(--font-display); color: #FFF4D6; background: linear-gradient(#FF8A1F, #D9430B); border: 3px solid #3B2620; border-radius: 999px; padding: .3em 1.1em; cursor: pointer; box-shadow: 3px 3px 0 #3B2620; }
+.burn-btn:hover { filter: brightness(1.1); } .burn-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #3B2620; }
+.burn-cancel { font: 800 .9rem var(--font-body); color: #6B3A16; background: none; border: 0; text-decoration: underline; cursor: pointer; }
+.burn-paper.crumple { animation: crumple 1.5s cubic-bezier(.5, 0, .7, .4) forwards; pointer-events: none; }
+@keyframes crumple {
+  0% { transform: none; }
+  30% { transform: scale(.55) rotate(-24deg); filter: brightness(.95); border-radius: 40%; }
+  55% { transform: translate(0, 8vh) scale(.28) rotate(-110deg); filter: brightness(.8) sepia(.6); border-radius: 50%; }
+  100% { transform: translate(0, 34vh) scale(.04) rotate(-260deg); filter: brightness(2.2) sepia(1) saturate(5) hue-rotate(-25deg); opacity: 0; border-radius: 50%; }
+}
 /* quilting: photos hang from clotheslines with clothespins */
 .room.quiltroom > .guild-link { position: absolute; left: clamp(18px, 4vw, 40px); bottom: 22px; z-index: 2; margin: 0; font-weight: 800;
   background: var(--card); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 14px; box-shadow: 3px 3px 0 var(--ink); }
@@ -746,6 +772,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect fill="url(#galBricks)" class="s-ink" stroke-width="3" x="438" y="404" width="264" height="18"/>
           <path class="f-trim s-ink" stroke-width="3" d="M458 252 H682 V406 H458 Z"/>
           <path class="s-ink" stroke-width="2" fill="none" d="M480 260 V406 M660 260 V406"/>
+          <a class="hot-fire" href="#burn" role="button" aria-label="The fire: leave a negative comment to burn">
           <path class="f-tire s-ink" stroke-width="3" d="M512 406 V320 Q 512 290 542 290 H598 Q 628 290 628 320 V406 Z"/>
           <path fill="url(#galBricks)" opacity=".55" d="M516 404 V322 Q 516 294 542 294 H598 Q 624 294 624 322 V404 Z"/>
           <path class="f-tire" opacity=".55" d="M516 404 V322 Q 516 294 542 294 H598 Q 624 294 624 322 V404 Z"/>
@@ -755,6 +782,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="f-w1" d="M562 396 C 560 388, 566 384, 568 376 C 572 384, 576 388, 574 396 Z"/>
           </g>
           <rect class="f-trunk s-ink" stroke-width="2.5" x="532" y="394" width="76" height="10" rx="5"/>
+          </a>
           <rect class="f-trunk s-ink" stroke-width="3" x="440" y="236" width="260" height="18" rx="3"/>
           <path class="s-ink" stroke-width="2" d="M446 254 H694" opacity=".5"/>
           <!-- little things on the mantel -->
@@ -1050,6 +1078,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   <p class="hint" id="hint">Click the door, the windows, the mailbox, the quilt, the pink bike or the airplane.</p>
 </div>
 
+<dialog class="burn-dialog" id="burnDialog" aria-labelledby="burnTitle">
+  <form class="burn-paper" id="burnPaper" autocomplete="off">
+    <h3 id="burnTitle">Leave your negative comments here:</h3>
+    <textarea id="burnText" aria-labelledby="burnTitle" autocomplete="off" spellcheck="false"></textarea>
+    <div class="burn-row">
+      <button class="burn-cancel" type="button" id="burnCancel">never mind</button>
+      <button class="burn-btn" type="submit">Fire</button>
+    </div>
+  </form>
+</dialog>
+
 <dialog class="lightbox" id="lightbox" aria-label="Enlarged photo">
   <div class="lb-frame">
     <button class="lb-close" type="button" id="lbClose" aria-label="Close">×</button>
@@ -1235,6 +1274,31 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   });
   document.getElementById("lbClose").addEventListener("click", function () { lightbox.close(); });
   lightbox.addEventListener("click", function (e) { if (e.target === lightbox) lightbox.close(); });
+
+  // the fire: negative comments get crumpled and burned. Nothing is saved or sent anywhere.
+  var burnDialog = document.getElementById("burnDialog"), burnPaper = document.getElementById("burnPaper"),
+      burnText = document.getElementById("burnText");
+  function closeBurn() { burnText.value = ""; burnPaper.classList.remove("crumple"); burnDialog.close(); }
+  document.querySelectorAll(".hot-fire").forEach(function (fire) {
+    fire.addEventListener("click", function (e) {
+      e.preventDefault();
+      burnText.value = "";
+      if (burnDialog.showModal) burnDialog.showModal(); else burnDialog.setAttribute("open", "");
+      burnText.focus();
+    });
+  });
+  document.getElementById("burnCancel").addEventListener("click", closeBurn);
+  burnDialog.addEventListener("cancel", function () { burnText.value = ""; });
+  burnPaper.addEventListener("submit", function (e) {
+    e.preventDefault();
+    burnText.value = "";            // gone for good, before anything else happens
+    burnText.blur();
+    var flames = document.querySelectorAll(".hot-fire .flames");
+    function flare() { flames.forEach(function (fl) { fl.classList.remove("flare"); void fl.getBBox(); fl.classList.add("flare"); setTimeout(function () { fl.classList.remove("flare"); }, 1500); }); }
+    if (reduce) { closeBurn(); flare(); return; }
+    burnPaper.classList.add("crumple");
+    setTimeout(function () { closeBurn(); flare(); }, 1400);
+  });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
