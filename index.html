@@ -154,9 +154,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
 /* shop room: light pink wallpaper with dark orange pinstripes, gold frames with hot pink mats */
-.shoproom { background:
-  linear-gradient(to bottom, transparent calc(100% - 70px), var(--ink) calc(100% - 70px) calc(100% - 66px), transparent calc(100% - 66px)),
-  linear-gradient(to bottom, transparent calc(100% - 66px), var(--floor) calc(100% - 66px)),
+.shoproom { position: relative; overflow: hidden; background:
   repeating-linear-gradient(90deg, var(--blush) 0 16px, var(--w4) 16px 18px);
   padding-bottom: 96px; }
 .frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 10px; max-width: 760px; }
@@ -168,6 +166,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .frame .logo { width: 100%; height: 100%; display: block; background: #FFFFFF; outline: 2px solid var(--ink); box-shadow: inset 2px 2px 0 rgba(0,0,0,.12); }
 .frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.04); }
 .frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: clamp(.7rem, 1.8vw, .85rem); text-align: center; }
+.shop-floor { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 76px; border-top: 4px solid var(--ink); display: block; }
+.shoproom > :not(.shop-floor) { position: relative; z-index: 1; }
+.fl-board { fill: var(--floor); } .fl-board2 { fill: var(--rust); }
+.fl-line { stroke: var(--ink); stroke-width: 2.5; fill: none; }
+.fl-grain { stroke: var(--trunk); stroke-width: 1.6; fill: none; stroke-linecap: round; opacity: .75; }
 
 /* gallery */
 .galleryroom { background: var(--card); }
@@ -598,7 +601,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <text x="50" y="58" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="34" letter-spacing="-2"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text>
             <text x="50" y="80" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="8" letter-spacing="1.2" fill="#5A1F0E">THRIFTED FINDS</text>
           </svg></span>
-          <span class="plaque">THE GOOD OLE TWO →</span>
         </a>
         <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener" aria-label="Etsy: MoCoyotesMade, handmade">
           <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
@@ -606,7 +608,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <text x="50" y="55" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#FFFFFF">Etsy</text>
             <text x="50" y="90" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="8" letter-spacing="1.2" fill="#5A1F0E">HANDMADE</text>
           </svg></span>
-          <span class="plaque">MOCOYOTESMADE →</span>
         </a>
         <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener" aria-label="Union Studio: shop local in Webster Groves">
           <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
@@ -621,9 +622,19 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <text x="50" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1" fill="#2B2B2B">UNION</text>
             <text x="50" y="62" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="6" letter-spacing="2.4" fill="#2B2B2B">STUDIO</text>
           </svg></span>
-          <span class="plaque">VISIT THE STUDIO →</span>
         </a>
       </div>
+      <svg class="shop-floor" aria-hidden="true" preserveAspectRatio="none">
+        <defs><pattern id="shopFloorPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
+          <rect class="fl-board" width="200" height="50"/>
+          <rect class="fl-board2" x="0" y="0" width="70" height="25" opacity=".22"/>
+          <rect class="fl-board2" x="100" y="25" width="100" height="25" opacity=".3"/>
+          <path class="fl-line" d="M0 25 H200 M0 50 H200 M70 0 V25 M170 0 V25 M100 25 V50 M30 25 V50"/>
+          <path class="fl-grain" d="M8 9 C 20 5, 32 13, 46 9 S 60 11, 64 10 M78 15 C 92 11, 106 18, 120 14 S 150 12, 162 15 M176 8 C 184 6, 192 10, 198 8 M38 36 C 50 32, 62 40, 76 36 S 92 38, 96 37 M108 34 C 122 30, 138 38, 152 34 S 180 32, 194 36"/>
+          <ellipse class="fl-grain" cx="132" cy="8" rx="4" ry="2.4"/><ellipse class="fl-grain" cx="14" cy="40" rx="3.5" ry="2"/>
+        </pattern></defs>
+        <rect width="100%" height="100%" fill="url(#shopFloorPlanks)"/>
+      </svg>
     </section>
 
     <!-- GALLERY -->
