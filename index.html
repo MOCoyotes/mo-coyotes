@@ -318,16 +318,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .attic { position: relative; overflow: hidden; min-height: 560px; padding-top: 128px; padding-bottom: 130px;
   background: repeating-linear-gradient(90deg, var(--w1) 0 30px, var(--blush) 30px 34px); }
 .attic > .room-nav, .attic > .about-grid { position: relative; z-index: 2; }
-.attic-slope { position: absolute; top: 0; height: 320px; width: 30%; z-index: 1; filter: drop-shadow(0 4px 0 var(--ink)); pointer-events: none; }
+.attic-slope { position: absolute; top: 0; height: 320px; width: 30%; z-index: 1; pointer-events: none; background: var(--ink); }
 .attic-slope span { display: block; width: 100%; height: 100%;
   background: repeating-linear-gradient(90deg, var(--roof) 0 34px, var(--brick) 34px 37px); }
-.attic-slope.left { left: 0; } .attic-slope.left span { clip-path: polygon(0 0, 100% 0, 0 100%); }
-.attic-slope.right { right: 0; } .attic-slope.right span { clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.attic-slope.left { left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); } .attic-slope.left span { clip-path: polygon(0 0, calc(100% - 8px) 0, 0 calc(100% - 8px)); }
+.attic-slope.right { right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); } .attic-slope.right span { clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px)); }
 .attic-window { position: absolute; top: 14px; left: 50%; width: 96px; height: 96px; transform: translateX(-50%); z-index: 1; }
 .attic-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; z-index: 1; border-top: 4px solid var(--ink);
   background: repeating-linear-gradient(90deg, var(--floor) 0 120px, var(--trunk) 120px 123px); }
 .attic-deco { position: absolute; z-index: 2; pointer-events: none; }
-.attic-deco.yarn { left: 3%; bottom: 30px; width: 170px; height: auto; }
+.attic-deco.yarn { left: 3%; bottom: 26px; width: 240px; height: auto; }
 .attic-deco.dressform { right: 5%; bottom: 46px; width: 84px; height: auto; }
 .attic .room-nav { justify-content: center; }
 .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: start; margin-top: 20px; }
@@ -351,7 +351,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (max-width: 640px) {
   .attic-slope { width: 34%; height: 200px; }
   .attic-deco.dressform { display: none; }
-  .attic-deco.yarn { width: 130px; }
+  .attic-deco.yarn { width: 170px; }
 }
 .arch.about .opening { background: var(--pink); }
 
