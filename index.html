@@ -261,13 +261,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .burn-btn { font: 400 1.3rem var(--font-display); color: #FFF4D6; background: linear-gradient(#FF8A1F, #D9430B); border: 3px solid #3B2620; border-radius: 999px; padding: .3em 1.1em; cursor: pointer; box-shadow: 3px 3px 0 #3B2620; }
 .burn-btn:hover { filter: brightness(1.1); } .burn-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #3B2620; }
 .burn-cancel { font: 800 .9rem var(--font-body); color: #6B3A16; background: none; border: 0; text-decoration: underline; cursor: pointer; }
-.burn-paper.crumple { animation: crumple 1.5s cubic-bezier(.5, 0, .7, .4) forwards; pointer-events: none; }
-@keyframes crumple {
+.burn-dialog::backdrop { transition: background .45s; }
+.burn-dialog.tossing::backdrop { background: rgba(30, 10, 10, 0); }
+.burn-paper::after { content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(90,50,20,.4) 31%, transparent 33%),
+              linear-gradient(62deg, transparent 54%, rgba(90,50,20,.35) 55%, transparent 57%),
+              linear-gradient(160deg, transparent 44%, rgba(90,50,20,.35) 45%, transparent 47%),
+              linear-gradient(20deg, transparent 69%, rgba(90,50,20,.3) 70%, transparent 72%),
+              linear-gradient(95deg, transparent 12%, rgba(90,50,20,.3) 13%, transparent 15%); }
+.burn-paper.crumpling { animation: crumple2 .62s ease-in forwards; pointer-events: none; }
+.burn-paper.crumpling::after { animation: creases .4s forwards; }
+@keyframes creases { to { opacity: 1; } }
+@keyframes crumple2 {
   0% { transform: none; }
-  30% { transform: scale(.55) rotate(-24deg); filter: brightness(.95); border-radius: 40%; }
-  55% { transform: translate(0, 8vh) scale(.28) rotate(-110deg); filter: brightness(.8) sepia(.6); border-radius: 50%; }
-  100% { transform: translate(0, 34vh) scale(.04) rotate(-260deg); filter: brightness(2.2) sepia(1) saturate(5) hue-rotate(-25deg); opacity: 0; border-radius: 50%; }
+  30% { transform: scale(.9, .78) rotate(-5deg) skewX(8deg); }
+  62% { transform: scale(.5, .42) rotate(9deg) skewY(-7deg); opacity: 1; }
+  100% { transform: scale(.16) rotate(-25deg); opacity: 0; }
 }
+.paper-ball { position: fixed; left: 0; top: 0; width: 78px; height: 78px; z-index: 5; pointer-events: none; }
 /* quilting: photos hang from clotheslines with clothespins */
 .room.quiltroom > .guild-link { position: absolute; left: clamp(18px, 4vw, 40px); bottom: 22px; z-index: 2; margin: 0; font-weight: 800;
   background: var(--card); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 14px; box-shadow: 3px 3px 0 var(--ink); }
@@ -1103,6 +1114,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 </div>
 
 <dialog class="burn-dialog" id="burnDialog" aria-labelledby="burnTitle">
+  <svg class="paper-ball" id="paperBall" viewBox="0 0 80 80" hidden aria-hidden="true">
+    <path fill="#F1E2BE" stroke="#5A1F0E" stroke-width="2.5" stroke-linejoin="round" d="M40 6 L52 10 L60 8 L66 18 L74 24 L72 36 L76 46 L68 54 L70 64 L58 68 L50 75 L40 70 L30 76 L22 68 L10 66 L12 54 L4 46 L10 36 L6 26 L16 18 L22 8 L32 11 Z"/>
+    <path fill="#C8964F" opacity=".45" d="M52 10 L60 8 L66 18 L74 24 L72 36 L76 46 L68 54 L70 64 L58 68 L50 75 L46 60 L58 50 L56 36 L60 24 Z"/>
+    <path fill="none" stroke="#5A1F0E" stroke-width="1.6" stroke-linejoin="round" opacity=".7" d="M22 8 L30 28 L16 40 L30 52 L22 68 M40 6 L38 26 L52 34 L46 48 L50 75 M30 28 L44 30 L52 34 M66 18 L56 36 L68 54 M10 36 L16 40 M30 52 L46 48 M58 68 L50 58"/>
+    <path fill="none" stroke="#6B3A16" stroke-width="3" opacity=".35" d="M6 26 L10 36 L4 46 M70 64 L58 68"/>
+  </svg>
   <form class="burn-paper" id="burnPaper" autocomplete="off">
     <h3 id="burnTitle">Leave your negative comments here:</h3>
     <textarea id="burnText" aria-labelledby="burnTitle" autocomplete="off" spellcheck="false"></textarea>
@@ -1303,7 +1320,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   // the fire: negative comments get crumpled and burned. Nothing is saved or sent anywhere.
   var burnDialog = document.getElementById("burnDialog"), burnPaper = document.getElementById("burnPaper"),
       burnText = document.getElementById("burnText");
-  function closeBurn() { burnText.value = ""; burnPaper.classList.remove("crumple"); burnDialog.close(); }
+  var paperBall = document.getElementById("paperBall");
+  function closeBurn() { burnText.value = ""; burnPaper.classList.remove("crumpling"); burnDialog.classList.remove("tossing"); paperBall.hidden = true; burnDialog.close(); }
   document.querySelectorAll(".hot-fire").forEach(function (fire) {
     fire.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1320,9 +1338,27 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     burnText.blur();
     var flames = document.querySelectorAll(".hot-fire .flames");
     function flare() { flames.forEach(function (fl) { fl.classList.remove("flare"); void fl.getBBox(); fl.classList.add("flare"); setTimeout(function () { fl.classList.remove("flare"); }, 1500); }); }
-    if (reduce) { closeBurn(); flare(); return; }
-    burnPaper.classList.add("crumple");
-    setTimeout(function () { closeBurn(); flare(); }, 1400);
+    if (reduce || !paperBall.animate) { closeBurn(); flare(); return; }
+    // 1. crumple the note where it sits
+    var pr = burnPaper.getBoundingClientRect(), cx = pr.left + pr.width / 2, cy = pr.top + pr.height / 2;
+    burnDialog.classList.add("tossing");
+    burnPaper.classList.add("crumpling");
+    // 2. toss the ball in an arc into the fireplace
+    setTimeout(function () {
+      var fr = flames[0].getBoundingClientRect(), fx = fr.left + fr.width / 2, fy = fr.top + fr.height * .65;
+      var dx = fx - cx, dy = fy - cy, lift = Math.min(dy * .5, 0) - 170;
+      paperBall.style.left = (cx - 39) + "px"; paperBall.style.top = (cy - 39) + "px";
+      paperBall.hidden = false;
+      var throwIt = paperBall.animate([
+        { transform: "translate(0,0) scale(1.35) rotate(0deg)", opacity: 0, offset: 0 },
+        { transform: "translate(0,-14px) scale(1) rotate(-25deg)", opacity: 1, offset: .14 },
+        { transform: "translate(" + dx * .5 + "px," + lift + "px) scale(.75) rotate(-230deg)", offset: .55 },
+        { transform: "translate(" + dx + "px," + dy + "px) scale(.42) rotate(-430deg)", filter: "brightness(.75) sepia(1) saturate(5) hue-rotate(-25deg)", offset: .9 },
+        { transform: "translate(" + dx + "px," + (dy + 8) + "px) scale(.15) rotate(-470deg)", filter: "brightness(.3) sepia(1)", opacity: 0, offset: 1 }
+      ], { duration: 1150, easing: "cubic-bezier(.35,0,.65,1)", fill: "forwards" });
+      setTimeout(flare, 1000);
+      throwIt.onfinish = function () { throwIt.cancel(); closeBurn(); };
+    }, 560);
   });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
