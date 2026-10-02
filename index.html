@@ -119,7 +119,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .tag rect { fill: var(--ink); }
 .tag text { fill: var(--bg); font: 800 15px var(--font-body); }
 .hot:hover .tag, .hot:focus-visible .tag, .show-hints .tag { opacity: 1; transform: none; }
-@media (max-width: 600px) { .tag { transform-box: fill-box; transform-origin: 50% 50%; } .show-hints .tag { transform: scale(1.6); } }
+@media (max-width: 600px) { .tag { transform-box: fill-box; transform-origin: 50% 50%; } .show-hints .tag { transform: scale(1.6); } .show-hints .hot-plane .tag { transform: scale(1.3); } }
 
 .door-panel { transform-box: fill-box; transform-origin: left center; transition: transform .45s ease; }
 .hot-door:hover .door-panel, .hot-door.open .door-panel { transform: scaleX(.35); }
@@ -327,14 +327,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .attic-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; z-index: 1; border-top: 4px solid var(--ink);
   background: repeating-linear-gradient(90deg, var(--floor) 0 120px, var(--trunk) 120px 123px); }
 .attic-deco { position: absolute; z-index: 2; pointer-events: none; }
-.attic-deco.yarn { left: 4%; bottom: 40px; width: 130px; height: auto; }
+.attic-deco.yarn { left: 3%; bottom: 30px; width: 170px; height: auto; }
 .attic-deco.dressform { right: 5%; bottom: 46px; width: 84px; height: auto; }
 .attic .room-nav { justify-content: center; }
 .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: start; margin-top: 20px; }
 .about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
-.about-frame::before { content: ""; position: absolute; top: -34px; left: 50%; width: 80px; height: 36px; transform: translateX(-50%);
-  background: linear-gradient(to top right, transparent 48%, var(--ink) 49% 52%, transparent 53%) left / 50% 100% no-repeat,
-              linear-gradient(to top left, transparent 48%, var(--ink) 49% 52%, transparent 53%) right / 50% 100% no-repeat; }
+.about-frame::before { content: ""; position: absolute; top: -36px; left: 50%; width: 84px; height: 38px; transform: translateX(-50%);
+  background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
+              linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
+.about-frame::after { content: ""; position: absolute; left: 50%; top: -42px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
 .about-frame img { display: block; width: 100%; height: auto; border: 16px solid var(--frame); outline: 3px solid var(--ink);
   box-shadow: inset 0 0 0 3px var(--ink), 8px 10px 0 rgba(0,0,0,.18); }
 .note-card { position: relative; min-width: 0; max-width: 560px; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
@@ -349,7 +350,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (max-width: 640px) {
   .attic-slope { width: 34%; height: 200px; }
   .attic-deco.dressform { display: none; }
-  .attic-deco.yarn { width: 100px; }
+  .attic-deco.yarn { width: 130px; }
 }
 .arch.about .opening { background: var(--pink); }
 
@@ -432,7 +433,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="brand">MO Coyotes</div>
       <div class="tag-note">Handmade &amp; thrifted · Missouri</div>
     </div>
-    <button class="btn" id="hintBtn" type="button" aria-pressed="false">Show what's clickable</button>
   </header>
 
   <main class="stage" id="stage">
@@ -567,7 +567,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <circle class="f-marigold s-ink" stroke-width="2" cx="148" cy="96" r="4"/>
             </g>
           </g>
-          <g class="tag"><rect x="96" y="150" width="270" height="28" rx="14"/><text x="231" y="169" text-anchor="middle">TAKE ME TO BARBIE LAND</text></g>
+          <g class="tag"><rect x="85" y="142" width="270" height="28" rx="14"/><text x="220" y="161" text-anchor="middle">TAKE ME TO BARBIE LAND</text></g>
         </a>
 
         <!-- ABOUT: round attic window -->
@@ -1041,13 +1041,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
       <div class="attic-floor" aria-hidden="true"></div>
       <!-- yarn basket -->
-      <svg class="attic-deco yarn" viewBox="0 0 130 90" aria-hidden="true">
-        <circle class="f-pink s-ink" stroke-width="2.5" cx="40" cy="38" r="20"/><path class="s-ink" stroke-width="1.5" fill="none" d="M24 30 q16 10 32 0 M22 40 q18 10 36 -2 M28 22 q14 8 26 2"/>
-        <circle class="f-orange s-ink" stroke-width="2.5" cx="76" cy="34" r="18"/><path class="s-ink" stroke-width="1.5" fill="none" d="M62 28 q14 8 28 0 M60 38 q16 8 32 -2"/>
-        <circle class="f-marigold s-ink" stroke-width="2.5" cx="100" cy="44" r="14"/><path class="s-ink" stroke-width="1.5" fill="none" d="M88 40 q12 6 24 0"/>
-        <path class="s-ink" stroke-width="2" fill="none" d="M84 20 l22 -16 M88 22 l24 -12"/>
-        <path class="f-rust s-ink" stroke-width="3" stroke-linejoin="round" d="M10 46 H122 L112 88 H20 Z"/>
-        <path class="s-ink" stroke-width="1.5" fill="none" d="M14 58 H118 M16 70 H115 M40 46 L44 88 M66 46 V88 M92 46 L88 88"/>
+      <svg class="attic-deco yarn" viewBox="626 378 196 140" aria-hidden="true">
+            <ellipse class="f-rust s-ink" stroke-width="3" cx="758" cy="446" rx="55" ry="13"/>
+            <ellipse class="f-tire" cx="758" cy="447" rx="47" ry="9" opacity=".75"/>
+            <path class="s-ink" stroke-width="6.5" stroke-linecap="round" d="M736 424 l26 -34 M746 426 l30 -30"/><path stroke-width="3.5" stroke-linecap="round" style="stroke: var(--frame-lt)" d="M736 424 l26 -34 M746 426 l30 -30"/><circle class="f-hot s-ink" stroke-width="2" cx="763" cy="389" r="4.5"/><circle class="f-hot s-ink" stroke-width="2" cx="777" cy="395" r="4.5"/>
+            <circle class="f-pink s-ink" stroke-width="2.5" cx="736" cy="438" r="20"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M721.9 425.2 q14.1 5.6 28.3 0 M718.6 431.6 q17.4 5.6 34.9 0 M717.6 438.0 q18.4 5.6 36.8 0 M718.6 444.4 q17.4 5.6 34.9 0 M721.9 450.8 q14.1 5.6 28.3 0 M727.6 421.7 q-6.0 16.3 0 32.7 M736.0 420.0 q-6.0 18.0 0 36.0 M744.4 421.7 q-6.0 16.3 0 32.7"/><path class="f-trim" opacity=".55" d="M725.0 431.0 q3.0 -7.0 10.0 -8.4 q-2.0 0 -10.0 8.4 z"/><circle class="f-orange s-ink" stroke-width="2.5" cx="772" cy="434" r="18"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M759.3 422.5 q12.7 5.0 25.4 0 M756.3 428.2 q15.7 5.0 31.4 0 M755.4 434.0 q16.6 5.0 33.1 0 M756.3 439.8 q15.7 5.0 31.4 0 M759.3 445.5 q12.7 5.0 25.4 0 M764.4 419.3 q-5.4 14.7 0 29.4 M772.0 417.8 q-5.4 16.2 0 32.4 M779.6 419.3 q-5.4 14.7 0 29.4"/><path class="f-trim" opacity=".55" d="M762.1 427.7 q2.7 -6.3 9.0 -7.6 q-1.8 0 -9.0 7.6 z"/><circle class="f-marigold s-ink" stroke-width="2.5" cx="796" cy="446" r="13"/><path class="s-ink" stroke-width="1.2" fill="none" opacity=".55" d="M786.8 437.7 q9.2 3.6 18.4 0 M784.7 441.8 q11.3 3.6 22.7 0 M784.0 446.0 q12.0 3.6 23.9 0 M784.7 450.2 q11.3 3.6 22.7 0 M786.8 454.3 q9.2 3.6 18.4 0 M790.5 435.4 q-3.9 10.6 0 21.2 M796.0 434.3 q-3.9 11.7 0 23.4 M801.5 435.4 q-3.9 10.6 0 21.2"/><path class="f-trim" opacity=".55" d="M788.9 441.4 q1.9 -4.5 6.5 -5.5 q-1.3 0 -6.5 5.5 z"/><path class="s-hot" style="stroke: var(--hot)" stroke-width="2" fill="none" stroke-linecap="round" d="M720 452 C 700 470, 690 500, 670 506 S 640 512, 628 504"/>
+            <path class="f-rust s-ink" stroke-width="3" stroke-linejoin="round" d="M703 446 Q 704 476 716 496 Q 758 510 800 496 Q 812 476 813 446 Q 758 462 703 446 Z"/>
+            <path class="s-ink" stroke-width="1.5" fill="none" opacity=".7" d="M706 464 Q 758 480 810 464 M710 480 Q 758 494 806 480 M730 454 Q 727 478 733 502 M758 458 V506 M786 454 Q 789 478 783 502"/>
+            <path class="f-ink" opacity=".16" d="M786 455 Q 806 452 813 446 Q 812 476 800 496 Q 792 500 784 502 Q 790 478 786 455 Z"/>
+            <path class="f-trim" opacity=".22" d="M707 452 Q 716 456 728 456 Q 724 478 730 500 Q 720 498 716 496 Q 706 476 707 452 Z"/>
+            <path class="s-ink" stroke-width="8" fill="none" stroke-linecap="round" d="M703 446 Q 758 464 813 446"/>
+            <path stroke-width="4.5" fill="none" stroke-linecap="round" style="stroke: var(--orange)" d="M703 446 Q 758 464 813 446"/>
+            <ellipse class="f-ink" cx="758" cy="507" rx="50" ry="5" opacity=".18"/>
       </svg>
       <!-- dress form -->
       <svg class="attic-deco dressform" viewBox="0 0 90 170" aria-hidden="true">
@@ -1368,14 +1373,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
 
-  var hintBtn = document.getElementById("hintBtn");
-  hintBtn.addEventListener("click", function () {
-    var on = document.body.classList.toggle("show-hints");
-    hintBtn.setAttribute("aria-pressed", on);
-    hintBtn.textContent = on ? "Hide labels" : "Show what's clickable";
-    var here = location.hash.slice(1);
-    if (on && here && here !== "outside" && here !== "gallery") location.hash = "outside";
-  });
 
   var mapDialog = document.getElementById("mapDialog");
   document.getElementById("carLink").addEventListener("click", function (e) {
