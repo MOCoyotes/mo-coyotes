@@ -168,6 +168,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
 .frame .art::after { content: ""; position: absolute; left: 50%; top: -50px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
+/* mat colors per shop */
+.frame.etsy .art { background: var(--rust); }
+.frame.ebay .art { background: var(--marigold); }
+.frame.union .art { background: #1C1A1A; }
 /* round frames for Etsy and Union Studio; eBay stays square in the middle */
 :is(.frame.etsy, .frame.union) :is(.art, .logo) { border-radius: 50%; }
 :is(.frame.etsy, .frame.union) .art { outline: none; box-shadow: 0 0 0 3px var(--ink), inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); }
