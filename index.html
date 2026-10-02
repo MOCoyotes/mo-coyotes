@@ -153,19 +153,21 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .arch:hover .opening, .arch:focus-visible .opening { transform: translateY(-6px); }
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
-/* shop room */
+/* shop room: light pink wallpaper with dark orange pinstripes, gold frames with hot pink mats */
 .shoproom { background:
-  linear-gradient(to bottom, transparent 80%, var(--floor) 80%),
-  repeating-linear-gradient(90deg, var(--wall1) 0 22px, var(--wall2) 22px 26px); }
-.frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 28px; padding-top: 34px; }
-.frame { position: relative; display: grid; gap: 12px; justify-items: center; text-decoration: none; color: var(--ink); }
-.frame::before { content: ""; position: absolute; top: -30px; left: 50%; width: 70px; height: 32px; transform: translateX(-50%); border: 2px solid var(--ink); border-bottom: 0; border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(to top right, transparent 48%, var(--ink) 49% 51%, transparent 52%) left/50% 100% no-repeat, linear-gradient(to top left, transparent 48%, var(--ink) 49% 51%, transparent 52%) right/50% 100% no-repeat; border: 0; }
-.frame .art { width: 100%; max-width: 230px; aspect-ratio: 1; display: grid; place-items: center; text-align: center; background: var(--mat); border: 16px solid var(--frame); outline: 3px solid var(--ink); box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 12px var(--mat), inset 0 0 0 14px var(--line), 8px 10px 0 rgba(0,0,0,.18); transition: transform .2s; padding: 18px; }
-.frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.03); }
-.art .name { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1; }
-.art .what { font-weight: 800; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
-.frame.ebay .name { color: var(--rust); } .frame.etsy .name { color: var(--orange); } .frame.union .name { color: var(--ink); font-family: Georgia, serif; letter-spacing: .12em; text-transform: lowercase; }
-.frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: .9rem; }
+  linear-gradient(to bottom, transparent calc(100% - 70px), var(--ink) calc(100% - 70px) calc(100% - 66px), transparent calc(100% - 66px)),
+  linear-gradient(to bottom, transparent calc(100% - 66px), var(--floor) calc(100% - 66px)),
+  repeating-linear-gradient(90deg, var(--blush) 0 16px, var(--w4) 16px 18px);
+  padding-bottom: 96px; }
+.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 28px); padding-top: 10px; max-width: 760px; }
+@media (max-width: 520px) { .frames { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+.frame { position: relative; display: grid; gap: 12px; justify-items: center; text-decoration: none; color: var(--ink); min-width: 0; }
+.frame .art { box-sizing: border-box; width: 100%; max-width: 200px; aspect-ratio: 1; display: grid; place-items: center;
+  background: var(--hot); border: 12px solid var(--frame); outline: 3px solid var(--ink); padding: clamp(10px, 2.4vw, 18px);
+  box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); transition: transform .2s; }
+.frame .logo { width: 100%; height: 100%; display: block; background: #FFFFFF; outline: 2px solid var(--ink); box-shadow: inset 2px 2px 0 rgba(0,0,0,.12); }
+.frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.04); }
+.frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: clamp(.7rem, 1.8vw, .85rem); text-align: center; }
 
 /* gallery */
 .galleryroom { background: var(--card); }
@@ -591,16 +593,34 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="shopTitle">SHOP</h2>
       <p class="lede">Every frame on the wall is a door to a store. Click one to start shopping.</p>
       <div class="frames">
-        <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">
-          <span class="art"><span><span class="name">eBay</span><span class="what" style="display:block">Thrifted finds</span></span></span>
+        <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener" aria-label="eBay: The Good Ole Two, thrifted finds">
+          <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+            <text x="50" y="58" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="34" letter-spacing="-2"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text>
+            <text x="50" y="80" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="8" letter-spacing="1.2" fill="#5A1F0E">THRIFTED FINDS</text>
+          </svg></span>
           <span class="plaque">THE GOOD OLE TWO →</span>
         </a>
-        <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">
-          <span class="art"><span><span class="name">Etsy</span><span class="what" style="display:block">Handmade</span></span></span>
+        <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener" aria-label="Etsy: MoCoyotesMade, handmade">
+          <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="46" r="30" fill="#F1641E"/>
+            <text x="50" y="55" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#FFFFFF">Etsy</text>
+            <text x="50" y="90" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="8" letter-spacing="1.2" fill="#5A1F0E">HANDMADE</text>
+          </svg></span>
           <span class="plaque">MOCOYOTESMADE →</span>
         </a>
-        <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener">
-          <span class="art"><span><span class="name">union studio</span><span class="what" style="display:block">Shop local · St. Louis</span></span></span>
+        <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener" aria-label="Union Studio: shop local in Webster Groves">
+          <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+            <g fill="none" stroke="#2B2B2B" stroke-width="1.4" stroke-linecap="round">
+              <path d="M50 82 C 26 80, 14 62, 18 40 C 20 30, 26 22, 34 17"/>
+              <path d="M50 82 C 74 80, 86 62, 82 40 C 80 30, 74 22, 66 17"/>
+            </g>
+            <g fill="#2B2B2B">
+              <ellipse cx="22" cy="62" rx="5" ry="2.2" transform="rotate(-55 22 62)"/><ellipse cx="18" cy="50" rx="5" ry="2.2" transform="rotate(-80 18 50)"/><ellipse cx="20" cy="37" rx="5" ry="2.2" transform="rotate(-105 20 37)"/><ellipse cx="27" cy="26" rx="5" ry="2.2" transform="rotate(-130 27 26)"/><ellipse cx="32" cy="74" rx="5" ry="2.2" transform="rotate(-30 32 74)"/>
+              <ellipse cx="78" cy="62" rx="5" ry="2.2" transform="rotate(55 78 62)"/><ellipse cx="82" cy="50" rx="5" ry="2.2" transform="rotate(80 82 50)"/><ellipse cx="80" cy="37" rx="5" ry="2.2" transform="rotate(105 80 37)"/><ellipse cx="73" cy="26" rx="5" ry="2.2" transform="rotate(130 73 26)"/><ellipse cx="68" cy="74" rx="5" ry="2.2" transform="rotate(30 68 74)"/>
+            </g>
+            <text x="50" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1" fill="#2B2B2B">UNION</text>
+            <text x="50" y="62" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="6" letter-spacing="2.4" fill="#2B2B2B">STUDIO</text>
+          </svg></span>
           <span class="plaque">VISIT THE STUDIO →</span>
         </a>
       </div>
