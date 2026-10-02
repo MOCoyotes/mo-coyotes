@@ -34,7 +34,7 @@
   --door: #E0218A; --glass: #BFE4EC; --glass-in: #FFE9F0; --lamp: #FFE08A;
   --road: #E5D6BE; --tire: #3B2620;
   --willow: #A9CB66; --willow2: #7FA84A; --trunk: #7A4A2A; --leaf: #6E9446;
-  --wall1: #FBD3DC; --wall2: #F9C2CF; --wall-lt: #FDE6EC; --floor: #C9874F; --frame: #D9A441; --mat: #FFFDF4;
+  --wall1: #FBD3DC; --wall2: #F9C2CF; --wall-lt: #FDE6EC; --floor: #C9874F; --frame: #D9A441; --frame-lt: #EBC066; --frame-md: #C8913A; --frame-dk: #B07A28; --mat: #FFFDF4;
   --font-display: "Shrikhand", "Cooper Black", Georgia, serif;
   --font-script: "Pacifico", "Brush Script MT", cursive;
   --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
@@ -49,7 +49,7 @@
     --door: #B4176E; --glass: #FFD36E; --glass-in: #FFE7A3; --lamp: #FFD36E;
     --road: #5E4E47; --tire: #120A08;
     --willow: #5E7A3C; --willow2: #42592C; --trunk: #4A2C1A; --leaf: #4C6A33;
-    --wall1: #6E3550; --wall2: #5F2C45; --wall-lt: #7A3F5C; --floor: #6A4026; --frame: #C08F33; --mat: #3A2234;
+    --wall1: #6E3550; --wall2: #5F2C45; --wall-lt: #7A3F5C; --floor: #6A4026; --frame: #C08F33; --frame-lt: #D4A64C; --frame-md: #A87A28; --frame-dk: #8E6420; --mat: #3A2234;
     color-scheme: dark;
   }
 }
@@ -62,7 +62,7 @@
   --door: #B4176E; --glass: #FFD36E; --glass-in: #FFE7A3; --lamp: #FFD36E;
   --road: #5E4E47; --tire: #120A08;
   --willow: #5E7A3C; --willow2: #42592C; --trunk: #4A2C1A; --leaf: #4C6A33;
-  --wall1: #6E3550; --wall2: #5F2C45; --wall-lt: #7A3F5C; --floor: #6A4026; --frame: #C08F33; --mat: #3A2234;
+  --wall1: #6E3550; --wall2: #5F2C45; --wall-lt: #7A3F5C; --floor: #6A4026; --frame: #C08F33; --frame-lt: #D4A64C; --frame-md: #A87A28; --frame-dk: #8E6420; --mat: #3A2234;
   color-scheme: dark;
 }
 
@@ -163,7 +163,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .frame .art { box-sizing: border-box; width: 100%; max-width: 200px; aspect-ratio: 1; display: grid; place-items: center;
   background: var(--hot); border: 12px solid var(--frame); outline: 3px solid var(--ink); padding: clamp(10px, 2.4vw, 18px);
   box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); transition: transform .2s; }
-.frame .art { position: relative; }
+.frame .art { position: relative; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame); }
 .frame .art::before { content: ""; position: absolute; left: 50%; top: -44px; width: 76px; height: 32px; transform: translateX(-50%);
   background: linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
