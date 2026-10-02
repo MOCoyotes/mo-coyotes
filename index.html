@@ -330,7 +330,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .attic-deco.yarn { left: 3%; bottom: 26px; width: 240px; height: auto; }
 .attic-deco.dressform { right: 5%; bottom: 46px; width: 84px; height: auto; }
 .attic .room-nav { justify-content: center; }
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(22px, 4vw, 40px); align-items: start; margin-top: 20px; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(30px, 5vw, 46px); margin-top: 20px; }
 .about-frame { position: relative; margin: 34px 0 0; justify-self: center; width: 100%; max-width: 280px; transform: rotate(-3deg); }
 .about-frame::before { content: ""; position: absolute; top: -42px; left: 50%; width: 84px; height: 39px; transform: translateX(-50%);
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
@@ -339,13 +339,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .about-frame img { display: block; box-sizing: border-box; width: 100%; height: auto; padding: 14px; background: var(--hot);
   border: 14px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame); outline: 3px solid var(--ink);
   box-shadow: inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); }
-.note-card { position: relative; min-width: 0; max-width: 560px; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
+.note-card { position: relative; min-width: 0; width: 100%; max-width: 780px; box-sizing: border-box; background: var(--card); border: 3px solid var(--ink); border-radius: 6px;
   padding: 30px clamp(18px, 4vw, 30px) 22px; box-shadow: 6px 6px 0 var(--ink); transform: rotate(1deg);
   background-image: repeating-linear-gradient(transparent 0 29px, var(--line) 29px 30px); background-position: 0 14px; }
 .note-card::before { content: ""; position: absolute; top: -14px; left: 50%; width: 110px; height: 26px; transform: translateX(-50%) rotate(-3deg);
   background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border: 2px solid var(--ink); }
 .note-card h2 { color: var(--hot); margin-bottom: 6px; }
-.note-card p { margin: 0 0 10px; line-height: 30px; font-weight: 600; max-width: 60ch; }
+.note-card p { margin: 0 0 10px; line-height: 30px; font-weight: 600; max-width: 72ch; }
 .note-card a { color: var(--hot); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .note-card .signoff { font-family: var(--font-script); font-size: 1.6rem; color: var(--hot); margin: 6px 0 0; }
 @media (max-width: 640px) {
