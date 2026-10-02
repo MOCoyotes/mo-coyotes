@@ -221,10 +221,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .polaroid:nth-child(odd) { transform: rotate(-4deg); } .polaroid:nth-child(even) { transform: rotate(3deg); }
 
 /* quilting: cream background with a faint patchwork grid */
-.quiltroom { background:
-  linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
-  linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
-  var(--card); }
+.quiltroom { position: relative; overflow: hidden; padding-bottom: 170px; background: linear-gradient(to bottom, var(--sky1), var(--sky2)); }
+.room.quiltroom > :not(.qr-deco) { position: relative; z-index: 1; }
+.qr-deco { position: absolute; pointer-events: none; }
+.qr-sun { top: 22px; right: 6%; width: 74px; height: 74px; }
+.qr-cloud { top: 60px; right: 22%; width: 120px; height: auto; opacity: .9; }
+.qr-yard { left: 0; right: 0; bottom: 0; width: 100%; height: 150px; display: block; }
+.qr-basket { left: 50%; bottom: 18px; width: 170px; height: auto; transform: translateX(-50%); z-index: 2; }
 
 /* quilting: photos hang from clotheslines with clothespins */
 .guild-link { margin: -10px 0 0; font-weight: 800; }
@@ -729,6 +732,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
     <!-- QUILTING -->
     <section id="room-quilting" class="room quiltroom" hidden aria-labelledby="quiltingTitle">
+      <svg class="qr-deco qr-sun" viewBox="0 0 80 80" aria-hidden="true"><circle class="f-sun" cx="40" cy="40" r="36"/></svg>
+      <svg class="qr-deco qr-cloud" viewBox="0 0 120 50" aria-hidden="true"><g class="cloud"><ellipse cx="50" cy="32" rx="44" ry="15"/><ellipse cx="72" cy="22" rx="26" ry="16"/><ellipse cx="36" cy="24" rx="20" ry="13"/></g></svg>
+      <svg class="qr-deco qr-yard" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true">
+        <path class="f-grass" d="M0 40 Q 250 0 520 34 T 1000 26 V150 H0 Z"/>
+        <path class="f-grass2" d="M0 96 Q 300 70 620 100 T 1000 88 V150 H0 Z"/>
+      </svg>
+      <svg class="qr-deco qr-basket" viewBox="0 0 170 110" aria-hidden="true">
+        <g class="s-ink" stroke-width="2.5" stroke-linejoin="round">
+          <path class="f-pink" d="M30 44 C 40 18, 70 16, 84 34 C 92 20, 128 18, 142 44 Z"/>
+          <path class="f-marigold" d="M22 48 C 36 30, 60 30, 72 44 L 60 50 Z"/>
+          <path class="f-blush" d="M80 46 C 96 26, 132 28, 148 48 L 120 52 Z"/>
+          <path class="f-orange" d="M54 44 C 64 34, 92 32, 104 44 Z"/>
+          <path class="f-rust" d="M10 46 H160 a6 6 0 0 1 6 6 v4 a6 6 0 0 1 -6 6 H10 a6 6 0 0 1 -6 -6 v-4 a6 6 0 0 1 6 -6 Z"/>
+          <path class="f-marigold" d="M16 62 H154 L144 104 H26 Z"/>
+          <path fill="none" stroke-width="1.6" d="M18 74 H152 M21 87 H149 M24 99 H146 M42 62 L46 104 M66 62 L68 104 M90 62 V104 M114 62 L112 104 M136 62 L132 104"/>
+        </g>
+        <path class="s-ink" stroke-width="2.5" fill="none" d="M20 52 C 4 52, 2 72, 16 72 M150 52 C 166 52, 168 72, 154 72"/>
+      </svg>
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="quiltingTitle">QUILTING</h2>
       <p class="lede">Quilts and quilted goods, made by hand.</p>
