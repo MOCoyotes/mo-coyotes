@@ -1109,7 +1109,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <label for="cEmail">YOUR EMAIL<input id="cEmail" name="email" type="email" autocomplete="email" required></label>
           <label for="cTopic">WHAT'S IT ABOUT?
             <select id="cTopic" name="topic">
-              <option>A Custom Order</option>
+              <option>Custom Inquiries</option>
               <option>An item I saw</option>
               <option>Alterations</option>
               <option>Something else</option>
@@ -1266,8 +1266,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       .then(function () { btn.disabled = false; });
   });
 
-  // the crayon note in the shop opens the letter with "A Custom Order" picked
-  document.getElementById("customLink").addEventListener("click", function () { document.getElementById("cTopic").value = "A Custom Order"; });
+  // the crayon note in the shop opens the letter with "Custom Inquiries" picked
+  document.getElementById("customLink").addEventListener("click", function () { document.getElementById("cTopic").value = "Custom Inquiries"; });
   // QUILTING: one entry per quilt photo. Every 3 quilts get their own clothesline,
   // so adding entries here adds rows automatically. Photos live in www/images/quilts/.
   var QUILTS = [
