@@ -168,11 +168,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: linear-gradient(to top left, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) left / 50% 100% no-repeat,
               linear-gradient(to top right, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px)) right / 50% 100% no-repeat; }
 .frame .art::after { content: ""; position: absolute; left: 50%; top: -50px; width: 10px; height: 10px; transform: translateX(-50%); border-radius: 50%; background: var(--frame); border: 2px solid var(--ink); }
-/* round frames (trial) */
-.frame .art, .frame .logo { border-radius: 50%; }
-.frame .art { outline: none; box-shadow: 0 0 0 3px var(--ink), inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); }
-.frame .logo { outline: none; box-shadow: 0 0 0 2px var(--ink), inset 2px 2px 0 rgba(0,0,0,.12); }
-.frame .art::before { height: 40px; }
+/* round frames for Etsy and Union Studio; eBay stays square in the middle */
+:is(.frame.etsy, .frame.union) :is(.art, .logo) { border-radius: 50%; }
+:is(.frame.etsy, .frame.union) .art { outline: none; box-shadow: 0 0 0 3px var(--ink), inset 0 0 0 3px var(--ink), 6px 8px 0 rgba(0,0,0,.2); }
+:is(.frame.etsy, .frame.union) .logo { outline: none; box-shadow: 0 0 0 2px var(--ink), inset 2px 2px 0 rgba(0,0,0,.12); }
+:is(.frame.etsy, .frame.union) .art::before { height: 40px; }
 .frame .logo { width: 100%; height: 100%; display: block; background: #FFFFFF; outline: 2px solid var(--ink); box-shadow: inset 2px 2px 0 rgba(0,0,0,.12); }
 .frame:hover .art, .frame:focus-visible .art { transform: rotate(-2deg) scale(1.04); }
 .frame .plaque { font-family: var(--font-body); font-weight: 800; font-size: clamp(.7rem, 1.8vw, .85rem); text-align: center; }
@@ -606,15 +606,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
       <h2 id="shopTitle">SHOP</h2>
       <div class="frames">
-        <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener" aria-label="eBay: The Good Ole Two, thrifted finds">
-          <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
-            <text x="50" y="62" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="36" letter-spacing="-2"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text>
-          </svg></span>
-        </a>
         <a class="frame etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener" aria-label="Etsy: MoCoyotesMade, handmade">
           <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
             <circle cx="50" cy="50" r="34" fill="#F1641E"/>
             <text x="50" y="59" font-size="27" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" fill="#FFFFFF">Etsy</text>
+          </svg></span>
+        </a>
+        <a class="frame ebay" href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener" aria-label="eBay: The Good Ole Two, thrifted finds">
+          <span class="art"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+            <text x="50" y="62" text-anchor="middle" font-family="Nunito, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="36" letter-spacing="-2"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text>
           </svg></span>
         </a>
         <a class="frame union" href="https://stlunionstudio.com" target="_blank" rel="noopener" aria-label="Union Studio: shop local in Webster Groves">
