@@ -1325,8 +1325,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
         <!-- medicine cabinet + pedestal sink -->
         <g stroke-linejoin="round">
-          <ellipse fill="none" class="s-ink" stroke-width="16" cx="720" cy="170" rx="58" ry="74"/><ellipse fill="none" style="stroke: var(--frame)" stroke-width="11" cx="720" cy="170" rx="58" ry="74"/>
-          <ellipse class="f-w1" cx="720" cy="170" rx="51" ry="67"/><path class="f-trim" opacity=".8" d="M690 150 L730 110 L738 118 L698 158 Z M694 186 L742 138 L746 146 L698 194 Z"/><ellipse fill="none" class="s-ink" stroke-width="2" cx="720" cy="170" rx="51" ry="67"/>
+          <a class="hot" href="#care" role="button" aria-label="Medicine cabinet: care guide">
+            <g class="glow" stroke-linejoin="round">
+              <rect class="f-trim s-ink" stroke-width="3" x="662" y="80" width="116" height="168" rx="6"/>
+              <rect style="fill: var(--glass)" x="673" y="91" width="94" height="146" rx="3"/>
+              <path class="f-trim" opacity=".75" d="M682 150 L734 98 L746 98 L682 162 Z M686 200 L758 128 L762 138 L690 210 Z"/>
+              <rect fill="none" class="s-ink" stroke-width="2" x="673" y="91" width="94" height="146" rx="3"/>
+              <circle class="f-marigold s-ink" stroke-width="1.6" cx="772" cy="164" r="3.2"/>
+              <rect class="f-trim s-ink" stroke-width="2.5" x="706" y="60" width="28" height="22" rx="4"/>
+              <path class="f-hot" d="M717 64 h6 v4 h4 v6 h-4 v4 h-6 v-4 h-4 v-6 h4 z"/>
+            </g>
+            <g class="tag"><rect x="650" y="22" width="140" height="28" rx="14"/><text x="720" y="41" text-anchor="middle">CARE GUIDE</text></g>
+          </a>
           <path class="f-trim s-ink" stroke-width="3" d="M700 336 H740 L734 470 H706 Z"/>
           <path class="f-trim s-ink" stroke-width="3" d="M640 300 H800 Q 800 340 760 344 H680 Q 640 340 640 300 Z"/>
           <path class="s-ink" stroke-width="3" fill="none" d="M636 300 H804"/>
