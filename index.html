@@ -1200,19 +1200,25 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="48" y="96" width="124" height="28" rx="14"/><text x="110" y="115" text-anchor="middle">FASHION</text></g>
         </a>
 
-        <!-- round framed picture above the sewing machine (decor): a ball of pink yarn -->
+        <!-- round framed picture above the sewing machine (decor): a black cat -->
         <g class="round-pic" stroke-linejoin="round">
           <path class="s-ink" stroke-width="2" fill="none" d="M316 34 L294 66 M316 34 L338 66"/><circle class="f-marigold s-ink" stroke-width="2" cx="316" cy="32" r="4.5"/>
           <circle style="fill: var(--frame)" class="s-ink" stroke-width="3" cx="316" cy="112" r="53"/>
           <circle fill="none" style="stroke: var(--frame-lt)" stroke-width="3" cx="316" cy="112" r="48" stroke-dasharray="40 30"/>
           <circle class="f-blush s-ink" stroke-width="2" cx="316" cy="112" r="43"/>
           <circle style="fill: var(--glass)" class="s-ink" stroke-width="2" cx="316" cy="112" r="33"/>
-          <path class="s-ink" stroke-width="4.5" stroke-linecap="round" d="M300 86 L322 120 M334 86 L312 120"/>
-          <path style="stroke: var(--marigold)" stroke-width="2.2" stroke-linecap="round" d="M300 86 L322 120 M334 86 L312 120"/>
-          <g class="f-marigold s-ink" stroke-width="1.3"><circle cx="300" cy="86" r="3.4"/><circle cx="334" cy="86" r="3.4"/></g>
-          <path style="stroke: var(--hot)" stroke-width="2" fill="none" stroke-linecap="round" d="M330 126 q 10 4 6 12 q -3 5 4 8"/>
-          <circle class="f-hot s-ink" stroke-width="2" cx="316" cy="118" r="15"/>
-          <path fill="none" class="s-ink" stroke-width="1.3" opacity=".55" d="M303 112 q 13 -6 26 2 M302 120 q 14 -7 27 1 M306 128 q 10 -5 21 -1 M310 104 q -6 12 0 27"/>
+          <clipPath id="roundPicClip"><circle cx="316" cy="112" r="33"/></clipPath>
+          <g clip-path="url(#roundPicClip)">
+            <path fill="none" class="s-ink" stroke-width="6" stroke-linecap="round" d="M330 140 q 18 -2 16 -18 q -1 -8 -8 -8"/>
+            <path fill="none" stroke="#2B2326" stroke-width="3.2" stroke-linecap="round" d="M330 140 q 18 -2 16 -18 q -1 -8 -8 -8"/>
+            <path fill="#2B2326" class="s-ink" stroke-width="2" d="M298 150 Q 296 122 316 118 Q 336 122 334 150 Z"/>
+            <path fill="#2B2326" class="s-ink" stroke-width="2" d="M304 98 l -2 -14 l 10 8 z M328 98 l 2 -14 l -10 8 z"/>
+            <circle fill="#2B2326" class="s-ink" stroke-width="2" cx="316" cy="104" r="13"/>
+            <g class="f-marigold"><ellipse cx="311" cy="102" rx="3.2" ry="3.6"/><ellipse cx="321" cy="102" rx="3.2" ry="3.6"/></g>
+            <g class="f-ink"><ellipse cx="311" cy="102" rx="1" ry="3"/><ellipse cx="321" cy="102" rx="1" ry="3"/></g>
+            <path fill="none" stroke="#5A4E55" stroke-width="1.2" stroke-linecap="round" d="M314 109 l 2 1.5 l 2 -1.5 M312 108 l -9 -1 M312 110 l -9 2 M320 108 l 9 -1 M320 110 l 9 2"/>
+            <path fill="none" stroke="#5A4E55" stroke-width="1.4" stroke-linecap="round" d="M310 150 v -8 M322 150 v -8"/>
+          </g>
         </g>
         <!-- table -->
         <g class="table">
