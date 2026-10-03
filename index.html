@@ -462,9 +462,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .desk-side { display: grid; gap: 14px; justify-items: center; align-content: start; }
 .envelope { width: 100%; max-width: 220px; height: auto; transform: rotate(-6deg); filter: drop-shadow(5px 6px 0 rgba(0,0,0,.18)); }
 .desk-note { margin: 4px 0 0; font-weight: 800; color: var(--trim); background: var(--ink); border-radius: 999px; padding: 4px 12px; font-size: .85rem; }
-.stamps { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-.stamp { display: block; padding: 7px; background: var(--trim); text-decoration: none; transform: rotate(-4deg);
-  border: 2px solid var(--ink); box-shadow: 4px 4px 0 rgba(0,0,0,.2); transition: transform .15s;
+.stamps { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  filter: drop-shadow(1.6px 0 0 var(--ink)) drop-shadow(-1.6px 0 0 var(--ink)) drop-shadow(0 1.6px 0 var(--ink)) drop-shadow(0 -1.6px 0 var(--ink)) drop-shadow(4px 4px 0 rgba(0,0,0,.2)); }
+.ig-glyph { display: block; width: 2.7rem; height: 2.7rem; color: var(--trim); margin-bottom: 4px; }
+.stamp { display: block; padding: 9px; background: var(--trim); text-decoration: none; transform: rotate(-4deg); transition: transform .15s;
   -webkit-mask: radial-gradient(circle 4px at 50% 50%, transparent 97%, #000) -4px -4px / 10px 10px, linear-gradient(#000 0 0) 5px 5px / calc(100% - 10px) calc(100% - 10px) no-repeat;
           mask: radial-gradient(circle 4px at 50% 50%, transparent 97%, #000) -4px -4px / 10px 10px, linear-gradient(#000 0 0) 5px 5px / calc(100% - 10px) calc(100% - 10px) no-repeat; }
 .stamp.etsy { transform: rotate(5deg); }
@@ -1618,7 +1619,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
           <p class="desk-note">Rather send a DM? Lick a stamp:</p>
           <div class="stamps">
-            <a class="stamp ig" href="https://ig.me/m/mo_coyotes_made" target="_blank" rel="noopener"><span class="stamp-face"><span class="stamp-big">IG</span><span class="stamp-small">INSTAGRAM</span></span></a>
+            <a class="stamp ig" href="https://ig.me/m/mo_coyotes_made" target="_blank" rel="noopener"><span class="stamp-face"><span class="stamp-big"><svg class="ig-glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></span><span class="stamp-small">INSTAGRAM</span></span></a>
             <a class="stamp etsy" href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener"><span class="stamp-face"><span class="stamp-big">E</span><span class="stamp-small">ETSY</span></span></a>
           </div>
 
