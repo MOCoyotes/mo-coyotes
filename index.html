@@ -611,16 +611,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
 
         <!-- little black squirrel with an acorn at the foot of the apple tree (decor) -->
-        <g class="squirrel" stroke-linejoin="round" stroke-linecap="round">
+        <g class="squirrel" stroke-linejoin="round" stroke-linecap="round" transform="translate(958 476) scale(.5) translate(-950 -476)">
           <path fill="#2B2326" class="s-ink" stroke-width="2.5" d="M944 472 C 968 470, 974 442, 962 428 C 952 416, 960 400, 974 404 C 988 410, 986 432, 980 446 C 974 462, 966 476, 944 476 Z"/>
           <path fill="none" stroke="#5A4E55" stroke-width="2" d="M964 410 C 976 406, 982 420, 978 436"/>
           <path fill="#2B2326" class="s-ink" stroke-width="2.5" d="M928 474 C 920 466, 922 448, 933 442 C 945 437, 954 448, 952 462 C 951 470, 946 476, 936 476 Z"/>
           <path fill="#4A4045" d="M930 470 C 926 462, 928 452, 934 449 C 936 456, 936 466, 932 472 Z"/>
-          <path fill="#2B2326" class="s-ink" stroke-width="2" d="M934 428 l 3 -10 l 5 9 z"/><path fill="#E8A3B8" d="M936 425 l 1.3 -4.5 l 2.3 4 z"/>
+          <path fill="#2B2326" class="s-ink" stroke-width="2" d="M934 428 l 3 -10 l 5 9 z"/>
           <ellipse fill="#2B2326" class="s-ink" stroke-width="2.5" cx="933" cy="434" rx="10.5" ry="9"/>
           <ellipse fill="#2B2326" class="s-ink" stroke-width="2.2" cx="924" cy="438" rx="6" ry="4.3"/>
           <ellipse fill="#2B2326" cx="927" cy="437" rx="4" ry="3.2"/>
-          <circle fill="#E8A3B8" cx="918.6" cy="436.6" r="1.8"/>
           <circle fill="#FFFFFF" cx="930" cy="431" r="2.6"/><circle class="f-ink" cx="929.6" cy="431.2" r="1.6"/><circle fill="#FFFFFF" cx="929" cy="430.5" r=".55"/>
           <ellipse class="f-marigold s-ink" stroke-width="1.5" cx="926" cy="455" rx="4.2" ry="5.2"/>
           <path style="fill: var(--rust)" class="s-ink" stroke-width="1.5" d="M921 452 Q 926 445 931 452 Z"/><path class="s-ink" stroke-width="1.4" d="M926 447 v-2.5"/>
@@ -1446,8 +1445,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-rust s-ink" stroke-width="3" d="M860 228 H936 V330 Q 898 340 860 330 Z"/><g fill="#F9B48A" class="s-ink" stroke-width="1"><circle cx="874.0" cy="243.8" r="3.4"/><circle cx="878.0" cy="246.7" r="3.4"/><circle cx="876.5" cy="251.4" r="3.4"/><circle cx="871.5" cy="251.4" r="3.4"/><circle cx="870.0" cy="246.7" r="3.4"/></g><circle class="f-trim" cx="874" cy="248" r="2"/><g fill="#E2A40A" class="s-ink" stroke-width="1"><circle cx="912.0" cy="247.8" r="3.4"/><circle cx="916.0" cy="250.7" r="3.4"/><circle cx="914.5" cy="255.4" r="3.4"/><circle cx="909.5" cy="255.4" r="3.4"/><circle cx="908.0" cy="250.7" r="3.4"/></g><circle class="f-trim" cx="912" cy="252" r="2"/><g fill="#F9B48A" class="s-ink" stroke-width="1"><circle cx="892.0" cy="269.8" r="3.4"/><circle cx="896.0" cy="272.7" r="3.4"/><circle cx="894.5" cy="277.4" r="3.4"/><circle cx="889.5" cy="277.4" r="3.4"/><circle cx="888.0" cy="272.7" r="3.4"/></g><circle class="f-trim" cx="892" cy="274" r="2"/><g fill="#E2A40A" class="s-ink" stroke-width="1"><circle cx="922.0" cy="281.8" r="3.4"/><circle cx="926.0" cy="284.7" r="3.4"/><circle cx="924.5" cy="289.4" r="3.4"/><circle cx="919.5" cy="289.4" r="3.4"/><circle cx="918.0" cy="284.7" r="3.4"/></g><circle class="f-trim" cx="922" cy="286" r="2"/><g fill="#E2A40A" class="s-ink" stroke-width="1"><circle cx="870.0" cy="287.8" r="3.4"/><circle cx="874.0" cy="290.7" r="3.4"/><circle cx="872.5" cy="295.4" r="3.4"/><circle cx="867.5" cy="295.4" r="3.4"/><circle cx="866.0" cy="290.7" r="3.4"/></g><circle class="f-trim" cx="870" cy="292" r="2"/><path class="s-trim" stroke-width="4" d="M860 304 H936 M860 314 H936"/></g>
           <g class="tag"><rect x="848" y="190" width="100" height="28" rx="14"/><text x="898" y="209" text-anchor="middle">DRYING</text></g>
         </a>
-        <!-- an iron standing up on an ironing board, seen up close (decor) -->
-        <g class="iron" stroke-linejoin="round">
+        <!-- an iron standing up on an ironing board, seen up close: click for ironing tips -->
+        <a class="hot" href="#iron" role="button" aria-label="Iron: ironing tips">
+        <g class="iron glow" stroke-linejoin="round">
           <!-- ironing board, up close -->
           <path class="s-ink" stroke-width="9" stroke-linecap="round" d="M902 532 L968 600 M978 532 L910 600"/>
           <path stroke-width="4.5" style="stroke: var(--frame)" stroke-linecap="round" d="M902 532 L968 600 M978 532 L910 600"/>
@@ -1462,12 +1462,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <circle class="f-trim s-ink" stroke-width="1.5" cx="902" cy="376" r="3.5"/>
           </g>
         </g>
+          <g class="tag"><rect x="815" y="392" width="150" height="28" rx="14"/><text x="890" y="411" text-anchor="middle">IRONING TIPS</text></g>
+        </a>
         <!-- bath mat -->
         <g><rect class="f-marigold s-ink" stroke-width="3" x="452" y="482" width="200" height="64" rx="26"/><rect fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" x="462" y="491" width="180" height="46" rx="19"/></g>
       </svg>
         <div class="duck-says" id="duckSays" hidden><b>Quack!</b><span id="duckFact"></span></div>
       </div>
-      <p class="hint bath-hint">Click the sink, the towel, the medicine cabinet, the toilet or the rubber duck, and pop some bubbles!</p>
+      <p class="hint bath-hint">Click the sink, the towel, the iron, the medicine cabinet, the toilet or the rubber duck, and pop some bubbles!</p>
     </section>
 
     <!-- GALLERY collections -->
@@ -2122,9 +2124,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       "Hang to dry to keep colors bright and avoid shrinking. Iron on the reverse side.",
       "Air dry flat or on a padded hanger, away from sun and heat."
     ] },
+    iron: { title: "Ironing Tips", sub: "Pick one for ironing & steaming tips", texts: [
+      "Skip the iron! Hover a steam iron just above it, or block it: mist with water, pat into shape and let it dry flat.",
+      "Press, don't slide: lift the iron and set it down on a cotton setting. Use a pressing cloth over appliqué or embellishments.",
+      "No iron needed. A puff of steam from a little distance perks up flattened fibers; reshape with your fingers.",
+      "Press on low to medium heat through a cloth, following the weave. Go easy on textured or loose weaves.",
+      "Iron inside out at the right setting for the fabric. Steam wrinkles out of delicate or printed fabrics instead of pressing.",
+      "Test a hidden spot first and use a low setting with a pressing cloth. Steam is the gentlest on older fabrics."
+    ] },
     care: { title: "Additional Care Info", sub: "Pick a bottle for more tips and info", items: [
       { name: "STORING", color: "var(--pink)", text: "Keep things folded in a cool, dry spot away from sunlight. Cedar blocks or lavender sachets keep moths away from wool." },
-      { name: "IRONING & STEAM", color: "var(--marigold)", text: "Press on the reverse side through a pressing cloth. Skip the iron on felted and textured pieces; a little steam perks them right up." },
+      { name: "AIRING OUT", color: "var(--marigold)", text: "Handmade pieces don't need a wash after every wear. Hang them up to air out overnight and they'll last longer." },
       { name: "PILLING & FUZZ", color: "var(--orange)", text: "Little fuzz balls are normal on handmade knits. Take them off gently with a sweater comb or fabric shaver." },
       { name: "SNAGS & REPAIRS", color: "var(--blush)", text: "If a stitch snags, don't cut it! Ease it back to the inside with a crochet hook. Need a fix? Ask about alterations on the contact page." },
       { name: "MATERIALS", color: "var(--hot)", text: "Fibers and fabrics are listed with each piece. Thrifted materials get a second life, so little signs of their history are part of the charm." },
@@ -2161,7 +2171,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     pickCare(0);
     if (careDialog.showModal) careDialog.showModal(); else careDialog.setAttribute("open", "");
   }
-  [["#wash", "wash"], ["#dry", "dry"], ["#care", "care"]].forEach(function (p) {
+  [["#wash", "wash"], ["#dry", "dry"], ["#iron", "iron"], ["#care", "care"]].forEach(function (p) {
     var a = document.querySelector('.bath-scene a[href="' + p[0] + '"]');
     if (a) a.addEventListener("click", function (e) { e.preventDefault(); openCare(p[1]); });
   });
