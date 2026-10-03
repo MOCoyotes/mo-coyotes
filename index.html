@@ -11,7 +11,7 @@
 <link rel="icon" href="images/mo-coyotes-logo.jpg">
 <title>MO Coyotes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Schoolbell&family=Nunito:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Schoolbell&family=Caveat+Brush&family=Nunito:wght@400;600;800&display=swap">
 <style>
 /* Layout: one storybook "stage" (a 1000x620 illustrated scene) that zooms into rooms; rooms reuse the same stage frame. */
 :root {
@@ -244,6 +244,19 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   repeating-linear-gradient(90deg, var(--w1) 0 34px, var(--gal-stripe) 34px 64px); }
 .gal-sub .photos { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 26px; }
 .featured-lede { margin-top: -6px; }
+/* mirror, mirror: a lipstick compliment on a big gold mirror */
+.hot-mirror { cursor: pointer; }
+.mirror-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
+.mirror-dialog::backdrop { background: rgba(40, 12, 20, .6); }
+.mirror-dialog .lb-close { top: 4px; right: 4px; }
+.big-mirror { position: relative; width: min(340px, 78vw); aspect-ratio: 3 / 4.4; border-radius: 50%; cursor: pointer; padding: 18% 14%;
+  display: grid; place-items: center; text-align: center; font: inherit;
+  border: 18px solid var(--frame); outline: 4px solid var(--ink); box-shadow: inset 0 0 0 4px var(--ink), 8px 10px 0 rgba(0,0,0,.25);
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,.55) 31% 35%, transparent 36% 44%, rgba(255,255,255,.45) 45% 47%, transparent 48%), linear-gradient(180deg, #FFF9E6, #F6E3C4); }
+.lipstick { font: 400 clamp(1.7rem, 7vw, 2.4rem)/1.15 "Caveat Brush", "Comic Sans MS", cursive; color: #D61F69; transform: rotate(-6deg);
+  filter: url(#lipstick); text-shadow: 0 0 1px rgba(214,31,105,.6); text-wrap: balance; transition: opacity .25s; }
+.lipstick.swap { opacity: 0; }
+.mirror-tip { position: absolute; bottom: 9%; left: 0; right: 0; font: 800 .7rem var(--font-body); letter-spacing: .08em; color: #8A5A45; opacity: .8; }
 /* the fireplace: hover glows, click opens a scorched note that burns */
 .hot-fire { cursor: pointer; outline: none; }
 .hot-fire .flames { transform-box: fill-box; transform-origin: 50% 100%; transition: filter .2s; }
@@ -697,7 +710,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="foyerTitle">Come on in!</h2>
-      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a bathroom door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
+      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a powder room door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
         <defs>
           <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -804,7 +817,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="570" y="168" width="150" height="28" rx="14"/><text x="645" y="187" text-anchor="middle">BARBIE LAND</text></g>
         </a>
-        <a class="hot" href="#bath" aria-label="BATHROOM door">
+        <a class="hot" href="#bath" aria-label="POWDER ROOM door">
           <g class="glow">
             <path class="f-trim s-ink" stroke-width="3" d="M711 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
             <path class="f-pink s-ink" stroke-width="3" d="M720 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
@@ -812,12 +825,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <circle class="f-marigold s-ink" stroke-width="2" cx="796" cy="338" r="5"/>
             <rect class="f-trim s-ink" stroke-width="2.5" x="708" y="405" width="114" height="7" rx="2"/>
             <circle class="f-ink" cx="765" cy="238" r="2.5"/>
-            <path class="s-ink" stroke-width="1.5" fill="none" d="M765 238 L746 262 M765 238 L784 262"/>
-            <rect class="f-trim s-ink" stroke-width="2" x="740" y="260" width="50" height="22" rx="4"/>
-            <text x="765" y="276" text-anchor="middle" class="hall-sign">BATH</text>
+            <path class="s-ink" stroke-width="1.5" fill="none" d="M765 238 L738 262 M765 238 L792 262"/>
+            <rect class="f-trim s-ink" stroke-width="2" x="731" y="260" width="68" height="22" rx="4"/>
+            <text x="765" y="276" text-anchor="middle" class="hall-sign">POWDER</text>
             <g fill="none" class="s-ink" stroke-width="1.5"><circle cx="736" cy="250" r="4"/><circle cx="728" cy="240" r="3"/><circle cx="796" cy="248" r="3.5"/></g>
           </g>
-          <g class="tag"><rect x="700" y="168" width="130" height="28" rx="14"/><text x="765" y="187" text-anchor="middle">BATHROOM</text></g>
+          <g class="tag"><rect x="690" y="168" width="150" height="28" rx="14"/><text x="765" y="187" text-anchor="middle">POWDER ROOM</text></g>
         </a>
         <!-- framed photo (decor), above the doors -->
         <g class="hall-photo" transform="translate(-431,-38)">
@@ -845,7 +858,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
 
         <!-- second picture frame (decor; ready for a photo) -->
-        <g class="hall-photo2">
+        <g class="hall-photo2" transform="translate(-229,-6)">
           <path class="s-ink" stroke-width="2" fill="none" d="M934 40 L910 64 M934 40 L958 64"/><circle class="f-marigold s-ink" stroke-width="2" cx="934" cy="38" r="5"/>
           <polygon style="fill: var(--frame-lt)" points="896,64 972,64 961,75 907,75"/><polygon style="fill: var(--frame-md)" points="972,64 972,150 961,139 961,75"/>
           <polygon style="fill: var(--frame-dk)" points="972,150 896,150 907,139 961,139"/><polygon style="fill: var(--frame)" points="896,150 896,64 907,75 907,139"/>
@@ -861,9 +874,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="8" fill="none" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <path stroke-width="4.5" fill="none" style="stroke: var(--trunk)" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <circle class="f-trunk s-ink" stroke-width="2.5" cx="866" cy="144" r="7"/>
-          <path class="f-marigold s-ink" stroke-width="2.5" d="M830 162 Q 846 140 862 162 Z"/>
-          <path class="f-marigold s-ink" stroke-width="2.5" d="M822 164 Q 846 156 870 164 Q 846 172 822 164 Z"/>
-          <path style="stroke: var(--hot)" stroke-width="3" fill="none" d="M832 160 Q 846 156 860 160"/>
+          <path class="f-pink s-ink" stroke-width="2.5" stroke-linejoin="round" d="M832 163 Q 829 147 837 140 Q 846 147 855 140 Q 863 147 860 163 Z"/>
+          <path class="f-pink s-ink" stroke-width="2.5" stroke-linejoin="round" d="M814 156 Q 818 170 846 171 Q 874 170 878 156 Q 870 165 846 165 Q 822 165 814 156 Z"/>
+          <path style="stroke: var(--hot)" stroke-width="3.5" fill="none" d="M832 159 Q 846 162 860 159"/>
+          <circle class="f-marigold s-ink" stroke-width="1.2" cx="853" cy="159.5" r="2.2"/>
           <path class="s-ink" stroke-width="3" fill="none" d="M884 184 q7 -9 13 0 V200"/>
           <path class="f-pink s-ink" stroke-width="2.5" d="M897 198 C 909 212, 912 242, 901 272 L 893 272 C 882 242, 885 212, 897 198 Z"/>
           <path class="s-ink" stroke-width="1.4" fill="none" opacity=".5" d="M897 202 C 893 226, 893 250, 896 270 M897 202 C 903 226, 904 250, 899 270"/>
@@ -871,8 +885,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="2" d="M897 272 V282"/>
         </g>
 
-        <!-- mirror (decor), above the doors -->
-        <g class="mirror" transform="translate(-361,-108)">
+        <!-- MIRROR: click for a compliment -->
+        <a class="hot hot-mirror" href="#mirror" role="button" aria-label="The mirror: get a compliment">
+        <g class="glow mirror" transform="translate(-421,-108)">
           <ellipse fill="none" class="s-ink" stroke-width="16" cx="946" cy="210" rx="34" ry="62"/>
           <ellipse fill="none" style="stroke: var(--frame)" stroke-width="11" cx="946" cy="210" rx="34" ry="62"/>
           <ellipse class="f-w1" cx="946" cy="210" rx="28" ry="56"/>
@@ -880,6 +895,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <ellipse fill="none" class="s-ink" stroke-width="2" cx="946" cy="210" rx="28" ry="56"/>
           <circle class="f-marigold s-ink" stroke-width="2" cx="946" cy="144" r="6"/>
         </g>
+          <g class="tag"><rect x="455" y="170" width="140" height="28" rx="14"/><text x="525" y="189" text-anchor="middle">MIRROR, MIRROR</text></g>
+        </a>
 
         <!-- plant (decor) -->
         <g class="plant" stroke-linejoin="round" transform="translate(4,0)">
@@ -893,7 +910,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-rust s-ink" stroke-width="3" x="916" y="356" width="60" height="12" rx="3"/>
         </g>
       </svg>
-      <p class="hint hall-hint">Click a door, the stairs, the little cubby or the letters on the floor.</p>
+      <p class="hint hall-hint">Click a door, the stairs, the little cubby, the mirror or the letters on the floor.</p>
     </section>
 
     <!-- SHOP -->
@@ -1126,11 +1143,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <p class="hint gallery-hint">Click the dress form, the sewing machine, the picture over the fireplace, the yarn or the spinning wheel.</p>
     </section>
 
-    <!-- BATHROOM -->
+    <!-- POWDER ROOM -->
     <section id="room-bath" class="room bathroom" hidden aria-labelledby="bathTitle">
       <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
-      <h2 id="bathTitle">BATHROOM</h2>
-      <svg class="bath-scene" viewBox="0 0 1000 560" role="img" aria-label="A pink tiled bathroom with a clawfoot tub full of bubbles and a rubber duck, a pedestal sink, a mirror, a towel and a bath mat">
+      <h2 id="bathTitle">POWDER ROOM</h2>
+      <svg class="bath-scene" viewBox="0 0 1000 560" role="img" aria-label="A pink tiled powder room with a clawfoot tub full of bubbles and a rubber duck, a pedestal sink, a mirror, a towel and a bath mat">
         <defs>
           <pattern id="bathTiles" width="40" height="40" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="40" height="40"/><path fill="none" style="stroke: var(--trim)" stroke-width="3" d="M0 0 H40 M0 0 V40"/></pattern>
           <pattern id="bathFloor" width="60" height="60" patternUnits="userSpaceOnUse"><rect class="f-trim" width="60" height="60"/><rect class="f-hot" width="30" height="30" opacity=".85"/><rect class="f-hot" x="30" y="30" width="30" height="30" opacity=".85"/></pattern>
@@ -1350,6 +1367,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   <p class="hint" id="hint">Click the door, the windows, the mailbox, the quilt, the pink bike or the airplane.</p>
 </div>
+
+<dialog class="mirror-dialog" id="mirrorDialog" aria-label="Compliment mirror">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lipstick"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/><feComponentTransfer><feFuncA type="table" tableValues="0 .75 .95 1"/></feComponentTransfer></filter></svg>
+  <button class="lb-close" type="button" id="mirrorClose" aria-label="Close">×</button>
+  <button class="big-mirror" type="button" id="bigMirror" aria-label="Show another compliment">
+    <span class="lipstick" id="compliment" aria-live="polite"></span>
+    <span class="mirror-tip">tap the mirror for another</span>
+  </button>
+</dialog>
 
 <dialog class="burn-dialog" id="burnDialog" aria-labelledby="burnTitle">
   <svg class="paper-ball" id="paperBall" viewBox="0 0 80 80" hidden aria-hidden="true">
@@ -1598,6 +1624,33 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       throwIt.onfinish = function () { throwIt.cancel(); closeBurn(); };
     }, 560);
   });
+
+  // mirror, mirror: a new lipstick compliment every click
+  var COMPLIMENTS = [
+    "Hey gorgeous!", "You look amazing today", "Main character energy", "Your style is iconic", "You glow, babe",
+    "One of a kind, just like your crafts", "Absolute icon", "So cute it should be illegal", "You've got this!",
+    "Talent looks good on you", "Stay weird, stay wonderful", "Your vibe is immaculate", "Sparkle on, superstar",
+    "Missouri's cutest coyote", "Handmade with love, just like you", "Serving looks", "Be your own Barbie",
+    "That smile though!", "Creative genius alert", "Never change"
+  ];
+  var mirrorDialog = document.getElementById("mirrorDialog"), complimentEl = document.getElementById("compliment");
+  var lastCompliment = -1;
+  function nextCompliment() {
+    var i; do { i = Math.floor(Math.random() * COMPLIMENTS.length); } while (i === lastCompliment && COMPLIMENTS.length > 1);
+    lastCompliment = i;
+    complimentEl.classList.add("swap");
+    setTimeout(function () { complimentEl.textContent = COMPLIMENTS[i]; complimentEl.classList.remove("swap"); }, reduce ? 0 : 180);
+  }
+  document.querySelectorAll(".hot-mirror").forEach(function (m) {
+    m.addEventListener("click", function (e) {
+      e.preventDefault();
+      nextCompliment();
+      if (mirrorDialog.showModal) mirrorDialog.showModal(); else mirrorDialog.setAttribute("open", "");
+    });
+  });
+  document.getElementById("bigMirror").addEventListener("click", nextCompliment);
+  document.getElementById("mirrorClose").addEventListener("click", function () { mirrorDialog.close(); });
+  mirrorDialog.addEventListener("click", function (e) { if (e.target === mirrorDialog) mirrorDialog.close(); });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
