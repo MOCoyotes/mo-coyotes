@@ -145,6 +145,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .foyer h2 { color: var(--ink); }
 .hall-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
 .hall-sign { font: 400 12px var(--font-display); fill: var(--hot); }
+.door-b { font: 400 40px var(--font-script); fill: var(--hot); stroke: var(--trim); stroke-width: 5px; paint-order: stroke; stroke-linejoin: round; }
+.door-b-under { stroke: var(--ink); stroke-width: 10px; fill: var(--ink); }
 .hall-mail { font: 800 9px var(--font-body); fill: var(--trim); letter-spacing: .12em; }
 .hall-hint { margin: 0; }
 .dog-z { font: 400 12px var(--font-display); fill: var(--hot); }
@@ -857,8 +859,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="614" y="300" width="62" height="40" rx="4"/><rect x="614" y="350" width="62" height="50" rx="4"/></g>
             <circle class="f-marigold s-ink" stroke-width="2" cx="676" cy="338" r="5"/>
             <rect class="f-trim s-ink" stroke-width="2.5" x="588" y="405" width="114" height="7" rx="2"/>
-            <path class="f-blush s-ink" stroke-width="2.5" d="M645 278 l-17 -17 a11 11 0 0 1 17 -15 a11 11 0 0 1 17 15 z"/>
-            <path class="f-trim" opacity=".7" d="M636 254 q3 -5 8 -5 q-4 2 -6 7 z"/>
+            <text x="645" y="282" text-anchor="middle" class="door-b door-b-under">B</text><text x="645" y="282" text-anchor="middle" class="door-b">B</text>
             <g class="f-marigold s-ink" stroke-width="1.2"><path d="M612 236 l3 -8 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 z"/><path d="M676 226 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z"/><path d="M682 268 l2 -5 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 z"/></g>
           </g>
           <g class="tag"><rect x="570" y="168" width="150" height="28" rx="14"/><text x="645" y="187" text-anchor="middle">BARBIE LAND</text></g>
