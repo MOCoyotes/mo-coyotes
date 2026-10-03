@@ -712,6 +712,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="foyerTitle">Come on in!</h2>
       <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a chihuahua asleep in a pink dog bed, a powder room door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
         <defs>
+          <radialGradient id="bubbleGrad" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#BDE8F7"/><stop offset=".75" stop-color="#D8C6F6"/><stop offset="1" stop-color="#F8BFDC"/></radialGradient>
           <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
             <rect class="fl-board" width="200" height="50"/>
@@ -873,7 +874,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="s-ink" stroke-width="1.5" fill="none" d="M765 236 L740 260 M765 236 L790 260"/>
             <rect class="f-trim s-ink" stroke-width="2" x="733" y="258" width="64" height="36" rx="4"/>
             <text x="765" y="273" text-anchor="middle" class="hall-sign">POWDER</text><text x="765" y="288" text-anchor="middle" class="hall-sign">ROOM</text>
-            <g fill="none" class="s-ink" stroke-width="1.5"><circle cx="736" cy="250" r="4"/><circle cx="728" cy="240" r="3"/><circle cx="796" cy="248" r="3.5"/></g>
+            <g fill="url(#bubbleGrad)" class="s-ink" stroke-width="1.2"><circle cx="735" cy="250" r="5.5"/><circle cx="726" cy="238" r="4"/><circle cx="797" cy="246" r="5"/><circle cx="804" cy="234" r="3"/></g><g fill="#FFFFFF"><circle cx="733" cy="248" r="1.5"/><circle cx="725" cy="237" r="1"/><circle cx="795" cy="244" r="1.4"/></g>
           </g>
           <g class="tag"><rect x="690" y="168" width="150" height="28" rx="14"/><text x="765" y="187" text-anchor="middle">POWDER ROOM</text></g>
         </a>
