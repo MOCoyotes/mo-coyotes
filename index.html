@@ -138,20 +138,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .room .lede { margin: 0; max-width: 60ch; font-weight: 600; color: var(--muted); }
 .room-nav { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* foyer */
-.foyer { background:
-  linear-gradient(to bottom, transparent 72%, var(--floor) 72%),
-  repeating-linear-gradient(90deg, var(--wall1) 0 34px, var(--wall2) 34px 68px); }
-.foyer h2, .foyer .lede { color: var(--ink); }
-.foyer .lede { color: var(--ink); opacity: .8; }
-.arches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; align-items: end; }
-.arch { display: grid; justify-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-.arch .opening { width: 100%; max-width: 170px; aspect-ratio: 3 / 4.4; border: 6px solid var(--trim); border-bottom: 0; border-radius: 90px 90px 0 0; background: var(--door); position: relative; box-shadow: inset 0 0 0 3px var(--ink), 0 0 0 3px var(--ink); transition: transform .2s; }
-.arch .opening::after { content: ""; position: absolute; right: 16%; top: 55%; width: 12px; height: 12px; border-radius: 50%; background: var(--marigold); box-shadow: 0 0 0 2px var(--ink); }
-.arch.shop .opening { background: var(--orange); }
-.arch.gallery .opening { background: var(--marigold); }
-.arch.barbie .opening { background: var(--hot); }
-.arch:hover .opening, .arch:focus-visible .opening { transform: translateY(-6px); }
+/* foyer: front hall scene */
+.foyer { background: var(--wall-lt); }
+.foyer h2 { color: var(--ink); }
+.hall-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
+.hall-sign { font: 400 12px var(--font-display); fill: var(--hot); }
+.hall-mail { font: 800 9px var(--font-body); fill: var(--trim); letter-spacing: .12em; }
+.hall-hint { margin: 0; }
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
 /* shop room: light pink wallpaper with dark orange pinstripes, gold frames with hot pink mats */
@@ -359,7 +352,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   .attic-slope { width: 34%; height: 200px; }
   .attic-deco.yarn { width: 250px; }
 }
-.arch.about .opening { background: var(--pink); }
 
 /* contact: a letter on a writing desk — wallpaper above, wood desk below */
 .desk-room { background:
@@ -698,18 +690,163 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </svg>
     </section>
 
-    <!-- FOYER -->
+    <!-- FOYER: the front hall -->
     <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="foyerTitle">Come on in!</h2>
-      <p class="lede">Pick a door. Each one opens a different room of the shop.</p>
-      <div class="arches">
-        <a class="arch shop" href="#shop"><span class="opening"></span><span class="plaque">SHOP</span></a>
-        <a class="arch gallery" href="#gallery"><span class="opening"></span><span class="plaque">GALLERY</span></a>
-        <a class="arch barbie" href="#barbie"><span class="opening"></span><span class="plaque">BARBIE LAND</span></a>
-        <a class="arch about" href="#about"><span class="opening"></span><span class="plaque">ABOUT</span></a>
-        <a class="arch" href="#contact"><span class="opening"></span><span class="plaque">SAY HELLO</span></a>
-      </div>
+      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a wall mailbox, a framed photo, a coat rack, a mirror and a plant">
+        <defs>
+          <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
+          <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
+            <rect class="fl-board" width="200" height="50"/>
+            <rect class="fl-board2" x="70" y="0" width="100" height="25" opacity=".25"/>
+            <rect class="fl-board2" x="100" y="25" width="100" height="25" opacity=".3"/><rect class="fl-board2" x="0" y="25" width="30" height="25" opacity=".3"/>
+            <path class="fl-line" d="M0 25 H200 M0 50 H200 M70 0 V25 M170 0 V25 M100 25 V50 M30 25 V50"/>
+          </pattern>
+        </defs>
+        <rect width="1000" height="410" fill="url(#hallStripes)"/>
+        <rect width="1000" height="14" class="f-trim"/><path class="s-ink" stroke-width="3" d="M0 14 H1000"/>
+        <rect y="410" width="1000" height="150" fill="url(#hallPlanks)"/>
+        <path class="s-ink" stroke-width="4" d="M0 410 H1000"/>
+
+        <!-- runner rug -->
+        <g class="runner">
+          <path class="s-ink" stroke-width="2" d="M216 452 v36 M222 452 v36 M726 452 v36 M732 452 v36"/>
+          <rect class="f-hot s-ink" stroke-width="3" x="226" y="446" width="496" height="48" rx="4"/>
+          <rect fill="none" style="stroke: var(--marigold)" stroke-width="4" x="236" y="454" width="476" height="32" rx="2"/>
+          <path class="f-marigold" d="M300 470 l10 -9 l10 9 l-10 9 z M400 470 l10 -9 l10 9 l-10 9 z M500 470 l10 -9 l10 9 l-10 9 z M600 470 l10 -9 l10 9 l-10 9 z"/>
+          <path class="f-blush" d="M350 470 l6 -6 l6 6 l-6 6 z M450 470 l6 -6 l6 6 l-6 6 z M550 470 l6 -6 l6 6 l-6 6 z M650 470 l6 -6 l6 6 l-6 6 z"/>
+        </g>
+
+        <!-- ABOUT: staircase up to the attic -->
+        <a class="hot" href="#about" aria-label="Staircase up to the attic: ABOUT">
+          <g class="glow" stroke-linecap="round">
+            <path class="s-ink" stroke-width="10" fill="none" d="M222 322 L22 108"/>
+            <path stroke-width="6" fill="none" style="stroke: var(--trunk)" d="M222 322 L22 108"/>
+            <path class="s-ink" stroke-width="5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
+            <path class="s-trim" stroke-width="2.5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
+            <path class="s-ink" style="fill: var(--floor)" stroke-width="3" stroke-linejoin="round" d="M214 410 L214.0 372.0 L186.3 372.0 L186.3 334.0 L158.6 334.0 L158.6 296.0 L130.9 296.0 L130.9 258.0 L103.1 258.0 L103.1 220.0 L75.4 220.0 L75.4 182.0 L47.7 182.0 L47.7 144.0 L20.0 144.0 L0 144 L0 410 Z"/>
+            <path style="stroke: var(--hot)" stroke-width="6" fill="none" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M20.0 144.0 H50.7 "/>
+            <path class="s-ink" stroke-width="1.5" fill="none" opacity=".5" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M20.0 144.0 H50.7 "/>
+            <rect class="f-trunk s-ink" stroke-width="3" x="212" y="314" width="18" height="96" rx="2"/>
+            <circle class="f-trunk s-ink" stroke-width="3" cx="221" cy="308" r="9"/>
+          </g>
+          <g class="tag"><rect x="70" y="70" width="90" height="28" rx="14"/><text x="115" y="89" text-anchor="middle">ABOUT</text></g>
+        </a>
+        <a class="hot" href="#shop" aria-label="SHOP door">
+          <g class="glow">
+            <path class="f-trim s-ink" stroke-width="3" d="M231 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
+            <path class="f-orange s-ink" stroke-width="3" d="M240 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="254" y="300" width="62" height="40" rx="4"/><rect x="254" y="350" width="62" height="50" rx="4"/></g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="316" cy="338" r="5"/>
+            <rect class="f-trim s-ink" stroke-width="2.5" x="228" y="405" width="114" height="7" rx="2"/>
+            <circle class="f-ink" cx="285" cy="238" r="2.5"/>
+            <path class="s-ink" stroke-width="1.5" fill="none" d="M285 238 L266 262 M285 238 L304 262"/>
+            <rect class="f-trim s-ink" stroke-width="2" x="260" y="260" width="50" height="22" rx="4"/>
+            <text x="285" y="276" text-anchor="middle" class="hall-sign">OPEN</text>
+          </g>
+          <g class="tag"><rect x="245" y="168" width="80" height="28" rx="14"/><text x="285" y="187" text-anchor="middle">SHOP</text></g>
+        </a>
+        <a class="hot" href="#gallery" aria-label="GALLERY door">
+          <g class="glow">
+            <path class="f-trim s-ink" stroke-width="3" d="M351 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
+            <path class="f-marigold s-ink" stroke-width="3" d="M360 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="374" y="300" width="62" height="40" rx="4"/><rect x="374" y="350" width="62" height="50" rx="4"/></g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="436" cy="338" r="5"/>
+            <rect class="f-trim s-ink" stroke-width="2.5" x="348" y="405" width="114" height="7" rx="2"/>
+            <circle class="f-w1 s-trim" stroke-width="6" cx="405" cy="254" r="20"/><circle fill="none" class="s-ink" stroke-width="2" cx="405" cy="254" r="23"/>
+            <circle class="f-sun" cx="412" cy="247" r="5"/><path class="f-pink" d="M388 262 Q 398 252 410 260 T 422 258 V268 H388 Z"/>
+            <circle fill="none" class="s-ink" stroke-width="1.5" cx="405" cy="254" r="17"/>
+          </g>
+          <g class="tag"><rect x="353" y="168" width="104" height="28" rx="14"/><text x="405" y="187" text-anchor="middle">GALLERY</text></g>
+        </a>
+        <a class="hot" href="#quilting" aria-label="QUILTING door">
+          <g class="glow">
+            <path class="f-trim s-ink" stroke-width="3" d="M471 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
+            <path class="f-rust s-ink" stroke-width="3" d="M480 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="494" y="300" width="62" height="40" rx="4"/><rect x="494" y="350" width="62" height="50" rx="4"/></g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="556" cy="338" r="5"/>
+            <rect class="f-trim s-ink" stroke-width="2.5" x="468" y="405" width="114" height="7" rx="2"/>
+            <g transform="translate(507,236) scale(.3)"><rect class="f-hot" x="-12" y="-12" width="144" height="144"/><rect class="f-blush" x="0" y="0" width="120" height="120"/><rect class="f-marigold" x="40" y="40" width="40" height="40"/><g class="f-orange"><polygon points="40,0 40,40 60,20"/><polygon points="80,0 80,40 60,20"/><polygon points="40,80 40,120 60,100"/><polygon points="80,80 80,120 60,100"/><polygon points="0,40 40,40 20,60"/><polygon points="0,80 40,80 20,60"/><polygon points="80,40 120,40 100,60"/><polygon points="80,80 120,80 100,60"/></g><g class="f-trim"><polygon points="40,40 80,40 60,20"/><polygon points="40,80 80,80 60,100"/><polygon points="40,40 40,80 20,60"/><polygon points="80,40 80,80 100,60"/></g><rect fill="none" class="s-ink" stroke-width="7" x="-12" y="-12" width="144" height="144"/></g>
+          </g>
+          <g class="tag"><rect x="467" y="168" width="116" height="28" rx="14"/><text x="525" y="187" text-anchor="middle">QUILTING</text></g>
+        </a>
+        <a class="hot" href="#barbie" aria-label="BARBIE LAND door">
+          <g class="glow">
+            <path class="f-trim s-ink" stroke-width="3" d="M591 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M600 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="614" y="300" width="62" height="40" rx="4"/><rect x="614" y="350" width="62" height="50" rx="4"/></g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="676" cy="338" r="5"/>
+            <rect class="f-trim s-ink" stroke-width="2.5" x="588" y="405" width="114" height="7" rx="2"/>
+            <path class="f-blush s-ink" stroke-width="2.5" d="M645 278 l-17 -17 a11 11 0 0 1 17 -15 a11 11 0 0 1 17 15 z"/>
+            <path class="f-trim" opacity=".7" d="M636 254 q3 -5 8 -5 q-4 2 -6 7 z"/>
+            <g class="f-marigold s-ink" stroke-width="1.2"><path d="M612 236 l3 -8 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 z"/><path d="M676 226 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z"/><path d="M682 268 l2 -5 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 z"/></g>
+          </g>
+          <g class="tag"><rect x="570" y="168" width="150" height="28" rx="14"/><text x="645" y="187" text-anchor="middle">BARBIE LAND</text></g>
+        </a>
+        <!-- framed photo (decor) -->
+        <g class="hall-photo">
+          <path class="s-ink" stroke-width="2" fill="none" d="M776 72 L748 100 M776 72 L804 100"/><circle class="f-marigold s-ink" stroke-width="2" cx="776" cy="70" r="5"/>
+          <polygon style="fill: var(--frame-lt)" points="734,100 818,100 806,112 746,112"/><polygon style="fill: var(--frame-md)" points="818,100 818,196 806,184 806,112"/>
+          <polygon style="fill: var(--frame-dk)" points="818,196 734,196 746,184 806,184"/><polygon style="fill: var(--frame)" points="734,196 734,100 746,112 746,184"/>
+          <rect class="f-hot" x="746" y="112" width="60" height="72"/>
+          <rect style="fill: var(--sky2)" x="754" y="120" width="44" height="56"/>
+          <circle class="f-trim" cx="788" cy="132" r="6"/>
+          <path class="f-orange" d="M754 162 Q 772 148 798 158 V176 H754 Z"/>
+          <path class="f-ink" transform="translate(760,138) scale(.06)" d="M2 372 C 30 360, 70 356, 104 356 C 98 334, 104 306, 130 290 C 170 262, 205 215, 228 150 C 232 132, 240 116, 248 106 L 228 94 L 262 84 C 274 66, 288 44, 302 14 Q 308 0 320 4 L 324 26 L 330 18 Q 344 16 342 32 L 336 46 C 334 80, 344 110, 350 140 C 356 180, 346 230, 344 300 L 340 380 Q 352 392 340 398 L 298 398 L 296 380 L 282 396 L 210 396 C 160 398, 130 392, 112 384 C 70 390, 30 386, 0 372 Z"/>
+          <rect fill="none" class="s-ink" stroke-width="2" x="754" y="120" width="44" height="56"/>
+          <rect fill="none" class="s-ink" stroke-width="3" x="734" y="100" width="84" height="96"/>
+          <path class="s-ink" stroke-width="1.2" d="M734 100 L746 112 M818 100 L806 112 M818 196 L806 184 M734 196 L746 184"/>
+        </g>
+
+        <!-- CONTACT: little mailbox on the wall -->
+        <a class="hot" href="#contact" aria-label="Wall mailbox: CONTACT">
+          <g class="glow" stroke-linejoin="round">
+            <rect class="f-trim s-ink" stroke-width="2" x="752" y="244" width="22" height="16" rx="2" transform="rotate(-12 763 252)"/>
+            <rect class="f-blush s-ink" stroke-width="2" x="772" y="240" width="22" height="16" rx="2" transform="rotate(10 783 248)"/>
+            <path class="f-pink s-ink" stroke-width="3" d="M744 256 H808 V312 Q 808 318 802 318 H750 Q 744 318 744 312 Z"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M740 256 H812 L806 270 H746 Z"/>
+            <path class="f-hot" d="M776 304 l-6 -6 a4 4 0 0 1 6 -5.3 a4 4 0 0 1 6 5.3 z"/>
+            <text x="776" y="288" text-anchor="middle" class="hall-mail">MAIL</text>
+          </g>
+          <g class="tag"><rect x="728" y="206" width="96" height="28" rx="14"/><text x="776" y="225" text-anchor="middle">CONTACT</text></g>
+        </a>
+
+        <!-- coat rack (decor) -->
+        <g class="coat-rack" stroke-linecap="round" stroke-linejoin="round">
+          <path class="s-ink" stroke-width="8" fill="none" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
+          <path stroke-width="4.5" fill="none" style="stroke: var(--trunk)" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
+          <circle class="f-trunk s-ink" stroke-width="2.5" cx="866" cy="144" r="7"/>
+          <path class="f-marigold s-ink" stroke-width="2.5" d="M830 162 Q 846 140 862 162 Z"/>
+          <path class="f-marigold s-ink" stroke-width="2.5" d="M822 164 Q 846 156 870 164 Q 846 172 822 164 Z"/>
+          <path style="stroke: var(--hot)" stroke-width="3" fill="none" d="M832 160 Q 846 156 860 160"/>
+          <path class="f-pink s-ink" stroke-width="2.5" d="M880 182 L892 184 L896 262 L886 264 Z"/>
+          <path class="s-trim" stroke-width="2" d="M882 204 L893 205 M883 226 L894 227 M884 248 L895 249"/>
+        </g>
+
+        <!-- mirror (decor) -->
+        <g class="mirror">
+          <ellipse fill="none" class="s-ink" stroke-width="16" cx="946" cy="210" rx="34" ry="62"/>
+          <ellipse fill="none" style="stroke: var(--frame)" stroke-width="11" cx="946" cy="210" rx="34" ry="62"/>
+          <ellipse class="f-w1" cx="946" cy="210" rx="28" ry="56"/>
+          <path class="f-trim" opacity=".8" d="M928 186 L956 158 L962 164 L934 192 Z M932 214 L964 182 L967 188 L936 220 Z"/>
+          <ellipse fill="none" class="s-ink" stroke-width="2" cx="946" cy="210" rx="28" ry="56"/>
+          <circle class="f-marigold s-ink" stroke-width="2" cx="946" cy="144" r="6"/>
+        </g>
+
+        <!-- plant (decor) -->
+        <g class="plant" stroke-linejoin="round">
+          <g class="f-bush s-ink" stroke-width="2.5">
+            <path d="M946 362 C 920 350, 910 322, 916 304 C 934 314, 946 336, 946 362 Z"/>
+            <path d="M946 362 C 970 350, 984 326, 978 306 C 960 316, 948 336, 946 362 Z"/>
+            <path d="M946 362 C 936 334, 940 306, 950 290 C 958 308, 956 336, 946 362 Z"/>
+          </g>
+          <path class="s-ink" stroke-width="1.5" fill="none" opacity=".5" d="M944 360 Q 928 336 920 310 M948 360 Q 966 336 974 312 M946 358 Q 946 324 950 296"/>
+          <path class="f-orange s-ink" stroke-width="3" d="M920 360 H972 L964 408 H928 Z"/>
+          <rect class="f-rust s-ink" stroke-width="3" x="916" y="356" width="60" height="12" rx="3"/>
+        </g>
+      </svg>
+      <p class="hint hall-hint">Click a door, the stairs or the mailbox.</p>
     </section>
 
     <!-- SHOP -->
