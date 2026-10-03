@@ -147,7 +147,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hall-sign { font: 400 12px var(--font-display); fill: var(--hot); }
 .hall-mail { font: 800 9px var(--font-body); fill: var(--trim); letter-spacing: .12em; }
 .hall-hint { margin: 0; }
-.dog-z { font: 400 12px var(--font-display); fill: var(--ink); opacity: .7; }
+.dog-z { font: 400 12px var(--font-display); fill: var(--hot); }
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
 /* shop room: light pink wallpaper with dark orange pinstripes, gold frames with hot pink mats */
@@ -754,19 +754,30 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <ellipse class="f-pink s-ink" stroke-width="3" cx="105" cy="488" rx="72" ry="28"/>
           <ellipse class="f-blush s-ink" stroke-width="2.5" cx="105" cy="484" rx="55" ry="17"/>
           <!-- dog -->
-          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M150 486 C 166 482, 170 470, 160 466 C 152 464, 150 474, 140 478"/>
-          <ellipse fill="#E6B27C" class="s-ink" stroke-width="2.5" cx="114" cy="478" rx="36" ry="15"/>
-          <path fill="#F3D3AE" d="M96 484 Q 114 490 134 484 Q 120 492 100 490 Z" opacity=".9"/>
-          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M62 470 L56 444 L74 458 Z"/>
-          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M80 462 L92 440 L94 462 Z"/>
-          <path class="f-blush" d="M61 466 L59 452 L69 460 Z M84 460 L90 448 L91 460 Z"/>
-          <circle fill="#E6B27C" class="s-ink" stroke-width="2.5" cx="76" cy="474" r="15"/>
-          <ellipse fill="#F3D3AE" class="s-ink" stroke-width="2" cx="66" cy="480" rx="8" ry="6"/>
-          <ellipse class="f-ink" cx="61" cy="478" rx="2.6" ry="2"/>
-          <path class="s-ink" stroke-width="1.8" fill="none" d="M70 471 q4 3 8 0 M80 470 q4 3 8 0"/>
-          <path style="stroke: var(--hot)" stroke-width="3.5" fill="none" d="M86 484 Q 92 474 92 464"/>
-          <circle class="f-marigold s-ink" stroke-width="1" cx="90" cy="481" r="2.3"/>
-          <path fill="#E6B27C" class="s-ink" stroke-width="2" d="M70 488 Q 82 486 92 490 Q 82 494 70 492 Z"/>
+          <g class="chihuahua" stroke-linejoin="round" stroke-linecap="round">
+            <path class="s-ink" stroke-width="7" fill="none" d="M156 476 C 172 474, 174 492, 160 498 C 148 502, 130 501, 118 498"/>
+            <path stroke="#E3AE74" stroke-width="3.5" fill="none" d="M156 476 C 172 474, 174 492, 160 498 C 148 502, 130 501, 118 498"/>
+            <path fill="#E3AE74" class="s-ink" stroke-width="2.5" d="M80 486 C 78 470, 99 460, 124 461 C 148 462, 162 470, 160 482 C 158 494, 136 498, 112 497 C 95 496, 82 494, 80 486 Z"/>
+            <path fill="#C98B52" opacity=".75" d="M98 466 C 114 460, 140 461, 157 471 C 140 467, 117 466, 100 472 Z"/>
+            <path fill="#E3AE74" class="s-ink" stroke-width="2.2" d="M128 488 C 128 476, 142 472, 152 478 C 158 484, 156 494, 146 496 C 136 497, 128 494, 128 488 Z"/>
+            <ellipse fill="#F6DDBF" class="s-ink" stroke-width="2" cx="150" cy="496" rx="8" ry="3.6"/>
+            <path fill="#E3AE74" class="s-ink" stroke-width="2.5" d="M68 458 C 60 444, 58 430, 63 420 C 74 428, 82 442, 84 456 Z"/>
+            <path fill="#F3B6C4" d="M68 452 C 64 442, 63 434, 65 428 C 71 434, 76 444, 78 452 Z"/>
+            <path fill="#F6DDBF" d="M84 488 C 90 484, 98 484, 102 490 C 96 494, 88 494, 84 488 Z"/>
+            <path fill="#E3AE74" class="s-ink" stroke-width="2.5" d="M56 484 C 48 476, 50 462, 62 455 C 73 449, 88 452, 94 463 C 100 474, 95 486, 84 490 C 75 493, 62 492, 56 484 Z"/>
+            <path fill="#E3AE74" class="s-ink" stroke-width="2.5" d="M84 460 C 90 445, 100 434, 112 430 C 110 444, 103 456, 94 465 Z"/>
+            <path fill="#F3B6C4" d="M89 458 C 94 447, 101 440, 108 436 C 106 446, 100 454, 94 460 Z"/>
+            <path fill="#F6DDBF" class="s-ink" stroke-width="2" d="M60 486 C 50 487, 44 481, 47 475 C 50 471, 57 472, 62 476"/>
+            <ellipse class="f-ink" cx="46.5" cy="475" rx="3.2" ry="2.5"/>
+            <path class="s-ink" stroke-width="1.6" fill="none" d="M50 482 q4 2 7 0"/>
+            <path class="s-ink" stroke-width="2" fill="none" d="M62 469 q6 5 12 0"/>
+            <path class="s-ink" stroke-width="1.3" fill="none" d="M64 472 l-1.5 3 M68 473.5 v3 M72 472 l1.5 3"/>
+            <ellipse style="fill: var(--hot)" opacity=".28" cx="70" cy="480" rx="5" ry="3"/>
+            <path style="stroke: var(--hot)" stroke-width="4" fill="none" d="M88 487 Q 96 476 94 462"/>
+            <circle class="f-marigold s-ink" stroke-width="1.2" cx="91" cy="484" r="2.6"/>
+            <ellipse fill="#F6DDBF" class="s-ink" stroke-width="2" cx="64" cy="495" rx="9" ry="3.6"/>
+            <ellipse fill="#F6DDBF" class="s-ink" stroke-width="2" cx="80" cy="497" rx="9" ry="3.6"/>
+          </g>
           <!-- front of the bed -->
           <path class="f-pink s-ink" stroke-width="3" d="M33 490 Q 105 530 177 490 Q 178 508 105 516 Q 32 508 33 490 Z"/>
           <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="5 5" opacity=".8" d="M44 498 Q 105 524 166 498"/>
