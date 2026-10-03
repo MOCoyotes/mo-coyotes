@@ -1346,6 +1346,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect style="fill: var(--frame)" class="s-ink" stroke-width="2" x="102" y="302" width="48" height="9" rx="3"/>
           </g>
         </g>
+        <!-- little contour rug around the toilet -->
+        <g stroke-linejoin="round">
+          <path class="f-marigold s-ink" stroke-width="3" d="M504 464 H526 Q 530 480 560 480 Q 590 480 594 464 H616 Q 630 464 630 478 V500 Q 630 516 614 516 H506 Q 490 516 490 500 V478 Q 490 464 504 464 Z"/>
+          <path fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" d="M508 472 H520 Q 528 488 560 488 Q 592 488 600 472 H612 Q 622 472 622 482 V498 Q 622 508 612 508 H508 Q 498 508 498 498 V482 Q 498 472 508 472 Z"/>
+        </g>
         <!-- toilet: write a worry on the toilet paper and flush it -->
         <a class="hot hot-toilet" href="#flush" role="button" aria-label="Toilet: flush your worries">
           <g class="glow" stroke-linejoin="round">
@@ -1438,7 +1443,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
         </g>
         <!-- bath mat -->
-        <g><rect class="f-marigold s-ink" stroke-width="3" x="452" y="482" width="200" height="64" rx="26"/><rect fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" x="462" y="491" width="180" height="46" rx="19"/></g>
+        <g><rect class="f-marigold s-ink" stroke-width="3" x="135" y="486" width="200" height="64" rx="26"/><rect fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" x="145" y="495" width="180" height="46" rx="19"/></g>
       </svg>
         <div class="duck-says" id="duckSays" hidden><b>Quack!</b><span id="duckFact"></span></div>
       </div>
