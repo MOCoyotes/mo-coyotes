@@ -312,6 +312,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .bottle[aria-selected="true"] .body { box-shadow: 0 0 0 3px #FFFDF4, 0 0 12px 4px var(--hot); }
 .bottle .lab { background: #FFFDF4; color: #3B2620; border: 1.5px solid var(--ink); border-radius: 4px; padding: 3px 5px; font: 800 .68rem/1.15 var(--font-body); letter-spacing: .03em; text-align: center; }
 .bottle:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; border-radius: 8px; }
+.care-dialog.mode-wash .bottle .cap { width: 26%; height: 15px; border-radius: 3px 3px 0 0; }
+.care-dialog.mode-dry .bottle .cap { display: none; }
+.care-dialog.mode-dry .bottle .body { border-radius: 6px; background: linear-gradient(var(--c) 0 62%, #FFFDF4 62% 70%, var(--c) 70% 78%, #FFFDF4 78% 86%, var(--c) 86%); }
 .rx { margin-top: 18px; background: #FFFDF4; border: 2.5px solid var(--ink); border-radius: 10px; padding: 12px 14px; box-shadow: 3px 3px 0 var(--ink); }
 .rx h4 { margin: 0 0 6px; font: 800 .85rem var(--font-body); letter-spacing: .08em; color: #D61F69; }
 .rx p { margin: 0; font: 600 1rem/1.45 var(--font-body); color: #3B2620; }
@@ -1325,7 +1328,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
         <!-- medicine cabinet + pedestal sink -->
         <g stroke-linejoin="round">
-          <a class="hot" href="#care" role="button" aria-label="Medicine cabinet: care guide">
+          <a class="hot" href="#care" role="button" aria-label="Medicine cabinet: more care and product info">
             <g class="glow" stroke-linejoin="round">
               <rect class="f-trim s-ink" stroke-width="3" x="662" y="80" width="116" height="168" rx="6"/>
               <rect style="fill: var(--glass)" x="673" y="91" width="94" height="146" rx="3"/>
@@ -1335,23 +1338,31 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
               <rect class="f-trim s-ink" stroke-width="2.5" x="706" y="60" width="28" height="22" rx="4"/>
               <path class="f-hot" d="M717 64 h6 v4 h4 v6 h-4 v4 h-6 v-4 h-4 v-6 h4 z"/>
             </g>
-            <g class="tag"><rect x="650" y="22" width="140" height="28" rx="14"/><text x="720" y="41" text-anchor="middle">CARE GUIDE</text></g>
+            <g class="tag"><rect x="645" y="22" width="150" height="28" rx="14"/><text x="720" y="41" text-anchor="middle">CARE &amp; INFO</text></g>
           </a>
+          <a class="hot" href="#wash" role="button" aria-label="Sink: washing instructions">
+          <g class="glow">
           <path class="f-trim s-ink" stroke-width="3" d="M700 336 H740 L734 470 H706 Z"/>
           <path class="f-trim s-ink" stroke-width="3" d="M640 300 H800 Q 800 340 760 344 H680 Q 640 340 640 300 Z"/>
           <path class="s-ink" stroke-width="3" fill="none" d="M636 300 H804"/>
           <path class="s-ink" stroke-width="5" fill="none" stroke-linecap="round" d="M720 300 V282 Q 720 274 730 274 H738"/><path stroke-width="2.5" fill="none" style="stroke: var(--trim)" stroke-linecap="round" d="M720 300 V282 Q 720 274 730 274 H738"/>
           <rect class="f-pink s-ink" stroke-width="2" x="770" y="276" width="16" height="24" rx="4"/><rect class="f-hot s-ink" stroke-width="1.5" x="774" y="268" width="8" height="8" rx="1"/>
+          </g>
+            <g class="tag"><rect x="670" y="352" width="100" height="28" rx="14"/><text x="720" y="371" text-anchor="middle">WASHING</text></g>
+          </a>
         </g>
         <!-- towel bar + towel -->
-        <g stroke-linejoin="round"><path class="s-ink" stroke-width="5" stroke-linecap="round" d="M846 230 H950"/><path stroke-width="2.5" style="stroke: var(--frame)" stroke-linecap="round" d="M846 230 H950"/>
+        <a class="hot" href="#dry" role="button" aria-label="Towel: drying instructions">
+          <g class="glow" stroke-linejoin="round"><path class="s-ink" stroke-width="5" stroke-linecap="round" d="M846 230 H950"/><path stroke-width="2.5" style="stroke: var(--frame)" stroke-linecap="round" d="M846 230 H950"/>
           <path class="f-hot s-ink" stroke-width="3" d="M860 228 H936 V330 Q 898 340 860 330 Z"/><path class="s-trim" stroke-width="4" d="M860 304 H936 M860 314 H936"/></g>
+          <g class="tag"><rect x="848" y="190" width="100" height="28" rx="14"/><text x="898" y="209" text-anchor="middle">DRYING</text></g>
+        </a>
         <!-- bath mat -->
         <g><rect class="f-marigold s-ink" stroke-width="3" x="452" y="494" width="200" height="42" rx="20"/><rect fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" x="462" y="502" width="180" height="26" rx="13"/></g>
       </svg>
         <div class="duck-says" id="duckSays" hidden><b>Quack!</b><span id="duckFact"></span></div>
       </div>
-      <p class="hint bath-hint">Click the medicine cabinet, the toilet or the rubber duck, and pop some bubbles!</p>
+      <p class="hint bath-hint">Click the sink, the towel, the medicine cabinet, the toilet or the rubber duck, and pop some bubbles!</p>
     </section>
 
     <!-- GALLERY collections -->
@@ -1546,8 +1557,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   <div class="cabinet">
     <button class="lb-close" type="button" id="careClose" aria-label="Close">×</button>
     <h3 id="careTitle">Care Guide</h3>
-    <p class="care-sub">Pick a bottle for washing &amp; care tips</p>
-    <div class="shelves" id="careShelves" role="tablist" aria-label="What are you caring for?"></div>
+    <p class="care-sub" id="careSub"></p>
+    <div class="shelves" id="careShelves" role="tablist" aria-label="Choose one"></div>
     <div class="rx" id="careRx" role="tabpanel" aria-live="polite"><h4 id="careRxName"></h4><p id="careRxText"></p></div>
   </div>
 </dialog>
@@ -1977,38 +1988,70 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     clearTimeout(duckTimer); duckTimer = setTimeout(function () { duckSays.setAttribute("hidden", ""); }, 5500);
   });
 
-  // the medicine cabinet: a care guide, one bottle per kind of thing
-  var CARE = [
-    { name: "KNITS & CROCHET", color: "var(--pink)", text: "Hand wash in cool water with a gentle wool wash. Don't wring: squeeze, roll it up in a towel, then lay flat to dry. Fold instead of hanging so it keeps its shape." },
-    { name: "QUILTS", color: "var(--marigold)", text: "Wash only when needed, on cold and gentle with a mild soap (a color catcher helps the first time). Line dry out of direct sun, or tumble dry on low." },
-    { name: "FELTED", color: "var(--orange)", text: "Spot clean with cool water and a dab of soap. No soaking, scrubbing or hot water, or it'll keep on felting! Reshape and air dry; a lint roller tidies up fuzz." },
-    { name: "WOVEN", color: "var(--blush)", text: "Give it a shake and spot clean, or hand wash cool and lay flat to dry. Press with a warm iron through a cloth. Snip loose threads instead of pulling them." },
-    { name: "SEWN & FASHION", color: "var(--hot)", text: "Wash inside out on cold and gentle, then hang to dry to keep colors bright. Iron on the reverse side, and check the care tag for special fabrics." },
-    { name: "THRIFTED & VINTAGE", color: "var(--rust)", text: "Older fabrics are delicate: hand wash cool or take them to a dry cleaner, and test a hidden spot first. Store away from sunlight on padded hangers, or fold with tissue." }
+  // sink = washing, towel = drying, medicine cabinet = more care + product info. Edit the text here.
+  var KINDS = [
+    { name: "KNITS & CROCHET", color: "var(--pink)" }, { name: "QUILTS", color: "var(--marigold)" }, { name: "FELTED", color: "var(--orange)" },
+    { name: "WOVEN", color: "var(--blush)" }, { name: "SEWN & FASHION", color: "var(--hot)" }, { name: "THRIFTED & VINTAGE", color: "var(--rust)" }
   ];
+  var CARE_SETS = {
+    wash: { title: "Washing", sub: "Pick a soap for washing tips", texts: [
+      "Hand wash in cool water with a gentle wool wash. Swish, don't scrub, and never wring: just squeeze the water out.",
+      "Wash only when needed, on cold and gentle with a mild soap. A color catcher helps the first few washes.",
+      "Spot clean with cool water and a dab of soap. No soaking, scrubbing or hot water, or it'll keep on felting!",
+      "Give it a shake, then spot clean or hand wash in cool water with a mild soap.",
+      "Turn it inside out and wash on cold and gentle. Check the care tag for special fabrics.",
+      "Older fabrics are delicate: hand wash cool or take them to a dry cleaner, and test a hidden spot first."
+    ] },
+    dry: { title: "Drying", sub: "Pick a towel for drying tips", texts: [
+      "Roll it up in a towel to soak up the water, then lay flat to dry and pat it back into shape. Never hang wet knits.",
+      "Line dry out of direct sun, or tumble dry on low. Take it out while it's still a little damp so it stays soft.",
+      "Gently press the water out with a towel, reshape, and let it air dry. Keep it away from the dryer and heaters.",
+      "Lay flat to dry, then press with a warm iron through a cloth.",
+      "Hang to dry to keep colors bright and avoid shrinking. Iron on the reverse side.",
+      "Air dry flat or on a padded hanger, away from sun and heat."
+    ] },
+    care: { title: "Care & Product Info", sub: "Pick a bottle for more tips and info", items: [
+      { name: "STORING", color: "var(--pink)", text: "Keep things folded in a cool, dry spot away from sunlight. Cedar blocks or lavender sachets keep moths away from wool." },
+      { name: "IRONING & STEAM", color: "var(--marigold)", text: "Press on the reverse side through a pressing cloth. Skip the iron on felted and textured pieces; a little steam perks them right up." },
+      { name: "PILLING & FUZZ", color: "var(--orange)", text: "Little fuzz balls are normal on handmade knits. Take them off gently with a sweater comb or fabric shaver." },
+      { name: "SNAGS & REPAIRS", color: "var(--blush)", text: "If a stitch snags, don't cut it! Ease it back to the inside with a crochet hook. Need a fix? Ask about alterations on the contact page." },
+      { name: "MATERIALS", color: "var(--hot)", text: "Fibers and fabrics are listed with each piece. Thrifted materials get a second life, so little signs of their history are part of the charm." },
+      { name: "ONE OF A KIND", color: "var(--rust)", text: "Everything is handmade or thrifted, so no two pieces are exactly alike. Colors can look a little different on different screens." }
+    ] }
+  };
   var careDialog = document.getElementById("careDialog"), careShelves = document.getElementById("careShelves");
-  var careBtns = [];
+  var careBtns = [], careItems = [];
   function pickCare(n) {
     careBtns.forEach(function (b, j) { b.setAttribute("aria-selected", j === n ? "true" : "false"); b.tabIndex = j === n ? 0 : -1; });
-    document.getElementById("careRxName").textContent = "Rx · " + CARE[n].name;
-    document.getElementById("careRxText").textContent = CARE[n].text;
+    document.getElementById("careRxName").textContent = careItems[n].name;
+    document.getElementById("careRxText").textContent = careItems[n].text;
   }
-  CARE.forEach(function (c, n) {
-    if (n % 2 === 0) { var sh = document.createElement("div"); sh.className = "shelf"; careShelves.appendChild(sh); }
-    var b = document.createElement("button");
-    b.type = "button"; b.className = "bottle"; b.setAttribute("role", "tab"); b.style.setProperty("--c", c.color);
-    b.innerHTML = '<span class="cap"></span><span class="body"><span class="lab"></span></span>';
-    b.querySelector(".lab").textContent = c.name;
-    b.addEventListener("click", function () { pickCare(n); });
-    b.addEventListener("keydown", function (e) {
-      var k = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
-      if (k) { e.preventDefault(); var m = (n + k + CARE.length) % CARE.length; pickCare(m); careBtns[m].focus(); }
+  function openCare(key) {
+    var set = CARE_SETS[key];
+    careItems = set.items || KINDS.map(function (k, i) { return { name: k.name, color: k.color, text: set.texts[i] }; });
+    careDialog.className = "care-dialog mode-" + key;
+    document.getElementById("careTitle").textContent = set.title;
+    document.getElementById("careSub").textContent = set.sub;
+    careShelves.textContent = ""; careBtns = [];
+    careItems.forEach(function (c, n) {
+      if (n % 2 === 0) { var sh = document.createElement("div"); sh.className = "shelf"; careShelves.appendChild(sh); }
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "bottle"; b.setAttribute("role", "tab"); b.style.setProperty("--c", c.color);
+      b.innerHTML = '<span class="cap"></span><span class="body"><span class="lab"></span></span>';
+      b.querySelector(".lab").textContent = c.name;
+      b.addEventListener("click", function () { pickCare(n); });
+      b.addEventListener("keydown", function (e) {
+        var k = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
+        if (k) { e.preventDefault(); var m = (n + k + careItems.length) % careItems.length; pickCare(m); careBtns[m].focus(); }
+      });
+      careBtns.push(b); careShelves.lastChild.appendChild(b);
     });
-    careBtns.push(b); careShelves.lastChild.appendChild(b);
-  });
-  document.querySelector('.bath-scene a[href="#care"]').addEventListener("click", function (e) {
-    e.preventDefault(); pickCare(0);
+    pickCare(0);
     if (careDialog.showModal) careDialog.showModal(); else careDialog.setAttribute("open", "");
+  }
+  [["#wash", "wash"], ["#dry", "dry"], ["#care", "care"]].forEach(function (p) {
+    var a = document.querySelector('.bath-scene a[href="' + p[0] + '"]');
+    if (a) a.addEventListener("click", function (e) { e.preventDefault(); openCare(p[1]); });
   });
   document.getElementById("careClose").addEventListener("click", function () { careDialog.close(); });
   careDialog.addEventListener("click", function (e) { if (e.target === careDialog) careDialog.close(); });
