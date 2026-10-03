@@ -241,6 +241,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   linear-gradient(to bottom, transparent calc(100% - 60px), var(--floor) calc(100% - 60px)),
   repeating-linear-gradient(90deg, var(--w1) 0 34px, var(--gal-stripe) 34px 64px); }
 .gal-sub .photos { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 26px; }
+.featured-lede { margin-top: -6px; }
 /* the fireplace: hover glows, click opens a scorched note that burns */
 .hot-fire { cursor: pointer; outline: none; }
 .hot-fire .flames { transform-box: fill-box; transform-origin: 50% 100%; transition: filter .2s; }
@@ -694,7 +695,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="foyerTitle">Come on in!</h2>
-      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a wall mailbox, a framed photo, a coat rack, a mirror and a plant">
+      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
         <defs>
           <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -711,18 +712,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
         <!-- runner rug -->
         <g class="runner">
-          <path class="s-ink" stroke-width="2" d="M216 452 v36 M222 452 v36 M726 452 v36 M732 452 v36"/>
-          <rect class="f-hot s-ink" stroke-width="3" x="226" y="446" width="496" height="48" rx="4"/>
-          <rect fill="none" style="stroke: var(--marigold)" stroke-width="4" x="236" y="454" width="476" height="32" rx="2"/>
-          <path class="f-marigold" d="M300 470 l10 -9 l10 9 l-10 9 z M400 470 l10 -9 l10 9 l-10 9 z M500 470 l10 -9 l10 9 l-10 9 z M600 470 l10 -9 l10 9 l-10 9 z"/>
-          <path class="f-blush" d="M350 470 l6 -6 l6 6 l-6 6 z M450 470 l6 -6 l6 6 l-6 6 z M550 470 l6 -6 l6 6 l-6 6 z M650 470 l6 -6 l6 6 l-6 6 z"/>
+          <rect class="f-hot s-ink" stroke-width="3" x="196" y="430" width="568" height="80" rx="5"/>
+          <rect fill="none" style="stroke: var(--marigold)" stroke-width="5" x="210" y="442" width="540" height="56" rx="3"/>
+          <path class="f-marigold" d="M262 470 l14 -13 l14 13 l-14 13 z M372 470 l14 -13 l14 13 l-14 13 z M482 470 l14 -13 l14 13 l-14 13 z M592 470 l14 -13 l14 13 l-14 13 z M702 470 l14 -13 l14 13 l-14 13 z"/>
+          <path class="f-blush" d="M323 470 l8 -8 l8 8 l-8 8 z M433 470 l8 -8 l8 8 l-8 8 z M543 470 l8 -8 l8 8 l-8 8 z M653 470 l8 -8 l8 8 l-8 8 z"/>
         </g>
 
         <!-- ABOUT: staircase up to the attic -->
         <a class="hot" href="#about" aria-label="Staircase up to the attic: ABOUT">
           <g class="glow" stroke-linecap="round">
-            <path class="s-ink" stroke-width="10" fill="none" d="M222 322 L22 108"/>
-            <path stroke-width="6" fill="none" style="stroke: var(--trunk)" d="M222 322 L22 108"/>
+            <path class="s-ink" stroke-width="10" fill="none" d="M222 322 L0 84"/>
+            <path stroke-width="6" fill="none" style="stroke: var(--trunk)" d="M222 322 L0 84"/>
             <path class="s-ink" stroke-width="5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
             <path class="s-trim" stroke-width="2.5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
             <path class="s-ink" style="fill: var(--floor)" stroke-width="3" stroke-linejoin="round" d="M214 410 L214.0 372.0 L186.3 372.0 L186.3 334.0 L158.6 334.0 L158.6 296.0 L130.9 296.0 L130.9 258.0 L103.1 258.0 L103.1 220.0 L75.4 220.0 L75.4 182.0 L47.7 182.0 L47.7 144.0 L20.0 144.0 L0 144 L0 410 Z"/>
@@ -732,6 +732,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <circle class="f-trunk s-ink" stroke-width="3" cx="221" cy="308" r="9"/>
           </g>
           <g class="tag"><rect x="70" y="70" width="90" height="28" rx="14"/><text x="115" y="89" text-anchor="middle">ABOUT</text></g>
+        </a>
+        <!-- FEATURED: little cubby door under the stairs -->
+        <a class="hot" href="#featured" aria-label="Cubby door under the stairs: FEATURED">
+          <g class="glow" stroke-linejoin="round">
+            <path class="f-trim s-ink" stroke-width="3" d="M106 408 V350 Q 106 330 126 330 H156 Q 176 330 176 350 V408 Z"/>
+            <path class="f-blush s-ink" stroke-width="3" d="M113 408 V352 Q 113 337 128 337 H154 Q 169 337 169 352 V408 Z"/>
+            <path class="f-hot s-ink" stroke-width="1.5" d="M141 366 l-7 -7 a4.6 4.6 0 0 1 7 -6.2 a4.6 4.6 0 0 1 7 6.2 z"/>
+            <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="121" y="374" width="40" height="26" rx="3"/>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="161" cy="384" r="4"/>
+          </g>
+          <g class="tag"><rect x="83" y="292" width="116" height="28" rx="14"/><text x="141" y="311" text-anchor="middle">FEATURED</text></g>
         </a>
         <a class="hot" href="#shop" aria-label="SHOP door">
           <g class="glow">
@@ -784,8 +795,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="570" y="168" width="150" height="28" rx="14"/><text x="645" y="187" text-anchor="middle">BARBIE LAND</text></g>
         </a>
-        <!-- framed photo (decor) -->
-        <g class="hall-photo">
+        <!-- framed photo (decor), above the doors -->
+        <g class="hall-photo" transform="translate(-431,-38)">
           <path class="s-ink" stroke-width="2" fill="none" d="M776 72 L748 100 M776 72 L804 100"/><circle class="f-marigold s-ink" stroke-width="2" cx="776" cy="70" r="5"/>
           <polygon style="fill: var(--frame-lt)" points="734,100 818,100 806,112 746,112"/><polygon style="fill: var(--frame-md)" points="818,100 818,196 806,184 806,112"/>
           <polygon style="fill: var(--frame-dk)" points="818,196 734,196 746,184 806,184"/><polygon style="fill: var(--frame)" points="734,196 734,100 746,112 746,184"/>
@@ -799,21 +810,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="1.2" d="M734 100 L746 112 M818 100 L806 112 M818 196 L806 184 M734 196 L746 184"/>
         </g>
 
-        <!-- CONTACT: little mailbox on the wall -->
-        <a class="hot" href="#contact" aria-label="Wall mailbox: CONTACT">
+        <!-- CONTACT: letters fallen on the floor -->
+        <a class="hot" href="#contact" aria-label="Letters on the floor: CONTACT">
           <g class="glow" stroke-linejoin="round">
-            <rect class="f-trim s-ink" stroke-width="2" x="752" y="244" width="22" height="16" rx="2" transform="rotate(-12 763 252)"/>
-            <rect class="f-blush s-ink" stroke-width="2" x="772" y="240" width="22" height="16" rx="2" transform="rotate(10 783 248)"/>
-            <path class="f-pink s-ink" stroke-width="3" d="M744 256 H808 V312 Q 808 318 802 318 H750 Q 744 318 744 312 Z"/>
-            <path class="f-hot s-ink" stroke-width="3" d="M740 256 H812 L806 270 H746 Z"/>
-            <path class="f-hot" d="M776 304 l-6 -6 a4 4 0 0 1 6 -5.3 a4 4 0 0 1 6 5.3 z"/>
-            <text x="776" y="288" text-anchor="middle" class="hall-mail">MAIL</text>
+            <g transform="rotate(-14 832 500)"><rect class="f-trim s-ink" stroke-width="2.5" x="800" y="484" width="64" height="38" rx="3"/><path class="s-ink" stroke-width="2" fill="none" d="M800 487 L832 506 L864 487"/><rect class="f-pink s-ink" stroke-width="1.5" x="846" y="489" width="12" height="12"/></g>
+            <g transform="rotate(10 896 510)"><rect class="f-blush s-ink" stroke-width="2.5" x="864" y="492" width="64" height="38" rx="3"/><path class="s-ink" stroke-width="2" fill="none" d="M864 495 L896 514 L928 495"/><circle class="f-hot s-ink" stroke-width="1.5" cx="896" cy="514" r="6"/><path class="f-trim" d="M896 517 l-2.6 -2.6 a1.7 1.7 0 0 1 2.6 -2.3 a1.7 1.7 0 0 1 2.6 2.3 z"/></g>
+            <g transform="rotate(-4 860 532)"><rect class="f-pink s-ink" stroke-width="2.5" x="830" y="516" width="58" height="34" rx="3"/><path class="s-ink" stroke-width="2" fill="none" d="M830 519 L859 536 L888 519"/></g>
           </g>
-          <g class="tag"><rect x="728" y="206" width="96" height="28" rx="14"/><text x="776" y="225" text-anchor="middle">CONTACT</text></g>
+          <g class="tag"><rect x="814" y="440" width="96" height="28" rx="14"/><text x="862" y="459" text-anchor="middle">CONTACT</text></g>
         </a>
 
         <!-- coat rack (decor) -->
-        <g class="coat-rack" stroke-linecap="round" stroke-linejoin="round">
+        <g class="coat-rack" transform="translate(-80,0)" stroke-linecap="round" stroke-linejoin="round">
           <path class="s-ink" stroke-width="8" fill="none" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <path stroke-width="4.5" fill="none" style="stroke: var(--trunk)" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <circle class="f-trunk s-ink" stroke-width="2.5" cx="866" cy="144" r="7"/>
@@ -824,8 +832,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-trim" stroke-width="2" d="M882 204 L893 205 M883 226 L894 227 M884 248 L895 249"/>
         </g>
 
-        <!-- mirror (decor) -->
-        <g class="mirror">
+        <!-- mirror (decor), above the doors -->
+        <g class="mirror" transform="translate(-361,-108)">
           <ellipse fill="none" class="s-ink" stroke-width="16" cx="946" cy="210" rx="34" ry="62"/>
           <ellipse fill="none" style="stroke: var(--frame)" stroke-width="11" cx="946" cy="210" rx="34" ry="62"/>
           <ellipse class="f-w1" cx="946" cy="210" rx="28" ry="56"/>
@@ -835,7 +843,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
 
         <!-- plant (decor) -->
-        <g class="plant" stroke-linejoin="round">
+        <g class="plant" stroke-linejoin="round" transform="translate(-72,0)">
           <g class="f-bush s-ink" stroke-width="2.5">
             <path d="M946 362 C 920 350, 910 322, 916 304 C 934 314, 946 336, 946 362 Z"/>
             <path d="M946 362 C 970 350, 984 326, 978 306 C 960 316, 948 336, 946 362 Z"/>
@@ -846,7 +854,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-rust s-ink" stroke-width="3" x="916" y="356" width="60" height="12" rx="3"/>
         </g>
       </svg>
-      <p class="hint hall-hint">Click a door, the stairs or the mailbox.</p>
+      <p class="hint hall-hint">Click a door, the stairs, the little cubby or the letters on the floor.</p>
     </section>
 
     <!-- SHOP -->
@@ -1100,6 +1108,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="knitTitle">KNIT, CROCHET, &amp; WEAVE</h2>
       <div class="photos" id="galKnit"></div>
     </section>
+    <section id="room-featured" class="room gal-sub featured" hidden aria-labelledby="featuredTitle">
+      <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
+      <h2 id="featuredTitle">FEATURED</h2>
+      <p class="lede featured-lede">Interviews, magazines, shows and other fun things.</p>
+      <div class="photos" id="galFeatured"></div>
+    </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
       <h2 id="sewnTitle">STITCHED</h2>
@@ -1333,7 +1347,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
 <script>
 (function () {
-  var rooms = ["outside", "foyer", "shop", "gallery", "fashion", "art", "fiber", "knit", "sewn", "quilting", "barbie", "about", "contact"];
+  var rooms = ["outside", "foyer", "shop", "gallery", "fashion", "art", "fiber", "knit", "sewn", "featured", "quilting", "barbie", "about", "contact"];
   var scene = document.getElementById("scene");
   var hint = document.getElementById("hint");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1425,6 +1439,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     galArt:     [ ],
     galFiber:   [ ],
     galKnit:    [ ],
+    galFeatured: [ /* { src: "images/featured/article.jpg", caption: "Name of the magazine or interview" }, */ ],
     galSewn:    [ ]
   };
   Object.keys(GALLERY).forEach(function (id) {
