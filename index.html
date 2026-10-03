@@ -147,6 +147,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hall-sign { font: 400 12px var(--font-display); fill: var(--hot); }
 .hall-mail { font: 800 9px var(--font-body); fill: var(--trim); letter-spacing: .12em; }
 .hall-hint { margin: 0; }
+.dog-z { font: 400 12px var(--font-display); fill: var(--ink); opacity: .7; }
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
 /* shop room: light pink wallpaper with dark orange pinstripes, gold frames with hot pink mats */
@@ -709,7 +710,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="foyerTitle">Come on in!</h2>
-      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a powder room door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
+      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a chihuahua asleep in a pink dog bed, a powder room door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
         <defs>
           <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -747,6 +748,32 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="70" y="70" width="90" height="28" rx="14"/><text x="115" y="89" text-anchor="middle">ABOUT</text></g>
         </a>
+        <!-- sleeping chihuahua in a pink dog bed (decor) -->
+        <g class="dog-bed" stroke-linejoin="round" stroke-linecap="round">
+          <ellipse class="f-ink" cx="105" cy="520" rx="74" ry="7" opacity=".18"/>
+          <ellipse class="f-pink s-ink" stroke-width="3" cx="105" cy="488" rx="72" ry="28"/>
+          <ellipse class="f-blush s-ink" stroke-width="2.5" cx="105" cy="484" rx="55" ry="17"/>
+          <!-- dog -->
+          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M150 486 C 166 482, 170 470, 160 466 C 152 464, 150 474, 140 478"/>
+          <ellipse fill="#E6B27C" class="s-ink" stroke-width="2.5" cx="114" cy="478" rx="36" ry="15"/>
+          <path fill="#F3D3AE" d="M96 484 Q 114 490 134 484 Q 120 492 100 490 Z" opacity=".9"/>
+          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M62 470 L56 444 L74 458 Z"/>
+          <path fill="#E6B27C" class="s-ink" stroke-width="2.5" d="M80 462 L92 440 L94 462 Z"/>
+          <path class="f-blush" d="M61 466 L59 452 L69 460 Z M84 460 L90 448 L91 460 Z"/>
+          <circle fill="#E6B27C" class="s-ink" stroke-width="2.5" cx="76" cy="474" r="15"/>
+          <ellipse fill="#F3D3AE" class="s-ink" stroke-width="2" cx="66" cy="480" rx="8" ry="6"/>
+          <ellipse class="f-ink" cx="61" cy="478" rx="2.6" ry="2"/>
+          <path class="s-ink" stroke-width="1.8" fill="none" d="M70 471 q4 3 8 0 M80 470 q4 3 8 0"/>
+          <path style="stroke: var(--hot)" stroke-width="3.5" fill="none" d="M86 484 Q 92 474 92 464"/>
+          <circle class="f-marigold s-ink" stroke-width="1" cx="90" cy="481" r="2.3"/>
+          <path fill="#E6B27C" class="s-ink" stroke-width="2" d="M70 488 Q 82 486 92 490 Q 82 494 70 492 Z"/>
+          <!-- front of the bed -->
+          <path class="f-pink s-ink" stroke-width="3" d="M33 490 Q 105 530 177 490 Q 178 508 105 516 Q 32 508 33 490 Z"/>
+          <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="5 5" opacity=".8" d="M44 498 Q 105 524 166 498"/>
+          <!-- Zzz -->
+          <text x="44" y="446" class="dog-z">z</text><text x="34" y="432" class="dog-z" style="font-size: 15px">z</text><text x="22" y="416" class="dog-z" style="font-size: 18px">Z</text>
+        </g>
+
         <!-- FEATURED: little cubby door under the stairs -->
         <a class="hot" href="#featured" aria-label="Cubby door under the stairs: FEATURED">
           <g class="glow" stroke-linejoin="round">
