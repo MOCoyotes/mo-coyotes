@@ -337,6 +337,28 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .tp-btn:hover { filter: brightness(1.08); } .tp-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #3B2620; }
 .tp-cancel { font: 800 .9rem var(--font-body); color: #4A6A80; background: none; border: 0; text-decoration: underline; cursor: pointer; }
 .tp-sheet.crumpling { animation: crumple2 .62s ease-in forwards; pointer-events: none; }
+/* featured: the brag shelf under the stairs */
+.brag { background: var(--wall-lt); }
+.brag-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
+.brag-hint { margin: 0; }
+.mag-title { font: 400 13px var(--font-display); fill: var(--trim); }
+.mag-title2 { font-size: 10px; fill: var(--ink); }
+.news-title { font: 400 9px var(--font-display); fill: var(--ink); }
+.feat-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
+.feat-dialog::backdrop { background: rgba(40, 12, 20, .6); }
+.feat-card { position: relative; box-sizing: border-box; width: min(440px, 88vw); padding: 34px 26px 26px; color: #3B2620;
+  background: #FFFDF4; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 6px 8px 0 rgba(0,0,0,.25); transform: rotate(-1deg); }
+.feat-card::before { content: ""; position: absolute; top: -14px; left: 50%; width: 120px; height: 26px; transform: translateX(-50%) rotate(-3deg);
+  background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border-radius: 2px; }
+.feat-card h3 { margin: 0 0 14px; text-align: center; font: 400 1.7rem/1.1 var(--font-display); color: #3B2620; }
+.feat-list { display: grid; gap: 12px; }
+.feat-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 10px 12px; text-decoration: none; color: #3B2620;
+  background: #FDE6EC; border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+.feat-item:hover, .feat-item:focus-visible { background: #FBD3DC; }
+.feat-item img { width: 64px; height: 64px; object-fit: cover; border: 2px solid var(--ink); border-radius: 6px; }
+.feat-item b { display: block; font: 800 1rem/1.25 var(--font-body); }
+.feat-item small { font: 700 .82rem var(--font-body); color: #8A5A45; }
+.feat-empty { margin: 0; text-align: center; font: 400 1.25rem/1.4 var(--font-crayon); color: #8A5A45; }
 /* the fireplace: hover glows, click opens a scorched note that burns */
 .hot-fire { cursor: pointer; outline: none; }
 .hot-fire .flames { transform-box: fill-box; transform-origin: 50% 100%; transition: filter .2s; }
@@ -1552,11 +1574,172 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="knitTitle">KNIT, CROCHET, &amp; WEAVE</h2>
       <div class="photos" id="galKnit"></div>
     </section>
-    <section id="room-featured" class="room gal-sub featured" hidden aria-labelledby="featuredTitle">
+    <section id="room-featured" class="room featured brag" hidden aria-labelledby="featuredTitle">
       <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
       <h2 id="featuredTitle">FEATURED</h2>
       <p class="lede featured-lede">Interviews, magazines, shows and other fun things.</p>
-      <div class="photos" id="galFeatured"></div>
+      <svg class="brag-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy nook under the stairs with a wooden brag shelf: a trophy and a prize ribbon, a framed certificate, a little TV, magazines, a vintage microphone, a newspaper and polaroid photos">
+        <defs>
+          <pattern id="bragDots" width="40" height="40" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall-lt)" width="40" height="40"/><circle class="f-pink" opacity=".6" cx="10" cy="10" r="2.8"/><circle class="f-marigold" opacity=".55" cx="30" cy="30" r="2.8"/></pattern>
+          <pattern id="bragPlanks" width="200" height="30" patternUnits="userSpaceOnUse"><rect style="fill: var(--floor)" width="200" height="30"/><path fill="none" class="s-ink" stroke-width="2" opacity=".55" d="M0 0 H200 M70 0 V30 M170 0 V30"/></pattern>
+          <linearGradient id="bragGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7DE8E"/><stop offset=".5" stop-color="#E0AE3E"/><stop offset="1" stop-color="#B8862C"/></linearGradient>
+        </defs>
+        <rect width="1000" height="470" fill="url(#bragDots)"/>
+        <!-- underside of the stairs -->
+        <polygon style="fill: var(--trunk)" points="0,0 1000,0 1000,28 0,196"/>
+        <path class="s-ink" stroke-width="1.5" opacity=".35" fill="none" d="M0 60 L1000 -108 M0 110 L1000 -58 M0 160 L1000 -8"/>
+        <path class="s-ink" stroke-width="4" d="M0 196 L1000 28"/>
+        <path class="s-ink" stroke-width="2" fill="none" d="M20 207 Q 50 211 80 197 Q 110 201 140 186 Q 170 190 200 176 Q 230 180 260 166 Q 290 170 320 156 Q 350 160 380 146 Q 410 150 440 136 Q 470 140 500 126 Q 530 130 560 116 Q 590 120 620 106 Q 650 110 680 96 Q 710 100 740 86 Q 770 90 800 76 Q 830 80 860 66 Q 890 69 920 55 Q 950 59 980 45"/>
+        <g><rect class="f-ink" x="47.5" y="209.6" width="5" height="5" rx="1"/><ellipse style="fill: var(--hot)" class="s-ink" stroke-width="1.5" cx="50.0" cy="219.6" rx="5" ry="7"/><rect class="f-ink" x="107.5" y="199.5" width="5" height="5" rx="1"/><ellipse style="fill: var(--marigold)" class="s-ink" stroke-width="1.5" cx="110.0" cy="209.5" rx="5" ry="7"/><rect class="f-ink" x="167.5" y="189.4" width="5" height="5" rx="1"/><ellipse style="fill: var(--pink)" class="s-ink" stroke-width="1.5" cx="170.0" cy="199.4" rx="5" ry="7"/><rect class="f-ink" x="227.5" y="179.4" width="5" height="5" rx="1"/><ellipse style="fill: var(--orange)" class="s-ink" stroke-width="1.5" cx="230.0" cy="189.4" rx="5" ry="7"/><rect class="f-ink" x="287.5" y="169.3" width="5" height="5" rx="1"/><ellipse style="fill: var(--blush)" class="s-ink" stroke-width="1.5" cx="290.0" cy="179.3" rx="5" ry="7"/><rect class="f-ink" x="347.5" y="159.2" width="5" height="5" rx="1"/><ellipse style="fill: var(--hot)" class="s-ink" stroke-width="1.5" cx="350.0" cy="169.2" rx="5" ry="7"/><rect class="f-ink" x="407.5" y="149.1" width="5" height="5" rx="1"/><ellipse style="fill: var(--marigold)" class="s-ink" stroke-width="1.5" cx="410.0" cy="159.1" rx="5" ry="7"/><rect class="f-ink" x="467.5" y="139.0" width="5" height="5" rx="1"/><ellipse style="fill: var(--pink)" class="s-ink" stroke-width="1.5" cx="470.0" cy="149.0" rx="5" ry="7"/><rect class="f-ink" x="527.5" y="129.0" width="5" height="5" rx="1"/><ellipse style="fill: var(--orange)" class="s-ink" stroke-width="1.5" cx="530.0" cy="139.0" rx="5" ry="7"/><rect class="f-ink" x="587.5" y="118.9" width="5" height="5" rx="1"/><ellipse style="fill: var(--blush)" class="s-ink" stroke-width="1.5" cx="590.0" cy="128.9" rx="5" ry="7"/><rect class="f-ink" x="647.5" y="108.8" width="5" height="5" rx="1"/><ellipse style="fill: var(--hot)" class="s-ink" stroke-width="1.5" cx="650.0" cy="118.8" rx="5" ry="7"/><rect class="f-ink" x="707.5" y="98.7" width="5" height="5" rx="1"/><ellipse style="fill: var(--marigold)" class="s-ink" stroke-width="1.5" cx="710.0" cy="108.7" rx="5" ry="7"/><rect class="f-ink" x="767.5" y="88.6" width="5" height="5" rx="1"/><ellipse style="fill: var(--pink)" class="s-ink" stroke-width="1.5" cx="770.0" cy="98.6" rx="5" ry="7"/><rect class="f-ink" x="827.5" y="78.6" width="5" height="5" rx="1"/><ellipse style="fill: var(--orange)" class="s-ink" stroke-width="1.5" cx="830.0" cy="88.6" rx="5" ry="7"/><rect class="f-ink" x="887.5" y="68.5" width="5" height="5" rx="1"/><ellipse style="fill: var(--blush)" class="s-ink" stroke-width="1.5" cx="890.0" cy="78.5" rx="5" ry="7"/><rect class="f-ink" x="947.5" y="58.4" width="5" height="5" rx="1"/><ellipse style="fill: var(--hot)" class="s-ink" stroke-width="1.5" cx="950.0" cy="68.4" rx="5" ry="7"/></g>
+        <!-- floor -->
+        <rect y="456" width="1000" height="16" class="f-trim"/><path class="s-ink" stroke-width="3" d="M0 456 H1000"/>
+        <rect y="470" width="1000" height="90" fill="url(#bragPlanks)"/><path class="s-ink" stroke-width="4" d="M0 470 H1000"/>
+        <ellipse class="f-hot" opacity=".85" cx="500" cy="515" rx="300" ry="30"/><ellipse fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="7 7" cx="500" cy="515" rx="280" ry="22"/>
+
+        <!-- the brag shelf -->
+        <g class="brag-shelf" stroke-linejoin="round">
+          <rect fill="#8E5530" class="s-ink" stroke-width="3" x="262" y="184" width="476" height="276"/>
+          <path fill="none" stroke="#7A4526" stroke-width="2" d="M340 186 V458 M420 186 V458 M500 186 V458 M580 186 V458 M660 186 V458"/>
+          <rect fill="#B5703D" class="s-ink" stroke-width="3" x="250" y="178" width="16" height="294" rx="2"/>
+          <rect fill="#B5703D" class="s-ink" stroke-width="3" x="734" y="178" width="16" height="294" rx="2"/>
+          <rect fill="#C98B52" class="s-ink" stroke-width="3" x="242" y="168" width="516" height="16" rx="3"/>
+          <rect fill="#C98B52" class="s-ink" stroke-width="3" x="262" y="268" width="476" height="12"/>
+          <rect fill="#C98B52" class="s-ink" stroke-width="3" x="262" y="364" width="476" height="12"/>
+          <rect fill="#C98B52" class="s-ink" stroke-width="3" x="244" y="456" width="512" height="16" rx="3"/>
+        </g>
+
+        <!-- AWARDS: trophy + prize ribbon -->
+        <a class="hot hot-feat" href="#feat-awards" data-feat="awards" role="button" aria-label="Trophy and ribbon: awards">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <path class="s-ink" stroke-width="7" fill="none" d="M306 204 Q 290 206 294 220 Q 298 230 310 228 M354 204 Q 370 206 366 220 Q 362 230 350 228"/>
+            <path style="stroke: #E0AE3E" stroke-width="3.5" fill="none" d="M306 204 Q 290 206 294 220 Q 298 230 310 228 M354 204 Q 370 206 366 220 Q 362 230 350 228"/>
+            <path fill="url(#bragGold)" class="s-ink" stroke-width="3" d="M304 194 H356 Q 356 234 330 240 Q 304 234 304 194 Z"/>
+            <path fill="url(#bragGold)" class="s-ink" stroke-width="2.5" d="M324 240 H336 L 338 252 H322 Z"/>
+            <rect fill="#5A3420" class="s-ink" stroke-width="2.5" x="308" y="252" width="44" height="16" rx="2"/>
+            <rect fill="url(#bragGold)" x="318" y="256" width="24" height="7" rx="1"/>
+            <path class="f-trim" d="M330 204 l3 6 l6.5 .8 l-4.8 4.4 l1.3 6.4 l-6 -3.2 l-6 3.2 l1.3 -6.4 l-4.8 -4.4 l6.5 -.8 z"/>
+            <path class="f-trim" opacity=".5" d="M310 198 H316 Q 316 222 326 232 Q 312 226 310 198 Z"/>
+            <!-- rosette hanging off the shelf -->
+            <path class="f-hot s-ink" stroke-width="2" d="M384 274 L 378 310 L 386 304 L 390 312 L 394 276 Z M396 276 L 400 312 L 405 304 L 412 310 L 404 274 Z"/>
+            <g class="f-hot s-ink" stroke-width="1.6">
+              <circle cx="394" cy="254" r="5"/><circle cx="403" cy="257" r="5"/><circle cx="406" cy="266" r="5"/><circle cx="403" cy="275" r="5"/><circle cx="394" cy="278" r="5"/><circle cx="385" cy="275" r="5"/><circle cx="382" cy="266" r="5"/><circle cx="385" cy="257" r="5"/>
+            </g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="394" cy="266" r="8"/>
+            <path class="f-trim" d="M394 261 l1.5 3 l3.2 .4 l-2.4 2.2 l.6 3.2 l-2.9 -1.6 l-2.9 1.6 l.6 -3.2 l-2.4 -2.2 l3.2 -.4 z"/>
+          </g>
+          <g class="tag"><rect x="280" y="128" width="100" height="28" rx="14"/><text x="330" y="147" text-anchor="middle">AWARDS</text></g>
+        </a>
+
+        <!-- ACCOMPLISHMENTS: framed certificate -->
+        <a class="hot hot-feat" href="#feat-accomplishments" data-feat="accomplishments" role="button" aria-label="Framed certificate: accomplishments">
+          <g class="glow" stroke-linejoin="round" transform="rotate(-3 490 232)">
+            <rect fill="url(#bragGold)" class="s-ink" stroke-width="3" x="438" y="196" width="104" height="72" rx="3"/>
+            <rect fill="#FFFDF4" class="s-ink" stroke-width="2" x="447" y="205" width="86" height="54"/>
+            <rect fill="none" style="stroke: var(--marigold)" stroke-width="1.5" x="451" y="209" width="78" height="46"/>
+            <path class="s-ink" stroke-width="2" stroke-linecap="round" d="M466 219 H514"/>
+            <path class="s-ink" stroke-width="1.2" stroke-linecap="round" opacity=".55" d="M460 229 H520 M464 236 H516 M470 243 H500"/>
+            <path class="f-hot" d="M512 246 l -4 12 l 4 -3 l 3 4 l 1 -12 z M520 246 l 4 12 l -4 -3 l -3 4 l -1 -12 z"/>
+            <circle class="f-marigold s-ink" stroke-width="1.5" cx="516" cy="244" r="6"/>
+          </g>
+          <g class="tag"><rect x="395" y="128" width="190" height="28" rx="14"/><text x="490" y="147" text-anchor="middle">ACCOMPLISHMENTS</text></g>
+        </a>
+
+        <!-- SHOWS: a little retro TV -->
+        <a class="hot hot-feat" href="#feat-shows" data-feat="shows" role="button" aria-label="Little TV: shows">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <path class="s-ink" stroke-width="2.5" fill="none" d="M650 204 L 638 186 M666 204 L 680 184"/>
+            <g class="f-marigold s-ink" stroke-width="1.5"><circle cx="638" cy="185" r="3"/><circle cx="680" cy="183" r="3"/></g>
+            <rect class="f-pink s-ink" stroke-width="3" x="612" y="204" width="98" height="64" rx="12"/>
+            <rect style="fill: var(--glass)" class="s-ink" stroke-width="2.5" x="622" y="213" width="58" height="46" rx="9"/>
+            <path class="f-trim" opacity=".7" d="M628 220 q 6 -4 14 -2 l -12 12 q -3 -4 -2 -10 z"/>
+            <path class="f-hot" d="M651 240 l -7 -7 a4.4 4.4 0 0 1 7 -5.6 a4.4 4.4 0 0 1 7 5.6 z"/>
+            <g class="f-marigold s-ink" stroke-width="1.5"><circle cx="695" cy="222" r="5"/><circle cx="695" cy="239" r="5"/></g>
+            <path class="s-ink" stroke-width="1.2" d="M689 250 H701 M689 254 H701"/>
+            <path class="s-ink" stroke-width="3" d="M626 268 l -4 0 M698 268 l 4 0"/>
+          </g>
+          <g class="tag"><rect x="621" y="128" width="80" height="28" rx="14"/><text x="661" y="147" text-anchor="middle">SHOWS</text></g>
+        </a>
+
+        <!-- MAGAZINES: a stack + covers standing up -->
+        <a class="hot hot-feat" href="#feat-magazines" data-feat="magazines" role="button" aria-label="Magazines">
+          <g class="glow" stroke-linejoin="round">
+            <rect class="f-orange s-ink" stroke-width="2" x="278" y="354" width="96" height="10" rx="1"/>
+            <rect class="f-blush s-ink" stroke-width="2" x="282" y="345" width="92" height="9" rx="1"/>
+            <rect class="f-marigold s-ink" stroke-width="2" x="276" y="336" width="94" height="9" rx="1"/>
+            <rect class="f-pink s-ink" stroke-width="2" x="284" y="327" width="88" height="9" rx="1"/>
+            <g transform="rotate(-8 412 364)">
+              <rect class="f-hot s-ink" stroke-width="2.5" x="386" y="288" width="54" height="76" rx="2"/>
+              <text x="413" y="304" text-anchor="middle" class="mag-title">MAG</text>
+              <circle class="f-blush s-ink" stroke-width="1.5" cx="413" cy="330" r="12"/>
+              <path class="f-marigold s-ink" stroke-width="1.5" d="M401 330 q 12 -20 24 0 q -4 -8 -12 -8 q -8 0 -12 8 z"/>
+              <path class="s-trim" stroke-width="2" stroke-linecap="round" d="M394 350 H432 M394 356 H420"/>
+            </g>
+            <g transform="rotate(5 470 364)">
+              <rect class="f-marigold s-ink" stroke-width="2.5" x="444" y="290" width="54" height="74" rx="2"/>
+              <text x="471" y="306" text-anchor="middle" class="mag-title mag-title2">STYLE</text>
+              <path class="f-hot s-ink" stroke-width="1.5" d="M460 352 L 466 318 Q 471 312 476 318 L 482 352 Z"/>
+              <circle class="f-blush s-ink" stroke-width="1.5" cx="471" cy="316" r="6"/>
+            </g>
+          </g>
+          <g class="tag"><rect x="356" y="290" width="124" height="28" rx="14"/><text x="418" y="309" text-anchor="middle">MAGAZINES</text></g>
+        </a>
+
+        <!-- INTERVIEWS: vintage microphone -->
+        <a class="hot hot-feat" href="#feat-interviews" data-feat="interviews" role="button" aria-label="Vintage microphone: interviews">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <ellipse fill="#5A3420" class="s-ink" stroke-width="2.5" cx="572" cy="360" rx="26" ry="6"/>
+            <path class="s-ink" stroke-width="6" d="M572 356 V328"/><path stroke="#D9D2DA" stroke-width="3" d="M572 356 V328"/>
+            <path class="s-ink" stroke-width="6" fill="none" d="M554 316 Q 554 332 572 332 Q 590 332 590 316"/><path stroke="#D9D2DA" stroke-width="3" fill="none" d="M554 316 Q 554 332 572 332 Q 590 332 590 316"/>
+            <rect fill="#D9D2DA" class="s-ink" stroke-width="3" x="558" y="286" width="28" height="40" rx="14"/>
+            <path class="s-ink" stroke-width="1.2" opacity=".6" d="M562 296 H582 M560 303 H584 M560 310 H584 M562 317 H582 M572 289 V323 M566 290 V322 M578 290 V322"/>
+            <rect class="f-hot s-ink" stroke-width="2" x="556" y="302" width="32" height="8" rx="2"/>
+          </g>
+          <g class="tag"><rect x="508" y="254" width="128" height="28" rx="14"/><text x="572" y="273" text-anchor="middle">INTERVIEWS</text></g>
+        </a>
+
+        <!-- books (decor) -->
+        <g class="books" stroke-linejoin="round">
+          <rect class="f-hot s-ink" stroke-width="2" x="640" y="300" width="16" height="64" rx="1"/>
+          <rect class="f-marigold s-ink" stroke-width="2" x="656" y="294" width="14" height="70" rx="1"/>
+          <rect class="f-orange s-ink" stroke-width="2" x="670" y="306" width="18" height="58" rx="1"/>
+          <rect class="f-pink s-ink" stroke-width="2" transform="rotate(14 708 364)" x="688" y="300" width="15" height="64" rx="1"/>
+          <path class="s-trim" stroke-width="2" d="M640 312 H656 M656 306 H670 M670 318 H688"/>
+        </g>
+
+        <!-- IN THE NEWS: folded newspaper -->
+        <a class="hot hot-feat" href="#feat-news" data-feat="news" role="button" aria-label="Newspaper: in the news">
+          <g class="glow" stroke-linejoin="round" transform="rotate(-5 340 420)">
+            <rect fill="#F4EEE0" class="s-ink" stroke-width="2.5" x="282" y="388" width="116" height="66" rx="2"/>
+            <path fill="#E2D9C6" d="M340 388 H398 V454 H340 Z"/>
+            <path class="s-ink" stroke-width="1.5" d="M340 388 V454"/>
+            <text x="311" y="402" text-anchor="middle" class="news-title">THE NEWS</text>
+            <path class="s-ink" stroke-width="2" d="M288 406 H334"/>
+            <rect class="f-pink s-ink" stroke-width="1.2" x="288" y="410" width="22" height="18"/>
+            <path class="s-ink" stroke-width="1" opacity=".5" d="M314 412 H334 M314 417 H334 M314 422 H334 M314 427 H330 M288 434 H334 M288 439 H334 M288 444 H322 M346 396 H392 M346 401 H392 M346 406 H392 M346 411 H380 M346 420 H392 M346 425 H392 M346 430 H392 M346 435 H386 M346 444 H392"/>
+          </g>
+          <g class="tag"><rect x="276" y="388" width="130" height="28" rx="14"/><text x="341" y="407" text-anchor="middle">IN THE NEWS</text></g>
+        </a>
+
+        <!-- FUN STUFF: polaroids leaning on the back -->
+        <a class="hot hot-feat" href="#feat-fun" data-feat="fun" role="button" aria-label="Polaroid photos: fun stuff">
+          <g class="glow" stroke-linejoin="round">
+            <g transform="rotate(-8 460 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="432" y="390" width="54" height="64" rx="2"/><rect style="fill: var(--glass)" x="438" y="396" width="42" height="42"/><circle class="f-sun" cx="470" cy="406" r="5"/><path class="f-hot" d="M438 438 V426 Q 450 414 462 426 Q 470 420 480 428 V438 Z"/><rect fill="none" class="s-ink" stroke-width="1.2" x="438" y="396" width="42" height="42"/></g>
+            <g transform="rotate(7 520 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="494" y="388" width="54" height="66" rx="2"/><rect class="f-blush" x="500" y="394" width="42" height="42"/><path class="f-hot" d="M521 426 l -10 -10 a6 6 0 0 1 10 -8 a6 6 0 0 1 10 8 z"/><rect fill="none" class="s-ink" stroke-width="1.2" x="500" y="394" width="42" height="42"/></g>
+          </g>
+          <g class="tag"><rect x="440" y="380" width="120" height="28" rx="14"/><text x="500" y="399" text-anchor="middle">FUN STUFF</text></g>
+        </a>
+
+        <!-- little plant + candle jar (decor) -->
+        <g class="shelf-decor" stroke-linejoin="round">
+          <path class="f-orange s-ink" stroke-width="2.5" d="M612 424 H648 L 643 456 H617 Z"/>
+          <g style="fill: var(--grass)" class="s-ink" stroke-width="1.5"><path d="M630 424 q -18 -10 -16 -30 q 14 8 16 30 z"/><path d="M630 424 q 2 -26 14 -36 q 6 20 -14 36 z"/><path d="M630 424 q -2 -22 -6 -32 q 12 10 6 32 z"/></g>
+          <rect class="f-orange s-ink" stroke-width="2.5" x="608" y="420" width="44" height="7" rx="2"/>
+          <rect class="f-pink s-ink" stroke-width="2.5" x="672" y="414" width="34" height="42" rx="5"/>
+          <rect class="f-trim s-ink" stroke-width="1.5" x="678" y="428" width="22" height="14" rx="2"/>
+          <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
+        </g>
+      </svg>
+      <p class="hint brag-hint">Click the trophy, the certificate, the TV, the magazines, the microphone, the newspaper or the photos.</p>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
@@ -1745,6 +1928,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   </form>
 </dialog>
 
+<dialog class="feat-dialog" id="featDialog" aria-labelledby="featTitle">
+  <div class="feat-card">
+    <button class="lb-close" type="button" id="featClose" aria-label="Close">×</button>
+    <h3 id="featTitle"></h3>
+    <div class="feat-list" id="featList"></div>
+  </div>
+</dialog>
+
 <dialog class="burn-dialog" id="burnDialog" aria-labelledby="burnTitle">
   <svg class="paper-ball" id="paperBall" viewBox="0 0 80 80" hidden aria-hidden="true">
     <path fill="#F1E2BE" stroke="#5A1F0E" stroke-width="2.5" stroke-linejoin="round" d="M40 6 L52 10 L60 8 L66 18 L74 24 L72 36 L76 46 L68 54 L70 64 L58 68 L50 75 L40 70 L30 76 L22 68 L10 66 L12 54 L4 46 L10 36 L6 26 L16 18 L22 8 L32 11 Z"/>
@@ -1917,7 +2108,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     galArt:     [ ],
     galFiber:   [ ],
     galKnit:    [ ],
-    galFeatured: [ /* { src: "images/featured/article.jpg", caption: "Name of the magazine or interview" }, */ ],
     galSewn:    [ ]
   };
   Object.keys(GALLERY).forEach(function (id) {
@@ -2274,6 +2464,41 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       toss.onfinish = function () { toss.cancel(); closeTp(); };
     }, 560);
   });
+
+  // featured: each thing on the brag shelf opens its own list. Add entries like
+  // { title: "Name of the feature", source: "Who / where", date: "2026", link: "https://...", img: "images/featured/photo.jpg" }
+  var FEATURES = {
+    awards:          { title: "Awards", empty: "Ribbons and prizes coming soon!", items: [ ] },
+    accomplishments: { title: "Accomplishments", empty: "Big moments coming soon!", items: [ ] },
+    shows:           { title: "Shows", empty: "TV and show appearances coming soon!", items: [ ] },
+    magazines:       { title: "Magazines", empty: "Magazine features coming soon!", items: [ ] },
+    interviews:      { title: "Interviews", empty: "Interviews and podcasts coming soon!", items: [ ] },
+    news:            { title: "In the News", empty: "News stories coming soon!", items: [ ] },
+    fun:             { title: "Fun Stuff", empty: "More fun things coming soon!", items: [ ] }
+  };
+  var featDialog = document.getElementById("featDialog"), featList = document.getElementById("featList");
+  function openFeat(key) {
+    var set = FEATURES[key]; if (!set) return;
+    document.getElementById("featTitle").textContent = set.title;
+    featList.textContent = "";
+    if (!set.items.length) {
+      var p = document.createElement("p"); p.className = "feat-empty"; p.textContent = set.empty; featList.appendChild(p);
+    }
+    set.items.forEach(function (it) {
+      var a = document.createElement(it.link ? "a" : "div"); a.className = "feat-item";
+      if (it.link) { a.href = it.link; a.target = "_blank"; a.rel = "noopener"; }
+      if (it.img) { var im = document.createElement("img"); im.src = it.img; im.alt = ""; a.appendChild(im); } else { a.style.gridTemplateColumns = "1fr"; }
+      var t = document.createElement("span"), b = document.createElement("b"), sm = document.createElement("small");
+      b.textContent = it.title || ""; sm.textContent = [it.source, it.date].filter(Boolean).join(" · ");
+      t.appendChild(b); if (sm.textContent) t.appendChild(sm); a.appendChild(t); featList.appendChild(a);
+    });
+    if (featDialog.showModal) featDialog.showModal(); else featDialog.setAttribute("open", "");
+  }
+  document.querySelectorAll(".hot-feat").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); openFeat(a.dataset.feat); });
+  });
+  document.getElementById("featClose").addEventListener("click", function () { featDialog.close(); });
+  featDialog.addEventListener("click", function (e) { if (e.target === featDialog) featDialog.close(); });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
