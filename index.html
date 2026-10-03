@@ -149,6 +149,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .door-b-under { stroke: var(--ink); stroke-width: 10px; fill: var(--ink); }
 .hall-mail { font: 800 9px var(--font-body); fill: var(--trim); letter-spacing: .12em; }
 .hall-hint { margin: 0; }
+/* front hall on phones: just the doors, stacked on the wallpaper */
+.hall-mobile { display: none; }
+@media (max-width: 600px) {
+  .foyer .hall-scene, .foyer .hall-hint { display: none; }
+  .hall-mobile { display: grid; justify-items: center; gap: 22px; padding: 26px 16px 34px; border: 3px solid var(--ink); border-radius: 14px;
+    background: repeating-linear-gradient(90deg, var(--wall1) 0 34px, var(--wall2) 34px 68px); box-shadow: inset 0 -16px 0 var(--floor), inset 0 -19px 0 var(--ink); }
+  .hall-mobile a { display: grid; justify-items: center; gap: 8px; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+  .hall-mobile svg { display: block; width: 150px; height: auto; overflow: visible; }
+  .hall-mobile .m-cubby svg { width: 92px; }
+  .hall-mobile .m-label { background: var(--ink); color: var(--bg); font: 800 15px var(--font-body); letter-spacing: .04em; padding: 4px 16px; border-radius: 99px; }
+  .hall-mobile a:active .glow, .hall-mobile a:focus-visible .glow { filter: drop-shadow(0 0 6px var(--hot)) drop-shadow(0 0 2px var(--trim)); }
+}
 .dog-z { font: 400 12px var(--font-display); fill: var(--hot); }
 .plaque { font-family: var(--font-display); font-size: 1.15rem; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: .2em .7em; box-shadow: 2px 2px 0 var(--ink); }
 
@@ -955,6 +967,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-rust s-ink" stroke-width="3" x="916" y="356" width="60" height="12" rx="3"/>
         </g>
       </svg>
+      <nav class="hall-mobile" id="hallMobile" aria-label="Front hall doors"></nav>
       <p class="hint hall-hint">Click a door, the stairs, the little cubby, the mirror or the letters on the floor.</p>
     </section>
 
@@ -1696,6 +1709,34 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   document.getElementById("bigMirror").addEventListener("click", function () { mirrorDialog.close(); });
   document.getElementById("mirrorClose").addEventListener("click", function () { mirrorDialog.close(); });
   mirrorDialog.addEventListener("click", function (e) { if (e.target === mirrorDialog) mirrorDialog.close(); });
+
+  // front hall on phones: copy each door out of the scene into its own little picture, stacked
+  (function () {
+    var box = document.getElementById("hallMobile"), scene = document.querySelector("#room-foyer .hall-scene");
+    var grad = scene.querySelector("#bubbleGrad");
+    [["#shop", "SHOP", "222 196 126 220"], ["#gallery", "GALLERY", "342 196 126 220"], ["#quilting", "QUILTING", "462 196 126 220"],
+     ["#barbie", "BARBIE LAND", "582 196 126 220"], ["#bath", "POWDER ROOM", "702 196 126 220"], ["#featured", "FEATURED", "28 300 68 114"]
+    ].forEach(function (d) {
+      var src = scene.querySelector('a.hot[href="' + d[0] + '"] .glow'); if (!src) return;
+      var g = src.cloneNode(true);
+      g.querySelectorAll("[id]").forEach(function (el) {
+        var old = el.id; el.id = old + "-m";
+        g.querySelectorAll('[clip-path="url(#' + old + ')"]').forEach(function (u) { u.setAttribute("clip-path", "url(#" + old + "-m)"); });
+      });
+      var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
+      svg.setAttribute("viewBox", d[2]); svg.setAttribute("aria-hidden", "true");
+      if (g.querySelector('[fill="url(#bubbleGrad)"]') && grad) {
+        var gr = grad.cloneNode(true); gr.id = "bubbleGrad-m";
+        g.querySelectorAll('[fill="url(#bubbleGrad)"]').forEach(function (u) { u.setAttribute("fill", "url(#bubbleGrad-m)"); });
+        var defs = document.createElementNS(NS, "defs"); defs.appendChild(gr); svg.appendChild(defs);
+      }
+      svg.appendChild(g);
+      var a = document.createElement("a"); a.href = d[0]; a.setAttribute("aria-label", d[1] + " door");
+      if (d[0] === "#featured") a.className = "m-cubby";
+      var label = document.createElement("span"); label.className = "m-label"; label.textContent = d[1];
+      a.appendChild(svg); a.appendChild(label); box.appendChild(a);
+    });
+  })();
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
