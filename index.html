@@ -139,6 +139,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .room-nav { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* foyer: front hall scene */
+.bathroom { background: var(--wall-lt); }
+.bath-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
 .foyer { background: var(--wall-lt); }
 .foyer h2 { color: var(--ink); }
 .hall-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
@@ -695,7 +697,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-foyer" class="room foyer" hidden aria-labelledby="foyerTitle">
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a></div>
       <h2 id="foyerTitle">Come on in!</h2>
-      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
+      <svg class="hall-scene" viewBox="0 0 1000 560" role="img" aria-label="The front hall: a staircase up to the attic, doors to the shop, gallery, quilting room and Barbie Land, a cubby under the stairs, a bathroom door, letters on the floor, a framed photo, a mirror, a coat rack and a plant">
         <defs>
           <pattern id="hallStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="hallPlanks" width="200" height="50" patternUnits="userSpaceOnUse">
@@ -726,8 +728,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="s-ink" stroke-width="5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
             <path class="s-trim" stroke-width="2.5" fill="none" d="M200.1 372.0 V298.6 M172.4 334.0 V269.0 M144.7 296.0 V239.3 M117.0 258.0 V209.6 M89.3 220.0 V180.0 M61.6 182.0 V150.3 M33.9 144.0 V120.7 "/>
             <path class="s-ink" style="fill: var(--floor)" stroke-width="3" stroke-linejoin="round" d="M214 410 L214.0 372.0 L186.3 372.0 L186.3 334.0 L158.6 334.0 L158.6 296.0 L130.9 296.0 L130.9 258.0 L103.1 258.0 L103.1 220.0 L75.4 220.0 L75.4 182.0 L47.7 182.0 L47.7 144.0 L20.0 144.0 L0 144 L0 410 Z"/>
-            <path style="stroke: var(--hot)" stroke-width="6" fill="none" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M20.0 144.0 H50.7 "/>
-            <path class="s-ink" stroke-width="1.5" fill="none" opacity=".5" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M20.0 144.0 H50.7 "/>
+            <path style="stroke: var(--hot)" stroke-width="6" fill="none" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M0 144.0 H50.7 "/>
+            <path class="s-ink" stroke-width="1.5" fill="none" opacity=".5" d="M186.3 372.0 H217.0 M158.6 334.0 H189.3 M130.9 296.0 H161.6 M103.1 258.0 H133.9 M75.4 220.0 H106.1 M47.7 182.0 H78.4 M0 144.0 H50.7 "/>
             <rect class="f-trunk s-ink" stroke-width="3" x="212" y="314" width="18" height="96" rx="2"/>
             <circle class="f-trunk s-ink" stroke-width="3" cx="221" cy="308" r="9"/>
           </g>
@@ -736,13 +738,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- FEATURED: little cubby door under the stairs -->
         <a class="hot" href="#featured" aria-label="Cubby door under the stairs: FEATURED">
           <g class="glow" stroke-linejoin="round">
-            <path class="f-trim s-ink" stroke-width="3" d="M106 408 V350 Q 106 330 126 330 H156 Q 176 330 176 350 V408 Z"/>
-            <path class="f-blush s-ink" stroke-width="3" d="M113 408 V352 Q 113 337 128 337 H154 Q 169 337 169 352 V408 Z"/>
-            <path class="f-hot s-ink" stroke-width="1.5" d="M141 366 l-7 -7 a4.6 4.6 0 0 1 7 -6.2 a4.6 4.6 0 0 1 7 6.2 z"/>
-            <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="121" y="374" width="40" height="26" rx="3"/>
-            <circle class="f-marigold s-ink" stroke-width="2" cx="161" cy="384" r="4"/>
+            <path class="f-trim s-ink" stroke-width="3" d="M34 408 V334 a28 28 0 0 1 56 0 V408 Z"/>
+            <path class="s-ink" stroke-width="3" style="fill: var(--floor)" d="M39 408 V334 a23 23 0 0 1 46 0 V408 Z"/>
+            <path class="f-ink" opacity=".18" d="M39 408 V334 a23 23 0 0 1 46 0 V408 Z"/>
+            <g stroke="#5A1F0E" stroke-width="1.6" stroke-linejoin="round">
+              <path class="f-hot" d="M50 344 V336 a12 12 0 0 1 12 -12 V344 Z"/>
+              <path class="f-marigold" d="M62 324 a12 12 0 0 1 12 12 V344 H62 Z"/>
+              <path class="f-blush" d="M50 344 H62 V358 H50 Z"/>
+              <path class="f-orange" d="M62 344 H74 V358 H62 Z"/>
+            </g>
+            <path fill="none" class="s-ink" stroke-width="2.5" d="M50 358 V336 a12 12 0 0 1 24 0 V358 Z"/>
+            <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="46" y="370" width="32" height="30" rx="3"/>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="78" cy="384" r="3.5"/>
           </g>
-          <g class="tag"><rect x="83" y="292" width="116" height="28" rx="14"/><text x="141" y="311" text-anchor="middle">FEATURED</text></g>
+          <g class="tag"><rect x="4" y="282" width="116" height="28" rx="14"/><text x="62" y="301" text-anchor="middle">FEATURED</text></g>
         </a>
         <a class="hot" href="#shop" aria-label="SHOP door">
           <g class="glow">
@@ -795,6 +804,21 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="570" y="168" width="150" height="28" rx="14"/><text x="645" y="187" text-anchor="middle">BARBIE LAND</text></g>
         </a>
+        <a class="hot" href="#bath" aria-label="BATHROOM door">
+          <g class="glow">
+            <path class="f-trim s-ink" stroke-width="3" d="M711 410 V255 a54 54 0 0 1 108 0 V410 Z"/>
+            <path class="f-pink s-ink" stroke-width="3" d="M720 410 V255 a45 45 0 0 1 90 0 V410 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2" opacity=".35"><rect x="734" y="300" width="62" height="40" rx="4"/><rect x="734" y="350" width="62" height="50" rx="4"/></g>
+            <circle class="f-marigold s-ink" stroke-width="2" cx="796" cy="338" r="5"/>
+            <rect class="f-trim s-ink" stroke-width="2.5" x="708" y="405" width="114" height="7" rx="2"/>
+            <circle class="f-ink" cx="765" cy="238" r="2.5"/>
+            <path class="s-ink" stroke-width="1.5" fill="none" d="M765 238 L746 262 M765 238 L784 262"/>
+            <rect class="f-trim s-ink" stroke-width="2" x="740" y="260" width="50" height="22" rx="4"/>
+            <text x="765" y="276" text-anchor="middle" class="hall-sign">BATH</text>
+            <g fill="none" class="s-ink" stroke-width="1.5"><circle cx="736" cy="250" r="4"/><circle cx="728" cy="240" r="3"/><circle cx="796" cy="248" r="3.5"/></g>
+          </g>
+          <g class="tag"><rect x="700" y="168" width="130" height="28" rx="14"/><text x="765" y="187" text-anchor="middle">BATHROOM</text></g>
+        </a>
         <!-- framed photo (decor), above the doors -->
         <g class="hall-photo" transform="translate(-431,-38)">
           <path class="s-ink" stroke-width="2" fill="none" d="M776 72 L748 100 M776 72 L804 100"/><circle class="f-marigold s-ink" stroke-width="2" cx="776" cy="70" r="5"/>
@@ -820,16 +844,31 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="814" y="440" width="96" height="28" rx="14"/><text x="862" y="459" text-anchor="middle">CONTACT</text></g>
         </a>
 
+        <!-- second picture frame (decor; ready for a photo) -->
+        <g class="hall-photo2">
+          <path class="s-ink" stroke-width="2" fill="none" d="M934 40 L910 64 M934 40 L958 64"/><circle class="f-marigold s-ink" stroke-width="2" cx="934" cy="38" r="5"/>
+          <polygon style="fill: var(--frame-lt)" points="896,64 972,64 961,75 907,75"/><polygon style="fill: var(--frame-md)" points="972,64 972,150 961,139 961,75"/>
+          <polygon style="fill: var(--frame-dk)" points="972,150 896,150 907,139 961,139"/><polygon style="fill: var(--frame)" points="896,150 896,64 907,75 907,139"/>
+          <rect class="f-marigold" x="907" y="75" width="54" height="64"/>
+          <rect class="f-blush" x="915" y="83" width="38" height="48"/>
+          <path class="f-hot" d="M934 116 l-8 -8 a5.3 5.3 0 0 1 8 -7 a5.3 5.3 0 0 1 8 7 z"/>
+          <rect fill="none" class="s-ink" stroke-width="2" x="915" y="83" width="38" height="48"/>
+          <rect fill="none" class="s-ink" stroke-width="3" x="896" y="64" width="76" height="86"/>
+          <path class="s-ink" stroke-width="1.2" d="M896 64 L907 75 M972 64 L961 75 M972 150 L961 139 M896 150 L907 139"/>
+        </g>
         <!-- coat rack (decor) -->
-        <g class="coat-rack" transform="translate(-80,0)" stroke-linecap="round" stroke-linejoin="round">
+        <g class="coat-rack" transform="translate(12,0)" stroke-linecap="round" stroke-linejoin="round">
           <path class="s-ink" stroke-width="8" fill="none" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <path stroke-width="4.5" fill="none" style="stroke: var(--trunk)" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
           <circle class="f-trunk s-ink" stroke-width="2.5" cx="866" cy="144" r="7"/>
           <path class="f-marigold s-ink" stroke-width="2.5" d="M830 162 Q 846 140 862 162 Z"/>
           <path class="f-marigold s-ink" stroke-width="2.5" d="M822 164 Q 846 156 870 164 Q 846 172 822 164 Z"/>
           <path style="stroke: var(--hot)" stroke-width="3" fill="none" d="M832 160 Q 846 156 860 160"/>
-          <path class="f-pink s-ink" stroke-width="2.5" d="M880 182 L892 184 L896 262 L886 264 Z"/>
-          <path class="s-trim" stroke-width="2" d="M882 204 L893 205 M883 226 L894 227 M884 248 L895 249"/>
+          <path class="s-ink" stroke-width="3" fill="none" d="M884 184 q7 -9 13 0 V200"/>
+          <path class="f-pink s-ink" stroke-width="2.5" d="M897 198 C 909 212, 912 242, 901 272 L 893 272 C 882 242, 885 212, 897 198 Z"/>
+          <path class="s-ink" stroke-width="1.4" fill="none" opacity=".5" d="M897 202 C 893 226, 893 250, 896 270 M897 202 C 903 226, 904 250, 899 270"/>
+          <rect class="f-hot s-ink" stroke-width="1.5" x="889" y="228" width="16" height="6" rx="2"/>
+          <path class="s-ink" stroke-width="2" d="M897 272 V282"/>
         </g>
 
         <!-- mirror (decor), above the doors -->
@@ -843,7 +882,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
 
         <!-- plant (decor) -->
-        <g class="plant" stroke-linejoin="round" transform="translate(-72,0)">
+        <g class="plant" stroke-linejoin="round" transform="translate(4,0)">
           <g class="f-bush s-ink" stroke-width="2.5">
             <path d="M946 362 C 920 350, 910 322, 916 304 C 934 314, 946 336, 946 362 Z"/>
             <path d="M946 362 C 970 350, 984 326, 978 306 C 960 316, 948 336, 946 362 Z"/>
@@ -1085,6 +1124,51 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
       </svg>
       <p class="hint gallery-hint">Click the dress form, the sewing machine, the picture over the fireplace, the yarn or the spinning wheel.</p>
+    </section>
+
+    <!-- BATHROOM -->
+    <section id="room-bath" class="room bathroom" hidden aria-labelledby="bathTitle">
+      <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
+      <h2 id="bathTitle">BATHROOM</h2>
+      <svg class="bath-scene" viewBox="0 0 1000 560" role="img" aria-label="A pink tiled bathroom with a clawfoot tub full of bubbles and a rubber duck, a pedestal sink, a mirror, a towel and a bath mat">
+        <defs>
+          <pattern id="bathTiles" width="40" height="40" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="40" height="40"/><path fill="none" style="stroke: var(--trim)" stroke-width="3" d="M0 0 H40 M0 0 V40"/></pattern>
+          <pattern id="bathFloor" width="60" height="60" patternUnits="userSpaceOnUse"><rect class="f-trim" width="60" height="60"/><rect class="f-hot" width="30" height="30" opacity=".85"/><rect class="f-hot" x="30" y="30" width="30" height="30" opacity=".85"/></pattern>
+        </defs>
+        <rect width="1000" height="420" fill="url(#bathTiles)"/>
+        <rect width="1000" height="16" class="f-trim"/><path class="s-ink" stroke-width="3" d="M0 16 H1000"/>
+        <rect y="420" width="1000" height="140" fill="url(#bathFloor)"/>
+        <path class="s-ink" stroke-width="4" d="M0 420 H1000"/>
+        <!-- window -->
+        <g><rect class="f-trim s-ink" stroke-width="3" x="90" y="70" width="140" height="120" rx="8"/><rect style="fill: var(--sky1)" x="102" y="82" width="116" height="96" rx="4"/><circle class="f-sun" cx="190" cy="110" r="14"/>
+          <path class="s-trim" stroke-width="6" d="M160 82 V178 M102 130 H218"/><rect fill="none" class="s-ink" stroke-width="2" x="102" y="82" width="116" height="96" rx="4"/>
+          <path class="f-hot s-ink" stroke-width="2" d="M84 64 H236 V78 Q 216 92 196 78 Q 176 92 160 78 Q 144 92 124 78 Q 104 92 84 78 Z"/></g>
+        <!-- clawfoot tub with bubbles and a duck -->
+        <g stroke-linejoin="round">
+          <g class="f-trim s-ink" stroke-width="3"><circle cx="180" cy="498" r="9"/><circle cx="430" cy="498" r="9"/><circle cx="160" cy="300" r="9"/><circle cx="182" cy="300" r="9"/><circle cx="204" cy="300" r="9"/><circle cx="226" cy="294" r="11"/><circle cx="255" cy="290" r="13"/><circle cx="288" cy="292" r="11"/><circle cx="318" cy="290" r="13"/><circle cx="350" cy="294" r="11"/><circle cx="380" cy="292" r="12"/><circle cx="410" cy="298" r="10"/><circle cx="432" cy="302" r="9"/></g>
+          <path class="f-marigold s-ink" stroke-width="2.5" d="M330 282 q2 -18 18 -16 q14 2 12 16 q14 -4 18 6 q-4 12 -22 12 h-18 q-12 -2 -8 -18 z"/><circle class="f-ink" cx="350" cy="274" r="2"/><path class="f-orange s-ink" stroke-width="1.5" d="M336 278 l-10 2 l10 4 z"/>
+          <path class="f-trim s-ink" stroke-width="3" d="M130 306 H460 Q 470 306 466 320 Q 450 420 380 470 H230 Q 160 420 144 320 Q 140 306 130 306 Z"/>
+          <path class="f-pink" opacity=".5" d="M150 330 H452 Q 444 380 420 420 H190 Q 166 380 150 330 Z"/>
+          <path class="s-ink" stroke-width="3" fill="none" d="M126 306 H468"/>
+          <path class="s-ink" stroke-width="5" fill="none" stroke-linecap="round" d="M150 306 V240 Q 150 218 172 218 Q 190 218 190 236"/><path stroke-width="2.5" fill="none" style="stroke: var(--trim)" stroke-linecap="round" d="M150 306 V240 Q 150 218 172 218 Q 190 218 190 236"/>
+          <g class="f-marigold s-ink" stroke-width="2.5"><path d="M224 470 L212 500 Q 210 506 218 506 H232 L240 470 Z"/><path d="M386 470 L398 500 Q 400 506 392 506 H378 L370 470 Z"/></g>
+        </g>
+        <!-- mirror + pedestal sink -->
+        <g stroke-linejoin="round">
+          <ellipse fill="none" class="s-ink" stroke-width="16" cx="720" cy="170" rx="58" ry="74"/><ellipse fill="none" style="stroke: var(--frame)" stroke-width="11" cx="720" cy="170" rx="58" ry="74"/>
+          <ellipse class="f-w1" cx="720" cy="170" rx="51" ry="67"/><path class="f-trim" opacity=".8" d="M690 150 L730 110 L738 118 L698 158 Z M694 186 L742 138 L746 146 L698 194 Z"/><ellipse fill="none" class="s-ink" stroke-width="2" cx="720" cy="170" rx="51" ry="67"/>
+          <path class="f-trim s-ink" stroke-width="3" d="M700 336 H740 L734 470 H706 Z"/>
+          <path class="f-trim s-ink" stroke-width="3" d="M640 300 H800 Q 800 340 760 344 H680 Q 640 340 640 300 Z"/>
+          <path class="s-ink" stroke-width="3" fill="none" d="M636 300 H804"/>
+          <path class="s-ink" stroke-width="5" fill="none" stroke-linecap="round" d="M720 300 V282 Q 720 274 730 274 H738"/><path stroke-width="2.5" fill="none" style="stroke: var(--trim)" stroke-linecap="round" d="M720 300 V282 Q 720 274 730 274 H738"/>
+          <rect class="f-pink s-ink" stroke-width="2" x="770" y="276" width="16" height="24" rx="4"/><rect class="f-hot s-ink" stroke-width="1.5" x="774" y="268" width="8" height="8" rx="1"/>
+        </g>
+        <!-- towel bar + towel -->
+        <g stroke-linejoin="round"><path class="s-ink" stroke-width="5" stroke-linecap="round" d="M846 230 H950"/><path stroke-width="2.5" style="stroke: var(--frame)" stroke-linecap="round" d="M846 230 H950"/>
+          <path class="f-hot s-ink" stroke-width="3" d="M860 228 H936 V330 Q 898 340 860 330 Z"/><path class="s-trim" stroke-width="4" d="M860 304 H936 M860 314 H936"/></g>
+        <!-- bath mat -->
+        <g><rect class="f-marigold s-ink" stroke-width="3" x="200" y="500" width="220" height="42" rx="20"/><rect fill="none" class="s-trim" stroke-width="2.5" stroke-dasharray="6 6" x="210" y="508" width="200" height="26" rx="13"/></g>
+      </svg>
     </section>
 
     <!-- GALLERY collections -->
@@ -1347,7 +1431,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
 <script>
 (function () {
-  var rooms = ["outside", "foyer", "shop", "gallery", "fashion", "art", "fiber", "knit", "sewn", "featured", "quilting", "barbie", "about", "contact"];
+  var rooms = ["outside", "foyer", "shop", "gallery", "fashion", "art", "fiber", "knit", "sewn", "featured", "bath", "quilting", "barbie", "about", "contact"];
   var scene = document.getElementById("scene");
   var hint = document.getElementById("hint");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
