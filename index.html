@@ -315,6 +315,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .care-dialog.mode-wash .bottle .cap { width: 26%; height: 15px; border-radius: 3px 3px 0 0; }
 .care-dialog.mode-dry .bottle .cap { display: none; }
 .care-dialog.mode-dry .bottle .body { border-radius: 6px; background: linear-gradient(var(--c) 0 62%, #FFFDF4 62% 70%, var(--c) 70% 78%, #FFFDF4 78% 86%, var(--c) 86%); }
+.care-dialog.mode-iron .bottle .cap { display: none; }
+.care-dialog.mode-iron .bottle .body { min-height: 74px; padding: 22px 8px 10px; border: 0; border-radius: 0; box-shadow: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 70%27 preserveAspectRatio=%27none%27%3E%3Cpath d=%27M20 66 C5 66 3 46 15 42 C11 27 29 19 40 27 C44 9 71 7 77 24 C87 13 106 19 104 34 C118 36 118 64 100 66 Z%27 fill=%27%23CDEBF7%27 stroke=%27%233B2620%27 stroke-width=%273%27 stroke-linejoin=%27round%27 vector-effect=%27non-scaling-stroke%27/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.care-dialog.mode-iron .bottle[aria-selected="true"] .body { box-shadow: none; filter: drop-shadow(0 0 5px var(--hot)) drop-shadow(0 0 2px #FFFDF4); }
 .rx { margin-top: 18px; background: #FFFDF4; border: 2.5px solid var(--ink); border-radius: 10px; padding: 12px 14px; box-shadow: 3px 3px 0 var(--ink); }
 .rx h4 { margin: 0 0 6px; font: 800 .85rem var(--font-body); letter-spacing: .08em; color: #D61F69; }
 .rx p { margin: 0; font: 600 1rem/1.45 var(--font-body); color: #3B2620; }
