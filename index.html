@@ -256,7 +256,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .lipstick { font: 400 clamp(1.7rem, 7vw, 2.4rem)/1.15 "Caveat Brush", "Comic Sans MS", cursive; color: #D61F69; transform: rotate(-6deg);
   filter: url(#lipstick); text-shadow: 0 0 1px rgba(214,31,105,.6); text-wrap: balance; transition: opacity .25s; }
 .lipstick.swap { opacity: 0; }
-.mirror-tip { position: absolute; bottom: 9%; left: 0; right: 0; font: 800 .7rem var(--font-body); letter-spacing: .08em; color: #8A5A45; opacity: .8; }
 /* the fireplace: hover glows, click opens a scorched note that burns */
 .hot-fire { cursor: pointer; outline: none; }
 .hot-fire .flames { transform-box: fill-box; transform-origin: 50% 100%; transition: filter .2s; }
@@ -1375,9 +1374,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 <dialog class="mirror-dialog" id="mirrorDialog" aria-label="Compliment mirror">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lipstick"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/><feComponentTransfer><feFuncA type="table" tableValues="0 .75 .95 1"/></feComponentTransfer></filter></svg>
   <button class="lb-close" type="button" id="mirrorClose" aria-label="Close">×</button>
-  <button class="big-mirror" type="button" id="bigMirror" aria-label="Show another compliment">
+  <button class="big-mirror" type="button" id="bigMirror" aria-label="Close the mirror">
     <span class="lipstick" id="compliment" aria-live="polite"></span>
-    <span class="mirror-tip">tap the mirror for another</span>
   </button>
 </dialog>
 
@@ -1631,11 +1629,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // mirror, mirror: a new lipstick compliment every click
   var COMPLIMENTS = [
-    "Hey gorgeous!", "You look amazing today", "Main character energy", "Your style is iconic", "You glow, babe",
-    "One of a kind, just like your crafts", "Absolute icon", "So cute it should be illegal", "You've got this!",
-    "Talent looks good on you", "Stay weird, stay wonderful", "Your vibe is immaculate", "Sparkle on, superstar",
-    "Missouri's cutest coyote", "Handmade with love, just like you", "Serving looks", "Be your own Barbie",
-    "That smile though!", "Creative genius alert", "Never change"
+    "You look amazing today", "You're so smart!", "Big brain energy", "Your ideas are brilliant",
+    "Your creativity is inspiring", "You light up the room", "Genius at work", "You're one of a kind",
+    "Your style is iconic", "Sharp as a tack", "You're so talented", "Your curiosity is contagious",
+    "Kindness looks good on you", "You've got this!", "Main character energy", "Your vibe is immaculate",
+    "You make the world better", "That smile though!", "You're a creative genius", "You're doing great",
+    "You figure things out like a pro", "Your mind is beautiful", "Absolute icon", "You're stronger than you know"
   ];
   var mirrorDialog = document.getElementById("mirrorDialog"), complimentEl = document.getElementById("compliment");
   var lastCompliment = -1;
@@ -1652,7 +1651,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       if (mirrorDialog.showModal) mirrorDialog.showModal(); else mirrorDialog.setAttribute("open", "");
     });
   });
-  document.getElementById("bigMirror").addEventListener("click", nextCompliment);
+  document.getElementById("bigMirror").addEventListener("click", function () { mirrorDialog.close(); });
   document.getElementById("mirrorClose").addEventListener("click", function () { mirrorDialog.close(); });
   mirrorDialog.addEventListener("click", function (e) { if (e.target === mirrorDialog) mirrorDialog.close(); });
 
