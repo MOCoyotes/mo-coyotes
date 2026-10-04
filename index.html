@@ -236,6 +236,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 6px; }
 .polaroid div { aspect-ratio: 1; background: repeating-linear-gradient(-45deg, #FFD0E7 0 10px, #FFB6DA 10px 20px); margin-bottom: 6px; }
 .polaroid:nth-child(odd) { transform: rotate(-4deg); } .polaroid:nth-child(even) { transform: rotate(3deg); }
+.barbieroom .polaroid { cursor: pointer; transition: transform .2s; }
+.barbieroom .polaroid:hover, .barbieroom .polaroid:focus-visible { transform: rotate(0) scale(1.06); outline: none; }
 
 /* quilting: cream background with a faint patchwork grid */
 .quiltroom { position: relative; overflow: hidden; padding-bottom: 170px; background: linear-gradient(to bottom, var(--sky1), var(--sky2)); }
@@ -2686,6 +2688,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       if (lbImg.complete) fitLb();
       if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
     });
+  });
+  // Barbie Land polaroids open as giant polaroids too
+  document.querySelectorAll(".barbieroom .polaroid").forEach(function (p) {
+    var img = p.querySelector("img"); if (!img) return;
+    p.setAttribute("role", "button"); p.setAttribute("tabindex", "0");
+    p.setAttribute("aria-label", img.alt + ", click to make it bigger");
+    var open = function () {
+      lbImg.hidden = false; lbPh.hidden = true;
+      lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb;
+      lbImg.src = img.getAttribute("src"); lbImg.alt = img.alt;
+      lbCap.textContent = "♥"; lightbox.classList.add("polaroid-mode");
+      if (lbImg.complete) fitLb();
+      if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
+    };
+    p.addEventListener("click", open);
+    p.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
   });
   lightbox.addEventListener("close", function () { lightbox.classList.remove("polaroid-mode"); });
   document.getElementById("lbClose").addEventListener("click", function () { lightbox.close(); });
