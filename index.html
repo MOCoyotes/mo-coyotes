@@ -523,7 +523,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .lightbox::backdrop { background: rgba(40, 12, 20, .7); }
 .lb-frame { position: relative; border: 18px solid; border-color: var(--frame-lt) var(--frame-md) var(--frame-dk) var(--frame); outline: 3px solid var(--ink);
   box-shadow: inset 0 0 0 3px var(--ink); background: var(--card); }
-.lb-frame img { display: block; max-width: min(86vw, 720px); max-height: 78vh; width: auto; height: auto; }
+.lb-frame img { display: block; max-width: min(86vw, 900px); max-height: 78vh; }
+.lightbox { width: fit-content; } .lb-frame { width: fit-content; }
 .lb-placeholder { aspect-ratio: 4 / 5; width: min(80vw, 56vh); display: grid; place-items: center; font: 400 clamp(1.6rem, 5vw, 2.4rem) var(--font-display); color: var(--hot);
   background: repeating-linear-gradient(45deg, var(--wall1) 0 16px, var(--wall2) 16px 32px); }
 .lb-caption { margin: 10px 0 0; text-align: center; font-weight: 800; color: var(--trim); }
@@ -2373,11 +2374,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     b.addEventListener("click", function () {
       var src = b.dataset.src;
       lbImg.hidden = !src; lbPh.hidden = !!src;
-      if (src) { lbImg.src = src; lbImg.alt = b.dataset.caption || ""; }
+      if (src) { lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb; lbImg.src = src; lbImg.alt = b.dataset.caption || ""; if (lbImg.complete) fitLb(); }
       lbCap.textContent = src ? (b.dataset.caption || "") : "";
       if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
     });
   });
+  // size the enlarged photo to fit the screen exactly, so the frame hugs it with no empty space
+  function fitLb() {
+    var w = lbImg.naturalWidth, h = lbImg.naturalHeight; if (!w || !h) return;
+    var k = Math.min(Math.min(window.innerWidth * .86, 900) / w, window.innerHeight * .78 / h, 1);
+    lbImg.style.width = Math.round(w * k) + "px"; lbImg.style.height = Math.round(h * k) + "px";
+  }
+  window.addEventListener("resize", function () { if (lightbox.open && !lbImg.hidden) fitLb(); });
   document.getElementById("lbClose").addEventListener("click", function () { lightbox.close(); });
   lightbox.addEventListener("click", function (e) { if (e.target === lightbox) lightbox.close(); });
 
