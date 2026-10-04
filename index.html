@@ -392,6 +392,35 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .ball-answer.long { font-size: clamp(.46rem, 1.8vw, .56rem); }
 .eight-ball.shake { animation: ballShake .7s ease-in-out; }
 @keyframes ballShake { 10%, 30%, 50%, 70% { transform: translate(-10px, 5px) rotate(-8deg); } 20%, 40%, 60%, 80% { transform: translate(10px, -5px) rotate(8deg); } }
+.sol-dialog { border: 0; padding: 0; background: transparent; overflow: visible; max-height: 98vh; }
+.sol-dialog::backdrop { background: rgba(15, 35, 20, .65); }
+.sol-wrap { position: relative; box-sizing: border-box; width: min(640px, 96vw); padding: 14px 12px 12px; color: #FFFDF4;
+  background: radial-gradient(ellipse at 50% 30%, #3E9A62 0, #2C7A4B 60%, #23633C 100%); border: 3px solid var(--ink); border-radius: 16px; box-shadow: 8px 10px 0 rgba(0,0,0,.25); }
+.sol-wrap .lb-close { top: -16px; right: -16px; }
+.sol-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 0 4px 10px; }
+.sol-top h3 { margin: 0; font: 400 1.5rem/1 var(--font-display); color: #FFFDF4; }
+.sol-btns { display: flex; gap: 8px; }
+.sol-btns button, .sol-win button { font: 800 .85rem var(--font-body); color: #3B2620; background: #FFFDF4; border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
+.sol-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(3px, 1vw, 7px); }
+.sol-tab { margin-top: 12px; align-items: start; }
+.sol-slot { position: relative; aspect-ratio: 5 / 7; border: 2px dashed rgba(255,253,244,.45); border-radius: 7px; cursor: pointer; }
+.sol-found::after { content: "A"; position: absolute; inset: 0; display: grid; place-items: center; font: 400 1.4rem var(--font-display); color: rgba(255,253,244,.35); }
+.sol-redo { position: absolute; inset: 0; display: grid; place-items: center; font: 800 1.4rem var(--font-body); color: rgba(255,253,244,.7); }
+.sol-col { position: relative; min-height: 40px; cursor: pointer; }
+.sol-col:empty::before { content: ""; display: block; aspect-ratio: 5 / 7; border: 2px dashed rgba(255,253,244,.3); border-radius: 7px; }
+.sol-card { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 5 / 7; box-sizing: border-box; padding: 3px 4px; overflow: hidden;
+  background: #FFFDF4; border: 1.5px solid var(--ink); border-radius: 7px; box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  font: 800 clamp(.58rem, 2.3vw, .95rem)/1 var(--font-body); color: #2B2018; cursor: pointer; user-select: none; -webkit-user-select: none; }
+.sol-slot > .sol-card { inset: -2px; width: auto; }
+.sol-card.red { color: #D61F69; }
+.sol-card .big { position: absolute; left: 0; right: 0; top: 34%; text-align: center; font-size: 2em; }
+.sol-card.down { background: repeating-linear-gradient(45deg, #F48FB1 0 6px, #F9C9D6 6px 12px); }
+.sol-card.down::after { content: ""; position: absolute; inset: 4px; border: 1.5px solid rgba(255,253,244,.8); border-radius: 4px; }
+.sol-card.sel { outline: 3px solid #F2B705; outline-offset: 0; z-index: 60; box-shadow: 0 0 10px 3px rgba(242,183,5,.7); }
+.sol-help { margin: 12px 4px 0; font: 600 .8rem/1.35 var(--font-body); color: rgba(255,253,244,.85); text-align: center; }
+.sol-win { position: absolute; inset: 0; z-index: 80; display: grid; place-items: center; background: rgba(20,40,25,.55); border-radius: 13px; }
+.sol-win > div { display: grid; gap: 12px; justify-items: center; padding: 22px 30px; background: #FFFDF4; color: #3B2620; border: 3px solid var(--ink); border-radius: 16px; box-shadow: 5px 6px 0 rgba(0,0,0,.3); }
+.sol-win b { font: 400 1.8rem var(--font-display); color: #D61F69; }
 .feat-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
 .feat-dialog::backdrop { background: rgba(40, 12, 20, .6); }
 .feat-card { position: relative; box-sizing: border-box; width: min(440px, 88vw); padding: 34px 26px 26px; color: #3B2620;
@@ -1696,10 +1725,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="1.5" d="M360 161 H470"/>
           <rect class="f-trim s-ink" stroke-width="1.2" x="372" y="164" width="34" height="8" rx="1"/>
           <path class="f-marigold s-ink" stroke-width="1" d="M446 163 l2 4 l4.4 .6 l-3.2 3 l.8 4.4 l-4 -2.2 l-4 2.2 l.8 -4.4 l-3.2 -3 l4.4 -.6 z"/>
-          <rect class="f-pink s-ink" stroke-width="2.5" x="538" y="166" width="24" height="30" rx="2"/>
-          <path class="s-ink" stroke-width="1.2" d="M538 172 H562"/>
-          <rect class="f-trim s-ink" stroke-width="1.2" x="543" y="176" width="14" height="16" rx="1.5"/>
-          <path class="f-hot" d="M550 188 l -4 -4 a2.6 2.6 0 0 1 4 -3.4 a2.6 2.6 0 0 1 4 3.4 z"/>
           <g class="mug" transform="translate(486,196) scale(1.35)">
             <path fill="none" class="s-ink" stroke-width="4" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/><path fill="none" style="stroke: var(--trim)" stroke-width="2" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/>
             <path class="f-trim s-ink" stroke-width="2" d="M0 -26 H26 V-4 Q 26 0 22 0 H4 Q 0 0 0 -4 Z"/>
@@ -1822,6 +1847,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
         </g>
 
+        <!-- SOLITAIRE: the pack of cards -->
+        <a class="hot hot-cards" href="#solitaire" role="button" aria-label="Pack of cards: play solitaire">
+          <g class="glow" stroke-linejoin="round">
+            <rect class="f-pink s-ink" stroke-width="2.5" x="538" y="166" width="24" height="30" rx="2"/>
+            <path class="s-ink" stroke-width="1.2" d="M538 172 H562"/>
+            <rect class="f-trim s-ink" stroke-width="1.2" x="543" y="176" width="14" height="16" rx="1.5"/>
+            <path class="f-hot" d="M550 188 l -4 -4 a2.6 2.6 0 0 1 4 -3.4 a2.6 2.6 0 0 1 4 3.4 z"/>
+          </g>
+          <g class="tag"><rect x="490" y="128" width="120" height="28" rx="14"/><text x="550" y="147" text-anchor="middle">SOLITAIRE</text></g>
+        </a>
         <!-- MAGIC 8 BALL: click to ask it a question -->
         <a class="hot hot-8ball" href="#8ball" role="button" aria-label="Magic 8 ball: ask it a question">
           <g class="glow" stroke-linejoin="round">
@@ -1879,7 +1914,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
         </g>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the magic 8 ball or the scrapbook.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the cards, the magic 8 ball or the scrapbook.</p>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
@@ -2094,6 +2129,27 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </span>
     </button>
     <p class="ball-hint" id="ballHint">…then tap the ball to shake it</p>
+  </div>
+</dialog>
+
+<dialog class="sol-dialog" id="solDialog" aria-label="Solitaire">
+  <div class="sol-wrap" id="solWrap">
+    <button class="lb-close" type="button" id="solClose" aria-label="Close">×</button>
+    <div class="sol-top">
+      <h3>Solitaire</h3>
+      <div class="sol-btns"><button type="button" id="solUndo">Undo</button><button type="button" id="solNew">New game</button></div>
+    </div>
+    <div class="sol-row">
+      <div class="sol-slot" data-pile="stock" id="solStock" aria-label="Draw a card"></div>
+      <div class="sol-slot" data-pile="waste" id="solWaste"></div>
+      <div></div>
+      <div class="sol-slot sol-found" data-pile="f0"></div><div class="sol-slot sol-found" data-pile="f1"></div><div class="sol-slot sol-found" data-pile="f2"></div><div class="sol-slot sol-found" data-pile="f3"></div>
+    </div>
+    <div class="sol-row sol-tab" id="solTab">
+      <div class="sol-col" data-pile="t0"></div><div class="sol-col" data-pile="t1"></div><div class="sol-col" data-pile="t2"></div><div class="sol-col" data-pile="t3"></div><div class="sol-col" data-pile="t4"></div><div class="sol-col" data-pile="t5"></div><div class="sol-col" data-pile="t6"></div>
+    </div>
+    <p class="sol-help">Tap a card, then tap where it goes. Tap it again (or double-tap) to send it up to the top piles.</p>
+    <div class="sol-win" id="solWin" hidden><div><b>You did it!</b><button type="button" id="solAgain">Play again</button></div></div>
   </div>
 </dialog>
 
@@ -2777,6 +2833,112 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   eightBall.addEventListener("click", shakeBall);
   document.getElementById("ballClose").addEventListener("click", function () { ballDialog.close(); });
   ballDialog.addEventListener("click", function (e) { if (e.target === ballDialog) ballDialog.close(); });
+
+  // solitaire (klondike, draw one) on the pack of cards
+  (function () {
+    var dlg = document.getElementById("solDialog"), wrap = document.getElementById("solWrap");
+    var SUITS = ["♠", "♥", "♦", "♣"], RANKS = ["", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    var stock, waste, found, tab, hist, sel = null, dealt = false;
+    function pile(p) { return p === "stock" ? stock : p === "waste" ? waste : p[0] === "f" ? found[+p[1]] : tab[+p[1]]; }
+    function red(c) { return c.s === 1 || c.s === 2; }
+    function snap() { hist.push(JSON.stringify([stock, waste, found, tab])); if (hist.length > 300) hist.shift(); }
+    function deal() {
+      var deck = [], i, j;
+      for (i = 0; i < 4; i++) for (j = 1; j <= 13; j++) deck.push({ s: i, r: j, up: false });
+      for (i = deck.length - 1; i > 0; i--) { j = Math.floor(Math.random() * (i + 1)); var t = deck[i]; deck[i] = deck[j]; deck[j] = t; }
+      tab = [[], [], [], [], [], [], []];
+      for (i = 0; i < 7; i++) for (j = 0; j <= i; j++) { var c = deck.pop(); c.up = j === i; tab[i].push(c); }
+      stock = deck; waste = []; found = [[], [], [], []]; hist = []; sel = null; dealt = true;
+      document.getElementById("solWin").hidden = true;
+      render();
+    }
+    function cardHTML(c, p, i, top) {
+      var cls = "sol-card" + (c.up ? "" : " down") + (c.up && red(c) ? " red" : "") + (sel && sel.pile === p && i >= sel.idx ? " sel" : "");
+      var inner = c.up ? "<span>" + RANKS[c.r] + SUITS[c.s] + "</span><span class=\"big\">" + SUITS[c.s] + "</span>" : "";
+      return "<div class=\"" + cls + "\" data-pile=\"" + p + "\" data-idx=\"" + i + "\"" + (top != null ? " style=\"top:" + top + "px\"" : "") +
+        " aria-label=\"" + (c.up ? RANKS[c.r] + " of " + ["spades", "hearts", "diamonds", "clubs"][c.s] : "face-down card") + "\">" + inner + "</div>";
+    }
+    function render() {
+      if (!dealt) return;
+      var st = document.getElementById("solStock");
+      st.innerHTML = stock.length ? cardHTML({ up: false }, "stock", stock.length - 1) : "<span class=\"sol-redo\">↻</span>";
+      var w = document.getElementById("solWaste");
+      w.innerHTML = waste.length ? cardHTML(waste[waste.length - 1], "waste", waste.length - 1) : "";
+      wrap.querySelectorAll(".sol-found").forEach(function (el, k) {
+        var fp = found[k]; el.innerHTML = fp.length ? cardHTML(fp[fp.length - 1], "f" + k, fp.length - 1) : "";
+      });
+      wrap.querySelectorAll(".sol-col").forEach(function (col, k) {
+        var cw = col.clientWidth || 60, y = 0, html = "";
+        tab[k].forEach(function (c, i) { html += cardHTML(c, "t" + k, i, y); y += c.up ? cw * .3 : cw * .15; });
+        col.innerHTML = html;
+        col.style.height = tab[k].length ? (y - (tab[k][tab[k].length - 1].up ? cw * .3 : cw * .15) + cw * 1.4) + "px" : "";
+      });
+    }
+    function canDrop(cards, to) {
+      var c = cards[0], p = pile(to), top = p[p.length - 1];
+      if (to[0] === "f") return cards.length === 1 && (top ? top.s === c.s && c.r === top.r + 1 : c.r === 1);
+      if (to[0] === "t") return top ? top.up && red(top) !== red(c) && c.r === top.r - 1 : c.r === 13;
+      return false;
+    }
+    function flipTop(p) { if (p[0] === "t") { var t = pile(p); if (t.length && !t[t.length - 1].up) t[t.length - 1].up = true; } }
+    function move(from, idx, to) {
+      if (from === to) return false;
+      var cards = pile(from).slice(idx);
+      if (!cards.length || !canDrop(cards, to)) return false;
+      snap();
+      Array.prototype.push.apply(pile(to), pile(from).splice(idx));
+      flipTop(from); sel = null; render();
+      if (found.every(function (fp) { return fp.length === 13; })) document.getElementById("solWin").hidden = false;
+      return true;
+    }
+    function toFoundation(from, idx) {
+      var p = pile(from); if (idx !== p.length - 1 || !p[idx].up) return false;
+      for (var k = 0; k < 4; k++) if (canDrop([p[idx]], "f" + k)) return move(from, idx, "f" + k);
+      return false;
+    }
+    function draw() {
+      snap();
+      if (stock.length) { var c = stock.pop(); c.up = true; waste.push(c); }
+      else { while (waste.length) { var d = waste.pop(); d.up = false; stock.push(d); } }
+      sel = null; render();
+    }
+    wrap.addEventListener("click", function (e) {
+      if (e.target.closest("button")) return;
+      var el = e.target.closest("[data-pile]"); if (!el) return;
+      var p = el.dataset.pile, idx = el.dataset.idx != null ? +el.dataset.idx : null;
+      if (p === "stock") { draw(); return; }
+      if (sel) {
+        if (sel.pile === p && (idx === null || idx === sel.idx)) { var s0 = sel; sel = null; if (!toFoundation(s0.pile, s0.idx)) render(); return; }
+        if (move(sel.pile, sel.idx, p)) return;
+        sel = null;
+      }
+      var pl = pile(p);
+      if (idx === null || !pl[idx]) { render(); return; }
+      if (!pl[idx].up) { if (p[0] === "t" && idx === pl.length - 1) { snap(); pl[idx].up = true; } render(); return; }
+      if ((p === "waste" || p[0] === "f") && idx !== pl.length - 1) { render(); return; }
+      sel = { pile: p, idx: idx }; render();
+    });
+    wrap.addEventListener("dblclick", function (e) {
+      var el = e.target.closest(".sol-card"); if (!el) return;
+      sel = null; toFoundation(el.dataset.pile, +el.dataset.idx);
+    });
+    document.getElementById("solUndo").addEventListener("click", function () {
+      if (!hist.length) return;
+      var st = JSON.parse(hist.pop()); stock = st[0]; waste = st[1]; found = st[2]; tab = st[3]; sel = null;
+      document.getElementById("solWin").hidden = true; render();
+    });
+    document.getElementById("solNew").addEventListener("click", deal);
+    document.getElementById("solAgain").addEventListener("click", deal);
+    document.getElementById("solClose").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    window.addEventListener("resize", function () { if (dlg.open) render(); });
+    document.querySelector(".hot-cards").addEventListener("click", function (e) {
+      e.preventDefault();
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+      if (!dealt) deal(); else render();
+      requestAnimationFrame(render);
+    });
+  })();
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
