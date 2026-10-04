@@ -400,6 +400,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border-radius: 2px; }
 .feat-card h3 { margin: 0 0 14px; text-align: center; font: 400 1.7rem/1.1 var(--font-display); color: #3B2620; }
 .feat-list { display: grid; gap: 8px; max-height: min(60vh, 460px); overflow-y: auto; padding: 2px 6px 6px 2px; }
+.feat-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.feat-chip { font: 800 .82rem/1.2 var(--font-body); color: #3B2620; background: #FDE6EC; border: 2px solid var(--ink); border-radius: 999px; padding: 4px 11px; box-shadow: 2px 2px 0 var(--ink); }
+.feat-chip:nth-child(3n+2) { background: #FDE7A6; } .feat-chip:nth-child(3n) { background: #F9D3B8; }
 .feat-heading { margin: 4px 0 0; font: 800 .82rem var(--font-body); letter-spacing: .1em; color: #D61F69; }
 .feat-item-plain { padding: 6px 12px; box-shadow: 2px 2px 0 var(--ink); } .feat-item-plain b { font-size: .95rem; }
 .feat-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 10px 12px; text-decoration: none; color: #3B2620;
@@ -2625,7 +2628,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { title: "3rd Place, Handspun Yarn", source: "Missouri State Fair", date: "2023" },
       { title: "Honorable Mention", source: "City Gardens Film Competition", date: "2012" }
     ] },
-    accomplishments: { title: "Skills", empty: "Skills coming soon!", items: [ ] },
+    accomplishments: { title: "Skills", empty: "Skills coming soon!", chips: [ "Spinning (yarn)", "Felted Flowers", "Felted Hats", "Wet Felting", "Needle Felting", "Needle Felting Figures", "Basket Weaving", "Core Spinning", "Beaded Yarn", "Toothbrush Weaving", "Inkle Loom", "Continuous Strand Weaving", "Crochet", "Crochet Lace", "Yarn Pooling", "Carding", "Hand Carding", "Hand Combing", "Hackle", "Fiber Processing", "Intarsia", "Double Hook Crochet", "Microwave Dyeing", "Natural Dyeing", "Indigo Dyeing", "Plying", "Fair Isle Knitting", "Navajo Weaving", "Tiny Loom Weaving", "Knitting Socks", "Crocheting Socks", "Soap Making", "Sewing", "Custom Jacket", "Clay Jewelry", "Beaded Wire", "Double Knit", "Figure Drawing", "Ceramics on a Wheel", "Foam Carving for Masks", "Needle Punching", "Filmmaking", "Paper Piecing", "Fly Tying", "Textured Carding", "Textured Spinning", "Cookie Cutter Felting", "Mason Jar Dyeing", "Natural Medicine", "Dye Gardens", "Felted Soap", "Spinning Flax and Cotton", "Oui Jar Weaving", "3D Printing", "Game Coding", "Website Development", "Photography", "Event Planning", "Pattern Making", "Alterations", "Pattern Adjustments", "Upcycling", "Machine Repair", "Laser Cutting", "Rerooting", "Painting", "Drawing", "Quilting", "Embroidery", "Machine Embroidery", "Sashiko", "Needle Point", "Flower Arrangements and Design", "Fashion Design" ], items: [ ] },
     shows:           { title: "Shows", empty: "TV and show appearances coming soon!", items: [ ] },
     magazines:       { title: "Participation", empty: "Things I've taken part in, coming soon!", items: [
       { title: "Florissant Craft Fair" },
@@ -2649,7 +2652,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var set = FEATURES[key]; if (!set) return;
     document.getElementById("featTitle").textContent = set.title;
     featList.textContent = "";
-    if (!set.items.length) {
+    if (set.chips) {
+      var cw = document.createElement("div"); cw.className = "feat-chips";
+      set.chips.forEach(function (c) { var sp = document.createElement("span"); sp.className = "feat-chip"; sp.textContent = c; cw.appendChild(sp); });
+      featList.appendChild(cw);
+    } else if (!set.items.length) {
       var p = document.createElement("p"); p.className = "feat-empty"; p.textContent = set.empty; featList.appendChild(p);
     }
     set.items.forEach(function (it) {
