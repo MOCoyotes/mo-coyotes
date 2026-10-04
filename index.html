@@ -423,6 +423,27 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .sol-win { position: absolute; inset: 0; z-index: 80; display: grid; place-items: center; background: rgba(60,15,35,.5); border-radius: 13px; }
 .sol-win > div { display: grid; gap: 12px; justify-items: center; padding: 22px 30px; background: #FFFDF4; color: #3B2620; border: 3px solid var(--ink); border-radius: 16px; box-shadow: 5px 6px 0 rgba(0,0,0,.3); }
 .sol-win b { font: 400 1.8rem var(--font-display); color: #D61F69; }
+.book-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
+.book-dialog::backdrop { background: rgba(40, 12, 20, .6); }
+.book { position: relative; box-sizing: border-box; width: min(520px, 92vw); padding: 14px 14px 12px 30px; border-radius: 8px 16px 16px 8px;
+  background: var(--hot); border: 3px solid var(--ink); box-shadow: inset 12px 0 0 rgba(0,0,0,.18), 8px 10px 0 rgba(0,0,0,.25); }
+.book .lb-close { top: -16px; right: -16px; }
+.book-page { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(70px, 30%); min-height: min(460px, 66vh); color: #3B2620;
+  background: repeating-linear-gradient(#FFFDF4 0 27px, #F3D9E2 27px 28px); border: 2px solid var(--ink); border-radius: 3px 10px 10px 3px;
+  box-shadow: 4px 0 0 #F3E3C3, 7px 0 0 var(--ink), 8px 0 0 #F3E3C3, 11px 0 0 var(--ink); transform-origin: left center; }
+.book-page.turn { animation: bookTurn .38s ease-in-out; }
+@keyframes bookTurn { 50% { transform: perspective(1100px) rotateY(-70deg); opacity: .4; } }
+.book-text { padding: 20px 14px 34px 22px; border-right: 2px solid #F48FB1; overflow-y: auto; max-height: min(520px, 70vh); }
+.book-kicker { margin: 0 0 4px; font: 800 .72rem var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: #D61F69; }
+.book-text h3 { margin: 0 0 10px; font: 400 1.5rem/1.15 var(--font-display); color: #3B2620; }
+.book-text p { margin: 0 0 10px; font: 600 .98rem/1.55 var(--font-body); }
+.book-text ul { margin: 0 0 10px; padding-left: 1.1em; font: 600 .95rem/1.5 var(--font-body); }
+.book-margin { padding: 22px 10px 34px; font: 400 1.05rem/1.35 var(--font-crayon); color: #D61F69; transform: rotate(-2deg); white-space: pre-line; }
+.book-margin:empty::before { content: "my notes coming soon\2026"; color: rgba(214,31,105,.4); }
+.book-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font: 700 .75rem var(--font-body); color: #8A5A45; }
+.book-nav { margin-top: 10px; color: #FFFDF4; }
+.book-nav button { background: #FFFDF4; color: #3B2620; }
+@media (max-width: 480px) { .book-page { grid-template-columns: 1fr; } .book-text { border-right: 0; border-bottom: 2px solid #F48FB1; } .book-margin { padding: 8px 18px 34px; transform: none; } }
 .feat-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
 .feat-dialog::backdrop { background: rgba(40, 12, 20, .6); }
 .feat-card { position: relative; box-sizing: border-box; width: min(440px, 88vw); padding: 34px 26px 26px; color: #3B2620;
@@ -1729,7 +1750,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-orange s-ink" stroke-width="2" x="204" y="130" width="16" height="66" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M206 138 H218 M206 182 H218"/><rect class="f-rust s-ink" stroke-width="2" x="220" y="131" width="12" height="65" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M222 139 H230 M222 182 H230"/><rect class="f-rust s-ink" stroke-width="2" x="232" y="128" width="17" height="68" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M234 136 H247 M234 182 H247"/><rect class="f-hot s-ink" stroke-width="2" x="249" y="135" width="17" height="61" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M251 143 H264 M251 182 H264"/><rect class="f-orange s-ink" stroke-width="2" x="266" y="137" width="14" height="59" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M268 145 H278 M268 182 H278"/><rect class="f-hot s-ink" stroke-width="2" x="280" y="127" width="18" height="69" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M282 135 H296 M282 182 H296"/><rect class="f-rust s-ink" stroke-width="2" x="298" y="135" width="17" height="61" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M300 143 H313 M300 182 H313"/>
           <rect class="f-orange s-ink" stroke-width="2" x="254" y="240" width="13" height="86" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M256 248 H265 M256 312 H265"/><rect class="f-marigold s-ink" stroke-width="2" x="267" y="242" width="12" height="84" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M269 250 H277 M269 312 H277"/><rect class="f-trim s-ink" stroke-width="2" x="279" y="255" width="14" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M281 263 H291 M281 312 H291"/><rect class="f-hot s-ink" stroke-width="2" x="293" y="243" width="12" height="83" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M295 251 H303 M295 312 H303"/><rect class="f-rust s-ink" stroke-width="2" x="305" y="239" width="15" height="87" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M307 247 H318 M307 312 H318"/>
           <rect class="f-orange s-ink" stroke-width="2" x="232" y="362" width="12" height="94" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M234 370 H242 M234 442 H242"/><rect class="f-hot s-ink" stroke-width="2" x="244" y="376" width="16" height="80" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M246 384 H258 M246 442 H258"/><rect class="f-pink s-ink" stroke-width="2" x="260" y="386" width="12" height="70" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M262 394 H270 M262 442 H270"/><rect class="f-orange s-ink" stroke-width="2" x="272" y="364" width="15" height="92" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M274 372 H285 M274 442 H285"/><rect class="f-pink s-ink" stroke-width="2" x="287" y="378" width="12" height="78" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M289 386 H297 M289 442 H297"/><rect class="f-hot s-ink" stroke-width="2" x="299" y="382" width="14" height="74" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M301 390 H311 M301 442 H311"/>
-          <rect class="f-orange s-ink" stroke-width="2" x="536" y="243" width="15" height="83" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M538 251 H549 M538 312 H549"/><rect class="f-marigold s-ink" stroke-width="2" x="551" y="241" width="18" height="85" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M553 249 H567 M553 312 H567"/><rect class="f-pink s-ink" stroke-width="2" x="569" y="253" width="17" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M571 261 H584 M571 312 H584"/><rect class="f-marigold s-ink" stroke-width="2" x="586" y="255" width="14" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M588 263 H598 M588 312 H598"/><rect class="f-marigold s-ink" stroke-width="2" x="600" y="240" width="15" height="86" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M602 248 H613 M602 312 H613"/><rect class="f-trim s-ink" stroke-width="2" x="615" y="249" width="18" height="77" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M617 257 H631 M617 312 H631"/><rect class="f-pink s-ink" stroke-width="2" x="633" y="243" width="16" height="83" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M635 251 H647 M635 312 H647"/>
           <rect class="f-pink s-ink" stroke-width="2" x="580" y="385" width="14" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M582 393 H592 M582 442 H592"/><rect class="f-hot s-ink" stroke-width="2" x="594" y="366" width="15" height="90" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M596 374 H607 M596 442 H607"/><rect class="f-marigold s-ink" stroke-width="2" x="609" y="372" width="13" height="84" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M611 380 H620 M611 442 H620"/><rect class="f-marigold s-ink" stroke-width="2" x="622" y="378" width="15" height="78" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M624 386 H635 M624 442 H635"/>
           <rect class="f-rust s-ink" stroke-width="2" x="806" y="240" width="15" height="86" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M808 248 H819 M808 312 H819"/><rect class="f-trim s-ink" stroke-width="2" x="821" y="254" width="15" height="72" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M823 262 H834 M823 312 H834"/><rect class="f-hot s-ink" stroke-width="2" x="836" y="241" width="13" height="85" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M838 249 H847 M838 312 H847"/><rect class="f-rust s-ink" stroke-width="2" x="849" y="253" width="15" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M851 261 H862 M851 312 H862"/><rect class="f-marigold s-ink" stroke-width="2" x="864" y="259" width="18" height="67" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M866 267 H880 M866 312 H880"/><rect class="f-orange s-ink" stroke-width="2" x="882" y="248" width="15" height="78" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M884 256 H895 M884 312 H895"/><rect class="f-rust s-ink" stroke-width="2" x="897" y="253" width="18" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M899 261 H913 M899 312 H913"/>
           <rect class="f-hot s-ink" stroke-width="2" x="924" y="361" width="14" height="95" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M926 369 H936 M926 442 H936"/><rect class="f-marigold s-ink" stroke-width="2" x="938" y="385" width="12" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M940 393 H948 M940 442 H948"/><rect class="f-marigold s-ink" stroke-width="2" x="950" y="362" width="17" height="94" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M952 370 H965 M952 442 H965"/><rect class="f-trim s-ink" stroke-width="2" x="967" y="380" width="12" height="76" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M969 388 H977 M969 442 H977"/>
@@ -1876,6 +1896,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="490" y="128" width="120" height="28" rx="14"/><text x="550" y="147" text-anchor="middle">SOLITAIRE</text></g>
         </a>
+        <!-- AUDHD BOOK: the books on the middle shelf open a little book about AuDHD -->
+        <a class="hot hot-audhd" href="#audhd" role="button" aria-label="Books: a little book about AuDHD">
+          <g class="glow" stroke-linejoin="round"><rect class="f-orange s-ink" stroke-width="2" x="536" y="243" width="15" height="83" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M538 251 H549 M538 312 H549"/><rect class="f-marigold s-ink" stroke-width="2" x="551" y="241" width="18" height="85" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M553 249 H567 M553 312 H567"/><rect class="f-pink s-ink" stroke-width="2" x="569" y="253" width="17" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M571 261 H584 M571 312 H584"/><rect class="f-marigold s-ink" stroke-width="2" x="586" y="255" width="14" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M588 263 H598 M588 312 H598"/><rect class="f-marigold s-ink" stroke-width="2" x="600" y="240" width="15" height="86" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M602 248 H613 M602 312 H613"/><rect class="f-trim s-ink" stroke-width="2" x="615" y="249" width="18" height="77" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M617 257 H631 M617 312 H631"/><rect class="f-pink s-ink" stroke-width="2" x="633" y="243" width="16" height="83" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M635 251 H647 M635 312 H647"/></g>
+          <g class="tag"><rect x="508" y="206" width="170" height="28" rx="14"/><text x="593" y="225" text-anchor="middle">MY AUDHD BOOK</text></g>
+        </a>
         <!-- MAGIC 8 BALL: click to ask it a question -->
         <a class="hot hot-8ball" href="#8ball" role="button" aria-label="Magic 8 ball: ask it a question">
           <g class="glow" stroke-linejoin="round">
@@ -1933,7 +1958,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
         </g>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the cards, the magic 8 ball or the scrapbook.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the books, the cards, the magic 8 ball or the scrapbook.</p>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
@@ -2173,6 +2198,26 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </div>
     <p class="sol-help">Tap a card, then tap where it goes. Tap it again (or double-tap) to send it up to the top piles.</p>
     <div class="sol-win" id="solWin" hidden><div><b>You did it!</b><button type="button" id="solAgain">Play again</button></div></div>
+  </div>
+</dialog>
+
+<dialog class="book-dialog" id="bookDialog" aria-label="Inside My AuDHD Brain">
+  <div class="book">
+    <button class="lb-close" type="button" id="bookClose" aria-label="Close">Ã</button>
+    <div class="book-page" id="bookPage" aria-live="polite">
+      <div class="book-text">
+        <p class="book-kicker" id="bookKicker"></p>
+        <h3 id="bookTitle"></h3>
+        <div id="bookBody"></div>
+      </div>
+      <aside class="book-margin" id="bookNote" aria-label="Coyote's note"></aside>
+      <span class="book-num" id="bookNum"></span>
+    </div>
+    <div class="scrap-nav book-nav">
+      <button type="button" id="bookPrev" aria-label="Previous page">â¹ Back</button>
+      <span id="bookCount"></span>
+      <button type="button" id="bookNext" aria-label="Next page">Next âº</button>
+    </div>
   </div>
 </dialog>
 
@@ -3038,6 +3083,72 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       requestAnimationFrame(render);
     });
   })();
+
+  // the AuDHD book on the middle shelf. Each page can have a "note" -- Coyote's own words in the margin.
+  var AUDHD_PAGES = [
+    { kicker: "A little field guide", title: "Inside My AuDHD Brain",
+      body: ["AuDHD is what a lot of people call having both autism and ADHD.", "Both are spectrums, so no two AuDHD people are exactly alike. These pages share some common experiences, and my notes in the margin say which ones fit me most.", "Turn the page to peek inside!"], note: "" },
+    { kicker: "The basics", title: "Two Brains in One",
+      body: ["Autism and ADHD can pull in opposite directions at the same time:"],
+      list: ["craving routine, but also craving something new", "needing quiet, but also needing stimulation", "wanting to finish things perfectly, but struggling to get started"],
+      after: "Living with both can feel like a tug-of-war inside your own head.", note: "" },
+    { kicker: "Out of sight, out of mind", title: "Object Permanence",
+      body: ["If something isn't in front of me, my brain can genuinely forget it exists: snacks in the back of the fridge, a project in a drawer, a text I meant to answer, even people I care about.", "It isn't a lack of caring. It's how working memory and attention work for many ADHD brains.", "That's why I keep things out where I can see them, like clear bins, open shelves and lists everywhere."], note: "" },
+    { kicker: "Big feelings, fast", title: "Emotional Dysregulation",
+      body: ["Emotions can show up all at once and at full volume, and it takes longer for my body and brain to come back down.", "Joy, frustration, excitement and overwhelm can all feel bigger than the moment seems to call for.", "Time, quiet and a little patience help me reset much more than being told to calm down."], note: "" },
+    { kicker: "RSD", title: "Rejection Sensitive Dysphoria",
+      body: ["A small criticism, a short reply or the feeling that I've let someone down can hit like a wave of real emotional pain.", "It can show up as over-apologizing, people-pleasing, avoiding things where I might fail, or pulling away for a bit.", "Kind, clear words go a long way."], note: "" },
+    { kicker: "All or nothing", title: "Black-and-White Thinking",
+      body: ["Things can feel like they're either perfect or ruined, all in or not at all, right or wrong.", "Seeing the in-between takes extra effort, especially when I'm stressed or tired.", "It's also part of why I care so much about doing things the right way."], note: "" },
+    { kicker: "Say what you mean", title: "Literal Thinking",
+      body: ["I often take words at face value. Hints, sarcasm, vague plans and \"we should hang out sometime\" can fly right past me or leave me unsure what's really meant.", "Being direct isn't rude to me. It's a gift!", "And if I'm direct back, I'm being honest, not unkind."], note: "" },
+    { kicker: "Too loud, too bright", title: "Sensory Sensitivity",
+      body: ["Sounds, lights, smells and textures can feel much stronger, like a buzzing light, scratchy tags or a crowded room.", "Too much at once can lead to sensory overload, where I need to step away and get somewhere quiet.", "It's also why texture matters so much to me in fabric and fiber!"], note: "" },
+    { kicker: "The brain's to-do manager", title: "Executive Function",
+      body: ["Starting tasks, switching between them, planning steps and keeping track of time can be really hard, even for things I want to do."],
+      list: ["task paralysis: frozen, not lazy", "time blindness: where did the afternoon go?", "body doubling: having someone nearby helps me get going"], note: "" },
+    { kicker: "Deep dives", title: "Hyperfocus & Special Interests",
+      body: ["When something grabs my brain, I can dive in for hours and forget to eat, drink or look at the clock.", "My special interests bring me so much joy and calm. Spinning, knitting, quilting, sewing, Barbiesâ¦ you can probably guess some of mine!", "Hyperfocus is a superpower and a trap at the same time."], note: "" },
+    { kicker: "Self-soothing", title: "Stimming",
+      body: ["Stimming is repetitive movement or sensation that helps regulate the body and brain, like fidgeting, rocking, tapping, humming or running fabric between your fingers.", "Knitting and spinning can be a lovely kind of stim too.", "It helps me focus and feel calm, so please don't ask me to stop!"], note: "" },
+    { kicker: "Running on empty", title: "Masking & Burnout",
+      body: ["Masking means hiding or toning down my natural traits to fit in, like copying social scripts, forcing eye contact or holding in stims.", "It's exhausting, and over time it can lead to burnout, where everyday things suddenly take way more energy than usual.", "Rest, alone time and being accepted as I am help me recover."], note: "" },
+    { kicker: "How you can help", title: "Being an Ally",
+      list: ["Say what you mean, clearly and kindly.", "Give a heads-up before plans change.", "Don't take a late reply or a quiet day personally.", "Let me stim, take breaks and step away when I need to.", "Celebrate the deep dives with me!"],
+      after: "Thank you for reading and getting to know my brain.", note: "" }
+  ];
+  var bookDialog = document.getElementById("bookDialog"), bookPage = document.getElementById("bookPage"), bookAt = 0;
+  function drawBook() {
+    var p = AUDHD_PAGES[bookAt], b = document.getElementById("bookBody");
+    document.getElementById("bookKicker").textContent = p.kicker || "";
+    document.getElementById("bookTitle").textContent = p.title;
+    b.textContent = "";
+    (p.body || []).forEach(function (t) { var el = document.createElement("p"); el.textContent = t; b.appendChild(el); });
+    if (p.list) { var ul = document.createElement("ul"); p.list.forEach(function (t) { var li = document.createElement("li"); li.textContent = t; ul.appendChild(li); }); b.appendChild(ul); }
+    if (p.after) { var a = document.createElement("p"); a.textContent = p.after; b.appendChild(a); }
+    document.getElementById("bookNote").textContent = p.note || "";
+    document.getElementById("bookNum").textContent = "~ " + (bookAt + 1) + " ~";
+    document.getElementById("bookCount").textContent = (bookAt + 1) + " / " + AUDHD_PAGES.length;
+    document.getElementById("bookPrev").disabled = bookAt === 0;
+    document.getElementById("bookNext").disabled = bookAt === AUDHD_PAGES.length - 1;
+    bookPage.querySelector(".book-text").scrollTop = 0;
+  }
+  function turnBook(d) {
+    var n = bookAt + d; if (n < 0 || n >= AUDHD_PAGES.length) return;
+    bookAt = n;
+    if (reduce) { drawBook(); return; }
+    bookPage.classList.remove("turn"); void bookPage.offsetWidth; bookPage.classList.add("turn");
+    setTimeout(drawBook, 190);
+  }
+  document.querySelector(".hot-audhd").addEventListener("click", function (e) {
+    e.preventDefault(); bookAt = 0; drawBook();
+    if (bookDialog.showModal) bookDialog.showModal(); else bookDialog.setAttribute("open", "");
+  });
+  document.getElementById("bookPrev").addEventListener("click", function () { turnBook(-1); });
+  document.getElementById("bookNext").addEventListener("click", function () { turnBook(1); });
+  bookDialog.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") turnBook(1); if (e.key === "ArrowLeft") turnBook(-1); });
+  document.getElementById("bookClose").addEventListener("click", function () { bookDialog.close(); });
+  bookDialog.addEventListener("click", function (e) { if (e.target === bookDialog) bookDialog.close(); });
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
