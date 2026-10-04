@@ -423,6 +423,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hot-oven.open .oven-steam { opacity: 1; }
 .pie-art { display: block; width: min(230px, 62vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes pieOut { from { transform: translateY(40px) scale(.35); opacity: 0; } to { transform: none; opacity: 1; } }
+.gift-qr { display: block; width: min(260px, 70vw); height: auto; border: 3px solid #3B2620; border-radius: 14px; background: #FFFFFF; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2295,6 +2296,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path d="M479 364 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
           </g>
         </g>
+        <!-- GIFT: a little wallet with money peeking out -->
+        <a class="hot hot-gift" href="#gift" role="button" aria-label="Wallet on the table: send Coyote a gift">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <path fill="#7DBB7A" class="s-ink" stroke-width="1.6" d="M505 414 L531 403 L535 411 L509 422 Z"/>
+            <path fill="#9ED39A" class="s-ink" stroke-width="1.6" d="M510 414 L538 407 L540 415 L512 421 Z"/>
+            <text x="525" y="416.5" text-anchor="middle" transform="rotate(-13 525 414)" style="font: 800 6px var(--font-body); fill: #2F6B32">$</text>
+            <path class="f-hot s-ink" stroke-width="2" d="M500 416 L544 411 Q547 411 548 414 L551 425 Q551 428 548 428 L506 432 Q503 432 502 429 Z"/>
+            <path fill="none" class="s-ink" stroke-width="1" opacity=".4" d="M503 420 L547 415"/>
+            <circle class="f-marigold s-ink" stroke-width="1.2" cx="541" cy="421" r="2"/>
+          </g>
+          <g class="tag"><rect x="478" y="440" width="90" height="28" rx="14"/><text x="523" y="459" text-anchor="middle">$ GIFT</text></g>
+        </a>
         <!-- SUDOKU: a puzzle page and a pencil on the table -->
         <a class="hot hot-sdk" href="#sudoku" role="button" aria-label="Sudoku puzzle on the table: play sudoku">
           <g class="glow" stroke-linejoin="round" stroke-linecap="round">
@@ -2625,6 +2638,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <use href="#applePie"/>
     </svg>
     <p class="ball-prompt">Coyote's Birthday is August 14th!</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog gift-dialog" id="giftDialog" aria-label="Send Coyote a gift">
+  <div class="ball-wrap">
+    <button class="lb-close" type="button" id="giftClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Send Coyote a $ Gift</p>
+    <img class="gift-qr" src="images/kitchen/venmo-qr.png" alt="Venmo scan code" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+    <p class="ball-hint" hidden>Scan code coming soon</p>
   </div>
 </dialog>
 
@@ -3881,6 +3903,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("pieClose").addEventListener("click", function () { pieDialog.close(); });
     pieDialog.addEventListener("click", function (e) { if (e.target === pieDialog) pieDialog.close(); });
+  }
+
+  // ---------- the wallet: a gift pop-up ----------
+  var giftDialog = document.getElementById("giftDialog");
+  if (giftDialog) {
+    document.querySelectorAll(".hot-gift").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); if (giftDialog.showModal) giftDialog.showModal(); else giftDialog.setAttribute("open", ""); });
+    });
+    document.getElementById("giftClose").addEventListener("click", function () { giftDialog.close(); });
+    giftDialog.addEventListener("click", function (e) { if (e.target === giftDialog) giftDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
