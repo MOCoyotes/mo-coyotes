@@ -2095,7 +2095,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <clipPath id="kmClip"><path id="kmClipPath" d="M0 0 H1 V1 H0 Z"/></clipPath>
         <g clip-path="url(#kmClip)">
           <g id="kitMouse" class="kit-mouse" transform="translate(-300,-300)" role="button" tabindex="-1" aria-label="A little mouse: catch it!" stroke-linejoin="round" stroke-linecap="round">
-            <rect x="-44" y="-38" width="88" height="44" fill="transparent"/>
             <path class="s-ink" stroke-width="4.5" fill="none" d="M-14 -6 C-26 -1, -30 -15, -42 -10"/>
             <path stroke="#F3B6C4" stroke-width="2" fill="none" d="M-14 -6 C-26 -1, -30 -15, -42 -10"/>
             <ellipse class="km-f1 s-ink" fill="#F3B6C4" stroke-width="1.5" cx="-8" cy="-1" rx="4.5" ry="2.5"/>
@@ -2338,16 +2337,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <p class="cookie-sub">Here's a fortune cookie for your trouble.</p>
     <button class="fortune-cookie" type="button" id="fortuneCookie" aria-label="Crack open the fortune cookie">
       <svg viewBox="0 0 220 150" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
-        <path fill="#C98B3A" stroke="#5A1F0E" stroke-width="3" d="M80 104 C94 92, 126 92, 140 104 C126 122, 94 122, 80 104 Z"/>
-        <rect x="100" y="104" width="44" height="11" fill="#FFFFFF" stroke="#5A1F0E" stroke-width="2" transform="rotate(10 122 110)"/>
+        <rect x="96" y="106" width="46" height="11" fill="#FFFFFF" stroke="#5A1F0E" stroke-width="2" transform="rotate(12 119 111)"/>
         <g class="fc-left">
-          <path fill="#EDB866" stroke="#5A1F0E" stroke-width="3.5" d="M112 42 C98 24, 50 24, 28 58 C14 82, 26 110, 54 114 C78 118, 100 108, 112 94 Z"/>
-          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M96 52 C76 46, 52 56, 42 76"/>
-          <path fill="#FFF3D6" opacity=".6" d="M50 42 C40 48, 33 58, 30 70 C38 60, 48 52, 60 46 Z"/>
+          <path fill="#EDB866" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C60 28, 18 60, 26 102 C44 96, 72 92, 90 104 C96 112, 102 116, 110 116 C104 86, 104 60, 110 30 Z"/>
+          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M34 98 C56 88, 80 90, 96 108"/>
+          <path fill="#FFF3D6" opacity=".6" d="M62 40 C48 46, 38 56, 33 70 C42 60, 54 50, 70 44 Z"/>
         </g>
         <g class="fc-right">
-          <path fill="#E5AA55" stroke="#5A1F0E" stroke-width="3.5" d="M108 42 C122 24, 170 24, 192 58 C206 82, 194 110, 166 114 C142 118, 120 108, 108 94 Z"/>
-          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M124 52 C144 46, 168 56, 178 76"/>
+          <path fill="#E2A350" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C160 28, 202 60, 194 102 C176 96, 148 92, 130 104 C124 112, 118 116, 110 116 C116 86, 116 60, 110 30 Z"/>
+          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M186 98 C164 88, 140 90, 124 108"/>
         </g>
       </svg>
     </button>
@@ -3439,7 +3437,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         var ltr = Math.random() < .5, y = 532 + Math.random() * 14;
         kmClip.setAttribute("d", "M-100 -100 H1100 V700 H-100 Z");
         kitMouse.classList.add("running");
-        animate(reduce ? 4200 : 2600, function (t) {
+        animate(reduce ? 4600 : 3200, function (t) {
           var x = ltr ? -60 + t * 1120 : 1060 - t * 1120;
           place(x, y - Math.abs(Math.sin(t * 60)) * 3, ltr ? 1 : -1, .85);
         }, function () { hideMouse(); schedule(1500 + Math.random() * 2500); });
