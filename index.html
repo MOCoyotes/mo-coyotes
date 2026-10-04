@@ -456,7 +456,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .chart-form { display: grid; gap: 10px; width: 100%; }
 .chart-form[hidden], .chart-result[hidden] { display: none; }
 .chart-form label { display: grid; gap: 4px; font: 800 .85rem var(--font-body); color: #3B2620; text-align: left; }
-.chart-form label span { font-weight: 600; color: #8A5A45; }
+.chart-form label span span { font-weight: 600; color: #8A5A45; }
 .chart-form input[type=text], .chart-form input[type=date], .chart-form input[type=time] { padding: 8px 10px; border: 2px solid #3B2620; border-radius: 10px; background: #FFFFFF; font: 600 1rem var(--font-body); color: #3B2620; min-width: 0; }
 .chart-form input:disabled { opacity: .45; }
 .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -2841,7 +2841,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <button class="lb-close" type="button" id="chartClose" aria-label="Close">×</button>
     <p class="ball-prompt">Your Birth Chart</p>
     <form class="chart-form" id="chartForm" novalidate>
-      <label>Name <span>(optional)</span><input name="name" type="text" autocomplete="off" maxlength="40"></label>
+      <label><span class="lt">Name <span>(optional)</span></span><input name="name" type="text" autocomplete="off" maxlength="40"></label>
       <div class="chart-row">
         <label>Birth date<input name="date" type="date" min="1900-01-01" max="2100-12-31" required></label>
         <label>Birth time<input name="time" type="time"></label>
