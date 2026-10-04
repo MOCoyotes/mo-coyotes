@@ -486,6 +486,33 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .drawer-art { display: block; width: min(440px, 84vw); height: auto; animation: drawerOut .5s cubic-bezier(.3,1.3,.5,1) both; }
 .ball-wrap.drawer-wrap { width: min(500px, 94vw); }
 @keyframes drawerOut { from { transform: translateY(-30px) scale(.9); opacity: 0; } to { transform: none; opacity: 1; } }
+.ball-wrap.tarot-wrap { width: min(400px, 92vw); gap: 12px; }
+.tarot-deck { position: relative; width: 150px; height: 236px; padding: 0; border: 0; background: none; cursor: pointer; perspective: 900px; }
+.tarot-deck:focus-visible { outline: 4px solid var(--hot); outline-offset: 6px; border-radius: 14px; }
+.t-card { position: absolute; inset: 0; border-radius: 12px; }
+.t-under, .t-back { background: #5B3A8C; border: 3px solid #3B2620; box-shadow: inset 0 0 0 5px #5B3A8C, inset 0 0 0 7px #E2B13C; box-sizing: border-box; }
+.t-under::before, .t-back::before { content: "\263D"; position: absolute; left: 0; right: 0; top: 34%; text-align: center; font: 400 54px/1 Georgia, serif; color: #FFE27A; }
+.t-under::after, .t-back::after { content: "\2726  \2726  \2726"; position: absolute; left: 0; right: 0; bottom: 16%; text-align: center; font: 400 14px/1 Georgia, serif; color: #E2B13C; letter-spacing: 2px; }
+.t-a { transform: rotate(-4deg) translate(-4px, 3px); }
+.t-b { transform: rotate(3deg) translate(4px, 2px); }
+.t-top { transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,1.2,.4,1); }
+.t-face { position: absolute; inset: 0; border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.t-front { transform: rotateY(180deg); display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 12px 8px; box-sizing: border-box; background: #FFF8EC; border: 3px solid #3B2620; box-shadow: inset 0 0 0 5px #FFF8EC, inset 0 0 0 7px #E2B13C; color: #3B2620; }
+.t-num { font: 400 1.1rem var(--font-display); color: #5B3A8C; }
+.t-icon { width: 78px; height: 78px; }
+.t-title { font: 900 .8rem/1.2 var(--font-body); letter-spacing: .06em; text-transform: uppercase; text-align: center; color: #5B3A8C; }
+.tarot-deck.pulled .t-top { transform: translateY(-10px) rotateY(180deg); }
+.tarot-deck.shuffling .t-a { animation: tShufL .55s ease-in-out 2; }
+.tarot-deck.shuffling .t-b { animation: tShufR .55s ease-in-out 2; }
+.tarot-deck.shuffling .t-top { animation: tShufT .55s ease-in-out 2; }
+@keyframes tShufL { 50% { transform: translateX(-70px) rotate(-12deg); } }
+@keyframes tShufR { 50% { transform: translateX(70px) rotate(12deg); } }
+@keyframes tShufT { 25% { transform: translateY(-16px) rotate(4deg); } 75% { transform: translateY(6px) rotate(-3deg); } }
+.tarot-read { text-align: center; }
+.tarot-read[hidden] { display: none; }
+.tarot-name { margin: 0 0 4px; font: 400 1.35rem var(--font-display); color: #5B3A8C; }
+.tarot-mean { margin: 0; font: 700 1rem/1.4 var(--font-body); color: #3B2620; }
+@media (prefers-reduced-motion: reduce) { .t-top { transition: none; } .tarot-deck.shuffling .t-card { animation: none; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2206,7 +2233,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
               <path d="M153 98.5 H272" class="s-ink" stroke-width="1" opacity=".4"/>
               <g class="s-ink" stroke-width="1.4" stroke-linejoin="round">
                 <!-- vintage Pyrex nesting bowls: the classic Primary Colors set --><path d="M168.0 52.5 L192.0 52.5 C192.0 59.6, 188.2 65.5, 185.8 65.5 L174.2 65.5 C171.8 65.5, 168.0 59.6, 168.0 52.5 Z" fill="#2F7DC4"/><rect x="166.8" y="50.9" width="26.4" height="3.2" rx="1.6" fill="#2F7DC4"/><path d="M169.0 52.3 H191.0" stroke="#FFFDF4" stroke-width="1.1" stroke-linecap="round"/><path d="M171.0 55.5 Q172.0 60.3 176.0 63.5" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/><path d="M164.5 61.0 L195.5 61.0 C195.5 68.7, 190.5 75.0, 187.4 75.0 L172.6 75.0 C169.5 75.0, 164.5 68.7, 164.5 61.0 Z" fill="#D7263D"/><rect x="163.3" y="59.4" width="33.4" height="3.2" rx="1.6" fill="#D7263D"/><path d="M165.5 60.8 H194.5" stroke="#FFFDF4" stroke-width="1.1" stroke-linecap="round"/><path d="M167.5 64.0 Q168.5 69.4 172.5 72.9" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/><path d="M161.0 69.5 L199.0 69.5 C199.0 77.8, 192.9 84.5, 189.1 84.5 L170.9 84.5 C167.1 84.5, 161.0 77.8, 161.0 69.5 Z" fill="#3E9A4B"/><rect x="159.8" y="67.9" width="40.4" height="3.2" rx="1.6" fill="#3E9A4B"/><path d="M162.0 69.3 H198.0" stroke="#FFFDF4" stroke-width="1.1" stroke-linecap="round"/><path d="M164.0 72.5 Q165.0 78.5 169.0 82.2" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/><path d="M157.0 78.0 L203.0 78.0 C203.0 86.8, 195.6 94.0, 191.0 94.0 L169.0 94.0 C164.4 94.0, 157.0 86.8, 157.0 78.0 Z" fill="#F2C230"/><rect x="155.8" y="76.4" width="48.4" height="3.2" rx="1.6" fill="#F2C230"/><path d="M158.0 77.8 H202.0" stroke="#FFFDF4" stroke-width="1.1" stroke-linecap="round"/><path d="M160.0 81.0 Q161.0 87.6 165.0 91.6" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/>
-                <g transform="translate(167,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#F7B6D2"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><path d="M-7 133.6 H7" stroke="#E2B13C" stroke-width="1.2"/></g><g transform="translate(194,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#A8E6CF"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><g fill="#FFFFFF" stroke="none"><circle cx="-3" cy="137" r="1.3"/><circle cx="3" cy="136" r="1.3"/></g></g><g transform="translate(221,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#BFD7F2"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><path d="M-5 137 q2 -2.5 4 0 q2 2.5 4 0" fill="none" stroke="#3E6FB5" stroke-width=".9"/></g><g transform="translate(248,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#FFE27A"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><g fill="#F48FB8" stroke="none"><circle cx="0" cy="137" r="1.6"/></g></g>
+                <!-- yellow Pyrex oblong baking dish --><path d="M206 78 h7 v4.5 h-5.5 Z M270 78 h-7 v4.5 h5.5 Z" fill="#F2C230"/><path d="M212 80 H264 L261.5 92.5 Q260.8 94.5 258.5 94.5 H217.5 Q215.2 94.5 214.5 92.5 Z" fill="#F2C230"/><rect x="210.5" y="77.6" width="55" height="3.6" rx="1.8" fill="#F2C230"/><path d="M212.5 79.4 H263.5" stroke="#FFFDF4" stroke-width="1.1" stroke-linecap="round"/><path d="M216.5 84 Q217 89 219.5 92" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/><g transform="translate(167,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#F7B6D2"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><path d="M-7 133.6 H7" stroke="#E2B13C" stroke-width="1.2"/></g><g transform="translate(194,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#F39A2B"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><g fill="#FFFFFF" stroke="none"><circle cx="-3" cy="137" r="1.3"/><circle cx="3" cy="136" r="1.3"/></g></g><g transform="translate(221,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#F48FB8"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><path d="M-5 137 q2 -2.5 4 0 q2 2.5 4 0" fill="none" stroke="#FFFFFF" stroke-width=".9"/></g><g transform="translate(248,0)"><ellipse cx="0" cy="144.5" rx="12" ry="2.6" fill="#FFFDF4"/><path d="M-8 131 H8 Q8 143 0 143 Q-8 143 -8 131 Z" fill="#FFE27A"/><path d="M8 133.5 q5.5 0 5 4 q-.5 3.5 -6 3" fill="none" stroke-width="1.6"/><ellipse cx="0" cy="131" rx="8" ry="1.8" fill="#FFF3E6"/><g fill="#F48FB8" stroke="none"><circle cx="0" cy="137" r="1.6"/></g></g>
               </g>
             </g>
             <g class="cab-door">
@@ -2925,12 +2952,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   <div class="ball-wrap drawer-wrap">
     <button class="lb-close" type="button" id="drawerClose" aria-label="Close">×</button>
     <p class="ball-prompt">The Junk Drawer</p>
-    <svg class="drawer-art" viewBox="0 0 320 210" role="img" aria-label="Inside the junk drawer: a deck of tarot cards, lavender essential oil, safety pins, candy, pink heart-shaped sunglasses and spare keys" stroke="#5A1F0E" stroke-linejoin="round" stroke-linecap="round">
+    <svg class="drawer-art" viewBox="0 0 320 210" role="img" aria-label="Inside the junk drawer: a deck of tarot cards, lavender essential oil, candy, pink heart-shaped sunglasses and spare keys" stroke="#5A1F0E" stroke-linejoin="round" stroke-linecap="round">
       <path d="M14 18 H306 L296 168 H24 Z" fill="#B98552" stroke-width="3"/>
       <path d="M28 30 H292 L284 160 H36 Z" fill="#E8CFA8" stroke-width="2"/>
       <path d="M40 60 H280 M38 95 H282 M37 128 H283" stroke="#D6B98E" stroke-width="1.2" opacity=".8"/>
-      <!-- tarot deck and a card -->
-      <g transform="rotate(-10 70 80)">
+      <!-- TAROT: tap the deck to pull a card -->
+      <a class="hot hot-tarot" href="#tarot" role="button" aria-label="Tarot deck: pull a card for your day">
+      <g class="glow" transform="rotate(-10 70 80)">
         <rect x="48" y="44" width="44" height="66" rx="4" fill="#FFF3D6" stroke-width="1.6" transform="rotate(16 70 77)"/>
         <rect x="46" y="44" width="46" height="70" rx="4" fill="#5B3A8C" stroke-width="2"/>
         <rect x="50" y="48" width="38" height="62" rx="2.5" fill="none" stroke="#E2B13C" stroke-width="1.4"/>
@@ -2938,6 +2966,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <path d="M69 90 l1.6 3.6 l3.6 1.6 l-3.6 1.6 l-1.6 3.6 l-1.6 -3.6 l-3.6 -1.6 l3.6 -1.6 Z" fill="#E2B13C" stroke="none"/>
         <g fill="#FFF3D6" stroke="none"><circle cx="58" cy="56" r=".9"/><circle cx="82" cy="58" r=".9"/><circle cx="80" cy="102" r=".9"/><circle cx="57" cy="100" r=".9"/></g>
       </g>
+      <g class="tag"><rect x="18" y="118" width="104" height="24" rx="12"/><text x="70" y="135" text-anchor="middle" style="font-size: 12px">PULL A CARD</text></g>
+      </a>
       <!-- lavender essential oil -->
       <rect x="112" y="58" width="24" height="42" rx="5" fill="#B5651D" stroke-width="2"/>
       <rect x="114" y="46" width="20" height="14" rx="3" fill="#2B1E22" stroke-width="1.6"/>
@@ -2954,18 +2984,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <path d="M-4 -4 Q0 -8 4 -4" fill="none" stroke-width="2.4"/>
         <path d="M-35 -6 q2 -5 7 -5 M13 -6 q2 -5 7 -5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
       </g>
-      <!-- safety pins -->
-      <g fill="none" stroke="#8C8F9C" stroke-width="2">
-        <path d="M58 136 H96 Q103 136 103 141 Q103 146 96 146 H64"/><circle cx="56" cy="141" r="5"/>
-        <path d="M64 151 H100 Q107 151 107 155.5 Q107 160 100 160 H70" transform="rotate(-8 85 155)"/>
-      </g>
-      <g fill="#D9DCE6" stroke-width="1.2"><rect x="54" y="132" width="10" height="9" rx="2"/><rect x="62" y="148" width="10" height="9" rx="2" transform="rotate(-8 67 152)"/></g>
       <!-- candy -->
       <g stroke-width="1.4">
         <circle cx="136" cy="134" r="9" fill="#FFFFFF"/><path d="M136 134 L145.0 134.0 A9 9 0 0 1 143.8 138.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L140.5 141.8 A9 9 0 0 1 136.0 143.0 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L131.5 141.8 A9 9 0 0 1 128.2 138.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L127.0 134.0 A9 9 0 0 1 128.2 129.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L131.5 126.2 A9 9 0 0 1 136.0 125.0 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L140.5 126.2 A9 9 0 0 1 143.8 129.5 Z" fill="#D7263D" stroke="none"/><circle cx="136" cy="134" r="2.2" fill="#FFFFFF" stroke="none"/><circle cx="136" cy="134" r="9" fill="none"/>
         <circle cx="160" cy="146" r="9" fill="#FFFFFF"/><path d="M160 146 L169.0 146.0 A9 9 0 0 1 167.8 150.5 Z" fill="#D7263D" stroke="none"/><path d="M160 146 L164.5 153.8 A9 9 0 0 1 160.0 155.0 Z" fill="#D7263D" stroke="none"/><path d="M160 146 L155.5 153.8 A9 9 0 0 1 152.2 150.5 Z" fill="#D7263D" stroke="none"/><path d="M160 146 L151.0 146.0 A9 9 0 0 1 152.2 141.5 Z" fill="#D7263D" stroke="none"/><path d="M160 146 L155.5 138.2 A9 9 0 0 1 160.0 137.0 Z" fill="#D7263D" stroke="none"/><path d="M160 146 L164.5 138.2 A9 9 0 0 1 167.8 141.5 Z" fill="#D7263D" stroke="none"/><circle cx="160" cy="146" r="2.2" fill="#FFFFFF" stroke="none"/><circle cx="160" cy="146" r="9" fill="none"/>
         <path d="M178 120 l-8 -6 v12 Z M200 120 l8 -6 v12 Z" fill="#F7B6D2"/><ellipse cx="189" cy="120" rx="11" ry="7" fill="#F48FB8"/>
-        <path d="M184 117 q5 6 10 0" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
         <path d="M196 146 l-7 -5 v10 Z M216 146 l7 -5 v10 Z" fill="#FFF3A8"/><ellipse cx="206" cy="146" rx="10" ry="6.5" fill="#F2C230"/>
       </g>
       <!-- spare keys -->
@@ -2979,6 +3002,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <path d="M10 166 H310 V200 Q310 204 306 204 H14 Q10 204 10 200 Z" fill="#F9CFD8" stroke-width="3"/>
       <rect x="140" y="178" width="40" height="9" rx="4.5" fill="#D9DCE6" stroke-width="2"/>
     </svg>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog tarot-dialog" id="tarotDialog" aria-label="Pull a tarot card">
+  <div class="ball-wrap tarot-wrap">
+    <button class="lb-close" type="button" id="tarotClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Your Card for Today</p>
+    <button class="tarot-deck" type="button" id="tarotDeck" aria-label="Tarot deck: tap to shuffle">
+      <span class="t-card t-under t-a"></span>
+      <span class="t-card t-under t-b"></span>
+      <span class="t-card t-top" id="tarotTop"><span class="t-face t-back"></span><span class="t-face t-front" id="tarotFront"></span></span>
+    </button>
+    <div class="tarot-read" id="tarotRead" hidden aria-live="polite"><p class="tarot-name" id="tarotName"></p><p class="tarot-mean" id="tarotMean"></p></div>
+    <p class="ball-hint" id="tarotHint">Tap the deck to shuffle</p>
   </div>
 </dialog>
 
@@ -4536,6 +4573,82 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("drawerClose").addEventListener("click", function () { drawerDialog.close(); });
     drawerDialog.addEventListener("click", function (e) { if (e.target === drawerDialog) drawerDialog.close(); });
+  }
+
+  // ---------- tarot: shuffle, then pull a card for the day ----------
+  var tarotDialog = document.getElementById("tarotDialog");
+  if (tarotDialog) {
+    var MAJORS = [
+      ["0", "The Fool", "A fresh start is calling. Say yes to something new and trust the leap."],
+      ["I", "The Magician", "You already have everything you need. Use your skills and make it happen."],
+      ["II", "The High Priestess", "Trust your gut today. The quiet voice inside knows the way."],
+      ["III", "The Empress", "Create, nurture and enjoy. Beauty and abundance grow from your hands."],
+      ["IV", "The Emperor", "Bring a little structure. A simple plan makes big things possible."],
+      ["V", "The Hierophant", "Lean on teachers and tradition. There's wisdom in the tried and true."],
+      ["VI", "The Lovers", "Follow your heart and choose what truly matches who you are."],
+      ["VII", "The Chariot", "Full speed ahead! Focus and determination carry you through."],
+      ["VIII", "Strength", "Gentle courage wins. Be patient and kind, especially with yourself."],
+      ["IX", "The Hermit", "Take some quiet time. Your answers come when you slow down."],
+      ["X", "Wheel of Fortune", "Luck is turning. Go with the flow and watch for a happy surprise."],
+      ["XI", "Justice", "Be fair and honest. What you put out comes back around."],
+      ["XII", "The Hanged Man", "Pause and look at things from a new angle. Waiting can be wise."],
+      ["XIII", "Death", "Something is ending so something better can begin. Let it go."],
+      ["XIV", "Temperance", "Find your balance. A little of this, a little of that, nothing too much."],
+      ["XV", "The Devil", "Notice what's holding you back. You're freer than you think."],
+      ["XVI", "The Tower", "A shake-up clears the way. Today's surprises make room for the truth."],
+      ["XVII", "The Star", "Hope is shining on you. Rest, heal and keep wishing."],
+      ["XVIII", "The Moon", "Things may feel foggy. Trust your intuition and take it slow."],
+      ["XIX", "The Sun", "Joy, warmth and success! Let yourself shine today."],
+      ["XX", "Judgement", "A wake-up call. Forgive the past and answer what's calling you."],
+      ["XXI", "The World", "Something comes full circle. Celebrate how far you've come."]
+    ];
+    var SUITS = {
+      Wands: ["A spark of inspiration! Start that project you've been dreaming about.", "Make a plan for the future. The world is bigger than it looks.", "Your efforts are paying off. Look ahead, your ships are coming in.", "Celebrate home, friends and happy milestones.", "A little friendly competition. Keep your cool and play fair.", "Victory and recognition. Take a bow, you earned it!", "Stand your ground. Your ideas are worth defending.", "Things move fast today. News and progress are on the way.", "You're almost there. Rest a moment, then keep going.", "You're carrying a lot. Put something down or ask for help.", "Curiosity leads the way. Try something new just for fun.", "Bold energy and adventure. Go for it, just watch your speed.", "Confident, warm and magnetic. Let your personality shine.", "Lead with vision. Your big idea can inspire others."],
+      Cups: ["A fresh wave of love and feeling. Open your heart.", "A sweet connection. Partnership and caring for each other.", "Celebrate with friends! Good times and good company.", "Feeling meh? Look around, there may be an offer you're missing.", "It's okay to feel sad, but don't miss the cups still standing.", "Sweet nostalgia. A memory or an old friend brings comfort.", "So many choices! Pick the dream that's real, not just shiny.", "It's okay to walk away from what no longer fills you up.", "The wish card! Contentment and getting what you hoped for.", "A happy home and a full heart. Love all around you.", "A sweet surprise or creative idea bubbles up. Stay open.", "Follow your heart's invitation. Romance and creativity.", "Lead with compassion and trust your feelings.", "Calm in the storm. Balance your heart and your head."],
+      Swords: ["A moment of clarity. The truth cuts through the fog.", "A tough choice. Take off the blindfold and look at your options.", "Heartache passes. Let yourself feel it, then let it heal.", "Rest and recharge. Your mind needs a break.", "Pick your battles. Winning isn't worth every fight.", "Moving toward calmer waters. Things are getting better.", "Be clever, but be honest. Skip the sneaky shortcuts.", "You're less stuck than you feel. The way out is closer than you think.", "Worries feel bigger at night. Talk it out, it's not as bad as it seems.", "The worst is over. Tomorrow is a brand new day.", "Ask questions and stay curious. New ideas are flying in.", "Charge ahead with your ideas, just don't forget to listen.", "Clear, honest and wise. Say what you mean, kindly.", "Think it through and lead with logic and fairness."],
+      Pentacles: ["A new opportunity for money, home or craft. Plant the seed!", "Juggling a lot? Stay flexible and keep your balance.", "Teamwork and skill. Your craftsmanship gets noticed.", "Hold on to what matters, but don't grip too tight.", "Tough times pass. Help is closer than you think, so ask for it.", "Give and receive. Generosity comes back around.", "Be patient with your garden. Good things are growing.", "Practice makes perfect. Keep stitching, keep learning.", "Enjoy the fruits of your work. You deserve something lovely.", "Lasting comfort, family and a cozy home.", "A new skill or study begins. Little steps add up.", "Slow and steady wins. Do the work, one row at a time.", "Nurture your home and yourself. Cozy and capable.", "Abundance and security. Your hard work built something solid."]
+    };
+    var RANKS = [["A", "Ace"], ["2", "Two"], ["3", "Three"], ["4", "Four"], ["5", "Five"], ["6", "Six"], ["7", "Seven"], ["8", "Eight"], ["9", "Nine"], ["10", "Ten"], ["P", "Page"], ["Kn", "Knight"], ["Q", "Queen"], ["K", "King"]];
+    var ICONS = {
+      major: '<svg class="t-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9" fill="#FFE27A" stroke="#5A1F0E" stroke-width="1.4"/><g stroke="#E2B13C" stroke-width="2" stroke-linecap="round"><path d="M20 4 v5 M20 31 v5 M4 20 h5 M31 20 h5 M8.7 8.7 l3.5 3.5 M27.8 27.8 l3.5 3.5 M31.3 8.7 l-3.5 3.5 M12.2 27.8 l-3.5 3.5"/></g><path d="M17 18.5 q1 -1.5 2 0 M21 18.5 q1 -1.5 2 0 M17 22.5 q3 2.5 6 0" fill="none" stroke="#5A1F0E" stroke-width="1.1" stroke-linecap="round"/></svg>',
+      Wands: '<svg class="t-icon" viewBox="0 0 40 40"><path d="M12 34 L28 6" stroke="#5A1F0E" stroke-width="5" stroke-linecap="round"/><path d="M12 34 L28 6" stroke="#C98B52" stroke-width="3" stroke-linecap="round"/><path d="M22 14 q5 -3 7 1 q-4 3 -7 -1 Z M18 21 q-5 -2 -6 2 q4 2 6 -2 Z M26 9 q2 -5 6 -3 q-2 4 -6 3 Z" fill="#6E9446" stroke="#5A1F0E" stroke-width=".9"/></svg>',
+      Cups: '<svg class="t-icon" viewBox="0 0 40 40"><path d="M9 7 H31 Q31 22 20 23 Q9 22 9 7 Z" fill="#F2C230" stroke="#5A1F0E" stroke-width="1.6"/><path d="M18 23 H22 V30 H18 Z M12 33 Q20 28 28 33 V35 H12 Z" fill="#F2C230" stroke="#5A1F0E" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 11 Q20 14 28 11" fill="none" stroke="#5AA9C9" stroke-width="2"/><circle cx="20" cy="16" r="2" fill="#E0218A"/></svg>',
+      Swords: '<svg class="t-icon" viewBox="0 0 40 40"><path d="M20 3 L23 8 V26 H17 V8 Z" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 8 V25" stroke="#FFFFFF" stroke-width="1"/><rect x="12" y="26" width="16" height="3.5" rx="1.75" fill="#E2B13C" stroke="#5A1F0E" stroke-width="1.3"/><rect x="18" y="29.5" width="4" height="6" fill="#8B5A3C" stroke="#5A1F0E" stroke-width="1.2"/><circle cx="20" cy="37" r="2" fill="#E2B13C" stroke="#5A1F0E" stroke-width="1"/></svg>',
+      Pentacles: '<svg class="t-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="#F2C230" stroke="#5A1F0E" stroke-width="1.6"/><circle cx="20" cy="20" r="12" fill="none" stroke="#5A1F0E" stroke-width="1"/><path d="M20 9.5 L23.1 17.6 L31.4 17.6 L24.6 22.6 L27.2 30.8 L20 25.8 L12.8 30.8 L15.4 22.6 L8.6 17.6 L16.9 17.6 Z" fill="#FFF3A8" stroke="#5A1F0E" stroke-width="1.1" stroke-linejoin="round"/></svg>'
+    };
+    var DECK = MAJORS.map(function (m) { return { num: m[0], name: m[1], mean: m[2], icon: "major" }; });
+    Object.keys(SUITS).forEach(function (suit) { RANKS.forEach(function (r, k) { DECK.push({ num: r[0], name: r[1] + " of " + suit, mean: SUITS[suit][k], icon: suit }); }); });
+    var tarotDeck = document.getElementById("tarotDeck"), tarotHint = document.getElementById("tarotHint"), tarotRead = document.getElementById("tarotRead");
+    var tState = 0, tLast = -1, tBusy = false;
+    var tReset = function () { tState = 0; tarotDeck.classList.remove("pulled", "shuffling"); tarotRead.hidden = true; tarotHint.textContent = "Tap the deck to shuffle"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to shuffle"); };
+    tarotDeck.addEventListener("click", function () {
+      if (tBusy) return;
+      if (tState === 0 || tState === 2) {
+        tarotDeck.classList.remove("pulled"); tarotRead.hidden = true; tBusy = true;
+        setTimeout(function () {
+          tarotDeck.classList.add("shuffling");
+          for (var k = 0; k < 6; k++) (function (k) { setTimeout(function () { tone("triangle", 1200 + k * 60, 900, 600, .03, .05); }, k * 170); })(k);
+          setTimeout(function () { tarotDeck.classList.remove("shuffling"); tBusy = false; tState = 1; tarotHint.textContent = "Now tap to pull your card"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to pull your card"); }, reduce ? 0 : 1150);
+        }, tState === 2 && !reduce ? 450 : 0);
+        return;
+      }
+      var i; do { i = Math.floor(Math.random() * DECK.length); } while (i === tLast);
+      tLast = i; var c = DECK[i];
+      document.getElementById("tarotFront").innerHTML = '<span class="t-num"></span>' + ICONS[c.icon] + '<span class="t-title"></span>';
+      document.querySelector("#tarotFront .t-num").textContent = c.num;
+      document.querySelector("#tarotFront .t-title").textContent = c.name;
+      tarotDeck.classList.add("pulled"); popSound();
+      setTimeout(function () {
+        document.getElementById("tarotName").textContent = c.name; document.getElementById("tarotMean").textContent = c.mean;
+        tarotRead.hidden = false; tarotHint.textContent = "Tap the deck to shuffle again"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to shuffle again");
+      }, reduce ? 0 : 650);
+      tState = 2;
+    });
+    document.querySelectorAll(".hot-tarot").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); tReset(); if (tarotDialog.showModal) tarotDialog.showModal(); else tarotDialog.setAttribute("open", ""); });
+    });
+    document.getElementById("tarotClose").addEventListener("click", function () { tarotDialog.close(); });
+    tarotDialog.addEventListener("click", function (e) { if (e.target === tarotDialog) tarotDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
