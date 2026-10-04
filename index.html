@@ -1714,7 +1714,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
       <h2 id="featuredTitle">EXTRA</h2>
       <p class="lede featured-lede">Interviews, magazines, shows and other fun things.</p>
-      <svg class="brag-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy built-in bookshelf filling the wall under the stairs: a trophy and a prize ribbon, a framed certificate, a VHS camcorder, a scrapbook of events, board games, magazines, a vintage microphone, a newspaper and polaroid photos">
+      <svg class="brag-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy built-in bookshelf filling the wall under the stairs: a trophy and a prize ribbon, a framed certificate, a VHS camcorder, a scrapbook of events, board games, magazines, a newspaper and polaroid photos">
         <defs>
           <pattern id="bragDots" width="40" height="40" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall-lt)" width="40" height="40"/><circle class="f-pink" opacity=".6" cx="10" cy="10" r="2.8"/><circle class="f-marigold" opacity=".55" cx="30" cy="30" r="2.8"/></pattern>
           <pattern id="bragShag" width="120" height="44" patternUnits="userSpaceOnUse"><rect class="f-orange" width="120" height="44"/><g fill="none" style="stroke: var(--rust)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16 l3 -7 l3 7 l3 -7 l3 7"/><path d="M58 34 l3 -7 l3 7 l3 -7 l3 7"/><path d="M92 14 l3 -7 l3 7 l3 -7 l3 7"/><path d="M34 38 l2.5 -6 l2.5 6"/><path d="M80 24 l2.5 -6 l2.5 6"/><path d="M110 40 l2.5 -6 l2.5 6"/></g></pattern>
@@ -1874,17 +1874,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="331" y="290" width="174" height="28" rx="14"/><text x="418" y="309" text-anchor="middle">PARTICIPATION</text></g>
         </a>
 
-        <!-- vintage microphone (decor for now) -->
-        <g class="mic" transform="translate(-76,-40)">
-          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
-            <ellipse fill="#5A3420" class="s-ink" stroke-width="2.5" cx="572" cy="360" rx="26" ry="6"/>
-            <path class="s-ink" stroke-width="6" d="M572 356 V328"/><path stroke="#D9D2DA" stroke-width="3" d="M572 356 V328"/>
-            <path class="s-ink" stroke-width="6" fill="none" d="M554 316 Q 554 332 572 332 Q 590 332 590 316"/><path stroke="#D9D2DA" stroke-width="3" fill="none" d="M554 316 Q 554 332 572 332 Q 590 332 590 316"/>
-            <rect fill="#D9D2DA" class="s-ink" stroke-width="3" x="558" y="286" width="28" height="40" rx="14"/>
-            <path class="s-ink" stroke-width="1.2" opacity=".6" d="M562 296 H582 M560 303 H584 M560 310 H584 M562 317 H582 M572 289 V323 M566 290 V322 M578 290 V322"/>
-            <rect class="f-hot s-ink" stroke-width="2" x="556" y="302" width="32" height="8" rx="2"/>
+        <!-- a cute little animal skull with a flower (decor) -->
+        <g class="skull" transform="translate(-76,-40)">
+          <g stroke-linejoin="round" stroke-linecap="round">
+            <path fill="#F3E3C3" class="s-ink" stroke-width="2.2" d="M558 321 Q 540 320 534 305 Q 546 313 560 314 Z"/>
+            <path fill="#F3E3C3" class="s-ink" stroke-width="2.2" d="M586 321 Q 604 320 610 305 Q 598 313 584 314 Z"/>
+            <path fill="#FFFDF4" class="s-ink" stroke-width="2.5" d="M555 318 Q 572 305 589 318 Q 594 334 585 345 L 581 361 Q 572 368 563 361 L 559 345 Q 550 334 555 318 Z"/>
+            <path fill="none" class="s-ink" stroke-width="1.2" opacity=".35" d="M572 309 V 318 M566 340 Q 572 344 578 340"/>
+            <g class="f-ink"><ellipse cx="564.5" cy="329" rx="4.6" ry="5.2"/><ellipse cx="579.5" cy="329" rx="4.6" ry="5.2"/><ellipse cx="569.5" cy="356" rx="1.4" ry="2.4"/><ellipse cx="574.5" cy="356" rx="1.4" ry="2.4"/></g>
+            <g fill="#FFFFFF"><circle cx="563" cy="327.5" r="1.3"/><circle cx="578" cy="327.5" r="1.3"/></g>
+            <g class="f-hot" opacity=".3"><ellipse cx="560" cy="339" rx="3" ry="1.8"/><ellipse cx="584" cy="339" rx="3" ry="1.8"/></g>
+            <g class="f-hot s-ink" stroke-width="1"><circle cx="585" cy="309" r="3"/><circle cx="590.5" cy="312" r="3"/><circle cx="589" cy="318" r="3"/><circle cx="583" cy="318.5" r="3"/><circle cx="580.5" cy="313" r="3"/></g>
+            <circle class="f-marigold s-ink" stroke-width="1" cx="585.5" cy="314" r="2.2"/>
+            <path style="fill: var(--grass)" class="s-ink" stroke-width="1" d="M577 316 q -6 -3 -8 1 q 4 3 8 -1 z"/>
           </g>
         </g>
+
 
         <!-- SOLITAIRE: the pack of cards -->
         <a class="hot hot-cards" href="#solitaire" role="button" aria-label="Pack of cards: play solitaire">
@@ -2203,7 +2208,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
 <dialog class="book-dialog" id="bookDialog" aria-label="Inside My AuDHD Brain">
   <div class="book">
-    <button class="lb-close" type="button" id="bookClose" aria-label="Close">Ã</button>
+    <button class="lb-close" type="button" id="bookClose" aria-label="Close">×</button>
     <div class="book-page" id="bookPage" aria-live="polite">
       <div class="book-text">
         <p class="book-kicker" id="bookKicker"></p>
@@ -2214,9 +2219,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <span class="book-num" id="bookNum"></span>
     </div>
     <div class="scrap-nav book-nav">
-      <button type="button" id="bookPrev" aria-label="Previous page">â¹ Back</button>
+      <button type="button" id="bookPrev" aria-label="Previous page">‹ Back</button>
       <span id="bookCount"></span>
-      <button type="button" id="bookNext" aria-label="Next page">Next âº</button>
+      <button type="button" id="bookNext" aria-label="Next page">Next ›</button>
     </div>
   </div>
 </dialog>
@@ -3108,7 +3113,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       body: ["Starting tasks, switching between them, planning steps and keeping track of time can be really hard, even for things I want to do."],
       list: ["task paralysis: frozen, not lazy", "time blindness: where did the afternoon go?", "body doubling: having someone nearby helps me get going"], note: "" },
     { kicker: "Deep dives", title: "Hyperfocus & Special Interests",
-      body: ["When something grabs my brain, I can dive in for hours and forget to eat, drink or look at the clock.", "My special interests bring me so much joy and calm. Spinning, knitting, quilting, sewing, Barbiesâ¦ you can probably guess some of mine!", "Hyperfocus is a superpower and a trap at the same time."], note: "" },
+      body: ["When something grabs my brain, I can dive in for hours and forget to eat, drink or look at the clock.", "My special interests bring me so much joy and calm. Spinning, knitting, quilting, sewing, Barbies… you can probably guess some of mine!", "Hyperfocus is a superpower and a trap at the same time."], note: "" },
     { kicker: "Self-soothing", title: "Stimming",
       body: ["Stimming is repetitive movement or sensation that helps regulate the body and brain, like fidgeting, rocking, tapping, humming or running fabric between your fingers.", "Knitting and spinning can be a lovely kind of stim too.", "It helps me focus and feel calm, so please don't ask me to stop!"], note: "" },
     { kicker: "Running on empty", title: "Masking & Burnout",
