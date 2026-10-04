@@ -2382,7 +2382,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   // size the enlarged photo to fit the screen exactly, so the frame hugs it with no empty space
   function fitLb() {
     var w = lbImg.naturalWidth, h = lbImg.naturalHeight; if (!w || !h) return;
-    var k = Math.min(Math.min(window.innerWidth * .86, 900) / w, window.innerHeight * .78 / h, 1);
+    var k = Math.min(Math.min(window.innerWidth - 80, 900) / w, window.innerHeight * .78 / h, 1);
     lbImg.style.width = Math.round(w * k) + "px"; lbImg.style.height = Math.round(h * k) + "px";
   }
   window.addEventListener("resize", function () { if (lightbox.open && !lbImg.hidden) fitLb(); });
