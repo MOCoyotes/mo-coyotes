@@ -1203,7 +1203,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
 
         <!-- second picture frame (decor; ready for a photo) -->
-        <g class="hall-photo2" transform="translate(-232,-6)">
+        <a class="hot hot-qf" href="#photo" role="button" data-plain="1" data-big="images/hall/hall-dog-big.jpg" data-cap="" aria-label="Framed photo: Coyote's heeler pup, click to make it bigger"><g class="glow hall-photo2" transform="translate(-232,-6)">
           <path class="s-ink" stroke-width="2" fill="none" d="M934 40 L910 64 M934 40 L958 64"/><circle class="f-marigold s-ink" stroke-width="2" cx="934" cy="38" r="5"/>
           <polygon style="fill: var(--frame-lt)" points="896,64 972,64 961,75 907,75"/><polygon style="fill: var(--frame-md)" points="972,64 972,150 961,139 961,75"/>
           <polygon style="fill: var(--frame-dk)" points="972,150 896,150 907,139 961,139"/><polygon style="fill: var(--frame)" points="896,150 896,64 907,75 907,139"/>
@@ -1212,7 +1212,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect fill="none" class="s-ink" stroke-width="2" x="915" y="83" width="38" height="48"/>
           <rect fill="none" class="s-ink" stroke-width="3" x="896" y="64" width="76" height="86"/>
           <path class="s-ink" stroke-width="1.2" d="M896 64 L907 75 M972 64 L961 75 M972 150 L961 139 M896 150 L907 139"/>
-        </g>
+        </g></a>
         <!-- coat rack (decor) -->
         <!-- KITCHEN: a little mouse door, through a tunnel -->
         <a class="hot hot-tunnel" href="#kitchen" aria-label="Little mouse door: SQUEEK">
@@ -1589,7 +1589,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <path class="s-ink" stroke-width="2.5" d="M76 64 H244 V98 Q 223 114 202 98 Q 181 114 160 98 Q 139 114 118 98 Q 97 114 76 98 Z" fill="url(#bathPlaid)"/></g>
         <!-- framed picture (decor): Coyote and her pup -->
-        <g class="bath-photo" stroke-linejoin="round">
+        <a class="hot hot-qf" href="#photo" role="button" data-plain="1" data-big="images/hall/bath-dog-big.jpg" data-cap="" aria-label="Framed photo: Coyote and her pup, click to make it bigger"><g class="glow bath-photo" stroke-linejoin="round">
           <path class="s-ink" stroke-width="2" fill="none" d="M446 64 L420 86 M446 64 L472 86"/><circle class="f-marigold s-ink" stroke-width="2" cx="446" cy="62" r="4.5"/>
           <polygon style="fill: var(--frame-lt)" points="406,86 486,86 474,98 418,98"/><polygon style="fill: var(--frame-md)" points="486,86 486,182 474,170 474,98"/>
           <polygon style="fill: var(--frame-dk)" points="486,182 406,182 418,170 474,170"/><polygon style="fill: var(--frame)" points="406,182 406,86 418,98 418,170"/>
@@ -1598,7 +1598,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect fill="none" class="s-ink" stroke-width="2" x="426" y="106" width="40" height="56"/>
           <rect fill="none" class="s-ink" stroke-width="3" x="406" y="86" width="80" height="96"/>
           <path class="s-ink" stroke-width="1.2" d="M406 86 L418 98 M486 86 L474 98 M486 182 L474 170 M406 182 L418 170"/>
-        </g>
+        </g></a>
         <!-- clawfoot tub with bubbles and a duck -->
         <g stroke-linejoin="round" transform="translate(-55,24)">
           <g class="foam f-trim s-ink" stroke-width="3"><circle cx="160" cy="312" r="9"/><circle cx="182" cy="312" r="9"/><circle cx="204" cy="312" r="9"/><circle cx="226" cy="306" r="11"/><circle cx="255" cy="302" r="13"/><circle cx="288" cy="304" r="11"/><circle cx="318" cy="302" r="13"/><circle cx="350" cy="306" r="11"/><circle cx="380" cy="304" r="12"/><circle cx="410" cy="310" r="10"/><circle cx="432" cy="314" r="9"/><circle cx="456" cy="314" r="9"/></g>
@@ -2684,7 +2684,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       lbImg.hidden = false; lbPh.hidden = true;
       lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb;
       lbImg.src = a.dataset.big; lbImg.alt = a.getAttribute("aria-label");
-      lbCap.textContent = a.dataset.cap || ""; lightbox.classList.add("polaroid-mode");
+      lbCap.textContent = a.dataset.cap || ""; if (!a.hasAttribute("data-plain")) lightbox.classList.add("polaroid-mode");
       if (lbImg.complete) fitLb();
       if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
     });
