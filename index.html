@@ -523,8 +523,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 #room-fashion .photos { row-gap: 82px; column-gap: 26px; padding-top: 58px; }
 #room-fashion .photo.framed { position: relative; overflow: visible; border: 7px solid #FFFDF4; border-radius: 4px; outline: 2px solid var(--ink);
   box-shadow: 4px 7px 0 rgba(0,0,0,.18); transform-origin: 50% -48px; }
-#room-fashion .photo.framed::before { content: ""; position: absolute; left: -24px; right: -24px; top: -54px; height: 8px; z-index: 0; pointer-events: none;
-  border-radius: 4px; border: 2px solid var(--ink); background: linear-gradient(#FAF7FA, #B9AEB4); }
+#room-fashion .photo.framed::before { content: ""; position: absolute; left: -27px; right: -27px; top: -54px; height: 8px; z-index: 0; pointer-events: none;
+  border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); background: linear-gradient(#FAF7FA, #B9AEB4); }
 #room-fashion .photo.framed::after { content: ""; position: absolute; left: 10%; right: 10%; top: -56px; height: 50px; z-index: 1; pointer-events: none;
   background: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 50%27 preserveAspectRatio=%27none%27%3E%3Cpath d=%27M50 24 V15 Q50 6 58 6 Q66 6 66 13%27 fill=%27none%27 stroke=%27%233B2620%27 stroke-width=%275.5%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M50 24 V15 Q50 6 58 6 Q66 6 66 13%27 fill=%27none%27 stroke=%27%23D9D2DA%27 stroke-width=%272.6%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M50 23 L7 45 H93 Z%27 fill=%27none%27 stroke=%27%233B2620%27 stroke-width=%278%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M50 23 L7 45 H93 Z%27 fill=%27none%27 stroke=%27%23C98B52%27 stroke-width=%274.4%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
 #room-fashion .photo.framed:hover, #room-fashion .photo.framed:focus-visible { transform: rotate(-3deg); }
