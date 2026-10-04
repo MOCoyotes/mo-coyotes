@@ -441,6 +441,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .fdoor-bottom::after { top: 10%; height: 30%; }
 .fridge-wrap.open .fdoor-bottom { transform: rotateY(-96deg); }
 @media (prefers-reduced-motion: reduce) { .fdoor { transition: none; } }
+.hot-faucet .pour-stream, .hot-faucet .pour-water, .hot-faucet .pour-glass { opacity: 0; transition: opacity .25s; }
+.hot-faucet .pour-stream { transform-box: fill-box; transform-origin: 50% 0; }
+.hot-faucet .pour-water { transform-box: fill-box; transform-origin: 50% 100%; }
+.hot-faucet.pouring .pour-glass { opacity: 1; }
+.hot-faucet.pouring .pour-stream { opacity: 1; animation: pourStream 1.5s ease-in-out forwards; }
+.hot-faucet.pouring .pour-water { opacity: 1; animation: pourFill 1.2s .25s ease-in both; }
+@keyframes pourStream { 0% { transform: scaleY(0); } 15% { transform: scaleY(1); opacity: 1; } 80% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+@keyframes pourFill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.water-art { display: block; width: min(150px, 40vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2152,8 +2161,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g fill="none" class="s-ink" stroke-width="2.5"><rect x="302" y="304" width="130" height="94" rx="5"/><rect x="444" y="304" width="112" height="94" rx="5"/><rect x="568" y="304" width="180" height="94" rx="5"/></g>
           <g class="f-hot s-ink" stroke-width="2"><circle cx="420" cy="320" r="4.5"/><circle cx="456" cy="320" r="4.5"/><circle cx="544" cy="320" r="4.5"/><circle cx="658" cy="320" r="4.5"/></g>
           <rect class="f-hot s-ink" stroke-width="3" x="284" y="276" width="482" height="16" rx="4"/>
-          <!-- gooseneck faucet with cross handles (same as the powder room) -->
-          <g stroke-linejoin="round" transform="translate(500,269) scale(.75) translate(-126,-302)">
+          <!-- WATER: the gooseneck faucet pours a glass of water -->
+          <a class="hot hot-faucet" href="#water" role="button" aria-label="Faucet: pour a glass of water">
+          <g class="glow" stroke-linejoin="round" transform="translate(500,269) scale(.75) translate(-126,-302)">
             <path class="s-ink" stroke-width="8" fill="none" stroke-linecap="round" d="M126 302 V248 Q 126 226 148 226 Q 170 226 170 248 V256"/>
             <path stroke-width="4.5" fill="none" style="stroke: var(--frame)" stroke-linecap="round" d="M126 302 V248 Q 126 226 148 226 Q 170 226 170 248 V256"/>
             <rect style="fill: var(--frame)" class="s-ink" stroke-width="1.8" x="164" y="254" width="12" height="8" rx="2"/>
@@ -2163,6 +2173,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <g fill="#FFFFFF" class="s-ink" stroke-width="1"><circle cx="111.5" cy="287" r="2.6"/><circle cx="140.5" cy="287" r="2.6"/></g>
             <rect style="fill: var(--frame)" class="s-ink" stroke-width="2" x="102" y="302" width="48" height="9" rx="3"/>
           </g>
+            <g class="pour" stroke-linejoin="round">
+              <rect class="pour-stream" x="531.6" y="239" width="3" height="36" rx="1.5" fill="#9AD0E8"/>
+              <path class="pour-water" d="M524.6 275 L523.2 260 H542.8 L541.4 275 Z" fill="#9AD0E8"/>
+              <path class="pour-glass" d="M524 276 L522 253 H544 L542 276 Z" fill="#FFFFFF" fill-opacity=".35" stroke="#5A1F0E" stroke-width="1.6"/>
+            </g>
+            <g class="tag"><rect x="478" y="196" width="80" height="28" rx="14"/><text x="518" y="215" text-anchor="middle">WATER</text></g>
+          </a>
           <!-- retro avocado green stand mixer -->
           <g class="kit-mixer" stroke-linejoin="round" stroke-linecap="round">
             <path fill="#8E9F3F" class="s-ink" stroke-width="2.5" d="M612 277 V269 Q612 262 620 262 H702 Q710 262 710 269 V277 Z"/>
@@ -2764,6 +2781,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="fdoor fdoor-bottom" aria-hidden="true"></div>
     </div>
     <p class="ball-hint" id="fridgeHint">Click inside to buy snacks for the studio</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog water-dialog" id="waterDialog" aria-label="Water reminder">
+  <div class="ball-wrap">
+    <button class="lb-close" type="button" id="waterClose" aria-label="Close">×</button>
+    <svg class="water-art" viewBox="0 0 100 120" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M24 30 L30 112 H70 L76 30 Z" fill="#E8F6FB" stroke="#5A1F0E" stroke-width="3"/>
+      <path class="water-fill" d="M26.6 52 L31.6 109.5 H68.4 L73.4 52 Q62 47 50 52 Q38 57 26.6 52 Z" fill="#9AD0E8"/>
+      <g fill="#FFFFFF" opacity=".8"><circle cx="42" cy="90" r="2.4"/><circle cx="56" cy="78" r="1.8"/><circle cx="48" cy="66" r="1.4"/><circle cx="62" cy="96" r="2"/></g>
+      <path d="M31 38 L35 104" stroke="#FFFFFF" stroke-width="3" opacity=".7"/>
+      <path d="M24 30 L30 112 H70 L76 30" fill="none" stroke="#5A1F0E" stroke-width="3"/>
+      <circle cx="74" cy="34" r="12" fill="#FFF3A8" stroke="#5A1F0E" stroke-width="2"/>
+      <circle cx="74" cy="34" r="8.5" fill="#FFE27A"/>
+      <path d="M74 25.5 V42.5 M65.5 34 H82.5 M68 28 L80 40 M80 28 L68 40" stroke="#FFF3A8" stroke-width="1.2"/>
+    </svg>
+    <p class="ball-prompt">Have you drank enough water today?</p>
   </div>
 </dialog>
 
@@ -4066,6 +4100,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("fridgeClose").addEventListener("click", function () { fridgeDialog.close(); });
     fridgeDialog.addEventListener("click", function (e) { if (e.target === fridgeDialog) fridgeDialog.close(); });
+  }
+
+  // ---------- the faucet: pour a glass, then a water reminder ----------
+  var waterDialog = document.getElementById("waterDialog");
+  if (waterDialog) {
+    document.querySelectorAll(".hot-faucet").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (a.classList.contains("pouring")) return;
+        a.classList.add("pouring");
+        tone("sine", 500, 900, 700, .05, .9);
+        setTimeout(function () { if (waterDialog.showModal) waterDialog.showModal(); else waterDialog.setAttribute("open", ""); }, reduce ? 0 : 1700);
+      });
+    });
+    waterDialog.addEventListener("close", function () { document.querySelectorAll(".hot-faucet").forEach(function (a) { a.classList.remove("pouring"); }); });
+    document.getElementById("waterClose").addEventListener("click", function () { waterDialog.close(); });
+    waterDialog.addEventListener("click", function (e) { if (e.target === waterDialog) waterDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
