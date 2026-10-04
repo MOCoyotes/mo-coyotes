@@ -1918,8 +1918,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- polaroids taped to the wall (decor; swap in real photos later) -->
         <g class="polaroids" transform="translate(248,-34)">
           <g class="glow" stroke-linejoin="round">
-            <a class="hot hot-qf" href="#quiltfolk" role="button" aria-label="Polaroid: Quiltfolk magazine photo, click to make it bigger"><g class="glow"><g transform="rotate(-8 460 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="432" y="390" width="54" height="64" rx="2"/><image href="images/featured/quiltfolk-email.jpg" x="438" y="396" width="42" height="42" preserveAspectRatio="xMidYMid slice"><title>Quiltfolk magazine photoshoot</title></image><rect fill="none" class="s-ink" stroke-width="1.2" x="438" y="396" width="42" height="42"/><rect class="f-marigold" opacity=".88" x="450" y="384" width="22" height="9" transform="rotate(-6 461 388)"/></g></g><g class="tag"><rect x="400" y="350" width="130" height="28" rx="14"/><text x="465" y="369" text-anchor="middle">QUILTFOLK</text></g></a>
-            <g transform="rotate(7 520 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="494" y="388" width="54" height="66" rx="2"/><rect class="f-blush" x="500" y="394" width="42" height="42"/><path class="f-hot" d="M521 426 l -10 -10 a6 6 0 0 1 10 -8 a6 6 0 0 1 10 8 z"/><rect fill="none" class="s-ink" stroke-width="1.2" x="500" y="394" width="42" height="42"/><rect class="f-pink" opacity=".9" x="510" y="382" width="22" height="9" transform="rotate(5 521 386)"/></g>
+            <a class="hot hot-qf" href="#quiltfolk" role="button" data-big="images/featured/quiltfolk-big.jpg" data-cap="As seen in Quiltfolk magazine!" aria-label="Polaroid: Quiltfolk magazine photo, click to make it bigger"><g class="glow"><g transform="rotate(-8 460 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="432" y="390" width="54" height="64" rx="2"/><image href="images/featured/quiltfolk-email.jpg" x="438" y="396" width="42" height="42" preserveAspectRatio="xMidYMid slice"><title>Quiltfolk magazine photoshoot</title></image><rect fill="none" class="s-ink" stroke-width="1.2" x="438" y="396" width="42" height="42"/><rect class="f-marigold" opacity=".88" x="450" y="384" width="22" height="9" transform="rotate(-6 461 388)"/></g></g><g class="tag"><rect x="400" y="350" width="130" height="28" rx="14"/><text x="465" y="369" text-anchor="middle">QUILTFOLK</text></g></a>
+            <a class="hot hot-qf" href="#polaroid" role="button" data-big="images/featured/polaroid-2-big.jpg" data-cap="&#9829;" aria-label="Polaroid photo, click to make it bigger"><g class="glow"><g transform="rotate(7 520 456)"><rect class="f-trim s-ink" stroke-width="2.5" x="494" y="388" width="54" height="66" rx="2"/><image href="images/featured/polaroid-2.jpg" x="500" y="394" width="42" height="42" preserveAspectRatio="xMidYMid slice"/><rect fill="none" class="s-ink" stroke-width="1.2" x="500" y="394" width="42" height="42"/><rect class="f-pink" opacity=".9" x="510" y="382" width="22" height="9" transform="rotate(5 521 386)"/></g></g></a>
           </g>
         </g>
 
@@ -2441,8 +2441,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       e.preventDefault();
       lbImg.hidden = false; lbPh.hidden = true;
       lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb;
-      lbImg.src = "images/featured/quiltfolk-big.jpg"; lbImg.alt = "Coyote in Quiltfolk magazine";
-      lbCap.textContent = "As seen in Quiltfolk magazine!"; lightbox.classList.add("polaroid-mode");
+      lbImg.src = a.dataset.big; lbImg.alt = a.getAttribute("aria-label");
+      lbCap.textContent = a.dataset.cap || ""; lightbox.classList.add("polaroid-mode");
       if (lbImg.complete) fitLb();
       if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
     });
