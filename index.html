@@ -3039,7 +3039,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <rect x="88" y="134.5" width="13" height="23" rx="3" fill="#FFFFFF" stroke-width="1.6"/>
         <path d="M91 136.5 V155.5 M94.5 136.5 V155.5 M98 136.5 V155.5" stroke="#D9DCE6" stroke-width="1"/>
       </g>
-      <g fill="#FFFFFF" stroke-width="1.1"><ellipse cx="110" cy="152" rx="3.4" ry="2.2"/><ellipse cx="104" cy="158" rx="3.4" ry="2.2" transform="rotate(30 104 158)"/></g>
       <!-- candy -->
       <g stroke-width="1.4">
         <circle cx="136" cy="134" r="9" fill="#FFFFFF"/><path d="M136 134 L145.0 134.0 A9 9 0 0 1 143.8 138.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L140.5 141.8 A9 9 0 0 1 136.0 143.0 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L131.5 141.8 A9 9 0 0 1 128.2 138.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L127.0 134.0 A9 9 0 0 1 128.2 129.5 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L131.5 126.2 A9 9 0 0 1 136.0 125.0 Z" fill="#D7263D" stroke="none"/><path d="M136 134 L140.5 126.2 A9 9 0 0 1 143.8 129.5 Z" fill="#D7263D" stroke="none"/><circle cx="136" cy="134" r="2.2" fill="#FFFFFF" stroke="none"/><circle cx="136" cy="134" r="9" fill="none"/>
@@ -3047,17 +3046,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <path d="M178 120 l-8 -6 v12 Z M200 120 l8 -6 v12 Z" fill="#F7B6D2"/><ellipse cx="189" cy="120" rx="11" ry="7" fill="#F48FB8"/>
         <path d="M196 146 l-7 -5 v10 Z M216 146 l7 -5 v10 Z" fill="#FFF3A8"/><ellipse cx="206" cy="146" rx="10" ry="6.5" fill="#F2C230"/>
       </g>
-      <!-- spare keys on a ring -->
+      <!-- spare key on a ring: the ring threads through the hole in the key -->
       <g stroke-width="1.4">
-        <circle cx="250" cy="116" r="11" fill="none" stroke="#5A1F0E" stroke-width="4.4"/>
-        <circle cx="250" cy="116" r="11" fill="none" stroke="#E2B13C" stroke-width="2.4"/>
-        <path d="M241 110 q4 -4 9 -5" fill="none" stroke="#FFF3A8" stroke-width="1" stroke-linecap="round"/>
-        <g transform="rotate(8 250 127)">
-          <path d="M244 126 Q244 120 250 120 Q256 120 256 126 Q256 132 252 133 V135 H248 V133 Q244 132 244 126 Z" fill="#E2B13C"/>
-          <circle cx="250" cy="125" r="2.2" fill="#E8CFA8"/>
+        <clipPath id="keyFront"><rect x="238" y="126.6" width="24" height="12"/></clipPath>
+        <g transform="rotate(8 250 127) translate(0,1.2)">
+          <path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/><circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/>
           <path d="M248.2 135 H251.8 V158 H249 V155.5 H247 V152 H249 V149.5 H246.5 V146 H249 V142 H248.2 Z" fill="#E2B13C"/>
           <path d="M250.4 137 V156" stroke="#B8902A" stroke-width=".8"/>
         </g>
+        <circle cx="250" cy="116" r="11" fill="none" stroke="#5A1F0E" stroke-width="4.4"/>
+        <circle cx="250" cy="116" r="11" fill="none" stroke="#E2B13C" stroke-width="2.4"/>
+        <path d="M241 110 q4 -4 9 -5" fill="none" stroke="#FFF3A8" stroke-width="1" stroke-linecap="round"/>
+        <g transform="rotate(8 250 127) translate(0,1.2)" clip-path="url(#keyFront)"><path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/><circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/></g>
         <path d="M262 116 c-3 -4 -9 -1 -6 4 l6 5 l6 -5 c3 -5 -3 -8 -6 -4 Z" fill="#F48FB8"/>
         <circle cx="259.5" cy="118" r=".9" fill="#FFFFFF" stroke="none"/>
       </g>
