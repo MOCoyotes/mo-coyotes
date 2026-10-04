@@ -1025,7 +1025,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
 
         <!-- FEATURED: little cubby door under the stairs -->
-        <a class="hot" href="#featured" aria-label="Cubby door under the stairs: FEATURED">
+        <a class="hot" href="#featured" aria-label="Cubby door under the stairs: EXTRA">
           <g class="glow" stroke-linejoin="round">
             <path class="f-trim s-ink" stroke-width="3" d="M34 408 V334 a28 28 0 0 1 56 0 V408 Z"/>
             <path class="s-ink" stroke-width="3" style="fill: var(--floor)" d="M39 408 V334 a23 23 0 0 1 46 0 V408 Z"/>
@@ -1040,7 +1040,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="46" y="370" width="32" height="30" rx="3"/>
             <circle class="f-marigold s-ink" stroke-width="2" cx="78" cy="384" r="3.5"/>
           </g>
-          <g class="tag"><rect x="4" y="282" width="116" height="28" rx="14"/><text x="62" y="301" text-anchor="middle">FEATURED</text></g>
+          <g class="tag"><rect x="17" y="282" width="90" height="28" rx="14"/><text x="62" y="301" text-anchor="middle">EXTRA</text></g>
         </a>
         <a class="hot" href="#shop" transform="translate(25,0)" aria-label="SHOP door">
           <g class="glow">
@@ -1686,7 +1686,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </section>
     <section id="room-featured" class="room featured brag" hidden aria-labelledby="featuredTitle">
       <div class="room-nav"><a class="btn" href="#foyer">← Front hall</a></div>
-      <h2 id="featuredTitle">FEATURED</h2>
+      <h2 id="featuredTitle">EXTRA</h2>
       <p class="lede featured-lede">Interviews, magazines, shows and other fun things.</p>
       <svg class="brag-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy built-in bookshelf filling the wall under the stairs: a trophy and a prize ribbon, a framed certificate, a VHS camcorder, a scrapbook of events, board games, magazines, a vintage microphone, a newspaper and polaroid photos">
         <defs>
@@ -2503,7 +2503,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var box = document.getElementById("hallMobile"), scene = document.querySelector("#room-foyer .hall-scene");
     var grad = scene.querySelector("#bubbleGrad");
     [["#shop", "SHOP", "222 196 126 220"], ["#gallery", "GALLERY", "342 196 126 220"], ["#quilting", "QUILTING", "462 196 126 220"],
-     ["#barbie", "BARBIE LAND", "582 196 126 220"], ["#bath", "POWDER ROOM", "702 196 126 220"], ["#featured", "FEATURED", "28 300 68 114"]
+     ["#barbie", "BARBIE LAND", "582 196 126 220"], ["#bath", "POWDER ROOM", "702 196 126 220"], ["#featured", "EXTRA", "28 300 68 114"]
     ].forEach(function (d) {
       var src = scene.querySelector('a.hot[href="' + d[0] + '"] .glow'); if (!src) return;
       var g = src.cloneNode(true);
