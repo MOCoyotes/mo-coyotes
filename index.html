@@ -431,7 +431,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .kit-twinkle + .kit-twinkle { animation-delay: -.9s; }
 @keyframes kitTwinkle { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(.55) rotate(20deg); opacity: .55; } }
 @media (prefers-reduced-motion: reduce) { .kit-twinkle { animation: none; } }
-.fridge-wrap { position: relative; width: min(330px, 78vw, 52vh); aspect-ratio: 2 / 3; perspective: 900px; }
+.fridge-wrap { position: relative; width: min(330px, 78vw, 52vh); aspect-ratio: 2 / 3; perspective: 2400px; }
 .fridge-wrap svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .fdoor { position: absolute; left: 0; right: 0; background: #F48FB8; border: 3px solid #5A1F0E; transform-origin: 0 50%; transition: transform .8s cubic-bezier(.4,1.3,.5,1); box-sizing: border-box; }
 .fdoor::after { content: ""; position: absolute; right: 9%; width: 5%; border: 2px solid #5A1F0E; border-radius: 99px; background: #D9DCE6; }
@@ -439,7 +439,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .fdoor-top::after { top: 22%; height: 52%; }
 .fdoor-bottom { top: 28%; bottom: 0; border-radius: 6px 6px 26px 26px; }
 .fdoor-bottom::after { top: 10%; height: 30%; }
-.fridge-wrap.open .fdoor { transform: rotateY(-108deg); }
+.fridge-wrap.open .fdoor { transform: rotateY(-96deg); }
 .fridge-wrap.open .fdoor-bottom { transition-delay: .12s; }
 @media (prefers-reduced-motion: reduce) { .fdoor { transition: none; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
