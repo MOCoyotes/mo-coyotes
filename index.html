@@ -2877,7 +2877,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     function canDrop(cards, to) {
       var c = cards[0], p = pile(to), top = p[p.length - 1];
       if (to[0] === "f") return cards.length === 1 && (top ? top.s === c.s && c.r === top.r + 1 : c.r === 1);
-      if (to[0] === "t") return top ? top.up && red(top) !== red(c) && c.r === top.r - 1 : c.r === 13;
+      if (to[0] === "t") return top ? top.up && red(top) !== red(c) && c.r === top.r - 1 : true;
       return false;
     }
     function flipTop(p) { if (p[0] === "t") { var t = pile(p); if (t.length && !t[t.length - 1].up) t[t.length - 1].up = true; } }
