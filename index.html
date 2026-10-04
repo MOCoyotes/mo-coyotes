@@ -2998,7 +2998,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   <div class="ball-wrap drawer-wrap">
     <button class="lb-close" type="button" id="drawerClose" aria-label="Close">×</button>
     <p class="ball-prompt">The Junk Drawer</p>
-    <svg class="drawer-art" viewBox="0 0 320 210" role="img" aria-label="Inside the junk drawer: a deck of tarot cards, lavender essential oil, a little orange pill bottle, candy, pink heart-shaped sunglasses and spare keys" stroke="#5A1F0E" stroke-linejoin="round" stroke-linecap="round">
+    <svg class="drawer-art" viewBox="0 0 320 210" role="img" aria-label="Inside the junk drawer: a deck of tarot cards, lavender essential oil, a little orange pill bottle, candy, pink heart-shaped sunglasses, a spare key and a diamond ring" stroke="#5A1F0E" stroke-linejoin="round" stroke-linecap="round">
       <path d="M14 18 H306 L296 168 H24 Z" fill="#B98552" stroke-width="3"/>
       <path d="M28 30 H292 L284 160 H36 Z" fill="#E8CFA8" stroke-width="2"/>
       <path d="M40 60 H280 M38 95 H282 M37 128 H283" stroke="#D6B98E" stroke-width="1.2" opacity=".8"/>
@@ -3046,20 +3046,27 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <path d="M178 120 l-8 -6 v12 Z M200 120 l8 -6 v12 Z" fill="#F7B6D2"/><ellipse cx="189" cy="120" rx="11" ry="7" fill="#F48FB8"/>
         <path d="M196 146 l-7 -5 v10 Z M216 146 l7 -5 v10 Z" fill="#FFF3A8"/><ellipse cx="206" cy="146" rx="10" ry="6.5" fill="#F2C230"/>
       </g>
-      <!-- spare key on a ring: the ring threads through the hole in the key -->
+      <!-- a spare gold key with a little heart charm -->
       <g stroke-width="1.4">
-        <clipPath id="keyFront"><rect x="238" y="126.6" width="24" height="12"/></clipPath>
-        <g transform="rotate(8 250 127) translate(0,1.2)">
-          <path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/><circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/>
+        <g transform="translate(0,-8) rotate(8 250 127)">
+          <path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/>
+          <circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/>
           <path d="M248.2 135 H251.8 V158 H249 V155.5 H247 V152 H249 V149.5 H246.5 V146 H249 V142 H248.2 Z" fill="#E2B13C"/>
           <path d="M250.4 137 V156" stroke="#B8902A" stroke-width=".8"/>
+          <path d="M251.5 124 Q257 119 262 118" fill="none" stroke="#C9A227" stroke-width="1.4" stroke-dasharray="2 1.2"/>
+          <path d="M266 116 c-3 -4 -9 -1 -6 4 l6 5 l6 -5 c3 -5 -3 -8 -6 -4 Z" fill="#F48FB8"/>
+          <circle cx="263.5" cy="118" r=".9" fill="#FFFFFF" stroke="none"/>
         </g>
-        <circle cx="250" cy="116" r="11" fill="none" stroke="#5A1F0E" stroke-width="4.4"/>
-        <circle cx="250" cy="116" r="11" fill="none" stroke="#E2B13C" stroke-width="2.4"/>
-        <path d="M241 110 q4 -4 9 -5" fill="none" stroke="#FFF3A8" stroke-width="1" stroke-linecap="round"/>
-        <g transform="rotate(8 250 127) translate(0,1.2)" clip-path="url(#keyFront)"><path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/><circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/></g>
-        <path d="M262 116 c-3 -4 -9 -1 -6 4 l6 5 l6 -5 c3 -5 -3 -8 -6 -4 Z" fill="#F48FB8"/>
-        <circle cx="259.5" cy="118" r=".9" fill="#FFFFFF" stroke="none"/>
+      </g>
+      <!-- a diamond ring with a gold band -->
+      <g stroke-width="1.4">
+        <ellipse cx="276" cy="150" rx="8.5" ry="5" fill="none" stroke="#5A1F0E" stroke-width="4.6"/>
+        <ellipse cx="276" cy="150" rx="8.5" ry="5" fill="none" stroke="#E2B13C" stroke-width="2.6"/>
+        <path d="M269 147.5 q4 -2.4 8 -2.6" fill="none" stroke="#FFF3A8" stroke-width=".9" stroke-linecap="round"/>
+        <path d="M273 145.5 H279 L277.5 143 H274.5 Z" fill="#E2B13C"/>
+        <path d="M270.5 139 L273.5 135.5 H278.5 L281.5 139 L276 145 Z" fill="#DDF4FF"/>
+        <path d="M270.5 139 H281.5 M273.5 135.5 L275 139 L276 145 M278.5 135.5 L277 139 L276 145" fill="none" stroke-width=".7"/>
+        <path d="M285 133 l1 2.4 l2.4 1 l-2.4 1 l-1 2.4 l-1 -2.4 l-2.4 -1 l2.4 -1 Z" fill="#FFFFFF" stroke="none"/>
       </g>
       <!-- drawer front -->
       <path d="M10 166 H310 V200 Q310 204 306 204 H14 Q10 204 10 200 Z" fill="#F9CFD8" stroke-width="3"/>
