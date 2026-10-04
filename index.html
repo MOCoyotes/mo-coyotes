@@ -1190,7 +1190,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </g>
         <!-- coat rack (decor) -->
         <!-- KITCHEN: a little mouse door, through a tunnel -->
-        <a class="hot hot-tunnel" href="#kitchen" aria-label="Little mouse door: through the tunnel to the KITCHEN">
+        <a class="hot hot-tunnel" href="#kitchen" aria-label="Little mouse door: SQUEEK">
         <g class="glow mouse-door" stroke-linejoin="round">
           <path class="f-trim s-ink" stroke-width="2" d="M823 410 V397 a11 11 0 0 1 22 0 V410 Z"/>
           <path fill="#3B2620" d="M826 410 V398 a8 8 0 0 1 16 0 V410 Z"/>
@@ -1198,7 +1198,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <circle class="f-marigold s-ink" stroke-width="1" cx="831.5" cy="401" r="1.2"/>
           <rect class="f-hot s-ink" stroke-width="1" x="823" y="409" width="22" height="3" rx="1.5"/>
         </g>
-          <g class="tag"><rect x="788" y="352" width="92" height="28" rx="14"/><text x="834" y="371" text-anchor="middle">KITCHEN</text></g>
+          <g class="tag"><rect x="788" y="352" width="92" height="28" rx="14"/><text x="834" y="371" text-anchor="middle">SQUEEK</text></g>
         </a>
         <g class="coat-rack" transform="translate(12,0)" stroke-linecap="round" stroke-linejoin="round">
           <path class="s-ink" stroke-width="8" fill="none" d="M866 148 V402 M866 392 L842 410 M866 392 L890 410 M866 168 L846 156 M866 168 L886 156 M866 190 L848 182 M866 190 L884 182"/>
@@ -2698,7 +2698,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var box = document.getElementById("hallMobile"), scene = document.querySelector("#room-foyer .hall-scene");
     var grad = scene.querySelector("#bubbleGrad");
     [["#shop", "SHOP", "222 196 126 220"], ["#gallery", "GALLERY", "342 196 126 220"], ["#quilting", "QUILTING", "462 196 126 220"],
-     ["#barbie", "BARBIE LAND", "582 196 126 220"], ["#bath", "POWDER ROOM", "702 196 126 220"], ["#featured", "EXTRA", "14 240 102 174"], ["#kitchen", "KITCHEN", "814 376 40 40"]
+     ["#barbie", "BARBIE LAND", "582 196 126 220"], ["#bath", "POWDER ROOM", "702 196 126 220"], ["#featured", "EXTRA", "14 240 102 174"], ["#kitchen", "SQUEEK", "814 376 40 40"]
     ].forEach(function (d) {
       var src = scene.querySelector('a.hot[href="' + d[0] + '"] .glow'); if (!src) return;
       var g = src.cloneNode(true);
