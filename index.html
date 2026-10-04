@@ -4820,28 +4820,40 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var DECK = MAJORS.map(function (m, k) { return { num: m[0], name: m[1], mean: m[2], major: k }; });
     Object.keys(SUITS).forEach(function (suit) { RANKS.forEach(function (r, k) { DECK.push({ num: r[0], name: r[1] + " of " + suit, mean: SUITS[suit][k], suit: suit, rank: k }); }); });
     var tarotDeck = document.getElementById("tarotDeck"), tarotHint = document.getElementById("tarotHint"), tarotRead = document.getElementById("tarotRead");
-    var tState = 0, tLast = -1, tBusy = false;
-    var tReset = function () { tState = 0; tarotDeck.classList.remove("pulled", "shuffling"); tarotRead.hidden = true; tarotHint.textContent = "Tap the deck to shuffle"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to shuffle"); };
-    tarotDeck.addEventListener("click", function () {
-      if (tBusy) return;
-      if (tState === 0 || tState === 2) {
-        tarotDeck.classList.remove("pulled"); tarotRead.hidden = true; tBusy = true;
-        setTimeout(function () {
-          tarotDeck.classList.add("shuffling");
-          for (var k = 0; k < 6; k++) (function (k) { setTimeout(function () { tone("triangle", 1200 + k * 60, 900, 600, .03, .05); }, k * 170); })(k);
-          setTimeout(function () { tarotDeck.classList.remove("shuffling"); tBusy = false; tState = 1; tarotHint.textContent = "Now tap to pull your card"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to pull your card"); }, reduce ? 0 : 1150);
-        }, tState === 2 && !reduce ? 450 : 0);
-        return;
-      }
-      var i; do { i = Math.floor(Math.random() * DECK.length); } while (i === tLast);
-      tLast = i; var c = DECK[i];
+    // one card per day: the day's card is remembered in this browser and shown again until tomorrow
+    var tState = 0, tBusy = false, T_KEY = "mocoyotes-tarot-day";
+    var todayKey = function () { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); };
+    var savedCard = function () { try { var o = JSON.parse(localStorage.getItem(T_KEY) || "null"); return o && o.day === todayKey() && DECK[o.i] ? o.i : -1; } catch (err) { return -1; } };
+    var saveCard = function (i) { try { localStorage.setItem(T_KEY, JSON.stringify({ day: todayKey(), i: i })); } catch (err) {} };
+    var DONE_HINT = "That's your card for today. Come back tomorrow for a new one!";
+    var showCard = function (i, fresh) {
+      var c = DECK[i];
       document.getElementById("tarotFront").innerHTML = cardSVG(c);
-      tarotDeck.classList.add("pulled"); popSound();
+      tarotDeck.classList.add("pulled");
+      if (fresh) popSound();
       setTimeout(function () {
         document.getElementById("tarotName").textContent = c.name; document.getElementById("tarotMean").textContent = c.mean;
-        tarotRead.hidden = false; tarotHint.textContent = "Tap the deck to shuffle again"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to shuffle again");
-      }, reduce ? 0 : 650);
+        tarotRead.hidden = false; tarotHint.textContent = DONE_HINT; tarotDeck.setAttribute("aria-label", "Your tarot card for today: " + c.name);
+      }, fresh && !reduce ? 650 : 0);
       tState = 2;
+    };
+    var tReset = function () {
+      tarotDeck.classList.remove("pulled", "shuffling"); tarotRead.hidden = true; tBusy = false;
+      var i = savedCard();
+      if (i >= 0) { showCard(i, false); return; }
+      tState = 0; tarotHint.textContent = "Tap the deck to shuffle"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to shuffle");
+    };
+    tarotDeck.addEventListener("click", function () {
+      if (tBusy || tState === 2) return;
+      if (tState === 0) {
+        tBusy = true;
+        tarotDeck.classList.add("shuffling");
+        for (var k = 0; k < 6; k++) (function (k) { setTimeout(function () { tone("triangle", 1200 + k * 60, 900, 600, .03, .05); }, k * 170); })(k);
+        setTimeout(function () { tarotDeck.classList.remove("shuffling"); tBusy = false; tState = 1; tarotHint.textContent = "Now tap to pull your card"; tarotDeck.setAttribute("aria-label", "Tarot deck: tap to pull your card"); }, reduce ? 0 : 1150);
+        return;
+      }
+      var i = Math.floor(Math.random() * DECK.length);
+      saveCard(i); showCard(i, true);
     });
     document.querySelectorAll(".hot-tarot").forEach(function (a) {
       a.addEventListener("click", function (e) { e.preventDefault(); tReset(); if (tarotDialog.showModal) tarotDialog.showModal(); else tarotDialog.setAttribute("open", ""); });
