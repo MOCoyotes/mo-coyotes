@@ -399,9 +399,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .feat-card::before { content: ""; position: absolute; top: -14px; left: 50%; width: 120px; height: 26px; transform: translateX(-50%) rotate(-3deg);
   background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border-radius: 2px; }
 .feat-card h3 { margin: 0 0 14px; text-align: center; font: 400 1.7rem/1.1 var(--font-display); color: #3B2620; }
-.feat-list { display: grid; gap: 10px; max-height: min(60vh, 460px); overflow-y: auto; padding: 2px 6px 6px 2px; }
+.feat-list { display: grid; gap: 8px; max-height: min(60vh, 460px); overflow-y: auto; padding: 2px 6px 6px 2px; }
 .feat-heading { margin: 4px 0 0; font: 800 .82rem var(--font-body); letter-spacing: .1em; color: #D61F69; }
-.feat-item-plain { padding: 8px 12px; }
+.feat-item-plain { padding: 6px 12px; box-shadow: 2px 2px 0 var(--ink); } .feat-item-plain b { font-size: .95rem; }
 .feat-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 10px 12px; text-decoration: none; color: #3B2620;
   background: #FDE6EC; border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
 .feat-item:hover, .feat-item:focus-visible { background: #FBD3DC; }
@@ -2636,7 +2636,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { title: "Tent Festival Benton Park" },
       { title: "Fiber Fling" },
       { title: "Various Small Pop Up Shows" },
-      { title: "Charlottesville Art Festival" }
+      { title: "Charlottesville Art Festival" },
+      { heading: "Projects" },
+      { title: "Mannequin Project" },
+      { title: "AltBall Designer" }
     ] },
     interviews:      { title: "Interviews", empty: "Interviews and podcasts coming soon!", items: [ ] },
     news:            { title: "Fun Facts", empty: "Fun facts coming soon!", items: [ ] },
