@@ -449,6 +449,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hot-faucet.pouring .pour-water { opacity: 1; animation: pourFill 1.2s .25s ease-in both; }
 @keyframes pourStream { 0% { transform: scaleY(0); } 15% { transform: scaleY(1); opacity: 1; } 80% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 @keyframes pourFill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.water-fact { padding: 12px 16px; border: 2px dashed #5AA9C9; border-radius: 12px; background: #E8F6FB; font: 700 .95rem/1.4 var(--font-body); color: #3B2620; text-align: center; }
+.water-fact b { display: block; margin-bottom: 4px; font: 400 1.2rem var(--font-display); color: #2F7FA3; }
 .water-art { display: block; width: min(150px, 40vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
@@ -2799,6 +2801,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <path d="M74 25.5 V42.5 M65.5 34 H82.5 M68 28 L80 40 M80 28 L68 40" stroke="#FFF3A8" stroke-width="1.2"/>
     </svg>
     <p class="ball-prompt">Have you drank enough water today?</p>
+    <div class="water-fact"><b>Water Fact</b>Adults need about 11.5 cups (2.7 L) of fluids a day for women and 15.5 cups (3.7 L) for men. About 20% of that usually comes from food, so aim for roughly 8&ndash;12 glasses of water and drinks.</div>
   </div>
 </dialog>
 
