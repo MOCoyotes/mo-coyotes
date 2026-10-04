@@ -386,9 +386,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: radial-gradient(circle at 50% 45%, #13246A 0, #0A1440 60%, #050A24 100%); }
 .ball-tri { position: relative; display: block; width: 92%; aspect-ratio: 1.1; box-sizing: border-box;
   background: #2E55E0; clip-path: polygon(50% 2%, 98% 88%, 2% 88%); }
-.ball-answer { position: absolute; left: 50%; top: 64%; transform: translate(-50%, -50%); width: 50%; font: 800 clamp(.5rem, 2vw, .64rem)/1.12 var(--font-body); letter-spacing: .02em; text-wrap: balance; overflow-wrap: break-word; text-transform: uppercase; text-align: center; color: #FFFFFF;
+.ball-answer { position: absolute; left: 50%; top: 68%; transform: translate(-50%, -50%); width: 62%; font: 800 clamp(.52rem, 2.1vw, .64rem)/1.1 var(--font-body); letter-spacing: 0; text-wrap: balance; text-transform: uppercase; text-align: center; color: #FFFFFF;
   opacity: 0; transition: opacity .5s .35s; }
 .eight-ball.flipped .ball-answer { opacity: 1; }
+.ball-answer.long { font-size: clamp(.46rem, 1.8vw, .56rem); }
 .eight-ball.shake { animation: ballShake .7s ease-in-out; }
 @keyframes ballShake { 10%, 30%, 50%, 70% { transform: translate(-10px, 5px) rotate(-8deg); } 20%, 40%, 60%, 80% { transform: translate(10px, -5px) rotate(8deg); } }
 .feat-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
@@ -2685,7 +2686,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     eightBall.classList.remove("flipped");
     var i; do { i = Math.floor(Math.random() * BALL_ANSWERS.length); } while (i === lastBall);
     lastBall = i;
-    function reveal() { ballAnswer.textContent = BALL_ANSWERS[i]; eightBall.classList.add("flipped"); ballHint.textContent = "Ask another question and tap again"; setTimeout(function () { ballBusy = false; }, reduce ? 0 : 700); }
+    function reveal() { ballAnswer.textContent = BALL_ANSWERS[i]; ballAnswer.classList.toggle("long", BALL_ANSWERS[i].length > 18); eightBall.classList.add("flipped"); ballHint.textContent = "Ask another question and tap again"; setTimeout(function () { ballBusy = false; }, reduce ? 0 : 700); }
     if (reduce) { reveal(); return; }
     setTimeout(function () {
       eightBall.classList.remove("shake"); void eightBall.offsetWidth; eightBall.classList.add("shake");
