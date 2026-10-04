@@ -2619,7 +2619,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   // featured: each thing on the brag shelf opens its own list. Add entries like
   // { title: "Name of the feature", source: "Who / where", date: "2026", link: "https://...", img: "images/featured/photo.jpg" }
   var FEATURES = {
-    awards:          { title: "Awards", empty: "Ribbons and prizes coming soon!", items: [ ] },
+    awards:          { title: "Awards", empty: "Ribbons and prizes coming soon!", items: [
+      { title: "3rd Place, Handspun Yarn", source: "Missouri State Fair", date: "2023" },
+      { title: "Honorable Mention", source: "City Gardens Film Competition", date: "2012" }
+    ] },
     accomplishments: { title: "Skills", empty: "Skills coming soon!", items: [ ] },
     shows:           { title: "Shows", empty: "TV and show appearances coming soon!", items: [ ] },
     magazines:       { title: "Participation", empty: "Things I've taken part in, coming soon!", items: [ ] },
