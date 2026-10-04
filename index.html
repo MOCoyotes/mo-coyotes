@@ -386,6 +386,29 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .scrap-nav button { font: 800 .95rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
 .scrap-nav button:disabled { opacity: .35; cursor: default; }
 .eight-mini { font: 400 14px var(--font-display); fill: #1E1A1C; }
+.kit-mouse { cursor: pointer; }
+.kit-mouse .km-f1, .kit-mouse .km-f2 { transform-box: fill-box; transform-origin: 50% 50%; }
+.kit-mouse.running .km-f1 { animation: kmStep .14s linear infinite alternate; }
+.kit-mouse.running .km-f2 { animation: kmStep .14s linear infinite alternate-reverse; }
+@keyframes kmStep { from { transform: translateX(-4px); } to { transform: translateX(4px); } }
+.cookie-wrap { gap: 10px; }
+.cookie-sub { margin: -6px 0 0; font: 700 1rem/1.3 var(--font-body); color: #8A5A45; text-align: center; }
+.fortune-cookie { width: min(230px, 62vw); padding: 0; border: 0; background: none; cursor: pointer; border-radius: 16px; }
+.fortune-cookie:focus-visible { outline: 4px solid var(--hot); outline-offset: 6px; }
+.fortune-cookie svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fortune-cookie:not(.open):hover svg { animation: fcWiggle .5s ease-in-out; }
+.fortune-cookie.open { cursor: default; }
+.fortune-cookie .fc-left, .fortune-cookie .fc-right { transform-box: fill-box; transition: transform .5s cubic-bezier(.3,1.5,.5,1); }
+.fortune-cookie .fc-left { transform-origin: 100% 100%; }
+.fortune-cookie .fc-right { transform-origin: 0% 100%; }
+.fortune-cookie.open .fc-left { transform: translate(-24px, 8px) rotate(-26deg); }
+.fortune-cookie.open .fc-right { transform: translate(24px, 8px) rotate(26deg); }
+@keyframes fcWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+.fortune-slip { width: 100%; box-sizing: border-box; padding: 12px 16px 10px; background: #FFFFFF; border: 2px solid #E7D9CC; box-shadow: 2px 3px 0 rgba(0,0,0,.12); text-align: center; animation: slipOut .55s .15s cubic-bezier(.3,1.3,.5,1) both; }
+.fortune-slip[hidden] { display: none; }
+@keyframes slipOut { from { transform: scaleX(.05); opacity: 0; } to { transform: none; opacity: 1; } }
+#fortuneText { margin: 0; font: 800 1.05rem/1.35 var(--font-body); color: #C2185B; }
+.fortune-lucky { margin: 7px 0 0; font: 700 .76rem var(--font-body); letter-spacing: .08em; color: #8A5A45; }
 .ball-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
 .ball-dialog::backdrop { background: rgba(12, 8, 30, .7); }
 .ball-wrap { position: relative; display: grid; justify-items: center; gap: 14px; padding: 26px 30px 24px; width: min(380px, 88vw); box-sizing: border-box;
@@ -2068,6 +2091,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="16" y="342" width="92" height="28" rx="14"/><text x="62" y="361" text-anchor="middle">HALLWAY</text></g>
         </a>
+        <!-- the kitchen mouse: peeks out of hiding spots and scurries across the floor. Catch it for a fortune cookie -->
+        <clipPath id="kmClip"><path id="kmClipPath" d="M0 0 H1 V1 H0 Z"/></clipPath>
+        <g clip-path="url(#kmClip)">
+          <g id="kitMouse" class="kit-mouse" transform="translate(-300,-300)" role="button" tabindex="-1" aria-label="A little mouse: catch it!" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="-44" y="-38" width="88" height="44" fill="transparent"/>
+            <path class="s-ink" stroke-width="4.5" fill="none" d="M-14 -6 C-26 -1, -30 -15, -42 -10"/>
+            <path stroke="#F3B6C4" stroke-width="2" fill="none" d="M-14 -6 C-26 -1, -30 -15, -42 -10"/>
+            <ellipse class="km-f1 s-ink" fill="#F3B6C4" stroke-width="1.5" cx="-8" cy="-1" rx="4.5" ry="2.5"/>
+            <ellipse class="km-f2 s-ink" fill="#F3B6C4" stroke-width="1.5" cx="9" cy="-1" rx="4.5" ry="2.5"/>
+            <ellipse fill="#C9C2CF" class="s-ink" stroke-width="2.2" cx="-2" cy="-11" rx="16" ry="10.5"/>
+            <path fill="#C9C2CF" class="s-ink" stroke-width="2.2" d="M5 -21 C16 -23, 24 -14, 29 -9 C24 -5, 14 -3, 5 -5 Z"/>
+            <circle fill="#C9C2CF" class="s-ink" stroke-width="2.2" cx="9" cy="-22" r="6.5"/>
+            <circle fill="#F3B6C4" cx="9" cy="-22" r="3.6"/>
+            <circle class="f-ink" cx="17" cy="-13" r="1.9"/>
+            <circle class="f-hot s-ink" stroke-width="1" cx="29" cy="-9" r="2.2"/>
+            <path class="s-ink" stroke-width="1" fill="none" d="M25 -10 l9 -3 M25 -8 l9 1"/>
+          </g>
+        </g>
       </svg>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
@@ -2287,6 +2328,30 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </span>
     </button>
     <p class="ball-hint" id="ballHint">…then tap the ball to shake it</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog cookie-dialog" id="cookieDialog" aria-label="Fortune cookie">
+  <div class="ball-wrap cookie-wrap" id="cookieWrap">
+    <button class="lb-close" type="button" id="cookieClose" aria-label="Close">×</button>
+    <p class="ball-prompt">You caught me!</p>
+    <p class="cookie-sub">Here's a fortune cookie for your trouble.</p>
+    <button class="fortune-cookie" type="button" id="fortuneCookie" aria-label="Crack open the fortune cookie">
+      <svg viewBox="0 0 220 150" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="96" y="108" width="40" height="11" fill="#FFFFFF" stroke="#5A1F0E" stroke-width="2" transform="rotate(8 116 113)"/>
+        <g class="fc-left">
+          <path fill="#EDB866" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C68 22, 22 52, 24 104 C52 90, 86 96, 110 124 Z"/>
+          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M104 52 C80 54, 56 70, 42 92"/>
+          <path fill="#FFF3D6" opacity=".55" d="M60 44 C48 52, 40 62, 36 74 C44 64, 54 56, 66 50 Z"/>
+        </g>
+        <g class="fc-right">
+          <path fill="#E5AA55" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C152 22, 198 52, 196 104 C168 90, 134 96, 110 124 Z"/>
+          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M116 52 C140 54, 164 70, 178 92"/>
+        </g>
+      </svg>
+    </button>
+    <div class="fortune-slip" id="fortuneSlip" hidden aria-live="polite"><p id="fortuneText"></p><p class="fortune-lucky" id="fortuneLucky"></p></div>
+    <p class="ball-hint" id="cookieHint">Tap the cookie to crack it open</p>
   </div>
 </dialog>
 
@@ -3275,6 +3340,147 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   bookDialog.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") turnBook(1); if (e.key === "ArrowLeft") turnBook(-1); });
   document.getElementById("bookClose").addEventListener("click", function () { bookDialog.close(); });
   bookDialog.addEventListener("click", function (e) { if (e.target === bookDialog) bookDialog.close(); });
+
+  // ---------- kitchen mouse + fortune cookies ----------
+  var FORTUNES = [
+    "A delightful surprise is hiding in plain sight.",
+    "Your next idea will be your best one yet.",
+    "Something you made will make someone's whole day.",
+    "Follow the loose thread. It leads somewhere wonderful.",
+    "Not every door in this house has a sign on it.",
+    "You are braver than the mouse who lives here.",
+    "An old thing will become new in your hands.",
+    "Good news is already on its way to you.",
+    "Your curiosity will be rewarded this week.",
+    "A small detour will turn into a favorite memory.",
+    "Someone is thinking fondly of you right now.",
+    "Trust the pattern, even when you can't see the whole quilt.",
+    "The best things in life are handmade.",
+    "Your weird is your superpower.",
+    "A secret you uncover will make you smile.",
+    "You will find something wonderful in an unexpected pocket.",
+    "Today is a good day to start something colorful.",
+    "Your kindness is stitched into everything you touch.",
+    "Adventure is just behind the next door.",
+    "Look up tonight. The stars have something to tell you.",
+    "Luck favors the ones who try the odd idea.",
+    "You will soon laugh until your cheeks hurt.",
+    "A thrifted treasure is waiting with your name on it.",
+    "The mouse says: you have excellent taste.",
+    "Something sweet is coming your way. Probably cheese.",
+    "You are exactly where the story gets good.",
+    "Every scrap has a purpose. So do you.",
+    "A pleasant stranger will become a good friend.",
+    "Your hands know things your head hasn't figured out yet.",
+    "An unexpected invitation will lead to joy.",
+    "The answer you need is in a place you already love.",
+    "Rest is part of the pattern too.",
+    "You will make something that outlives the trend.",
+    "A little chaos makes the best kind of magic.",
+    "What you're looking for is also looking for you.",
+    "Your future is bright, bold and slightly glittery.",
+    "Someone admires the way you see the world.",
+    "Today, say yes to the colorful option.",
+    "A happy accident will become your signature.",
+    "The mouse has been rooting for you all along.",
+    "Big things come through small doors.",
+    "You will find the perfect button for the perfect project.",
+    "Your heart is a good compass. Follow it.",
+    "Wonder is free. Spend it generously."
+  ];
+  var fortuneBag = [], lastFortune = "";
+  function nextFortune() {
+    if (!fortuneBag.length) {
+      fortuneBag = FORTUNES.slice();
+      for (var i = fortuneBag.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = fortuneBag[i]; fortuneBag[i] = fortuneBag[j]; fortuneBag[j] = t; }
+      if (fortuneBag[fortuneBag.length - 1] === lastFortune) fortuneBag.unshift(fortuneBag.pop());
+    }
+    return (lastFortune = fortuneBag.pop());
+  }
+  function luckyNumbers() {
+    var n = [];
+    while (n.length < 6) { var k = 1 + Math.floor(Math.random() * 60); if (n.indexOf(k) < 0) n.push(k); }
+    return "LUCKY NUMBERS  " + n.sort(function (a, b) { return a - b; }).join("  ");
+  }
+
+  var kitchenRoom = document.getElementById("room-kitchen"), kitMouse = document.getElementById("kitMouse"),
+      kmClip = document.getElementById("kmClipPath"), cookieDialog = document.getElementById("cookieDialog"),
+      fortuneCookie = document.getElementById("fortuneCookie"), fortuneSlip = document.getElementById("fortuneSlip"),
+      cookieHint = document.getElementById("cookieHint");
+  if (kitMouse && kmClip && cookieDialog) {
+    var KM_SPOTS = [
+      { clip: "M49 410 V389 a13 13 0 0 1 26 0 V410 Z M75 300 H220 V430 H75 Z", from: [36, 410], to: [86, 410], dir: 1, s: .62 },
+      { clip: "M0 300 H800 V430 H0 Z", from: [846, 410], to: [776, 410], dir: -1, s: .8 },
+      { clip: "M0 300 H150 V430 H0 Z", from: [196, 410], to: [124, 410], dir: -1, s: .8 },
+      { clip: "M140 -20 H410 V40 H140 Z", from: [330, 76], to: [330, 40], dir: 1, s: .8 },
+      { clip: "M800 40 H950 V130 H800 Z", from: [872, 166], to: [872, 130], dir: -1, s: .7 },
+      { clip: "M562 120 H610 V199 H562 Z", from: [538, 198], to: [576, 198], dir: 1, s: .5 }
+    ];
+    var kmTimer = 0, kmRaf = 0, kmActive = false, kmLastSpot = -1;
+    var place = function (x, y, dir, sc) { kitMouse.setAttribute("transform", "translate(" + x.toFixed(1) + "," + y.toFixed(1) + ") scale(" + (dir * sc) + "," + sc + ")"); };
+    var hideMouse = function () { kmActive = false; kitMouse.classList.remove("running"); place(-300, -300, 1, 1); };
+    var kitchenOpen = function () { return !kitchenRoom.hidden && !document.hidden && !cookieDialog.open; };
+    var animate = function (dur, step, done) {
+      var t0 = performance.now();
+      var frame = function (now) {
+        var t = Math.min(1, (now - t0) / dur);
+        step(t);
+        if (t < 1 && kmActive) kmRaf = requestAnimationFrame(frame); else if (kmActive) done();
+      };
+      kmRaf = requestAnimationFrame(frame);
+    };
+    var schedule = function (ms) { clearTimeout(kmTimer); kmTimer = setTimeout(nextMove, ms); };
+    var nextMove = function () {
+      if (!kitchenOpen()) { hideMouse(); schedule(1200); return; }
+      kmActive = true;
+      if (Math.random() < .3) {
+        // scurry across the floor
+        var ltr = Math.random() < .5, y = 532 + Math.random() * 14;
+        kmClip.setAttribute("d", "M-100 -100 H1100 V700 H-100 Z");
+        kitMouse.classList.add("running");
+        animate(reduce ? 4200 : 2600, function (t) {
+          var x = ltr ? -60 + t * 1120 : 1060 - t * 1120;
+          place(x, y - Math.abs(Math.sin(t * 60)) * 3, ltr ? 1 : -1, .85);
+        }, function () { hideMouse(); schedule(1500 + Math.random() * 2500); });
+        return;
+      }
+      // peek out of a hiding spot, look around, duck back in
+      var i; do { i = Math.floor(Math.random() * KM_SPOTS.length); } while (i === kmLastSpot);
+      kmLastSpot = i;
+      var sp = KM_SPOTS[i];
+      kmClip.setAttribute("d", sp.clip);
+      var at = function (k) { place(sp.from[0] + (sp.to[0] - sp.from[0]) * k, sp.from[1] + (sp.to[1] - sp.from[1]) * k, sp.dir, sp.s); };
+      var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+      animate(reduce ? 1 : 380, function (t) { at(ease(t)); }, function () {
+        animate(1500, function (t) { at(1 + Math.sin(t * Math.PI * 4) * .04); }, function () {
+          animate(reduce ? 1 : 320, function (t) { at(1 - ease(t)); }, function () { hideMouse(); schedule(1400 + Math.random() * 2600); });
+        });
+      });
+    };
+    kitMouse.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!kmActive) return;
+      cancelAnimationFrame(kmRaf); clearTimeout(kmTimer); hideMouse();
+      squeak();
+      fortuneCookie.classList.remove("open"); fortuneSlip.hidden = true;
+      cookieHint.textContent = "Tap the cookie to crack it open";
+      if (cookieDialog.showModal) cookieDialog.showModal(); else cookieDialog.setAttribute("open", "");
+    });
+    fortuneCookie.addEventListener("click", function () {
+      if (fortuneCookie.classList.contains("open")) return;
+      fortuneCookie.classList.add("open");
+      popSound(); setTimeout(function () { tone("square", 520, 260, 140, .06, .07); }, 40);
+      document.getElementById("fortuneText").textContent = nextFortune();
+      document.getElementById("fortuneLucky").textContent = luckyNumbers();
+      fortuneSlip.hidden = false;
+      cookieHint.textContent = "Catch the mouse again for another fortune!";
+    });
+    var closeCookie = function () { cookieDialog.close(); };
+    document.getElementById("cookieClose").addEventListener("click", closeCookie);
+    cookieDialog.addEventListener("click", function (e) { if (e.target === cookieDialog) closeCookie(); });
+    cookieDialog.addEventListener("close", function () { schedule(1800); });
+    schedule(1500);
+  }
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
