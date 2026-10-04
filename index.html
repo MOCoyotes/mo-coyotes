@@ -2091,8 +2091,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g fill="none" class="s-ink" stroke-width="2.5"><rect x="302" y="304" width="130" height="94" rx="5"/><rect x="444" y="304" width="112" height="94" rx="5"/><rect x="568" y="304" width="180" height="94" rx="5"/></g>
           <g class="f-hot s-ink" stroke-width="2"><circle cx="420" cy="320" r="4.5"/><circle cx="456" cy="320" r="4.5"/><circle cx="544" cy="320" r="4.5"/><circle cx="658" cy="320" r="4.5"/></g>
           <rect class="f-hot s-ink" stroke-width="3" x="284" y="276" width="482" height="16" rx="4"/>
-          <path class="s-ink" stroke-width="9" fill="none" d="M500 276 V248 q0 -14 14 -14 h12"/>
-          <path stroke="#D9DCE6" stroke-width="5" fill="none" d="M500 276 V248 q0 -14 14 -14 h12"/>
+          <!-- gooseneck faucet with cross handles (same as the powder room) -->
+          <g stroke-linejoin="round" transform="translate(500,269) scale(.75) translate(-126,-302)">
+            <path class="s-ink" stroke-width="8" fill="none" stroke-linecap="round" d="M126 302 V248 Q 126 226 148 226 Q 170 226 170 248 V256"/>
+            <path stroke-width="4.5" fill="none" style="stroke: var(--frame)" stroke-linecap="round" d="M126 302 V248 Q 126 226 148 226 Q 170 226 170 248 V256"/>
+            <rect style="fill: var(--frame)" class="s-ink" stroke-width="1.8" x="164" y="254" width="12" height="8" rx="2"/>
+            <g style="fill: var(--frame)" class="s-ink" stroke-width="1.8"><rect x="108" y="290" width="7" height="14" rx="1.5"/><rect x="137" y="290" width="7" height="14" rx="1.5"/></g>
+            <path class="s-ink" stroke-width="5" stroke-linecap="round" d="M104 287 h15 M111.5 280 v14 M133 287 h15 M140.5 280 v14"/>
+            <path stroke-width="2.5" style="stroke: var(--frame)" stroke-linecap="round" d="M104 287 h15 M111.5 280 v14 M133 287 h15 M140.5 280 v14"/>
+            <g fill="#FFFFFF" class="s-ink" stroke-width="1"><circle cx="111.5" cy="287" r="2.6"/><circle cx="140.5" cy="287" r="2.6"/></g>
+            <rect style="fill: var(--frame)" class="s-ink" stroke-width="2" x="102" y="302" width="48" height="9" rx="3"/>
+          </g>
           <!-- stove with a kettle -->
           <rect class="f-trim s-ink" stroke-width="3" x="150" y="214" width="140" height="46" rx="5"/>
           <circle class="f-glass-in s-ink" stroke-width="2" cx="220" cy="237" r="11"/>
@@ -2164,18 +2173,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="30" y="192" width="100" height="28" rx="14"/><text id="kcTime" x="80" y="211" text-anchor="middle">CLOCK</text></g>
         </g>
         <!-- CALENDAR on the wall: shows today's date -->
-        <a class="hot hot-cal" href="#calendar" role="button" transform="translate(790,-150)" aria-label="Wall calendar: see the month, holidays and special events">
+        <a class="hot hot-cal" href="#calendar" role="button" transform="translate(790,-152)" aria-label="Wall calendar: see the month, holidays and special events">
           <g class="glow" stroke-linejoin="round">
-            <path class="s-ink" stroke-width="2" fill="none" d="M80 160 L50 178 M80 160 L110 178"/><circle class="f-marigold s-ink" stroke-width="2" cx="80" cy="158" r="4.5"/>
-            <rect class="f-trim s-ink" stroke-width="3" x="32" y="176" width="96" height="94" rx="5"/>
-            <path class="f-hot s-ink" stroke-width="3" d="M32 202 V181 a5 5 0 0 1 5 -5 H123 a5 5 0 0 1 5 5 V202 Z"/>
-            <g class="f-trim s-ink" stroke-width="1.5"><circle cx="46" cy="176" r="3"/><circle cx="62" cy="176" r="3"/><circle cx="78" cy="176" r="3"/><circle cx="94" cy="176" r="3"/><circle cx="110" cy="176" r="3"/></g>
-            <text id="kcalMon" x="80" y="196" text-anchor="middle" style="font: 400 15px var(--font-display); fill: #FFFDF4; letter-spacing: 1px">OCT</text>
-            <text id="kcalDay" x="80" y="245" text-anchor="middle" style="font: 400 40px var(--font-display); fill: var(--ink)">4</text>
-            <text id="kcalDow" x="80" y="262" text-anchor="middle" style="font: 800 9px var(--font-body); fill: var(--muted); letter-spacing: 1px">SUNDAY</text>
-            <path id="kcalStar" class="f-marigold s-ink" stroke-width="1.5" visibility="hidden" d="M114 210 l2.5 6 l6 2.5 l-6 2.5 l-2.5 6 l-2.5 -6 l-6 -2.5 l6 -2.5 Z"/>
+            <path class="s-ink" stroke-width="2" fill="none" d="M80 160 L40 178 M80 160 L120 178"/><circle class="f-marigold s-ink" stroke-width="2" cx="80" cy="158" r="4.5"/>
+            <rect class="f-trim s-ink" stroke-width="3" x="20" y="176" width="120" height="104" rx="5"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M20 196 V181 a5 5 0 0 1 5 -5 H135 a5 5 0 0 1 5 5 V196 Z"/>
+            <g class="f-trim s-ink" stroke-width="1.5"><circle cx="34" cy="176" r="3"/><circle cx="52" cy="176" r="3"/><circle cx="70" cy="176" r="3"/><circle cx="90" cy="176" r="3"/><circle cx="108" cy="176" r="3"/><circle cx="126" cy="176" r="3"/></g>
+            <text id="kcalMon" x="80" y="191" text-anchor="middle" style="font: 400 11px var(--font-display); fill: #FFFDF4; letter-spacing: 1px">OCTOBER</text>
+            <g id="kcalGrid" style="font: 800 7.5px var(--font-body)" text-anchor="middle"></g>
           </g>
-          <g class="tag"><rect x="30" y="272" width="100" height="28" rx="14"/><text x="80" y="291" text-anchor="middle">CALENDAR</text></g>
+          <g class="tag"><rect x="30" y="284" width="100" height="28" rx="14"/><text x="80" y="303" text-anchor="middle">CALENDAR</text></g>
         </a>
         <!-- kitchen table: diner chairs, coffee, and a sudoku -->
         <g class="kit-table" stroke-linejoin="round" stroke-linecap="round">
@@ -3599,7 +3606,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { clip: "M0 300 H800 V430 H0 Z", from: [846, 410], to: [776, 410], dir: -1, s: .8 },
       { clip: "M0 300 H150 V430 H0 Z", from: [196, 410], to: [124, 410], dir: -1, s: .8 },
       { clip: "M140 -20 H410 V40 H140 Z", from: [330, 76], to: [330, 40], dir: 1, s: .8 },
-      { clip: "M800 40 H950 V130 H800 Z", from: [872, 166], to: [872, 130], dir: -1, s: .7 },
+      { clip: "M940 300 H1010 V430 H940 Z", from: [906, 410], to: [962, 410], dir: 1, s: .7 },
       { clip: "M562 120 H610 V199 H562 Z", from: [538, 198], to: [576, 198], dir: 1, s: .5 }
     ];
     var kmTimer = 0, kmRaf = 0, kmActive = false, kmLastSpot = -1;
@@ -3817,12 +3824,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var calDialog = document.getElementById("calDialog"), calGrid = document.getElementById("calGrid"), calList = document.getElementById("calList"), calTitle = document.getElementById("calTitle");
   var calView = new Date(); calView.setDate(1);
   var updateWallCal = function () {
-    var t = new Date(), info = dayInfo(t.getFullYear(), t.getMonth(), t.getDate());
-    var mon = document.getElementById("kcalMon"); if (!mon) return;
-    mon.textContent = MONTHS[t.getMonth()].slice(0, 3).toUpperCase();
-    document.getElementById("kcalDay").textContent = t.getDate();
-    document.getElementById("kcalDow").textContent = DAYS[t.getDay()].toUpperCase();
-    document.getElementById("kcalStar").setAttribute("visibility", info.hol.length || info.ev.length ? "visible" : "hidden");
+    var t = new Date(), y = t.getFullYear(), m = t.getMonth(), first = new Date(y, m, 1).getDay(), n = new Date(y, m + 1, 0).getDate();
+    var mon = document.getElementById("kcalMon"), grid = document.getElementById("kcalGrid"); if (!mon || !grid) return;
+    var key = y + "-" + m + "-" + t.getDate(); if (grid.getAttribute("data-day") === key) return;
+    grid.setAttribute("data-day", key);
+    mon.textContent = MONTHS[m].toUpperCase();
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+    var NS = "http://www.w3.org/2000/svg", cw = 120 / 7, rows = Math.ceil((first + n) / 7), rh = Math.min(12.5, 72 / rows);
+    var mk = function (tag, attrs, txt) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (txt != null) e.textContent = txt; grid.appendChild(e); return e; };
+    "SMTWTFS".split("").forEach(function (c, k) { mk("text", { x: (20 + cw * (k + .5)).toFixed(1), y: 205, style: "fill: var(--muted); font-size: 6.5px" }, c); });
+    for (var d = 1; d <= n; d++) {
+      var p = first + d - 1, cx = 20 + cw * (p % 7 + .5), cy = 210 + rh * (Math.floor(p / 7) + .5), info = dayInfo(y, m, d), today = d === t.getDate();
+      if (today) mk("circle", { cx: cx.toFixed(1), cy: cy.toFixed(1), r: 5.6, style: "fill: var(--hot)" });
+      else if (info.ev.length) mk("circle", { cx: cx.toFixed(1), cy: cy.toFixed(1), r: 5.4, style: "fill: var(--blush)" });
+      else if (info.hol.length) mk("circle", { cx: cx.toFixed(1), cy: cy.toFixed(1), r: 5.4, style: "fill: var(--marigold)", opacity: ".55" });
+      mk("text", { x: cx.toFixed(1), y: (cy + 2.7).toFixed(1), style: "fill: " + (today ? "#FFFDF4" : "var(--ink)") }, d);
+    }
   };
   var renderCal = function () {
     var y = calView.getFullYear(), m = calView.getMonth(), t = new Date(), first = new Date(y, m, 1).getDay(), n = new Date(y, m + 1, 0).getDate();
