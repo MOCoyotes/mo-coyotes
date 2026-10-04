@@ -1849,7 +1849,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
 
         <!-- IN THE NEWS: folded newspaper -->
-        <a class="hot hot-feat" href="#feat-news" data-feat="news" transform="translate(68,0)" role="button" aria-label="Newspaper: fun facts">
+        <g class="newspaper" transform="translate(68,0)">
           <g class="glow" stroke-linejoin="round" transform="rotate(-5 340 420)">
             <rect fill="#F4EEE0" class="s-ink" stroke-width="2.5" x="282" y="388" width="116" height="66" rx="2"/>
             <path fill="#E2D9C6" d="M340 388 H398 V454 H340 Z"/>
@@ -1859,8 +1859,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="f-pink s-ink" stroke-width="1.2" x="288" y="410" width="22" height="18"/>
             <path class="s-ink" stroke-width="1" opacity=".5" d="M314 412 H334 M314 417 H334 M314 422 H334 M314 427 H330 M288 434 H334 M288 439 H334 M288 444 H322 M346 396 H392 M346 401 H392 M346 406 H392 M346 411 H380 M346 420 H392 M346 425 H392 M346 430 H392 M346 435 H386 M346 444 H392"/>
           </g>
-          <g class="tag"><rect x="276" y="388" width="130" height="28" rx="14"/><text x="341" y="407" text-anchor="middle">FUN FACTS</text></g>
-        </a>
+        </g>
 
         <!-- polaroids taped to the wall (decor; swap in real photos later) -->
         <g class="polaroids" transform="translate(248,-34)">
@@ -1880,7 +1879,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
         </g>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the newspaper, the magic 8 ball or the scrapbook.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the magic 8 ball or the scrapbook.</p>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
@@ -2658,18 +2657,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { title: "St. Louis International Film Festival" }
     ] },
     interviews:      { title: "Interviews", empty: "Interviews and podcasts coming soon!", items: [ ] },
-    news:            { title: "Fun Facts", empty: "Fun facts coming soon!", items: [
-      { title: "Retired girls lacrosse coach (Level 3 Certified, US Lacrosse)" },
-      { title: "First aid and CPR training" },
-      { title: "Concussion training" },
-      { title: "Certified forklift operator" },
-      { title: "Bowling league champion" },
-      { title: "Retired baker" },
-      { title: "I worked on an alpaca farm" },
-      { title: "Wrote for a nonprofit magazine" },
-      { title: "Certified barista" },
-      { title: "Former creative director" }
-    ] },
+    news:            { title: "Fun Facts", empty: "Fun facts coming soon!", items: [ ] },
     fun:             { title: "Fun Stuff", empty: "More fun things coming soon!", items: [ ] }
   };
   var featDialog = document.getElementById("featDialog"), featList = document.getElementById("featList");
