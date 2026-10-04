@@ -2233,16 +2233,29 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
         <!-- kitchen table: diner chairs, coffee, and a sudoku -->
         <g class="kit-table" stroke-linejoin="round" stroke-linecap="round">
-          <g fill="#D9DCE6" class="s-ink" stroke-width="2"><rect x="352" y="396" width="6" height="34" rx="3"/><rect x="394" y="396" width="6" height="34" rx="3"/><rect x="354" y="438" width="6" height="62" rx="3"/><rect x="396" y="438" width="6" height="62" rx="3"/></g>
-          <rect class="f-hot s-ink" stroke-width="3" x="348" y="326" width="56" height="72" rx="18"/>
-          <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="358" y="336" width="36" height="52" rx="12"/>
-          <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="340" y="434" width="72" height="7" rx="3.5"/>
-          <rect class="f-hot s-ink" stroke-width="3" x="342" y="420" width="68" height="16" rx="8"/>
-          <g fill="#D9DCE6" class="s-ink" stroke-width="2"><rect x="680" y="396" width="6" height="34" rx="3"/><rect x="722" y="396" width="6" height="34" rx="3"/><rect x="682" y="438" width="6" height="62" rx="3"/><rect x="724" y="438" width="6" height="62" rx="3"/></g>
-          <rect class="f-hot s-ink" stroke-width="3" x="676" y="326" width="56" height="72" rx="18"/>
-          <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="686" y="336" width="36" height="52" rx="12"/>
-          <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="668" y="434" width="72" height="7" rx="3.5"/>
-          <rect class="f-hot s-ink" stroke-width="3" x="670" y="420" width="68" height="16" rx="8"/>
+          <!-- diner chairs, turned in and tucked partly under the table -->
+          <g class="kit-chair" stroke-linejoin="round" transform="translate(436,430)">
+            <g fill="#D9DCE6" class="s-ink" stroke-width="2"><path d="M-26 -1 L-30 54 M-6 -8 L-7 48" stroke-width="7" stroke-linecap="round"/><path d="M-26 -1 L-30 54 M-6 -8 L-7 48" stroke="#D9DCE6" stroke-width="4" stroke-linecap="round"/></g>
+            <g class="s-ink" stroke-width="7" stroke-linecap="round"><path d="M22 4 L26 60 M-12 9 L-14 64"/></g>
+            <g stroke="#D9DCE6" stroke-width="4" stroke-linecap="round"><path d="M22 4 L26 60 M-12 9 L-14 64"/></g>
+            <path class="s-ink" stroke-width="7" stroke-linecap="round" d="M-34 -8 V-30 M-20 -14 V-38"/>
+            <path stroke="#D9DCE6" stroke-width="4" stroke-linecap="round" d="M-34 -8 V-30 M-20 -14 V-38"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M-46 -36 C-46 -60, -38 -78, -26 -82 C-14 -86, -10 -76, -10 -54 V-40 C-10 -32, -16 -26, -26 -24 L-36 -22 C-42 -21, -46 -26, -46 -36 Z"/>
+            <path fill="none" class="s-ink" stroke-width="1.5" opacity=".35" d="M-39 -38 C-39 -56, -34 -68, -27 -71 C-19 -74, -17 -66, -17 -52 V-42 C-17 -37, -21 -33, -27 -32 L-33 -31 C-37 -31, -39 -34, -39 -38 Z"/>
+            <ellipse fill="#D9DCE6" class="s-ink" stroke-width="2" cx="-2" cy="3" rx="31" ry="10"/>
+            <ellipse class="f-hot s-ink" stroke-width="3" cx="-2" cy="-1" rx="30" ry="10"/>
+          </g>
+          <g class="kit-chair" stroke-linejoin="round" transform="translate(644,430) scale(-1,1)">
+            <g fill="#D9DCE6" class="s-ink" stroke-width="2"><path d="M-26 -1 L-30 54 M-6 -8 L-7 48" stroke-width="7" stroke-linecap="round"/><path d="M-26 -1 L-30 54 M-6 -8 L-7 48" stroke="#D9DCE6" stroke-width="4" stroke-linecap="round"/></g>
+            <g class="s-ink" stroke-width="7" stroke-linecap="round"><path d="M22 4 L26 60 M-12 9 L-14 64"/></g>
+            <g stroke="#D9DCE6" stroke-width="4" stroke-linecap="round"><path d="M22 4 L26 60 M-12 9 L-14 64"/></g>
+            <path class="s-ink" stroke-width="7" stroke-linecap="round" d="M-34 -8 V-30 M-20 -14 V-38"/>
+            <path stroke="#D9DCE6" stroke-width="4" stroke-linecap="round" d="M-34 -8 V-30 M-20 -14 V-38"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M-46 -36 C-46 -60, -38 -78, -26 -82 C-14 -86, -10 -76, -10 -54 V-40 C-10 -32, -16 -26, -26 -24 L-36 -22 C-42 -21, -46 -26, -46 -36 Z"/>
+            <path fill="none" class="s-ink" stroke-width="1.5" opacity=".35" d="M-39 -38 C-39 -56, -34 -68, -27 -71 C-19 -74, -17 -66, -17 -52 V-42 C-17 -37, -21 -33, -27 -32 L-33 -31 C-37 -31, -39 -34, -39 -38 Z"/>
+            <ellipse fill="#D9DCE6" class="s-ink" stroke-width="2" cx="-2" cy="3" rx="31" ry="10"/>
+            <ellipse class="f-hot s-ink" stroke-width="3" cx="-2" cy="-1" rx="30" ry="10"/>
+          </g>
           <rect fill="#D9DCE6" class="s-ink" stroke-width="2.5" x="531" y="428" width="18" height="62"/>
           <ellipse fill="#D9DCE6" class="s-ink" stroke-width="2.5" cx="540" cy="492" rx="52" ry="9"/>
           <path fill="#D9DCE6" class="s-ink" stroke-width="3" d="M410 404 V414 A130 30 0 0 0 670 414 V404 Z"/>
