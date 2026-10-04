@@ -2837,7 +2837,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   // solitaire (klondike, draw one) on the pack of cards
   (function () {
     var dlg = document.getElementById("solDialog"), wrap = document.getElementById("solWrap");
-    var SUITS = ["♠", "♥", "♦", "♣"], RANKS = ["", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    var SUITS = ["✦", "♥", "♦", "♣"], RANKS = ["", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     var stock, waste, found, tab, hist, sel = null, dealt = false;
     function pile(p) { return p === "stock" ? stock : p === "waste" ? waste : p[0] === "f" ? found[+p[1]] : tab[+p[1]]; }
     function red(c) { return c.s === 1 || c.s === 2; }
@@ -2856,7 +2856,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var cls = "sol-card" + (c.up ? "" : " down") + (c.up && red(c) ? " red" : "") + (sel && sel.pile === p && i >= sel.idx ? " sel" : "");
       var inner = c.up ? "<span>" + RANKS[c.r] + SUITS[c.s] + "</span><span class=\"big\">" + SUITS[c.s] + "</span>" : "";
       return "<div class=\"" + cls + "\" data-pile=\"" + p + "\" data-idx=\"" + i + "\"" + (top != null ? " style=\"top:" + top + "px\"" : "") +
-        " aria-label=\"" + (c.up ? RANKS[c.r] + " of " + ["spades", "hearts", "diamonds", "clubs"][c.s] : "face-down card") + "\">" + inner + "</div>";
+        " aria-label=\"" + (c.up ? RANKS[c.r] + " of " + ["stars", "hearts", "diamonds", "clubs"][c.s] : "face-down card") + "\">" + inner + "</div>";
     }
     function render() {
       if (!dealt) return;
