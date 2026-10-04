@@ -314,14 +314,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .bottle .lab { background: #FFFDF4; color: #3B2620; border: 1.5px solid var(--ink); border-radius: 4px; padding: 3px 5px; font: 800 .68rem/1.15 var(--font-body); letter-spacing: .03em; text-align: center; }
 .bottle:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; border-radius: 8px; }
 .care-dialog.mode-wash .bottle .cap { display: none; }
-.care-dialog.mode-wash .bottle .body { position: relative; min-height: 50px; margin-top: 20px; border-radius: 18px / 16px; box-shadow: inset 0 -6px 0 rgba(0,0,0,.12), inset 0 4px 0 rgba(255,255,255,.35); }
-.care-dialog.mode-wash .bottle .body::before { content: ""; position: absolute; left: 4%; right: 4%; top: -17px; height: 26px; pointer-events: none;
-  background: radial-gradient(circle at 12% 72%, #fff 0 6px, transparent 6.5px), radial-gradient(circle at 28% 42%, #fff 0 8px, transparent 8.5px),
-    radial-gradient(circle at 46% 68%, #fff 0 7px, transparent 7.5px), radial-gradient(circle at 63% 36%, #fff 0 9px, transparent 9.5px),
-    radial-gradient(circle at 80% 64%, #fff 0 7px, transparent 7.5px), radial-gradient(circle at 93% 40%, #fff 0 4px, transparent 4.5px);
-  filter: drop-shadow(1.5px 0 0 var(--ink)) drop-shadow(-1.5px 0 0 var(--ink)) drop-shadow(0 -1.5px 0 var(--ink)); }
-.care-dialog.mode-wash .bottle .body::after { content: ""; position: absolute; right: 10%; top: -30px; width: 9px; height: 9px; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle at 35% 35%, #fff 0 25%, #BDE8F7 60%, #D8C6F6 100%); border: 1.5px solid var(--ink); box-shadow: -14px -6px 0 -2px #CDEBF7, -14px -6px 0 -0.5px var(--ink); }
+.care-dialog.mode-wash .bottle { position: relative; padding: 14px 6px 12px;
+  filter: drop-shadow(1.5px 0 0 var(--ink)) drop-shadow(-1.5px 0 0 var(--ink)) drop-shadow(0 1.5px 0 var(--ink)) drop-shadow(0 -1.5px 0 var(--ink)); }
+.care-dialog.mode-wash .bottle:nth-child(odd) { transform: rotate(-6deg); } .care-dialog.mode-wash .bottle:nth-child(even) { transform: rotate(5deg); }
+.care-dialog.mode-wash .bottle:hover { transform: rotate(0) scale(1.04); }
+.care-dialog.mode-wash .bottle .body { min-height: 58px; padding: 10px 14px; border: 0; border-radius: 0; box-shadow: none;
+  background: radial-gradient(ellipse at 18% 26%, rgba(255,255,255,.6) 0 7%, transparent 8%), radial-gradient(ellipse at 86% 70%, rgba(255,255,255,.35) 0 4%, transparent 5%),
+    linear-gradient(170deg, transparent 0 70%, rgba(0,0,0,.14) 70%), var(--c);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 60%27 preserveAspectRatio=%27none%27%3E%3Cpath d=%27M12 5 Q 50 13 88 5 Q 99 4 98 16 Q 94 30 98 44 Q 99 56 88 55 Q 50 47 12 55 Q 1 56 2 44 Q 6 30 2 16 Q 1 4 12 5 Z%27/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 60%27 preserveAspectRatio=%27none%27%3E%3Cpath d=%27M12 5 Q 50 13 88 5 Q 99 4 98 16 Q 94 30 98 44 Q 99 56 88 55 Q 50 47 12 55 Q 1 56 2 44 Q 6 30 2 16 Q 1 4 12 5 Z%27/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.care-dialog.mode-wash .bottle .lab { background: rgba(255,255,255,.35); border: 2px solid rgba(255,255,255,.75); border-radius: 9px; padding: 4px 8px; box-shadow: inset 0 0 0 1px rgba(59,38,32,.25); }
+.care-dialog.mode-wash .bottle[aria-selected="true"] .body { box-shadow: none; }
+.care-dialog.mode-wash .bottle[aria-selected="true"] { filter: drop-shadow(1.5px 0 0 var(--ink)) drop-shadow(-1.5px 0 0 var(--ink)) drop-shadow(0 1.5px 0 var(--ink)) drop-shadow(0 -1.5px 0 var(--ink)) drop-shadow(0 0 6px var(--hot)); }
+.care-dialog.mode-wash .bottle::before, .care-dialog.mode-wash .bottle::after { content: ""; position: absolute; width: 46%; height: 30px; pointer-events: none; z-index: 1; background: radial-gradient(circle at 30% 60%, #A9C8F7 0 8px, transparent 8.5px), radial-gradient(circle at 58% 38%, #A9C8F7 0 10px, transparent 10.5px), radial-gradient(circle at 80% 70%, #A9C8F7 0 7px, transparent 7.5px), radial-gradient(circle at 10% 30%, #A9C8F7 0 4px, transparent 4.5px), radial-gradient(circle at 95% 18%, #A9C8F7 0 3.5px, transparent 4px); }
+.care-dialog.mode-wash .bottle::before { right: -6%; top: -4px; }
+.care-dialog.mode-wash .bottle::after { left: -6%; bottom: -6px; transform: rotate(180deg); }
 .care-dialog.mode-dry .bottle .cap { display: none; }
 .care-dialog.mode-dry .bottle .body { border-radius: 6px; background: linear-gradient(var(--c) 0 62%, #FFFDF4 62% 70%, var(--c) 70% 78%, #FFFDF4 78% 86%, var(--c) 86%); }
 .care-dialog.mode-iron .bottle .cap { display: none; }
