@@ -401,8 +401,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .fortune-cookie .fc-left, .fortune-cookie .fc-right { transform-box: fill-box; transition: transform .5s cubic-bezier(.3,1.5,.5,1); }
 .fortune-cookie .fc-left { transform-origin: 100% 90%; }
 .fortune-cookie .fc-right { transform-origin: 0% 90%; }
-.fortune-cookie.open .fc-left { transform: translate(-24px, 8px) rotate(-26deg); }
-.fortune-cookie.open .fc-right { transform: translate(24px, 8px) rotate(26deg); }
+.fortune-cookie.open .fc-left { transform: translate(-22px, -14px) rotate(-22deg); }
+.fortune-cookie.open .fc-right { transform: translate(18px, 6px) rotate(14deg); }
 @keyframes fcWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
 .fortune-slip { width: 100%; box-sizing: border-box; padding: 12px 16px 10px; background: #FFFFFF; border: 2px solid #E7D9CC; box-shadow: 2px 3px 0 rgba(0,0,0,.12); text-align: center; animation: slipOut .55s .15s cubic-bezier(.3,1.3,.5,1) both; }
 .fortune-slip[hidden] { display: none; }
@@ -2336,16 +2336,21 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <p class="ball-prompt">You caught me!</p>
     <p class="cookie-sub">Here's a fortune cookie for your trouble.</p>
     <button class="fortune-cookie" type="button" id="fortuneCookie" aria-label="Crack open the fortune cookie">
-      <svg viewBox="0 0 220 150" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
-        <rect x="96" y="106" width="46" height="11" fill="#FFFFFF" stroke="#5A1F0E" stroke-width="2" transform="rotate(12 119 111)"/>
+      <svg viewBox="0 0 230 195" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="#FFFFFF" stroke="#7A4A2A" stroke-width="2.5" d="M148 150 L190 138 Q196 156 206 172 L164 186 Q154 170 148 150 Z"/>
         <g class="fc-left">
-          <path fill="#EDB866" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C60 28, 18 60, 26 102 C44 96, 72 92, 90 104 C96 112, 102 116, 110 116 C104 86, 104 60, 110 30 Z"/>
-          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M34 98 C56 88, 80 90, 96 108"/>
-          <path fill="#FFF3D6" opacity=".6" d="M62 40 C48 46, 38 56, 33 70 C42 60, 54 50, 70 44 Z"/>
+          <path fill="#EED7A6" stroke="#7A4A2A" stroke-width="4" d="M152 24 C104 14, 52 40, 24 80 C20 88, 28 94, 40 90 C78 80, 114 64, 148 40 Z"/>
+          <path fill="none" stroke="#FFF6E0" stroke-width="4" d="M32 86 C68 76, 106 62, 140 42"/>
+          <path fill="#FFF6E0" opacity=".7" d="M70 42 C56 50, 44 60, 36 72 C50 62, 62 54, 80 46 Z"/>
         </g>
         <g class="fc-right">
-          <path fill="#E2A350" stroke="#5A1F0E" stroke-width="3.5" d="M110 30 C160 28, 202 60, 194 102 C176 96, 148 92, 130 104 C124 112, 118 116, 110 116 C104 86, 104 60, 110 30 Z"/>
-          <path fill="none" stroke="#C98B3A" stroke-width="3" d="M186 98 C164 88, 140 90, 124 108"/>
+          <path fill="#F2DDB0" stroke="#7A4A2A" stroke-width="4" d="M148 22 C192 26, 210 70, 202 106 C194 144, 154 166, 110 164 C84 164, 62 158, 46 150 C38 146, 40 138, 48 134 C82 106, 116 70, 140 34 C142 26, 144 22, 148 22 Z"/>
+          <path fill="#E3C186" d="M200 82 C208 122, 184 158, 132 164 C172 152, 194 122, 192 86 Z"/>
+          <path fill="none" stroke="#7A4A2A" stroke-width="3" d="M50 148 C82 160, 142 164, 184 140"/>
+          <path fill="none" stroke="#FFF6E0" stroke-width="3" opacity=".9" d="M54 142 C86 152, 140 154, 178 134"/>
+          <path fill="none" stroke="#7A4A2A" stroke-width="3" d="M141 34 C150 28, 158 34, 150 46 C134 70, 108 100, 84 120"/>
+          <path fill="none" stroke="#FFF6E0" stroke-width="4" opacity=".8" d="M154 44 C142 66, 120 92, 98 114"/>
+          <circle fill="#FFFFFF" cx="138" cy="70" r="3.5"/><circle fill="#FFFFFF" cx="129" cy="79" r="2.4"/>
         </g>
       </svg>
     </button>
