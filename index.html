@@ -411,6 +411,49 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes slipOut { from { transform: scaleX(.05); opacity: 0; } to { transform: none; opacity: 1; } }
 #fortuneText { margin: 0; font: 800 1.05rem/1.35 var(--font-body); color: #C2185B; }
 .fortune-lucky { margin: 7px 0 0; font: 700 .76rem var(--font-body); letter-spacing: .08em; color: #8A5A45; }
+.kit-clock { cursor: default; }
+.kit-clock .kc-tail { transform-box: view-box; transform-origin: 80px 128px; animation: kcSwing 1s ease-in-out infinite alternate; }
+.kit-clock .kc-eyes { animation: kcEyes 1s ease-in-out infinite alternate; }
+@keyframes kcSwing { from { transform: rotate(16deg); } to { transform: rotate(-16deg); } }
+@keyframes kcEyes { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
+@media (prefers-reduced-motion: reduce) { .kit-clock .kc-tail, .kit-clock .kc-eyes { animation: none; } }
+.kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
+.kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
+@keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .kit-steam path { animation: none; } }
+.sdk-wrap { width: min(420px, 94vw); gap: 10px; padding: 22px 18px 20px; }
+.sdk-grid { display: grid; grid-template-columns: repeat(9, 1fr); width: min(370px, 84vw); aspect-ratio: 1; border: 3px solid #3B2620; border-radius: 6px; overflow: hidden; background: #FFFFFF; }
+.sdk-grid button { padding: 0; border: 0; border-right: 1px solid #DCC9BA; border-bottom: 1px solid #DCC9BA; background: #FFFFFF; font: 800 clamp(1rem, 4.6vw, 1.35rem)/1 var(--font-body); color: #C2185B; cursor: pointer; }
+.sdk-grid button.b-r { border-right: 2.5px solid #3B2620; } .sdk-grid button.b-b { border-bottom: 2.5px solid #3B2620; }
+.sdk-grid button.given { color: #3B2620; }
+.sdk-grid button.peer { background: #FFF5E0; }
+.sdk-grid button.same { background: #FBD3DC; }
+.sdk-grid button.sel { background: #FDE08A; }
+.sdk-grid button.wrong { color: #FFFFFF; background: #E0218A; }
+.sdk-grid button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
+.sdk-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: min(370px, 84vw); }
+.sdk-pad button { padding: 8px 0; border: 2px solid #3B2620; border-radius: 10px; background: #FBD3DC; font: 800 1.1rem var(--font-body); color: #3B2620; cursor: pointer; box-shadow: 2px 2px 0 rgba(0,0,0,.18); }
+.sdk-pad button:active { transform: translate(1px, 1px); box-shadow: none; }
+.sdk-pad button.done { opacity: .35; }
+.sdk-pad .sdk-erase { font-size: .8rem; background: #FFFDF4; }
+.sdk-msg { margin: 0; min-height: 1.4em; font: 400 1.25rem var(--font-crayon); color: #C2185B; text-align: center; }
+.sdk-new { padding: 7px 18px; border: 2px solid #3B2620; border-radius: 999px; background: #F2B705; font: 800 .9rem var(--font-body); color: #3B2620; cursor: pointer; box-shadow: 2px 2px 0 rgba(0,0,0,.18); }
+.cal-wrap { width: min(440px, 94vw); gap: 10px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.cal-head .ball-prompt { font-size: 1.45rem; }
+.cal-arrow { width: 38px; height: 38px; border: 2px solid #3B2620; border-radius: 50%; background: #FBD3DC; font: 800 1.4rem/1 var(--font-body); color: #3B2620; cursor: pointer; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; width: 100%; }
+.cal-grid .dow { font: 800 .7rem var(--font-body); letter-spacing: .08em; color: #8A5A45; text-align: center; padding-bottom: 2px; }
+.cal-grid .day { position: relative; display: grid; place-items: center; aspect-ratio: 1; border-radius: 10px; background: #FFF5E0; font: 800 .95rem var(--font-body); color: #3B2620; }
+.cal-grid .day.hol { background: #FDE08A; }
+.cal-grid .day.ev { background: #FBD3DC; }
+.cal-grid .day.today { background: #E0218A; color: #FFFFFF; box-shadow: 0 0 0 2px #3B2620; }
+.cal-grid .day i { position: absolute; bottom: 3px; font-style: normal; font-size: .55rem; line-height: 1; color: #C2185B; }
+.cal-grid .day.today i { color: #FFFFFF; }
+.cal-list { list-style: none; margin: 0; padding: 0; width: 100%; max-height: 150px; overflow-y: auto; font: 700 .9rem/1.35 var(--font-body); color: #3B2620; }
+.cal-list li { display: flex; gap: 10px; padding: 5px 2px; border-top: 1px dashed #DCC9BA; }
+.cal-list b { min-width: 52px; color: #C2185B; }
+.cal-list .none { color: #8A5A45; font-weight: 600; }
 .ball-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
 .ball-dialog::backdrop { background: rgba(12, 8, 30, .7); }
 .ball-wrap { position: relative; display: grid; justify-items: center; gap: 14px; padding: 26px 30px 24px; width: min(380px, 88vw); box-sizing: border-box;
@@ -2072,7 +2115,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="182" width="9" height="52" rx="4.5"/>
           <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="266" width="9" height="74" rx="4.5"/>
           <rect class="f-trim s-ink" stroke-width="2" x="850" y="146" width="40" height="9" rx="4.5"/>
-          <path class="f-hot s-ink" stroke-width="1.8" d="M842 196 c-6 -7 -16 -1 -10 7 l10 9 l10 -9 c6 -8 -4 -14 -10 -7 Z"/>
+          <!-- polaroid stuck to the fridge with a heart magnet -->
+          <a class="hot hot-qf" href="#fridge-photo" role="button" data-big="images/kitchen/fridge-big.jpg" data-cap="&#9829;" aria-label="Polaroid on the fridge, click to make it bigger">
+            <g class="glow" transform="rotate(-6 868 190)">
+              <rect fill="#FFFFFF" class="s-ink" stroke-width="2" x="845" y="162" width="46" height="56" rx="1.5"/>
+              <image href="images/kitchen/fridge.jpg" x="850" y="167" width="36" height="36" preserveAspectRatio="xMidYMid slice"/>
+              <rect fill="none" class="s-ink" stroke-width="1" x="850" y="167" width="36" height="36"/>
+              <path class="f-hot s-ink" stroke-width="1.6" d="M868 160 c-5 -6 -13 -1 -8 6 l8 7 l8 -7 c5 -7 -3 -12 -8 -6 Z"/>
+            </g>
+          </a>
           <path class="f-marigold s-ink" stroke-width="1.8" d="M868 290 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z"/>
           <rect class="f-ink" x="808" y="406" width="16" height="6" rx="2"/><rect class="f-ink" x="916" y="406" width="16" height="6" rx="2"/>
           <!-- round rug -->
@@ -2082,6 +2133,84 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="2" d="M104 410 L128 410 L128 398 Z"/>
           <circle class="f-orange" cx="118" cy="406" r="1.8"/><circle class="f-orange" cx="124" cy="403" r="1.4"/>
         </g>
+        <!-- cat wall clock: tells the real time, tail swings, eyes shift -->
+        <g class="hot kit-clock" stroke-linejoin="round" stroke-linecap="round" aria-label="Cat wall clock">
+          <g class="glow">
+            <path class="kc-tail" fill="#2B1E22" stroke="#5A1F0E" stroke-width="2.5" d="M75 128 C73 150, 70 166, 76 184 C80 192, 89 188, 87 179 C83 164, 85 146, 85 128 Z"/>
+            <rect fill="#2B1E22" stroke="#5A1F0E" stroke-width="2.5" x="56" y="62" width="48" height="68" rx="15"/>
+            <ellipse fill="#FFFDF4" stroke="#5A1F0E" stroke-width="2.5" cx="80" cy="96" rx="15" ry="22"/>
+            <path stroke="#3B2620" stroke-width="1.6" fill="none" d="M80.0 77.0 L80.0 82.3 M86.2 79.5 L85.0 82.8 M90.8 86.5 L88.7 88.4 M92.5 96.0 L89.0 96.0 M90.8 105.5 L88.7 103.6 M86.3 112.5 L85.0 109.2 M80.0 115.0 L80.0 109.7 M73.8 112.5 L75.0 109.2 M69.2 105.5 L71.3 103.6 M67.5 96.0 L71.0 96.0 M69.2 86.5 L71.3 88.4 M73.7 79.5 L75.0 82.8 "/>
+            <path id="kcHour" stroke="#3B2620" stroke-width="3" d="M80 96 V86"/>
+            <path id="kcMin" style="stroke: var(--hot)" stroke-width="2.2" d="M80 96 V80"/>
+            <circle fill="#3B2620" cx="80" cy="96" r="2.2"/>
+            <g fill="#2B1E22" stroke="#5A1F0E" stroke-width="2"><ellipse cx="58" cy="100" rx="6" ry="9"/><ellipse cx="102" cy="100" rx="6" ry="9"/><ellipse cx="67" cy="129" rx="9" ry="5"/><ellipse cx="93" cy="129" rx="9" ry="5"/></g>
+            <path stroke="#FFFDF4" stroke-width="1.2" fill="none" d="M55 104 v3 M58 105 v3 M61 104 v3 M99 104 v3 M102 105 v3 M105 104 v3 M63 130 v2 M67 131 v2 M71 130 v2 M89 130 v2 M93 131 v2 M97 130 v2"/>
+            <path fill="#2B1E22" stroke="#5A1F0E" stroke-width="2.5" d="M58 50 C54 40, 54 28, 60 21 L58 6 L71 16 C77 14, 83 14, 89 16 L102 6 L100 21 C106 28, 106 40, 102 50 C96 60, 64 60, 58 50 Z"/>
+            <path fill="#F48FB8" d="M61 12 L62 19 L67 16 Z M99 12 L98 19 L93 16 Z"/>
+            <ellipse fill="#FFFDF4" stroke="#5A1F0E" stroke-width="1.5" cx="71" cy="32" rx="7.5" ry="8.5"/>
+            <ellipse fill="#FFFDF4" stroke="#5A1F0E" stroke-width="1.5" cx="89" cy="32" rx="7.5" ry="8.5"/>
+            <g class="kc-eyes" fill="#2B1E22"><ellipse cx="71" cy="33" rx="3.4" ry="5"/><ellipse cx="89" cy="33" rx="3.4" ry="5"/></g>
+            <ellipse fill="#FFFDF4" cx="80" cy="47" rx="11" ry="6"/>
+            <path fill="#F48FB8" stroke="#5A1F0E" stroke-width="1" d="M77 42 H83 L80 45.5 Z"/>
+            <path fill="none" stroke="#5A1F0E" stroke-width="1.4" d="M80 45.5 V48 M73 48 q3.5 4 7 0 q3.5 4 7 0"/>
+            <path fill="none" stroke="#FFFDF4" stroke-width="1" d="M66 45 l-10 -2 M66 48 l-10 1 M94 45 l10 -2 M94 48 l10 1"/>
+            <path class="f-hot" stroke="#5A1F0E" stroke-width="1.8" d="M80 61 L67 55 V67 Z M80 61 L93 55 V67 Z"/>
+            <circle class="f-hot" stroke="#5A1F0E" stroke-width="1.8" cx="80" cy="61" r="3.5"/>
+          </g>
+          <g class="tag"><rect x="30" y="192" width="100" height="28" rx="14"/><text id="kcTime" x="80" y="211" text-anchor="middle">CLOCK</text></g>
+        </g>
+        <!-- CALENDAR on the wall: shows today's date -->
+        <a class="hot hot-cal" href="#calendar" role="button" transform="translate(0,24)" aria-label="Wall calendar: see the month, holidays and special events">
+          <g class="glow" stroke-linejoin="round">
+            <path class="s-ink" stroke-width="2" fill="none" d="M80 160 L50 178 M80 160 L110 178"/><circle class="f-marigold s-ink" stroke-width="2" cx="80" cy="158" r="4.5"/>
+            <rect class="f-trim s-ink" stroke-width="3" x="32" y="176" width="96" height="94" rx="5"/>
+            <path class="f-hot s-ink" stroke-width="3" d="M32 202 V181 a5 5 0 0 1 5 -5 H123 a5 5 0 0 1 5 5 V202 Z"/>
+            <g class="f-trim s-ink" stroke-width="1.5"><circle cx="46" cy="176" r="3"/><circle cx="62" cy="176" r="3"/><circle cx="78" cy="176" r="3"/><circle cx="94" cy="176" r="3"/><circle cx="110" cy="176" r="3"/></g>
+            <text id="kcalMon" x="80" y="196" text-anchor="middle" style="font: 400 15px var(--font-display); fill: #FFFDF4; letter-spacing: 1px">OCT</text>
+            <text id="kcalDay" x="80" y="245" text-anchor="middle" style="font: 400 40px var(--font-display); fill: var(--ink)">4</text>
+            <text id="kcalDow" x="80" y="262" text-anchor="middle" style="font: 800 9px var(--font-body); fill: var(--muted); letter-spacing: 1px">SUNDAY</text>
+            <path id="kcalStar" class="f-marigold s-ink" stroke-width="1.5" visibility="hidden" d="M114 210 l2.5 6 l6 2.5 l-6 2.5 l-2.5 6 l-2.5 -6 l-6 -2.5 l6 -2.5 Z"/>
+          </g>
+          <g class="tag"><rect x="30" y="276" width="100" height="28" rx="14"/><text x="80" y="295" text-anchor="middle">CALENDAR</text></g>
+        </a>
+        <!-- kitchen table: diner chairs, coffee, and a sudoku -->
+        <g class="kit-table" stroke-linejoin="round" stroke-linecap="round">
+          <g fill="#D9DCE6" class="s-ink" stroke-width="2"><rect x="396" y="420" width="6" height="78" rx="3"/><rect x="440" y="420" width="6" height="78" rx="3"/><rect x="634" y="420" width="6" height="78" rx="3"/><rect x="678" y="420" width="6" height="78" rx="3"/></g>
+          <rect class="f-hot s-ink" stroke-width="3" x="390" y="326" width="62" height="74" rx="18"/>
+          <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="400" y="336" width="42" height="54" rx="12"/>
+          <rect class="f-hot s-ink" stroke-width="3" x="628" y="326" width="62" height="74" rx="18"/>
+          <rect fill="none" class="s-ink" stroke-width="1.5" opacity=".35" x="638" y="336" width="42" height="54" rx="12"/>
+          <rect fill="#D9DCE6" class="s-ink" stroke-width="2.5" x="531" y="428" width="18" height="62"/>
+          <ellipse fill="#D9DCE6" class="s-ink" stroke-width="2.5" cx="540" cy="492" rx="52" ry="9"/>
+          <path fill="#D9DCE6" class="s-ink" stroke-width="3" d="M410 404 V414 A130 30 0 0 0 670 414 V404 Z"/>
+          <ellipse class="f-blush s-ink" stroke-width="3" cx="540" cy="404" rx="130" ry="30"/>
+          <path fill="none" class="s-trim" stroke-width="3" opacity=".7" d="M430 396 C440 384, 470 378, 500 377"/>
+          <!-- hot coffee -->
+          <ellipse class="f-trim s-ink" stroke-width="2" cx="470" cy="404" rx="26" ry="6"/>
+          <path class="s-ink" stroke-width="6" fill="none" d="M484 378 q13 0 13 10 q0 10 -13 10"/>
+          <path style="stroke: var(--marigold)" stroke-width="3" fill="none" d="M484 378 q13 0 13 10 q0 10 -13 10"/>
+          <path class="f-marigold s-ink" stroke-width="2.5" d="M454 372 H486 V398 a5 5 0 0 1 -5 5 H459 a5 5 0 0 1 -5 -5 Z"/>
+          <ellipse fill="#6B3A1E" class="s-ink" stroke-width="2" cx="470" cy="372" rx="16" ry="4"/>
+          <path class="f-hot" d="M470 390 c-2 -3 -7 -1 -5 2 l5 5 l5 -5 c2 -3 -3 -5 -5 -2 Z"/>
+          <g class="kit-steam" fill="none" style="stroke: var(--muted)" stroke-width="2.5" opacity=".6">
+            <path d="M463 364 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+            <path d="M471 362 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+            <path d="M479 364 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+          </g>
+        </g>
+        <!-- SUDOKU: a puzzle page and a pencil on the table -->
+        <a class="hot hot-sdk" href="#sudoku" role="button" aria-label="Sudoku puzzle on the table: play sudoku">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <path class="f-trim s-ink" stroke-width="2.5" d="M540 392 L604 388 L624 414 L556 420 Z"/>
+            <path class="s-ink" stroke-width="1.6" fill="none" d="M561.3 390.7 L578.7 418 M582.7 389.3 L601.3 416 M545.3 401.3 L610.7 396.7 M550.7 410.7 L617.3 405.3"/>
+            <g class="f-ink" opacity=".55"><circle cx="556" cy="396" r="1.3"/><circle cx="574" cy="400" r="1.3"/><circle cx="596" cy="393" r="1.3"/><circle cx="566" cy="407" r="1.3"/><circle cx="590" cy="411" r="1.3"/><circle cx="609" cy="402" r="1.3"/><circle cx="604" cy="412" r="1.3"/></g>
+            <path class="s-ink" stroke-width="7" d="M604 426 L646 412"/>
+            <path style="stroke: var(--marigold)" stroke-width="4" d="M604 426 L640 414"/>
+            <path style="stroke: var(--pink)" stroke-width="4" d="M640 414 L646 412"/>
+            <path class="f-trim s-ink" stroke-width="1.5" d="M604 426 L596 430 L602 422 Z"/>
+          </g>
+          <g class="tag"><rect x="532" y="340" width="96" height="28" rx="14"/><text x="580" y="359" text-anchor="middle">SUDOKU</text></g>
+        </a>
         <!-- the mouse hole we came through: back to the hall -->
         <a class="hot hot-tunnel" href="#foyer" aria-label="Mouse hole: back through the tunnel to the front hall">
           <g class="glow" stroke-linejoin="round">
@@ -2358,6 +2487,32 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </button>
     <div class="fortune-slip" id="fortuneSlip" hidden aria-live="polite"><p id="fortuneText"></p><p class="fortune-lucky" id="fortuneLucky"></p></div>
     <p class="ball-hint" id="cookieHint">Tap the cookie to crack it open</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog sdk-dialog" id="sdkDialog" aria-label="Sudoku">
+  <div class="ball-wrap sdk-wrap">
+    <button class="lb-close" type="button" id="sdkClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Sudoku</p>
+    <p class="cookie-sub">Easy &middot; fill every row, column and box with 1&ndash;9</p>
+    <div class="sdk-grid" id="sdkGrid" role="grid" aria-label="Sudoku board"></div>
+    <div class="sdk-pad" id="sdkPad"></div>
+    <p class="sdk-msg" id="sdkMsg" aria-live="polite"></p>
+    <button class="sdk-new" type="button" id="sdkNew">New puzzle</button>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog cal-dialog" id="calDialog" aria-label="Calendar">
+  <div class="ball-wrap cal-wrap">
+    <button class="lb-close" type="button" id="calClose" aria-label="Close">×</button>
+    <div class="cal-head">
+      <button type="button" class="cal-arrow" id="calPrev" aria-label="Previous month">&lsaquo;</button>
+      <p class="ball-prompt" id="calTitle"></p>
+      <button type="button" class="cal-arrow" id="calNext" aria-label="Next month">&rsaquo;</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <button type="button" class="sdk-new" id="calToday">Today</button>
+    <ul class="cal-list" id="calList"></ul>
   </div>
 </dialog>
 
@@ -3502,6 +3657,195 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     cookieDialog.addEventListener("click", function (e) { if (e.target === cookieDialog) closeCookie(); });
     cookieDialog.addEventListener("close", function () { schedule(1800); });
     schedule(1500);
+  }
+
+  // ---------- kitchen sudoku (easy) ----------
+  var sdkDialog = document.getElementById("sdkDialog"), sdkGrid = document.getElementById("sdkGrid"), sdkPad = document.getElementById("sdkPad"), sdkMsg = document.getElementById("sdkMsg");
+  if (sdkDialog && sdkGrid) {
+    var sdkPuz = [], sdkSol = [], sdkCur = [], sdkSel = -1, sdkCells = [], sdkPadBtns = [];
+    var sdkOk = function (b, i, n) {
+      var r = Math.floor(i / 9), c = i % 9, br = r - r % 3, bc = c - c % 3;
+      for (var k = 0; k < 9; k++) {
+        if (b[r * 9 + k] === n || b[k * 9 + c] === n) return false;
+        if (b[(br + Math.floor(k / 3)) * 9 + bc + k % 3] === n) return false;
+      }
+      return true;
+    };
+    var sdkShuffle = function (a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+    var sdkFill = function (b) {
+      var i = b.indexOf(0); if (i < 0) return true;
+      var ns = sdkShuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+      for (var k = 0; k < 9; k++) { if (sdkOk(b, i, ns[k])) { b[i] = ns[k]; if (sdkFill(b)) return true; b[i] = 0; } }
+      return false;
+    };
+    var sdkCount = function (b, lim) {
+      var i = b.indexOf(0); if (i < 0) return 1;
+      var c = 0;
+      for (var n = 1; n <= 9 && c < lim; n++) { if (sdkOk(b, i, n)) { b[i] = n; c += sdkCount(b, lim - c); b[i] = 0; } }
+      return c;
+    };
+    var sdkNew = function () {
+      var full = []; for (var i = 0; i < 81; i++) full.push(0);
+      sdkFill(full); sdkSol = full.slice();
+      var p = full.slice(), givens = 81, order = sdkShuffle(full.map(function (v, k) { return k; }));
+      for (var k = 0; k < 81 && givens > 40; k++) {
+        var j = order[k], t = p[j]; p[j] = 0;
+        if (sdkCount(p.slice(), 2) !== 1) p[j] = t; else givens--;
+      }
+      sdkPuz = p; sdkCur = p.slice(); sdkSel = -1; sdkMsg.textContent = ""; sdkRender();
+    };
+    var sdkRender = function () {
+      var sr = Math.floor(sdkSel / 9), sc = sdkSel % 9, sv = sdkSel >= 0 ? sdkCur[sdkSel] : 0, counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      sdkCells.forEach(function (btn, i) {
+        var r = Math.floor(i / 9), c = i % 9, v = sdkCur[i];
+        if (v && v === sdkSol[i]) counts[v]++;
+        btn.textContent = v || "";
+        btn.className = (c % 3 === 2 && c < 8 ? "b-r " : "") + (r % 3 === 2 && r < 8 ? "b-b " : "") +
+          (sdkPuz[i] ? "given " : "") +
+          (v && !sdkPuz[i] && v !== sdkSol[i] ? "wrong " : "") +
+          (i === sdkSel ? "sel " : (sv && v === sv ? "same " : (sdkSel >= 0 && (r === sr || c === sc || (Math.floor(r / 3) === Math.floor(sr / 3) && Math.floor(c / 3) === Math.floor(sc / 3))) ? "peer " : "")));
+        btn.setAttribute("aria-label", "Row " + (r + 1) + ", column " + (c + 1) + (v ? ": " + v : ": empty"));
+      });
+      sdkPadBtns.forEach(function (b, n) { if (n) b.classList.toggle("done", counts[n] === 9); });
+    };
+    var sdkPut = function (n) {
+      if (sdkSel < 0 || sdkPuz[sdkSel]) return;
+      sdkCur[sdkSel] = n; sdkRender();
+      for (var i = 0; i < 81; i++) if (sdkCur[i] !== sdkSol[i]) return;
+      sdkMsg.textContent = "You solved it! ✦ Nice brain!"; sdkSel = -1; sdkRender(); popSound();
+    };
+    for (var si = 0; si < 81; si++) {
+      (function (i) {
+        var b = document.createElement("button"); b.type = "button";
+        b.addEventListener("click", function () { sdkSel = i; sdkRender(); });
+        sdkGrid.appendChild(b); sdkCells.push(b);
+      })(si);
+    }
+    sdkPadBtns.push(null);
+    for (var sn = 1; sn <= 9; sn++) {
+      (function (n) {
+        var b = document.createElement("button"); b.type = "button"; b.textContent = n; b.setAttribute("aria-label", "Put " + n);
+        b.addEventListener("click", function () { sdkPut(n); });
+        sdkPad.appendChild(b); sdkPadBtns.push(b);
+      })(sn);
+    }
+    var sdkErase = document.createElement("button"); sdkErase.type = "button"; sdkErase.className = "sdk-erase"; sdkErase.textContent = "Erase";
+    sdkErase.addEventListener("click", function () { sdkPut(0); }); sdkPad.appendChild(sdkErase);
+    sdkDialog.addEventListener("keydown", function (e) {
+      if (/^[1-9]$/.test(e.key)) { sdkPut(+e.key); e.preventDefault(); }
+      else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") { sdkPut(0); e.preventDefault(); }
+      else if (sdkSel >= 0 && /^Arrow/.test(e.key)) {
+        var d = { ArrowUp: -9, ArrowDown: 9, ArrowLeft: -1, ArrowRight: 1 }[e.key], nx = sdkSel + d;
+        if (nx >= 0 && nx < 81 && !(d === 1 && nx % 9 === 0) && !(d === -1 && sdkSel % 9 === 0)) { sdkSel = nx; sdkRender(); sdkCells[nx].focus(); }
+        e.preventDefault();
+      }
+    });
+    document.getElementById("sdkNew").addEventListener("click", sdkNew);
+    document.querySelectorAll(".hot-sdk").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (!sdkPuz.length) sdkNew();
+        if (sdkDialog.showModal) sdkDialog.showModal(); else sdkDialog.setAttribute("open", "");
+      });
+    });
+    document.getElementById("sdkClose").addEventListener("click", function () { sdkDialog.close(); });
+    sdkDialog.addEventListener("click", function (e) { if (e.target === sdkDialog) sdkDialog.close(); });
+  }
+
+  // ---------- kitchen cat clock: real local time ----------
+  var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
+  if (kcHour && kcMin) {
+    var tickClock = function () {
+      var t = new Date(), m = t.getMinutes() + t.getSeconds() / 60, hr = t.getHours();
+      kcMin.setAttribute("transform", "rotate(" + (m * 6).toFixed(1) + " 80 96)");
+      kcHour.setAttribute("transform", "rotate(" + (((hr % 12) + m / 60) * 30).toFixed(1) + " 80 96)");
+      if (kcTime) kcTime.textContent = ((hr % 12) || 12) + ":" + (t.getMinutes() < 10 ? "0" : "") + t.getMinutes() + (hr < 12 ? " AM" : " PM");
+    };
+    tickClock(); setInterval(tickClock, 10000);
+  }
+
+  // ---------- kitchen calendar: today, holidays and special events ----------
+  // Special events: add one-time events as { date: "2026-11-14", name: "Craft show!" }
+  // and yearly ones as { every: "03-21", name: "Shop birthday" }.
+  var SPECIAL_EVENTS = [
+  ];
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var holCache = {};
+  var nthDow = function (y, m, dow, n) {
+    if (n > 0) { var first = new Date(y, m, 1).getDay(); return 1 + (dow - first + 7) % 7 + 7 * (n - 1); }
+    var last = new Date(y, m + 1, 0); return last.getDate() - (last.getDay() - dow + 7) % 7;
+  };
+  var easter = function (y) {
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3),
+        h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+        month = Math.floor((h + l - 7 * m + 114) / 31), day = ((h + l - 7 * m + 114) % 31) + 1;
+    return [month - 1, day];
+  };
+  var holidays = function (y) {
+    if (holCache[y]) return holCache[y];
+    var H = {}, add = function (m, d, name) { var k = m + "-" + d; (H[k] = H[k] || []).push(name); };
+    add(0, 1, "New Year's Day"); add(0, nthDow(y, 0, 1, 3), "Martin Luther King Jr. Day");
+    add(1, 2, "Groundhog Day"); add(1, 14, "Valentine's Day"); add(1, nthDow(y, 1, 1, 3), "Presidents' Day");
+    add(2, 17, "St. Patrick's Day"); add(2, nthDow(y, 2, 6, 3), "National Quilting Day");
+    add(3, 1, "April Fools' Day"); add(3, 22, "Earth Day");
+    var ea = easter(y); add(ea[0], ea[1], "Easter");
+    add(4, 5, "Cinco de Mayo"); add(4, nthDow(y, 4, 0, 2), "Mother's Day"); add(4, nthDow(y, 4, 1, -1), "Memorial Day");
+    add(5, 13, "National Sewing Machine Day"); add(5, 14, "Flag Day"); add(5, nthDow(y, 5, 0, 3), "Father's Day"); add(5, 19, "Juneteenth");
+    add(6, 4, "Independence Day");
+    add(8, nthDow(y, 8, 1, 1), "Labor Day");
+    add(9, nthDow(y, 9, 1, 2), "Indigenous Peoples' Day"); add(9, 31, "Halloween");
+    add(10, 11, "Veterans Day"); add(10, nthDow(y, 10, 4, 4), "Thanksgiving");
+    add(11, 24, "Christmas Eve"); add(11, 25, "Christmas Day"); add(11, 31, "New Year's Eve");
+    return (holCache[y] = H);
+  };
+  var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
+  var dayInfo = function (y, m, d) {
+    var iso = y + "-" + pad2(m + 1) + "-" + pad2(d), md = pad2(m + 1) + "-" + pad2(d), ev = [];
+    SPECIAL_EVENTS.forEach(function (e) { if (e.date === iso || e.every === md) ev.push(e.name); });
+    return { hol: holidays(y)[m + "-" + d] || [], ev: ev };
+  };
+  var calDialog = document.getElementById("calDialog"), calGrid = document.getElementById("calGrid"), calList = document.getElementById("calList"), calTitle = document.getElementById("calTitle");
+  var calView = new Date(); calView.setDate(1);
+  var updateWallCal = function () {
+    var t = new Date(), info = dayInfo(t.getFullYear(), t.getMonth(), t.getDate());
+    var mon = document.getElementById("kcalMon"); if (!mon) return;
+    mon.textContent = MONTHS[t.getMonth()].slice(0, 3).toUpperCase();
+    document.getElementById("kcalDay").textContent = t.getDate();
+    document.getElementById("kcalDow").textContent = DAYS[t.getDay()].toUpperCase();
+    document.getElementById("kcalStar").setAttribute("visibility", info.hol.length || info.ev.length ? "visible" : "hidden");
+  };
+  var renderCal = function () {
+    var y = calView.getFullYear(), m = calView.getMonth(), t = new Date(), first = new Date(y, m, 1).getDay(), n = new Date(y, m + 1, 0).getDate();
+    calTitle.textContent = MONTHS[m] + " " + y;
+    calGrid.innerHTML = ""; calList.innerHTML = "";
+    "SMTWTFS".split("").forEach(function (c) { var s = document.createElement("span"); s.className = "dow"; s.textContent = c; calGrid.appendChild(s); });
+    for (var b = 0; b < first; b++) calGrid.appendChild(document.createElement("span"));
+    for (var d = 1; d <= n; d++) {
+      var info = dayInfo(y, m, d), cell = document.createElement("span"), names = info.ev.concat(info.hol);
+      cell.className = "day" + (info.hol.length ? " hol" : "") + (info.ev.length ? " ev" : "") + (y === t.getFullYear() && m === t.getMonth() && d === t.getDate() ? " today" : "");
+      cell.textContent = d;
+      if (names.length) { cell.title = names.join(", "); var mk = document.createElement("i"); mk.textContent = info.ev.length ? "♥" : "✦"; cell.appendChild(mk); }
+      calGrid.appendChild(cell);
+      info.ev.forEach(function (name) { var li = document.createElement("li"); li.innerHTML = "<b></b><span></span>"; li.firstChild.textContent = MONTHS[m].slice(0, 3) + " " + d; li.lastChild.textContent = "♥ " + name; calList.appendChild(li); });
+      info.hol.forEach(function (name) { var li = document.createElement("li"); li.innerHTML = "<b></b><span></span>"; li.firstChild.textContent = MONTHS[m].slice(0, 3) + " " + d; li.lastChild.textContent = name; calList.appendChild(li); });
+    }
+    if (!calList.children.length) { var li = document.createElement("li"); li.className = "none"; li.textContent = "No holidays or events this month."; calList.appendChild(li); }
+  };
+  if (calDialog) {
+    updateWallCal(); setInterval(updateWallCal, 60000);
+    document.querySelectorAll(".hot-cal").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        calView = new Date(); calView.setDate(1); renderCal();
+        if (calDialog.showModal) calDialog.showModal(); else calDialog.setAttribute("open", "");
+      });
+    });
+    document.getElementById("calPrev").addEventListener("click", function () { calView.setMonth(calView.getMonth() - 1); renderCal(); });
+    document.getElementById("calNext").addEventListener("click", function () { calView.setMonth(calView.getMonth() + 1); renderCal(); });
+    document.getElementById("calToday").addEventListener("click", function () { calView = new Date(); calView.setDate(1); renderCal(); });
+    document.getElementById("calClose").addEventListener("click", function () { calDialog.close(); });
+    calDialog.addEventListener("click", function (e) { if (e.target === calDialog) calDialog.close(); });
   }
 
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
