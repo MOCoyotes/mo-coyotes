@@ -481,6 +481,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .chart-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .sdk-new.alt { background: #FBD3DC; }
 @media (max-width: 420px) { .big3 { grid-template-columns: 1fr; } .chart-planets { grid-template-columns: 1fr; } }
+.kit-dim { opacity: 0; pointer-events: none; transition: opacity .6s ease; }
+.kitchen-scene.dim .kit-dim { opacity: .55; }
+.hot-switch .switch-lever { transform-box: view-box; transition: transform .15s; }
+.kitchen-scene.dim .hot-switch .switch-lever { transform: translateY(9px); }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2324,6 +2328,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="30" y="192" width="100" height="28" rx="14"/><text id="kcTime" x="80" y="211" text-anchor="middle">CLOCK</text></g>
         </g>
+        <!-- LIGHTS: a switch that dims the kitchen -->
+        <a class="hot hot-switch" href="#lights" role="button" aria-label="Light switch: dim the lights" aria-pressed="false">
+          <g class="glow" stroke-linejoin="round">
+            <rect class="f-trim s-ink" stroke-width="2.5" x="66" y="206" width="28" height="44" rx="5"/>
+            <circle class="f-ink" cx="80" cy="211" r="1.3"/><circle class="f-ink" cx="80" cy="245" r="1.3"/>
+            <rect fill="#EADFD3" class="s-ink" stroke-width="1.6" x="74" y="217" width="12" height="22" rx="3"/>
+            <rect class="switch-lever f-hot s-ink" stroke-width="1.6" x="75.5" y="218.5" width="9" height="10" rx="2.5"/>
+          </g>
+          <g class="tag"><rect x="40" y="256" width="80" height="28" rx="14"/><text x="80" y="275" text-anchor="middle">LIGHTS</text></g>
+        </a>
         <!-- CALENDAR on the wall: shows today's date -->
         <a class="hot hot-cal" href="#calendar" role="button" transform="translate(870,10) scale(.85) translate(-80,-158)" aria-label="Wall calendar: see the month, holidays and special events">
           <g class="glow" stroke-linejoin="round">
@@ -2417,6 +2431,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </a>
         <!-- the kitchen mouse: peeks out of hiding spots and scurries across the floor. Catch it for a fortune cookie -->
         <clipPath id="kmClip"><path id="kmClipPath" d="M0 0 H1 V1 H0 Z"/></clipPath>
+        <!-- the room with the lights dimmed: the window and the moon still glow -->
+        <g class="kit-dim" aria-hidden="true">
+          <path fill="#1A1030" fill-rule="evenodd" d="M0 0 H1000 V560 H0 Z M432 72 H568 V188 H432 Z"/>
+          <rect x="432" y="72" width="136" height="116" fill="#FFF3B8" opacity=".06"/>
+        </g>
         <g clip-path="url(#kmClip)">
           <g id="kitMouse" class="kit-mouse" transform="translate(-300,-300)" role="button" tabindex="-1" aria-label="A little mouse: catch it!" stroke-linejoin="round" stroke-linecap="round">
             <path class="s-ink" stroke-width="4.5" fill="none" d="M-14 -6 C-26 -1, -30 -15, -42 -10"/>
@@ -4408,6 +4427,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     document.getElementById("chartClose").addEventListener("click", function () { chartDialog.close(); });
     chartDialog.addEventListener("click", function (e) { if (e.target === chartDialog) chartDialog.close(); });
   }
+
+  // ---------- light switch: dim the kitchen ----------
+  document.querySelectorAll(".hot-switch").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var scene = a.closest("svg"), on = !scene.classList.contains("dim");
+      scene.classList.toggle("dim", on);
+      a.setAttribute("aria-pressed", on ? "true" : "false");
+      a.setAttribute("aria-label", on ? "Light switch: turn the lights back up" : "Light switch: dim the lights");
+      tone("square", 1800, 1400, 900, .04, .05);
+    });
+  });
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
