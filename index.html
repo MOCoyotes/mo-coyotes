@@ -431,6 +431,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .kit-twinkle + .kit-twinkle { animation-delay: -.9s; }
 @keyframes kitTwinkle { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(.55) rotate(20deg); opacity: .55; } }
 @media (prefers-reduced-motion: reduce) { .kit-twinkle { animation: none; } }
+.fridge-wrap { position: relative; width: min(330px, 78vw, 52vh); aspect-ratio: 2 / 3; perspective: 900px; }
+.fridge-wrap svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.fdoor { position: absolute; left: 0; right: 0; background: #F48FB8; border: 3px solid #5A1F0E; transform-origin: 0 50%; transition: transform .8s cubic-bezier(.4,1.3,.5,1); box-sizing: border-box; }
+.fdoor::after { content: ""; position: absolute; right: 9%; width: 5%; border: 2px solid #5A1F0E; border-radius: 99px; background: #D9DCE6; }
+.fdoor-top { top: 0; height: 28%; border-radius: 26px 26px 6px 6px; }
+.fdoor-top::after { top: 22%; height: 52%; }
+.fdoor-bottom { top: 28%; bottom: 0; border-radius: 6px 6px 26px 26px; }
+.fdoor-bottom::after { top: 10%; height: 30%; }
+.fridge-wrap.open .fdoor { transform: rotateY(-108deg); }
+.fridge-wrap.open .fdoor-bottom { transition-delay: .12s; }
+@media (prefers-reduced-motion: reduce) { .fdoor { transition: none; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2202,12 +2213,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-trim" stroke-width="3" fill="none" opacity=".75" d="M195 244 C194 235, 199 228, 207 225"/>
           <ellipse class="f-marigold s-ink" stroke-width="2.5" cx="220" cy="221" rx="15" ry="4.5"/>
           <circle class="f-marigold s-ink" stroke-width="2" cx="220" cy="214" r="4.5"/>
-          <!-- round retro fridge -->
-          <path class="f-pink s-ink" stroke-width="3" d="M800 410 V172 Q800 130 842 130 H898 Q940 130 940 172 V410 Z"/>
-          <path class="s-ink" stroke-width="3" d="M800 252 H940"/>
-          <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="182" width="9" height="52" rx="4.5"/>
-          <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="266" width="9" height="74" rx="4.5"/>
-          <rect class="f-trim s-ink" stroke-width="2" x="850" y="146" width="40" height="9" rx="4.5"/>
+          <!-- FRIDGE: round retro fridge, click to open it -->
+          <a class="hot hot-fridge" href="#fridge" role="button" aria-label="Fridge: open it up">
+            <g class="glow">
+              <path class="f-pink s-ink" stroke-width="3" d="M800 410 V172 Q800 130 842 130 H898 Q940 130 940 172 V410 Z"/>
+              <path class="s-ink" stroke-width="3" d="M800 252 H940"/>
+              <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="182" width="9" height="52" rx="4.5"/>
+              <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="914" y="266" width="9" height="74" rx="4.5"/>
+              <rect class="f-trim s-ink" stroke-width="2" x="850" y="146" width="40" height="9" rx="4.5"/>
+            </g>
+            <g class="tag"><rect x="825" y="336" width="90" height="28" rx="14"/><text x="870" y="355" text-anchor="middle">FRIDGE</text></g>
+          </a>
           <!-- polaroid stuck to the fridge with a heart magnet -->
           <a class="hot hot-qf" href="#fridge-photo" role="button" data-big="images/kitchen/fridge-big.jpg" data-cap="&#9829;" aria-label="Polaroid on the fridge, click to make it bigger">
             <g class="glow" transform="rotate(-6 868 190)">
@@ -2668,6 +2684,64 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <button class="lb-close" type="button" id="clockClose" aria-label="Close">×</button>
     <svg class="big-clock" viewBox="40 0 80 196" aria-hidden="true"><use href="#kitClockArt"/></svg>
     <div class="late-tip"><b>Tip for Late People</b>Add an extra half hour to your leave time to help prevent being late to appointments.</div>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog fridge-dialog" id="fridgeDialog" aria-label="Inside the fridge">
+  <div class="ball-wrap">
+    <button class="lb-close" type="button" id="fridgeClose" aria-label="Close">×</button>
+    <div class="fridge-wrap" id="fridgeWrap">
+      <svg viewBox="0 0 200 300" aria-label="Inside the fridge: a shelf of drinks, eggs, butter, pickles, milk, lemonade and apples" role="img" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="2" y="2" width="196" height="296" rx="26" fill="#F48FB8" stroke="#5A1F0E" stroke-width="3"/>
+        <rect x="12" y="12" width="176" height="66" rx="14" fill="#E3F3F8" stroke="#5A1F0E" stroke-width="2"/>
+        <rect x="12" y="86" width="176" height="202" rx="14" fill="#EEF8FB" stroke="#5A1F0E" stroke-width="2"/>
+        <rect x="24" y="16" width="152" height="5" rx="2.5" fill="#FFFFFF" opacity=".8"/>
+        <!-- freezer: ice cube tray and a pint of ice cream -->
+        <rect x="26" y="54" width="62" height="14" rx="3" fill="#CFE8F1" stroke="#5A1F0E" stroke-width="1.4"/>
+        <path d="M36 56 V66 M46 56 V66 M56 56 V66 M66 56 V66 M76 56 V66" stroke="#5A1F0E" stroke-width=".8" opacity=".5"/>
+        <path d="M118 68 L120 38 H150 L152 68 Z" fill="#FBD3DC" stroke="#5A1F0E" stroke-width="1.4"/>
+        <rect x="117" y="33" width="36" height="7" rx="2" fill="#E0218A" stroke="#5A1F0E" stroke-width="1.2"/>
+        <circle cx="135" cy="54" r="5" fill="#FFFDF4" stroke="#5A1F0E" stroke-width="1"/>
+        <!-- glass shelves -->
+        <g fill="#FFFFFF" opacity=".75" stroke="#9CC9D8" stroke-width="1.2"><rect x="14" y="149" width="172" height="4" rx="2"/><rect x="14" y="209" width="172" height="4" rx="2"/></g>
+        <!-- DRINKS: favorite beverages, opens the wishlist -->
+        <a class="hot hot-drinks" href="#drinks" role="button" aria-label="Favorite drinks: open the wishlist">
+          <g class="glow">
+          <g transform="translate(16,0)"><rect x="0" y="122" width="14" height="27" rx="3" fill="#F7B6D2" stroke="#5A1F0E" stroke-width="1.4"/><rect x="1.5" y="120" width="11" height="4" rx="1.5" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1"/><path d="M2 140 Q7 132 12 136" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/></g>
+          <g transform="translate(32,0)"><rect x="0" y="122" width="14" height="27" rx="3" fill="#C9B6F2" stroke="#5A1F0E" stroke-width="1.4"/><rect x="1.5" y="120" width="11" height="4" rx="1.5" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1"/><path d="M2 140 Q7 132 12 136" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/></g>
+          <g transform="translate(48,0)"><rect x="0" y="122" width="14" height="27" rx="3" fill="#A8E6CF" stroke="#5A1F0E" stroke-width="1.4"/><rect x="1.5" y="120" width="11" height="4" rx="1.5" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1"/><path d="M2 140 Q7 132 12 136" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/></g>
+          <g transform="translate(64,0)"><rect x="0" y="122" width="14" height="27" rx="3" fill="#D7263D" stroke="#5A1F0E" stroke-width="1.4"/><rect x="1.5" y="120" width="11" height="4" rx="1.5" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1"/><path d="M0 134 Q4 130 7 134 T14 134" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></g>
+          <g transform="translate(80,0)"><rect x="0" y="122" width="14" height="27" rx="3" fill="#D7263D" stroke="#5A1F0E" stroke-width="1.4"/><rect x="1.5" y="120" width="11" height="4" rx="1.5" fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1"/><path d="M0 134 Q4 130 7 134 T14 134" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></g>
+          <g transform="translate(95,0)"><path d="M3 149 V124 Q3 118 6 115 V109 H11 V115 Q14 118 14 124 V149 Z" fill="#E9A23B" stroke="#5A1F0E" stroke-width="1.4"/><rect x="5.5" y="104" width="6" height="6" rx="1.2" fill="#4E9A4A" stroke="#5A1F0E" stroke-width="1"/><rect x="3" y="128" width="11" height="11" fill="#FFE27A" stroke="#5A1F0E" stroke-width="1"/></g>
+          <g transform="translate(112,0)"><path d="M3 149 V124 Q3 118 6 115 V109 H11 V115 Q14 118 14 124 V149 Z" fill="#E9A23B" stroke="#5A1F0E" stroke-width="1.4"/><rect x="5.5" y="104" width="6" height="6" rx="1.2" fill="#4E9A4A" stroke="#5A1F0E" stroke-width="1"/><rect x="3" y="128" width="11" height="11" fill="#FFE27A" stroke="#5A1F0E" stroke-width="1"/></g>
+          <g transform="translate(129,0)"><path d="M3 149 V124 Q3 118 6 115 V109 H11 V115 Q14 118 14 124 V149 Z" fill="#C89B6D" stroke="#5A1F0E" stroke-width="1.4"/><rect x="5.5" y="104" width="6" height="6" rx="1.2" fill="#6B3A1E" stroke="#5A1F0E" stroke-width="1"/><rect x="3" y="128" width="11" height="11" fill="#FFF3D6" stroke="#5A1F0E" stroke-width="1"/></g>
+          <g transform="translate(146,0)"><path d="M3 149 V124 Q3 118 6 115 V109 H11 V115 Q14 118 14 124 V149 Z" fill="#C89B6D" stroke="#5A1F0E" stroke-width="1.4"/><rect x="5.5" y="104" width="6" height="6" rx="1.2" fill="#6B3A1E" stroke="#5A1F0E" stroke-width="1"/><rect x="3" y="128" width="11" height="11" fill="#FFF3D6" stroke="#5A1F0E" stroke-width="1"/></g>
+          </g>
+          <g class="tag"><rect x="40" y="90" width="120" height="22" rx="11"/><text x="100" y="105" text-anchor="middle" style="font-size: 10px">MY FAVORITE DRINKS</text></g>
+        </a>
+        <!-- eggs, pickles, butter -->
+        <path d="M20 209 V196 H74 V209 Z" fill="#E8D8C4" stroke="#5A1F0E" stroke-width="1.4"/>
+        <g fill="#FFFDF4" stroke="#5A1F0E" stroke-width="1"><ellipse cx="28" cy="194" rx="4.5" ry="5.5"/><ellipse cx="38" cy="194" rx="4.5" ry="5.5"/><ellipse cx="48" cy="194" rx="4.5" ry="5.5"/><ellipse cx="58" cy="194" rx="4.5" ry="5.5"/><ellipse cx="67" cy="194" rx="4.5" ry="5.5"/></g>
+        <rect x="86" y="182" width="22" height="27" rx="5" fill="#B7D9A0" stroke="#5A1F0E" stroke-width="1.4"/>
+        <rect x="85" y="177" width="24" height="7" rx="2" fill="#E2B13C" stroke="#5A1F0E" stroke-width="1.2"/>
+        <g fill="#6E9446"><ellipse cx="93" cy="196" rx="2.5" ry="6"/><ellipse cx="101" cy="198" rx="2.5" ry="6"/></g>
+        <rect x="122" y="197" width="40" height="12" rx="3" fill="#FFE27A" stroke="#5A1F0E" stroke-width="1.4"/>
+        <path d="M119 197 Q142 182 165 197 Z" fill="#FFFFFF" opacity=".85" stroke="#5A1F0E" stroke-width="1.2"/>
+        <!-- milk, lemonade, apples -->
+        <path d="M22 268 V236 Q22 230 27 227 V220 H37 V227 Q42 230 42 236 V268 Z" fill="#FFFFFF" stroke="#5A1F0E" stroke-width="1.4"/>
+        <rect x="26" y="215" width="12" height="6" rx="1.5" fill="#F48FB8" stroke="#5A1F0E" stroke-width="1"/>
+        <path d="M60 268 L57 230 H90 L87 268 Z" fill="#FFF3A8" stroke="#5A1F0E" stroke-width="1.4"/>
+        <path d="M90 236 Q99 238 97 250 Q95 258 88 258" fill="none" stroke="#5A1F0E" stroke-width="1.6"/>
+        <circle cx="68" cy="244" r="4" fill="#FFFFFF" stroke="#E2B13C" stroke-width="1.2"/>
+        <path d="M118 268 Q118 252 148 252 Q178 252 178 268 Z" fill="#9AD0E0" stroke="#5A1F0E" stroke-width="1.4"/>
+        <g stroke="#5A1F0E" stroke-width="1.2"><circle cx="135" cy="250" r="7" fill="#D7263D"/><circle cx="150" cy="247" r="7" fill="#9BC53D"/><circle cx="164" cy="251" r="7" fill="#D7263D"/></g>
+        <path d="M135 243 v-3 M150 240 v-3 M164 244 v-3" stroke="#5A1F0E" stroke-width="1.2"/>
+        <rect x="14" y="270" width="172" height="16" rx="5" fill="#DDF0F6" stroke="#5A1F0E" stroke-width="1.2"/>
+      </svg>
+      <div class="fdoor fdoor-top" aria-hidden="true"></div>
+      <div class="fdoor fdoor-bottom" aria-hidden="true"></div>
+    </div>
+    <p class="ball-hint" id="fridgeHint">Click the drinks to see my favorites</p>
   </div>
 </dialog>
 
@@ -3946,6 +4020,30 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("clockClose").addEventListener("click", function () { clockDialog.close(); });
     clockDialog.addEventListener("click", function (e) { if (e.target === clockDialog) clockDialog.close(); });
+  }
+
+  // ---------- the fridge: doors swing open, the drinks shelf links to the wishlist ----------
+  var WISHLIST_URL = ""; // Amazon wishlist of favorite beverages
+  var fridgeDialog = document.getElementById("fridgeDialog"), fridgeWrap = document.getElementById("fridgeWrap");
+  if (fridgeDialog && fridgeWrap) {
+    document.querySelectorAll(".hot-fridge").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        fridgeWrap.classList.remove("open");
+        document.getElementById("fridgeHint").textContent = "Click the drinks to see my favorites";
+        if (fridgeDialog.showModal) fridgeDialog.showModal(); else fridgeDialog.setAttribute("open", "");
+        setTimeout(function () { fridgeWrap.classList.add("open"); }, reduce ? 0 : 250);
+      });
+    });
+    document.querySelectorAll(".hot-drinks").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (WISHLIST_URL) window.open(WISHLIST_URL, "_blank", "noopener");
+        else document.getElementById("fridgeHint").textContent = "Wishlist coming soon!";
+      });
+    });
+    document.getElementById("fridgeClose").addEventListener("click", function () { fridgeDialog.close(); });
+    fridgeDialog.addEventListener("click", function (e) { if (e.target === fridgeDialog) fridgeDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
