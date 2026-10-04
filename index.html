@@ -452,6 +452,33 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .water-fact { padding: 12px 16px; border: 2px dashed #5AA9C9; border-radius: 12px; background: #E8F6FB; font: 700 .95rem/1.4 var(--font-body); color: #3B2620; text-align: center; }
 .water-fact b { display: block; margin-bottom: 4px; font: 400 1.2rem var(--font-display); color: #2F7FA3; }
 .water-art { display: block; width: min(150px, 40vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
+.ball-wrap.chart-wrap { width: min(470px, 94vw); max-height: 90vh; overflow-y: auto; gap: 12px; }
+.chart-form { display: grid; gap: 10px; width: 100%; }
+.chart-form[hidden], .chart-result[hidden] { display: none; }
+.chart-form label { display: grid; gap: 4px; font: 800 .85rem var(--font-body); color: #3B2620; text-align: left; }
+.chart-form label span { font-weight: 600; color: #8A5A45; }
+.chart-form input[type=text], .chart-form input[type=date], .chart-form input[type=time] { padding: 8px 10px; border: 2px solid #3B2620; border-radius: 10px; background: #FFFFFF; font: 600 1rem var(--font-body); color: #3B2620; min-width: 0; }
+.chart-form input:disabled { opacity: .45; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.chart-form .chart-chk { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.chart-err { margin: 0; min-height: 1.2em; font: 800 .9rem var(--font-body); color: #C2185B; }
+.chart-fine { margin: 0; font: 600 .75rem/1.35 var(--font-body); color: #8A5A45; text-align: center; }
+.chart-form .sdk-new { justify-self: center; }
+.chart-result { display: grid; gap: 12px; width: 100%; }
+.chart-who { margin: 0; font: 800 .9rem/1.35 var(--font-body); color: #8A5A45; text-align: center; }
+.big3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.big3-card { display: grid; justify-items: center; gap: 2px; padding: 10px 6px; border: 2px solid #E0218A; border-radius: 14px; background: #FDE6EC; text-align: center; color: #3B2620; }
+.b3-lab { font: 800 .7rem var(--font-body); letter-spacing: .1em; color: #C2185B; }
+.b3-glyph { font-size: 1.5rem; line-height: 1.1; }
+.b3-sign { font: 400 1.05rem var(--font-display); }
+.b3-deg { font: 700 .75rem var(--font-body); color: #8A5A45; }
+.b3-blurb { font: 600 .72rem/1.3 var(--font-body); }
+.chart-planets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font: 700 .85rem var(--font-body); color: #3B2620; }
+.chart-planets li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px dashed #DCC9BA; }
+.chart-planets b { color: #C2185B; font-weight: 800; }
+.chart-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.sdk-new.alt { background: #FBD3DC; }
+@media (max-width: 420px) { .big3 { grid-template-columns: 1fr; } .chart-planets { grid-template-columns: 1fr; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2133,8 +2160,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-trim s-ink" stroke-width="3" x="420" y="60" width="160" height="140" rx="6"/>
           <rect fill="#2B2350" class="s-ink" stroke-width="2.5" x="432" y="72" width="136" height="116" rx="3"/>
           <!-- night sky: a crescent moon and a twinkling star -->
-          <circle fill="#FFF3B8" cx="462" cy="100" r="13"/>
-          <circle fill="#2B2350" cx="469" cy="95" r="11"/>
           <g fill="#FFF3B8"><circle cx="446" cy="160" r="1.3"/><circle cx="488" cy="150" r="1"/><circle cx="520" cy="168" r="1.2"/><circle cx="556" cy="146" r="1"/><circle cx="512" cy="84" r="1"/><circle cx="486" cy="80" r="1.1"/></g>
           <circle class="kit-twinkle" fill="#FFF3B8" cx="458" cy="148" r="2"/>
           <path class="s-ink" stroke-width="5" d="M500 72 V188 M432 130 H568"/>
@@ -2143,6 +2168,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <a class="hot hot-wish" href="https://www.amazon.com/hz/wishlist/ls/3RU3YOKVJXSCG" target="_blank" rel="noopener" aria-label="Twinkling star: Coyote Wishes wishlist (opens Amazon)">
             <g class="glow"><circle cx="538" cy="112" r="14" fill="transparent"/><path class="kit-twinkle" fill="#FFE08A" d="M538 100 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3 Z"/></g>
             <g class="tag"><rect x="466" y="128" width="144" height="28" rx="14"/><text x="538" y="147" text-anchor="middle">COYOTE WISHES</text></g>
+          </a>
+          <!-- BIRTH CHART: click the moon -->
+          <a class="hot hot-moon" href="#birth-chart" role="button" aria-label="Crescent moon: make your birth chart">
+            <g class="glow"><circle cx="462" cy="100" r="16" fill="transparent"/><circle fill="#FFF3B8" cx="462" cy="100" r="13"/><circle fill="#2B2350" cx="469" cy="95" r="11"/></g>
+            <g class="tag"><rect x="402" y="118" width="124" height="28" rx="14"/><text x="464" y="137" text-anchor="middle">BIRTH CHART</text></g>
           </a>
           <path class="f-hot s-ink" stroke-width="3" d="M410 50 H590 V72 q-15 14 -30 0 q-15 14 -30 0 q-15 14 -30 0 q-15 14 -30 0 q-15 14 -30 0 q-15 14 -30 0 Z"/>
           <rect class="f-trim s-ink" stroke-width="2.5" x="410" y="198" width="180" height="10" rx="3"/>
@@ -2796,12 +2826,41 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <g fill="#FFFFFF" opacity=".8"><circle cx="42" cy="90" r="2.4"/><circle cx="56" cy="78" r="1.8"/><circle cx="48" cy="66" r="1.4"/><circle cx="62" cy="96" r="2"/></g>
       <path d="M31 38 L35 104" stroke="#FFFFFF" stroke-width="3" opacity=".7"/>
       <path d="M24 30 L30 112 H70 L76 30" fill="none" stroke="#5A1F0E" stroke-width="3"/>
-      <circle cx="74" cy="34" r="12" fill="#FFF3A8" stroke="#5A1F0E" stroke-width="2"/>
-      <circle cx="74" cy="34" r="8.5" fill="#FFE27A"/>
-      <path d="M74 25.5 V42.5 M65.5 34 H82.5 M68 28 L80 40 M80 28 L68 40" stroke="#FFF3A8" stroke-width="1.2"/>
+      <g transform="rotate(28 76 30)"><path d="M61 30 A15 15 0 0 0 91 30 Z" fill="#F2C230" stroke="#5A1F0E" stroke-width="2"/><path d="M64 30.5 A12 12 0 0 0 88 30.5 Z" fill="#FFF3A8"/><path d="M76 30.5 L66 37.5 M76 30.5 L71.5 41.5 M76 30.5 L80.5 41.5 M76 30.5 L86 37.5" stroke="#F2C230" stroke-width="1.3"/><g fill="#FFFFFF" opacity=".7"><circle cx="70" cy="35" r=".9"/><circle cx="82" cy="35" r=".9"/></g></g>
+      <path d="M76 30 L75.1 41" stroke="#5A1F0E" stroke-width="3"/>
     </svg>
     <p class="ball-prompt">Have you drank enough water today?</p>
-    <div class="water-fact"><b>Water Fact</b>Women need about 11.5 cups (2.7 L) of fluids a day, and men about 15.5 cups (3.7 L). About 20% of that comes from food, so aim for roughly 9&ndash;12 cups of water and other drinks.</div>
+    <div class="water-fact"><b>Water Fact</b>Adults need roughly 8&ndash;12 glasses of water/fluids per day.</div>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog chart-dialog" id="chartDialog" aria-label="Your birth chart">
+  <div class="ball-wrap chart-wrap">
+    <button class="lb-close" type="button" id="chartClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Your Birth Chart</p>
+    <form class="chart-form" id="chartForm" novalidate>
+      <label>Name <span>(optional)</span><input name="name" type="text" autocomplete="off" maxlength="40"></label>
+      <div class="chart-row">
+        <label>Birth date<input name="date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+        <label>Birth time<input name="time" type="time"></label>
+      </div>
+      <label class="chart-chk"><input name="notime" type="checkbox"> I don't know my birth time</label>
+      <label>Birth city<input name="city" type="text" placeholder="St. Louis, Missouri" autocomplete="off" required></label>
+      <p class="chart-err" id="chartErr" role="alert"></p>
+      <button type="submit" class="sdk-new">Read my stars &#10022;</button>
+      <p class="chart-fine">Nothing you type is saved. Your city is looked up with Open-Meteo's free place finder.</p>
+    </form>
+    <div class="chart-result" id="chartResult" hidden>
+      <p class="chart-who" id="chartWho"></p>
+      <div class="big3" id="chartBig3"></div>
+      <ul class="chart-planets" id="chartPlanets"></ul>
+      <p class="chart-fine" id="chartNote"></p>
+      <div class="chart-btns">
+        <button type="button" class="sdk-new" id="chartPng">Download my chart</button>
+        <button type="button" class="sdk-new alt" id="chartTxt">Download as text</button>
+        <button type="button" class="sdk-new alt" id="chartAgain">Start over</button>
+      </div>
+    </div>
   </div>
 </dialog>
 
@@ -4121,6 +4180,223 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     waterDialog.addEventListener("close", function () { document.querySelectorAll(".hot-faucet").forEach(function (a) { a.classList.remove("pouring"); }); });
     document.getElementById("waterClose").addEventListener("click", function () { waterDialog.close(); });
     waterDialog.addEventListener("click", function (e) { if (e.target === waterDialog) waterDialog.close(); });
+  }
+
+  // ---------- birth chart math (tropical zodiac; after Paul Schlyter's planet formulas) ----------
+  var ASTRO = (function () {
+    var R = Math.PI / 180;
+    function rev(x) { return x - Math.floor(x / 360) * 360; }
+    function sind(x) { return Math.sin(x * R); } function cosd(x) { return Math.cos(x * R); }
+    function atan2d(y, x) { return Math.atan2(y, x) / R; }
+    function kepler(M, e) {
+      var E = M + e / R * sind(M) * (1 + e * cosd(M));
+      for (var k = 0; k < 8; k++) E = E - (E - e / R * sind(E) - M) / (1 - e * cosd(E));
+      return E;
+    }
+    var EL = {
+      mercury: [48.3313, 3.24587e-5, 7.0047, 5.00e-8, 29.1241, 1.01444e-5, 0.387098, 0, 0.205635, 5.59e-10, 168.6562, 4.0923344368],
+      venus: [76.6799, 2.46590e-5, 3.3946, 2.75e-8, 54.8910, 1.38374e-5, 0.723330, 0, 0.006773, -1.302e-9, 48.0052, 1.6021302244],
+      mars: [49.5574, 2.11081e-5, 1.8497, -1.78e-8, 286.5016, 2.92961e-5, 1.523688, 0, 0.093405, 2.516e-9, 18.6021, 0.5240207766],
+      jupiter: [100.4542, 2.76854e-5, 1.3030, -1.557e-7, 273.8777, 1.64505e-5, 5.20256, 0, 0.048498, 4.469e-9, 19.8950, 0.0830853001],
+      saturn: [113.6634, 2.38980e-5, 2.4886, -1.081e-7, 339.3939, 2.97661e-5, 9.55475, 0, 0.055546, -9.499e-9, 316.9670, 0.0334442282],
+      uranus: [74.0005, 1.3978e-5, 0.7733, 1.9e-8, 96.6612, 3.0565e-5, 19.18171, -1.55e-8, 0.047318, 7.45e-9, 142.5905, 0.011725806],
+      neptune: [131.7806, 3.0173e-5, 1.7700, -2.55e-7, 272.8461, -6.027e-6, 30.05826, 3.313e-8, 0.008606, 2.15e-9, 260.2471, 0.005995147]
+    };
+    function helio(p, d) {
+      var q = EL[p], N = q[0] + q[1] * d, i = q[2] + q[3] * d, w = q[4] + q[5] * d, a = q[6] + q[7] * d, e = q[8] + q[9] * d, M = rev(q[10] + q[11] * d);
+      var E = kepler(M, e), xv = a * (cosd(E) - e), yv = a * Math.sqrt(1 - e * e) * sind(E), v = atan2d(yv, xv), r = Math.sqrt(xv * xv + yv * yv);
+      var xh = r * (cosd(N) * cosd(v + w) - sind(N) * sind(v + w) * cosd(i)), yh = r * (sind(N) * cosd(v + w) + cosd(N) * sind(v + w) * cosd(i)), zh = r * sind(v + w) * sind(i);
+      return { lon: atan2d(yh, xh), lat: atan2d(zh, Math.sqrt(xh * xh + yh * yh)), r: r, M: M };
+    }
+    function positions(jdUT) {
+      var d = jdUT - 2451543.5;
+      // Sun
+      var ws = 282.9404 + 4.70935e-5 * d, es = 0.016709 - 1.151e-9 * d, Ms = rev(356.0470 + 0.9856002585 * d);
+      var Es = kepler(Ms, es), xv = cosd(Es) - es, yv = Math.sqrt(1 - es * es) * sind(Es), vs = atan2d(yv, xv), rs = Math.sqrt(xv * xv + yv * yv);
+      var sunLon = rev(vs + ws), xs = rs * cosd(sunLon), ys = rs * sind(sunLon);
+      var out = { sun: sunLon };
+      // Moon
+      var Nm = 125.1228 - 0.0529538083 * d, im = 5.1454, wm = 318.0634 + 0.1643573223 * d, em = 0.054900, Mm = rev(115.3654 + 13.0649929509 * d);
+      var Em = kepler(Mm, em), xm = 60.2666 * (cosd(Em) - em), ym = 60.2666 * Math.sqrt(1 - em * em) * sind(Em), vm = atan2d(ym, xm), rm = Math.sqrt(xm * xm + ym * ym);
+      var xe = rm * (cosd(Nm) * cosd(vm + wm) - sind(Nm) * sind(vm + wm) * cosd(im)), ye = rm * (sind(Nm) * cosd(vm + wm) + cosd(Nm) * sind(vm + wm) * cosd(im));
+      var moonLon = atan2d(ye, xe), Ls = Ms + ws, Lm = Mm + wm + Nm, D = Lm - Ls, F = Lm - Nm;
+      moonLon += -1.274 * sind(Mm - 2 * D) + 0.658 * sind(2 * D) - 0.186 * sind(Ms) - 0.059 * sind(2 * Mm - 2 * D) - 0.057 * sind(Mm - 2 * D + Ms)
+        + 0.053 * sind(Mm + 2 * D) + 0.046 * sind(2 * D - Ms) + 0.041 * sind(Mm - Ms) - 0.035 * sind(D) - 0.031 * sind(Mm + Ms)
+        - 0.015 * sind(2 * F - 2 * D) + 0.011 * sind(Mm - 4 * D);
+      out.moon = rev(moonLon);
+      // planets
+      var Mj = rev(19.8950 + 0.0830853001 * d), Msa = rev(316.9670 + 0.0334442282 * d), Mu = rev(142.5905 + 0.011725806 * d);
+      ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune"].forEach(function (p) {
+        var h = helio(p, d), lon = h.lon;
+        if (p === "jupiter") lon += -0.332 * sind(2 * Mj - 5 * Msa - 67.6) - 0.056 * sind(2 * Mj - 2 * Msa + 21) + 0.042 * sind(3 * Mj - 5 * Msa + 21) - 0.036 * sind(Mj - 2 * Msa) + 0.022 * cosd(Mj - Msa) + 0.023 * sind(2 * Mj - 3 * Msa + 52) - 0.016 * sind(Mj - 5 * Msa - 69);
+        if (p === "saturn") lon += 0.812 * sind(2 * Mj - 5 * Msa - 67.6) - 0.229 * cosd(2 * Mj - 4 * Msa - 2) + 0.119 * sind(Mj - 2 * Msa - 3) + 0.046 * sind(2 * Mj - 6 * Msa - 69) + 0.014 * sind(Mj - 3 * Msa + 32);
+        if (p === "uranus") lon += 0.040 * sind(Msa - 2 * Mu + 6) + 0.035 * sind(Msa - 3 * Mu + 33) - 0.015 * sind(Mj - Mu + 20);
+        var xh = h.r * cosd(lon) * cosd(h.lat), yh = h.r * sind(lon) * cosd(h.lat);
+        out[p] = rev(atan2d(yh + ys, xh + xs));
+      });
+      // Pluto
+      var S = 50.03 + 0.033459652 * d, P = 238.95 + 0.003968789 * d;
+      var pl = 238.9508 + 0.00400703 * d - 19.799 * sind(P) + 19.848 * cosd(P) + 0.897 * sind(2 * P) - 4.956 * cosd(2 * P) + 0.610 * sind(3 * P) + 1.211 * cosd(3 * P)
+        - 0.341 * sind(4 * P) - 0.190 * cosd(4 * P) + 0.128 * sind(5 * P) - 0.034 * cosd(5 * P) - 0.038 * sind(6 * P) + 0.031 * cosd(6 * P) + 0.020 * sind(S - P) - 0.010 * cosd(S - P);
+      var pb = -3.9082 - 5.453 * sind(P) - 14.975 * cosd(P) + 3.527 * sind(2 * P) + 2.157 * cosd(2 * P) - 1.276 * sind(3 * P) + 0.548 * cosd(3 * P) - 0.059 * sind(4 * P) + 0.020 * sind(S - P);
+      var pr = 40.72 + 6.68 * sind(P) + 6.90 * cosd(P) - 1.18 * sind(2 * P) - 0.03 * cosd(2 * P) + 0.15 * sind(3 * P) - 0.14 * cosd(3 * P);
+      // Schlyter's Pluto is for J2000; add precession to get the equinox of date
+      var prec = 3.82394e-5 * d;
+      out.pluto = rev(atan2d(pr * sind(pl) * cosd(pb) + ys, pr * cosd(pl) * cosd(pb) + xs) + prec);
+      out._d = d; out._Ls = Ls;
+      return out;
+    }
+    function angles(jdUT, lat, lonEast) {
+      var d = jdUT - 2451543.5, ecl = 23.4393 - 3.563e-7 * d;
+      var Ls = 356.0470 + 0.9856002585 * d + 282.9404 + 4.70935e-5 * d;
+      var ut = ((jdUT - 0.5) - Math.floor(jdUT - 0.5)) * 24;
+      var ramc = rev(Ls + 180 + ut * 15 + lonEast);
+      var asc = rev(atan2d(cosd(ramc), -(sind(ramc) * cosd(ecl) + Math.tan(lat * R) * sind(ecl))));
+      var mc = rev(atan2d(sind(ramc), cosd(ramc) * cosd(ecl)));
+      return { asc: asc, mc: mc };
+    }
+    function julian(ms) { return ms / 86400000 + 2440587.5; }
+    var SIGNS = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+    var GLYPHS = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
+    function sign(lon) { var s = Math.floor(lon / 30), deg = lon - s * 30, dd = Math.floor(deg), mm = Math.floor((deg - dd) * 60); return { sign: SIGNS[s], glyph: GLYPHS[s], idx: s, text: SIGNS[s] + " " + dd + "°" + (mm < 10 ? "0" : "") + mm + "′" }; }
+    return { positions: positions, angles: angles, julian: julian, sign: sign, SIGNS: SIGNS };
+  })();
+
+  // ---------- the moon: a birth chart you can download ----------
+  var chartDialog = document.getElementById("chartDialog");
+  if (chartDialog) {
+    var SIGN_BLURB = {
+      Aries: "bold, brave and first to jump in", Taurus: "steady, cozy and loyal to the good stuff", Gemini: "curious, chatty and full of ideas",
+      Cancer: "caring, nostalgic and protective of home", Leo: "warm, playful and made for the spotlight", Virgo: "thoughtful, crafty and great with details",
+      Libra: "charming, artsy and all about balance", Scorpio: "deep, magnetic and fiercely loyal", Sagittarius: "adventurous, funny and always exploring",
+      Capricorn: "driven, patient and quietly hilarious", Aquarius: "original, independent and wonderfully weird", Pisces: "dreamy, creative and full of feeling"
+    };
+    var PLANETS = [["mercury", "Mercury", "☿"], ["venus", "Venus", "♀"], ["mars", "Mars", "♂"], ["jupiter", "Jupiter", "♃"], ["saturn", "Saturn", "♄"],
+      ["uranus", "Uranus", "♅"], ["neptune", "Neptune", "♆"], ["pluto", "Pluto", "♇"]];
+    var chartForm = document.getElementById("chartForm"), chartErr = document.getElementById("chartErr"), chartResult = document.getElementById("chartResult"), lastChart = null;
+    var tzOffsetMin = function (ms, tz) {
+      var parts = {}; new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" })
+        .formatToParts(new Date(ms)).forEach(function (p) { parts[p.type] = p.value; });
+      return (Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour % 24, +parts.minute, +parts.second) - ms) / 60000;
+    };
+    var localToUTC = function (y, mo, d, h, mi, tz) {
+      var guess = Date.UTC(y, mo - 1, d, h, mi), off = tzOffsetMin(guess, tz), utc = guess - off * 60000, off2 = tzOffsetMin(utc, tz);
+      return off2 === off ? utc : guess - off2 * 60000;
+    };
+    var findPlace = function (text) {
+      var bits = text.split(",").map(function (b) { return b.trim().toLowerCase(); }).filter(Boolean);
+      return fetch("https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&name=" + encodeURIComponent(bits[0]))
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          var res = (j && j.results) || []; if (!res.length) return null;
+          var best = res[0], extra = bits.slice(1);
+          if (extra.length) res.some(function (p) {
+            var hay = [p.admin1, p.admin2, p.country, p.country_code].join(" ").toLowerCase();
+            if (extra.every(function (b) { return hay.indexOf(b) >= 0 || (b.length === 2 && (p.country_code || "").toLowerCase() === b); })) { best = p; return true; }
+            return false;
+          });
+          return best;
+        });
+    };
+    var fmtDate = function (y, m, d) { return MONTHS[m - 1] + " " + d + ", " + y; };
+    var fmtTime = function (h, mi) { return ((h % 12) || 12) + ":" + (mi < 10 ? "0" : "") + mi + (h < 12 ? " AM" : " PM"); };
+    var showChart = function (c) {
+      lastChart = c;
+      document.getElementById("chartWho").textContent = (c.name ? c.name + " · " : "") + c.when + " · " + c.place;
+      var big = document.getElementById("chartBig3"); big.innerHTML = "";
+      c.big3.forEach(function (b) {
+        var card = document.createElement("div"); card.className = "big3-card";
+        card.innerHTML = '<span class="b3-lab"></span><span class="b3-glyph"></span><span class="b3-sign"></span><span class="b3-deg"></span><span class="b3-blurb"></span>';
+        card.children[0].textContent = b.label; card.children[1].textContent = b.glyph; card.children[2].textContent = b.sign; card.children[3].textContent = b.deg; card.children[4].textContent = b.blurb;
+        big.appendChild(card);
+      });
+      var list = document.getElementById("chartPlanets"); list.innerHTML = "";
+      c.planets.forEach(function (p) { var li = document.createElement("li"); li.innerHTML = "<b></b><span></span>"; li.firstChild.textContent = p.glyph + " " + p.name; li.lastChild.textContent = p.text; list.appendChild(li); });
+      document.getElementById("chartNote").textContent = c.note;
+      chartForm.hidden = true; chartResult.hidden = false;
+    };
+    chartForm.notime.addEventListener("change", function () { chartForm.time.disabled = chartForm.notime.checked; });
+    chartForm.addEventListener("input", function () { chartErr.textContent = ""; });
+    chartForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var dv = chartForm.date.value, tv = chartForm.time.value, city = chartForm.city.value.trim(), noTime = chartForm.notime.checked;
+      if (!dv) { chartErr.textContent = "Enter your birth date first."; chartForm.date.focus(); return; }
+      if (!noTime && !tv) { chartErr.textContent = "Enter your birth time, or check “I don’t know my birth time.”"; chartForm.time.focus(); return; }
+      if (!city) { chartErr.textContent = "Enter the city you were born in."; chartForm.city.focus(); return; }
+      var dp = dv.split("-").map(Number), tp = noTime ? [12, 0] : tv.split(":").map(Number);
+      if (dp[0] < 1900 || dp[0] > 2100) { chartErr.textContent = "Pick a birth year between 1900 and 2100."; return; }
+      var btn = chartForm.querySelector("button[type=submit]"); btn.disabled = true; btn.textContent = "Reading the stars…";
+      findPlace(city).then(function (pl) {
+        if (!pl) { chartErr.textContent = "Couldn’t find that city. Try just the city name, like “St. Louis.”"; return; }
+        var utc = localToUTC(dp[0], dp[1], dp[2], tp[0], tp[1], pl.timezone || "UTC"), jd = ASTRO.julian(utc), pos = ASTRO.positions(jd), ang = ASTRO.angles(jd, pl.latitude, pl.longitude);
+        var sun = ASTRO.sign(pos.sun), moon = ASTRO.sign(pos.moon), asc = ASTRO.sign(ang.asc), mc = ASTRO.sign(ang.mc);
+        var moonEdge = noTime && ((pos.moon % 30) < 7 || (pos.moon % 30) > 23);
+        var big3 = [
+          { label: "SUN", glyph: "☉", sign: sun.sign, deg: sun.text.replace(sun.sign + " ", ""), blurb: "Your core self: " + SIGN_BLURB[sun.sign] + "." },
+          { label: "MOON", glyph: "☽", sign: moon.sign, deg: moon.text.replace(moon.sign + " ", ""), blurb: "Your feelings: " + SIGN_BLURB[moon.sign] + "." },
+          noTime ? { label: "RISING", glyph: "↑", sign: "?", deg: "", blurb: "Add your birth time to find your rising sign." }
+                 : { label: "RISING", glyph: "↑", sign: asc.sign, deg: asc.text.replace(asc.sign + " ", ""), blurb: "How you come across: " + SIGN_BLURB[asc.sign] + "." }
+        ];
+        var planets = PLANETS.map(function (p) { var sg = ASTRO.sign(pos[p[0]]); return { name: p[1], glyph: p[2], text: sg.glyph + " " + sg.text }; });
+        if (!noTime) planets.push({ name: "Midheaven", glyph: "MC", text: mc.glyph + " " + mc.text });
+        var place = [pl.name, pl.admin1, pl.country].filter(Boolean).join(", ");
+        showChart({
+          name: chartForm.name.value.trim(), when: fmtDate(dp[0], dp[1], dp[2]) + (noTime ? " (time unknown)" : " at " + fmtTime(tp[0], tp[1])), place: place,
+          big3: big3, planets: planets,
+          note: noTime ? (moonEdge ? "Without a birth time, your Moon may be in the sign next door." : "Without a birth time, your rising sign and houses are a mystery.") : "Tropical zodiac. Positions are close estimates, usually within a degree."
+        });
+      }).catch(function () { chartErr.textContent = "Couldn’t look up that city right now. Check your connection and try again."; })
+        .then(function () { btn.disabled = false; btn.textContent = "Read my stars ✦"; });
+    });
+    var chartText = function (c) {
+      var lines = ["MY BIRTH CHART", "", (c.name ? c.name + "\n" : "") + c.when, c.place, ""];
+      c.big3.forEach(function (b) { lines.push(b.label + ": " + b.sign + (b.deg ? " " + b.deg : "")); lines.push("  " + b.blurb); });
+      lines.push(""); c.planets.forEach(function (p) { lines.push(p.name + ": " + p.text.replace(/^\S+ /, "")); });
+      lines.push("", c.note, "", "Made in the kitchen at mocoyotes.com");
+      return lines.join("\n");
+    };
+    var save = function (blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); };
+    document.getElementById("chartTxt").addEventListener("click", function () { if (lastChart) save(new Blob([chartText(lastChart)], { type: "text/plain" }), "birth-chart.txt"); });
+    document.getElementById("chartPng").addEventListener("click", function () {
+      if (!lastChart) return;
+      var c = lastChart, cv = document.createElement("canvas"); cv.width = 1080; cv.height = 1350;
+      var g = cv.getContext("2d");
+      var draw = function () {
+        g.fillStyle = "#2B2350"; g.fillRect(0, 0, 1080, 1350);
+        g.fillStyle = "#FFF3B8";
+        for (var i = 0; i < 90; i++) { var sx = (i * 397) % 1080, sy = (i * 211) % 1350, r = (i % 3) + 1; g.globalAlpha = .35 + (i % 5) / 10; g.beginPath(); g.arc(sx, sy, r, 0, 7); g.fill(); }
+        g.globalAlpha = 1;
+        g.beginPath(); g.arc(930, 150, 70, 0, 7); g.fill(); g.fillStyle = "#2B2350"; g.beginPath(); g.arc(965, 125, 60, 0, 7); g.fill();
+        g.textAlign = "center"; g.fillStyle = "#FFE08A"; g.font = "86px Shrikhand, Georgia, serif"; g.fillText("Birth Chart", 540, 190);
+        g.fillStyle = "#FDE6EC"; g.font = "800 34px Nunito, sans-serif";
+        var y = 260; if (c.name) { g.fillText(c.name, 540, y); y += 48; }
+        g.font = "600 28px Nunito, sans-serif"; g.fillText(c.when, 540, y); g.fillText(c.place, 540, y + 40);
+        c.big3.forEach(function (b, k) {
+          var x = 60 + k * 330, top = 380;
+          g.fillStyle = "#F7B6D2"; g.strokeStyle = "#5A1F0E"; g.lineWidth = 5;
+          g.beginPath(); if (g.roundRect) g.roundRect(x, top, 300, 330, 28); else g.rect(x, top, 300, 330); g.fill(); g.stroke();
+          g.fillStyle = "#5A1F0E"; g.font = "800 26px Nunito, sans-serif"; g.fillText(b.label, x + 150, top + 52);
+          g.font = "80px serif"; g.fillText(b.glyph, x + 150, top + 145);
+          g.font = "48px Shrikhand, Georgia, serif"; g.fillText(b.sign, x + 150, top + 222);
+          g.font = "700 28px Nunito, sans-serif"; g.fillText(b.deg, x + 150, top + 270);
+        });
+        g.textAlign = "left"; g.font = "700 32px Nunito, sans-serif";
+        c.planets.forEach(function (p, k) {
+          var col = k % 2, row = Math.floor(k / 2), x = 90 + col * 470, yy = 800 + row * 66;
+          g.fillStyle = "#FFE08A"; g.fillText(p.name, x, yy);
+          g.fillStyle = "#FFFFFF"; g.fillText(p.text.replace(/^\S+ /, ""), x + 190, yy);
+        });
+        g.textAlign = "center"; g.fillStyle = "#F48FB8"; g.font = "800 26px Nunito, sans-serif"; g.fillText("mocoyotes.com", 540, 1300);
+        cv.toBlob(function (blob) { if (blob) save(blob, "birth-chart.png"); }, "image/png");
+      };
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw); else draw();
+    });
+    document.getElementById("chartAgain").addEventListener("click", function () { chartResult.hidden = true; chartForm.hidden = false; });
+    document.querySelectorAll(".hot-moon").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); chartErr.textContent = ""; if (chartDialog.showModal) chartDialog.showModal(); else chartDialog.setAttribute("open", ""); });
+    });
+    document.getElementById("chartClose").addEventListener("click", function () { chartDialog.close(); });
+    chartDialog.addEventListener("click", function (e) { if (e.target === chartDialog) chartDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
