@@ -1628,7 +1628,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <p class="lede featured-lede">Interviews, magazines, shows and other fun things.</p>
       <svg class="brag-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy built-in bookshelf filling the wall under the stairs: a trophy and a prize ribbon, a framed certificate, a VHS camcorder, a scrapbook of events, board games, magazines, a vintage microphone, a newspaper and polaroid photos">
         <defs>
-          <pattern id="bragStripes" width="68" height="20" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall1)" width="68" height="20"/><rect style="fill: var(--wall2)" width="34" height="20"/></pattern>
           <pattern id="bragDots" width="40" height="40" patternUnits="userSpaceOnUse"><rect style="fill: var(--wall-lt)" width="40" height="40"/><circle class="f-pink" opacity=".6" cx="10" cy="10" r="2.8"/><circle class="f-marigold" opacity=".55" cx="30" cy="30" r="2.8"/></pattern>
           <pattern id="bragShag" width="120" height="44" patternUnits="userSpaceOnUse"><rect class="f-orange" width="120" height="44"/><g fill="none" style="stroke: var(--rust)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16 l3 -7 l3 7 l3 -7 l3 7"/><path d="M58 34 l3 -7 l3 7 l3 -7 l3 7"/><path d="M92 14 l3 -7 l3 7 l3 -7 l3 7"/><path d="M34 38 l2.5 -6 l2.5 6"/><path d="M80 24 l2.5 -6 l2.5 6"/><path d="M110 40 l2.5 -6 l2.5 6"/></g></pattern>
           <pattern id="bragPlanks" width="200" height="30" patternUnits="userSpaceOnUse"><rect style="fill: var(--floor)" width="200" height="30"/><path fill="none" class="s-ink" stroke-width="2" opacity=".55" d="M0 0 H200 M70 0 V30 M170 0 V30"/></pattern>
@@ -1636,19 +1635,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         </defs>
         <rect width="1000" height="470" fill="url(#bragDots)"/>
         <!-- underside of the stairs -->
-        <rect width="1000" height="230" fill="url(#bragStripes)"/>
-        <!-- the staircase seen from the side: railing, steps with the pink runner, and the side board -->
-        <g class="cubby-stairs" stroke-linejoin="round">
-          <path class="s-ink" stroke-width="5" stroke-linecap="round" d="M1000.0 157.2 V92.0 M920.0 143.6 V78.4 M840.0 130.0 V64.8 M760.0 116.4 V51.2 M680.0 102.8 V37.6 M600.0 89.2 V24.0 M520.0 75.6 V10.4 M440.0 62.0 V-3.2 M360.0 48.4 V-16.8 M280.0 34.8 V-30.4 M200.0 21.2 V-44.0 M120.0 7.6 V-57.6 M40.0 -6.0 V-71.2 M-40.0 -19.6 V-84.8"/>
-          <path class="s-trim" stroke-width="2.5" stroke-linecap="round" d="M1000.0 157.2 V92.0 M920.0 143.6 V78.4 M840.0 130.0 V64.8 M760.0 116.4 V51.2 M680.0 102.8 V37.6 M600.0 89.2 V24.0 M520.0 75.6 V10.4 M440.0 62.0 V-3.2 M360.0 48.4 V-16.8 M280.0 34.8 V-30.4 M200.0 21.2 V-44.0 M120.0 7.6 V-57.6 M40.0 -6.0 V-71.2 M-40.0 -19.6 V-84.8"/>
-          <path class="s-ink" stroke-width="9" stroke-linecap="round" d="M-60 -88.2 L1060 102.2"/>
-          <path stroke="#C98B52" stroke-width="5" stroke-linecap="round" d="M-60 -88.2 L1060 102.2"/>
-          <path fill="#C98B52" class="s-ink" stroke-width="2.5" d="M1040.0 157.2 H960.0 V143.6 H880.0 V130.0 H800.0 V116.4 H720.0 V102.8 H640.0 V89.2 H560.0 V75.6 H480.0 V62.0 H400.0 V48.4 H320.0 V34.8 H240.0 V21.2 H160.0 V7.6 H80.0 V-6.0 H0.0 V-19.6 H-80.0 L-80.0 -17.6 L1040 172.8 Z"/>
-          <path fill="none" style="stroke: var(--hot)" stroke-width="5" transform="translate(0,-1.5)" d="M1040.0 157.2 H960.0 V143.6 H880.0 V130.0 H800.0 V116.4 H720.0 V102.8 H640.0 V89.2 H560.0 V75.6 H480.0 V62.0 H400.0 V48.4 H320.0 V34.8 H240.0 V21.2 H160.0 V7.6 H80.0 V-6.0 H0.0 V-19.6 H-80.0"/>
-          <path fill="none" class="s-ink" stroke-width="1.6" transform="translate(0,-4.5)" d="M1040.0 157.2 H960.0 V143.6 H880.0 V130.0 H800.0 V116.4 H720.0 V102.8 H640.0 V89.2 H560.0 V75.6 H480.0 V62.0 H400.0 V48.4 H320.0 V34.8 H240.0 V21.2 H160.0 V7.6 H80.0 V-6.0 H0.0 V-19.6 H-80.0"/>
-          <path style="fill: var(--trunk)" class="s-ink" stroke-width="2.5" d="M-60 -14.2 L1060 176.2 L1060 210.2 L-60 19.8 Z"/>
-          <path class="s-ink" stroke-width="1.4" opacity=".35" fill="none" d="M-60 2.8 L1060 193.2"/>
-        </g>
+        <polygon style="fill: var(--trunk)" points="0,0 1000,0 1000,200 0,30"/>
+        <path class="s-ink" stroke-width="1.5" opacity=".35" fill="none" d="M300 0 L1000 119 M650 0 L1000 60"/>
+        <path class="s-ink" stroke-width="4" d="M0 30 L1000 200"/>
         <!-- floor -->
         <rect y="456" width="1000" height="16" class="f-trim"/><path class="s-ink" stroke-width="3" d="M0 456 H1000"/>
         <rect y="470" width="1000" height="90" fill="url(#bragShag)"/><path class="s-ink" stroke-width="4" d="M0 470 H1000"/>
