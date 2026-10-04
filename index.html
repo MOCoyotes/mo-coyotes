@@ -4784,7 +4784,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     // number cards show that many suit symbols (two of wands = two sticks); aces, courts and majors show one big symbol
     var pipArt = function (c, icon) {
       var one = function (x, y, size) { return '<svg x="' + (x - size / 2).toFixed(1) + '" y="' + (y - size / 2).toFixed(1) + '" width="' + size + '" height="' + size + '" viewBox="0 0 40 40" overflow="visible">' + icon + '</svg>'; };
-      if (c.major != null || c.rank === 0 || c.rank > 9) return one(60, 90, 70);
+      return one(60, 90, 70);
       var n = c.rank + 1, size = n <= 3 ? 32 : n <= 6 ? 27 : 23;
       return (PIPS[n] || []).map(function (p) { return one(60 + p[0] * 22, 90 + p[1] * 37, size); }).join("");
     };
