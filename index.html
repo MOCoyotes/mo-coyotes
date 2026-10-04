@@ -422,7 +422,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .kit-steam path { animation: none; } }
 .ball-wrap.sdk-wrap { width: min(420px, 94vw); gap: 10px; padding: 22px 18px 20px; }
-.sdk-grid { display: grid; grid-template-columns: repeat(9, 1fr); width: min(370px, 84vw); aspect-ratio: 1; border: 3px solid #3B2620; border-radius: 6px; overflow: hidden; background: #FFFFFF; }
+.sdk-grid { display: grid; grid-template-columns: repeat(9, 1fr); width: min(370px, 84vw, 54vh); aspect-ratio: 1; border: 3px solid #3B2620; border-radius: 6px; overflow: hidden; background: #FFFFFF; }
 .sdk-grid button { padding: 0; border: 0; border-right: 1px solid #DCC9BA; border-bottom: 1px solid #DCC9BA; background: #FFFFFF; font: 800 clamp(1rem, 4.6vw, 1.35rem)/1 var(--font-body); color: #C2185B; cursor: pointer; }
 .sdk-grid button.b-r { border-right: 2.5px solid #3B2620; } .sdk-grid button.b-b { border-bottom: 2.5px solid #3B2620; }
 .sdk-grid button.given { color: #3B2620; }
@@ -431,8 +431,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .sdk-grid button.sel { background: #FDE08A; }
 .sdk-grid button.wrong { color: #FFFFFF; background: #E0218A; }
 .sdk-grid button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
-.sdk-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: min(370px, 84vw); }
-.sdk-pad button { padding: 8px 0; border: 2px solid #3B2620; border-radius: 10px; background: #FBD3DC; font: 800 1.1rem var(--font-body); color: #3B2620; cursor: pointer; box-shadow: 2px 2px 0 rgba(0,0,0,.18); }
+.sdk-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: min(370px, 84vw, 54vh); }
+.sdk-pad button { padding: 6px 0; border: 2px solid #3B2620; border-radius: 10px; background: #FBD3DC; font: 800 1.1rem var(--font-body); color: #3B2620; cursor: pointer; box-shadow: 2px 2px 0 rgba(0,0,0,.18); }
 .sdk-pad button:active { transform: translate(1px, 1px); box-shadow: none; }
 .sdk-pad button.done { opacity: .35; }
 .sdk-pad .sdk-erase { font-size: .8rem; background: #FFFDF4; }
