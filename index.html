@@ -490,9 +490,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .tarot-deck { position: relative; width: 150px; height: 236px; padding: 0; border: 0; background: none; cursor: pointer; perspective: 900px; }
 .tarot-deck:focus-visible { outline: 4px solid var(--hot); outline-offset: 6px; border-radius: 14px; }
 .t-card { position: absolute; inset: 0; border-radius: 12px; }
-.t-under, .t-back { background: #5B3A8C; border: 3px solid #3B2620; box-shadow: inset 0 0 0 5px #5B3A8C, inset 0 0 0 7px #E2B13C; box-sizing: border-box; }
-.t-under::before, .t-back::before { content: "\263D"; position: absolute; left: 0; right: 0; top: 34%; text-align: center; font: 400 54px/1 Georgia, serif; color: #FFE27A; }
-.t-under::after, .t-back::after { content: "\2726  \2726  \2726"; position: absolute; left: 0; right: 0; bottom: 16%; text-align: center; font: 400 14px/1 Georgia, serif; color: #E2B13C; letter-spacing: 2px; }
+.t-under, .t-back { background: #BFE8D8; border: 3px solid #8A6A80; box-shadow: inset 0 0 0 5px #BFE8D8, inset 0 0 0 7px #F7B6D2, inset 0 0 0 9px #BFE8D8, inset 0 0 0 10.5px #FFFFFF; box-sizing: border-box; }
+.t-under::before, .t-back::before { content: "\273F"; position: absolute; left: 0; right: 0; top: 33%; text-align: center; font: 400 58px/1 Georgia, serif; color: #F48FB8; }
+.t-under::after, .t-back::after { content: "\2740  \2726  \2740"; position: absolute; left: 0; right: 0; bottom: 15%; text-align: center; font: 400 14px/1 Georgia, serif; color: #C9B6F2; letter-spacing: 2px; }
 .t-a { transform: rotate(-4deg) translate(-4px, 3px); }
 .t-b { transform: rotate(3deg) translate(4px, 2px); }
 .t-top { transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,1.2,.4,1); }
@@ -511,7 +511,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes tShufT { 25% { transform: translateY(-16px) rotate(4deg); } 75% { transform: translateY(6px) rotate(-3deg); } }
 .tarot-read { text-align: center; }
 .tarot-read[hidden] { display: none; }
-.tarot-name { margin: 0 0 4px; font: 400 1.35rem var(--font-display); color: #5B3A8C; }
+.tarot-name { margin: 0 0 4px; font: 400 1.35rem var(--font-display); color: #C2185B; }
 .tarot-mean { margin: 0; font: 700 1rem/1.4 var(--font-body); color: #3B2620; }
 @media (prefers-reduced-motion: reduce) { .t-top { transition: none; } .tarot-deck.shuffling .t-card { animation: none; } }
 .hot-yarn .yarn-door { transform-box: view-box; transform-origin: 600px 95px; transition: transform .5s cubic-bezier(.4,1.3,.5,1); }
@@ -2987,10 +2987,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <!-- TAROT: tap the deck to pull a card -->
       <a class="hot hot-tarot" href="#tarot" role="button" aria-label="Tarot deck: pull a card for your day">
       <g class="glow" transform="rotate(-10 70 80)">
-        <rect x="48" y="44" width="44" height="66" rx="4" fill="#FFF3D6" stroke-width="1.6" transform="rotate(16 70 77)"/>
-        <rect x="46" y="44" width="46" height="70" rx="4" fill="#5B3A8C" stroke-width="2"/>
-        <rect x="50" y="48" width="38" height="62" rx="2.5" fill="none" stroke="#E2B13C" stroke-width="1.4"/>
-        <circle cx="69" cy="72" r="9" fill="#FFE27A" stroke="none"/><circle cx="73" cy="69" r="8" fill="#5B3A8C" stroke="none"/>
+        <rect x="48" y="44" width="44" height="66" rx="4" fill="#BFE8D8" stroke-width="1.6" transform="rotate(16 70 77)"/>
+        <rect x="46" y="44" width="46" height="70" rx="4" fill="#F7B6D2" stroke-width="2"/>
+        <rect x="50" y="48" width="38" height="62" rx="2.5" fill="none" stroke="#A8E6CF" stroke-width="1.4"/>
+        <circle cx="69" cy="72" r="9" fill="#FFE27A" stroke="none"/><circle cx="73" cy="69" r="8" fill="#F7B6D2" stroke="none"/>
         <path d="M69 90 l1.6 3.6 l3.6 1.6 l-3.6 1.6 l-1.6 3.6 l-1.6 -3.6 l-3.6 -1.6 l3.6 -1.6 Z" fill="#E2B13C" stroke="none"/>
         <g fill="#FFF3D6" stroke="none"><circle cx="58" cy="56" r=".9"/><circle cx="82" cy="58" r=".9"/><circle cx="80" cy="102" r=".9"/><circle cx="57" cy="100" r=".9"/></g>
       </g>
@@ -4735,18 +4735,24 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       return [sky, g];
     };
     var ROMAN = ["", "", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+    var PASTEL = { "#3B2620": "#7A5A6E", "#5A1F0E": "#7A5A6E", "#F5D76E": "#FBE7B0", "#6FA8DC": "#C2E4F2", "#3A3F6B": "#A9B3E0", "#2F3E7A": "#AEB9E8", "#2B1E22": "#8E7AA0",
+      "#D7263D": "#F29AB4", "#F39A2B": "#F9C59A", "#E8862B": "#F9C59A", "#5AA9C9": "#A6DCE9", "#2F5FA8": "#A9C2EE", "#2F7DC4": "#A9C2EE", "#6E9446": "#AEDBB5",
+      "#3E9A4B": "#AEDBB5", "#B9B4A8": "#E8DEEE", "#8C8F9C": "#CFC7DE", "#8E5BB5": "#CDB9F2", "#C9A06A": "#EBCDB0", "#F2C230": "#F8DC8A", "#8B5A3C": "#CFA88A",
+      "#5A3A50": "#BBA0C6", "#C5D3E3": "#DDE9F4", "#3E7FBF": "#C2E4F2", "#E2B13C": "#F3C9D8", "#F5B451": "#FBD7A6", "#D9A21E": "#F3D27F", "#C98B52": "#E3BE96", "#E0218A": "#F48FB8" };
+    var soften = function (svg) { return svg.replace(/#[0-9A-F]{6}/g, function (m) { return PASTEL[m] || m; }).replace(/stroke-width="1\.4"/g, 'stroke-width="1.2"'); };
     var cardSVG = function (c) {
-      var art = c.major != null ? MAJOR_ART[c.major] : minorArt(c.suit, c.rank);
+      var art = c.major != null ? MAJOR_ART[c.major] : minorArt(c.suit, c.rank); art = [soften(art[0]), soften(art[1])];
       var top = c.major != null ? c.num : (c.rank >= 1 && c.rank <= 9 ? ROMAN[c.rank + 1] : "");
       var title = c.name.toUpperCase(), fs = Math.min(8.4, 86 / (title.length * .7)).toFixed(2);
       return '<svg viewBox="0 0 120 190" width="100%" height="100%" aria-hidden="true">' +
-        '<rect x="1.5" y="1.5" width="117" height="187" rx="9" fill="#FFF8EC" stroke="#3B2620" stroke-width="3"/>' +
-        '<rect x="6" y="6" width="108" height="178" rx="6" fill="none" stroke="#E2B13C" stroke-width="1.4"/>' +
-        '<text x="60" y="20" text-anchor="middle" style="font: 900 11px Georgia, serif" fill="#3B2620">' + top + '</text>' +
+        '<rect x="1.5" y="1.5" width="117" height="187" rx="9" fill="#F9D3E0" stroke="#8A6A80" stroke-width="2.4"/>' +
+        '<rect x="6" y="6" width="108" height="178" rx="6" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-dasharray="3 2"/>' +
+        '<text x="60" y="20" text-anchor="middle" style="font: 900 11px Georgia, serif" fill="#8A6A80">' + top + '</text>' +
         '<svg x="10" y="25" width="100" height="130" viewBox="0 0 100 130"><rect width="100" height="130" fill="' + art[0] + '"/>' + art[1] + '</svg>' +
-        '<rect x="10" y="25" width="100" height="130" fill="none" stroke="#3B2620" stroke-width="2"/>' +
-        '<rect x="14" y="161" width="92" height="17" rx="2" fill="#FFFDF4" stroke="#3B2620" stroke-width="1.4"/>' +
-        '<text x="60" y="173" text-anchor="middle" style="font: 900 ' + fs + 'px Georgia, serif; letter-spacing: .4px" fill="#3B2620">' + title + '</text></svg>';
+        '<rect x="10" y="25" width="100" height="130" fill="none" stroke="#8A6A80" stroke-width="1.6"/>' +
+        '<path d="M14 161 H106 V178 H14 Z" fill="#FFF6FA" stroke="#8A6A80" stroke-width="1.2"/>' +
+        '<g fill="#BFE8D8"><circle cx="14" cy="169.5" r="3"/><circle cx="106" cy="169.5" r="3"/></g>' +
+        '<text x="60" y="173" text-anchor="middle" style="font: 900 ' + fs + 'px Georgia, serif; letter-spacing: .4px" fill="#8A6A80">' + title + '</text></svg>';
     };
     var DECK = MAJORS.map(function (m, k) { return { num: m[0], name: m[1], mean: m[2], major: k }; });
     Object.keys(SUITS).forEach(function (suit) { RANKS.forEach(function (r, k) { DECK.push({ num: r[0], name: r[1] + " of " + suit, mean: SUITS[suit][k], suit: suit, rank: k }); }); });
