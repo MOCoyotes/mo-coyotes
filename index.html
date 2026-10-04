@@ -2371,7 +2371,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     galArt:     [ ],
     galFiber:   [ ],
     galKnit:    [ ],
-    galSewn:    [ ]
+    galSewn:    [
+      { src: "images/sewn/sewn-01.jpg" },
+      { src: "images/sewn/sewn-02.jpg" },
+      { src: "images/sewn/sewn-03.jpg" },
+    ]
   };
   Object.keys(GALLERY).forEach(function (id) {
     var box = document.getElementById(id), items = GALLERY[id].slice();
