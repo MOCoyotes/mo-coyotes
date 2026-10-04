@@ -400,6 +400,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: repeating-linear-gradient(45deg, var(--pink) 0 8px, var(--blush) 8px 16px); opacity: .9; border-radius: 2px; }
 .feat-card h3 { margin: 0 0 14px; text-align: center; font: 400 1.7rem/1.1 var(--font-display); color: #3B2620; }
 .feat-list { display: grid; gap: 8px; max-height: min(60vh, 460px); overflow-y: auto; padding: 2px 6px 6px 2px; }
+.feat-dialog.news-mode .feat-card { background: #F4EEE0; transform: rotate(.6deg); }
+.feat-dialog.news-mode .feat-card h3 { font: 900 2rem/1 Georgia, "Times New Roman", serif; text-transform: uppercase; letter-spacing: .02em; margin: 0;
+  border-top: 4px double var(--ink); border-bottom: 4px double var(--ink); padding: 8px 0 6px; }
+.feat-dialog.news-mode .feat-list { display: block; columns: 2; column-gap: 20px; column-rule: 1px solid rgba(59,38,32,.45); }
+.news-sub { column-span: all; margin: 0 0 12px; padding: 6px 0; text-align: center; font: italic 700 .82rem Georgia, "Times New Roman", serif; color: #5A4A40; border-bottom: 1px solid rgba(59,38,32,.6); }
+.news-blurb { break-inside: avoid; margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px dashed rgba(59,38,32,.45); font: 400 .95rem/1.35 Georgia, "Times New Roman", serif; color: #2B2018; }
+.news-blurb::first-letter { font-weight: 900; font-size: 1.5em; color: #D61F69; }
+@media (max-width: 420px) { .feat-dialog.news-mode .feat-list { columns: 1; } }
 .feat-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .feat-chip { font: 800 .82rem/1.2 var(--font-body); color: #3B2620; background: #FDE6EC; border: 2px solid var(--ink); border-radius: 999px; padding: 4px 11px; box-shadow: 2px 2px 0 var(--ink); }
 .feat-chip:nth-child(3n+2) { background: #FDE7A6; } .feat-chip:nth-child(3n) { background: #F9D3B8; }
@@ -2663,6 +2671,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var set = FEATURES[key]; if (!set) return;
     document.getElementById("featTitle").textContent = set.title;
     featList.textContent = "";
+    var news = key === "news";
+    featDialog.classList.toggle("news-mode", news);
+    if (news) { var sub = document.createElement("p"); sub.className = "news-sub"; sub.textContent = "Extra! Extra! Read all about Coyote"; featList.appendChild(sub); }
     if (set.chips) {
       var cw = document.createElement("div"); cw.className = "feat-chips";
       set.chips.forEach(function (c) { var sp = document.createElement("span"); sp.className = "feat-chip"; sp.textContent = c; cw.appendChild(sp); });
@@ -2671,6 +2682,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var p = document.createElement("p"); p.className = "feat-empty"; p.textContent = set.empty; featList.appendChild(p);
     }
     set.items.forEach(function (it) {
+      if (news) { var pb = document.createElement("p"); pb.className = "news-blurb"; pb.textContent = it.title; featList.appendChild(pb); return; }
       if (it.heading) { var hd = document.createElement("h4"); hd.className = "feat-heading"; hd.textContent = it.heading; featList.appendChild(hd); return; }
       var a = document.createElement(it.link ? "a" : "div"); a.className = "feat-item" + (it.source || it.date || it.img ? "" : " feat-item-plain");
       if (it.link) { a.href = it.link; a.target = "_blank"; a.rel = "noopener"; }
