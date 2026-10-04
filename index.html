@@ -417,6 +417,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes kcSwing { from { transform: rotate(16deg); } to { transform: rotate(-16deg); } }
 @keyframes kcEyes { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
 @media (prefers-reduced-motion: reduce) { .kit-clock .kc-tail, .kit-clock .kc-eyes { animation: none; } }
+.hot-oven .oven-door { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.4,1.4,.5,1); }
+.hot-oven.open .oven-door { transform: scaleY(-.28); }
+.hot-oven .oven-steam { opacity: 0; transition: opacity .4s .3s; }
+.hot-oven.open .oven-steam { opacity: 1; }
+.pie-art { display: block; width: min(230px, 62vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes pieOut { from { transform: translateY(40px) scale(.35); opacity: 0; } to { transform: none; opacity: 1; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2057,7 +2063,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <h2 id="kitchenTitle">KITCHEN</h2>
       <svg class="kitchen-scene" viewBox="0 0 1000 560" role="img" aria-label="A retro kitchen: mint cabinets, a pink countertop, a little stove with a kettle, a window with a scalloped valance, a round pink fridge and a mouse hole back to the hallway">
         <defs>
-          <pattern id="kitWall" width="44" height="44" patternUnits="userSpaceOnUse"><rect style="fill: var(--w1)" width="44" height="44"/><rect class="f-trim" opacity=".55" width="22" height="44"/></pattern>
+          <g id="applePie" stroke-linejoin="round" stroke-linecap="round">
+            <path fill="#D9DCE6" stroke="#5A1F0E" stroke-width="1.6" d="M-28 0 L-22 11 H22 L28 0 Z"/>
+            <path fill="none" stroke="#5A1F0E" stroke-width=".8" opacity=".4" d="M-14 1 L-12 11 M0 1 V11 M14 1 L12 11"/>
+            <path fill="#E9B562" stroke="#5A1F0E" stroke-width="1.6" d="M-26 1 C-25 -15, 25 -15, 26 1 Z"/>
+            <g fill="#C2492E"><circle cx="-12" cy="-5" r="1.6"/><circle cx="0" cy="-8" r="1.6"/><circle cx="11" cy="-4" r="1.6"/><circle cx="-4" cy="-2" r="1.4"/><circle cx="6" cy="-1" r="1.4"/></g>
+            <path fill="none" stroke="#5A1F0E" stroke-width="3.6" d="M-18 -1 L-6 -11 M-6 0 L8 -12 M8 0 L18 -7 M-19 -6 L-8 0 M-8 -11 L6 0 M5 -12 L19 -2"/>
+            <path fill="none" stroke="#F2CB7E" stroke-width="2.2" d="M-18 -1 L-6 -11 M-6 0 L8 -12 M8 0 L18 -7 M-19 -6 L-8 0 M-8 -11 L6 0 M5 -12 L19 -2"/>
+            <path fill="#F2CB7E" stroke="#5A1F0E" stroke-width="1.3" d="M-28 1 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 q3.5 -4 7 0 V3 H-28 Z"/>
+          </g>
+
+<pattern id="kitWall" width="44" height="44" patternUnits="userSpaceOnUse"><rect style="fill: var(--w1)" width="44" height="44"/><rect class="f-trim" opacity=".55" width="22" height="44"/></pattern>
           <pattern id="kitFloor" width="80" height="80" patternUnits="userSpaceOnUse"><rect class="f-trim" width="80" height="80"/><rect class="f-pink" width="40" height="40"/><rect class="f-pink" x="40" y="40" width="40" height="40"/></pattern>
           <pattern id="kitTile" width="28" height="28" patternUnits="userSpaceOnUse"><rect class="f-trim" width="28" height="28"/><path fill="none" style="stroke: var(--blush)" stroke-width="3" d="M0 0 H28 M0 0 V28"/></pattern>
         </defs>
@@ -2109,9 +2125,26 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="f-hot s-ink" stroke-width="2"><circle cx="168" cy="237" r="5"/><circle cx="186" cy="237" r="5"/><circle cx="254" cy="237" r="5"/><circle cx="272" cy="237" r="5"/></g>
           <rect class="f-trim s-ink" stroke-width="3" x="150" y="262" width="140" height="148" rx="4"/>
           <rect fill="#3B2620" class="s-ink" stroke-width="2.5" x="144" y="256" width="152" height="10" rx="3"/>
-          <rect class="f-trim s-ink" stroke-width="2.5" x="162" y="292" width="116" height="104" rx="6"/>
-          <rect fill="#3B2620" opacity=".85" class="s-ink" stroke-width="2" x="178" y="316" width="84" height="48" rx="6"/>
-          <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="170" y="280" width="100" height="7" rx="3.5"/>
+          <!-- OVEN: an apple pie baking inside; click to open the door -->
+          <a class="hot hot-oven" href="#pie" role="button" aria-label="Oven: something is baking">
+            <g class="glow">
+              <rect fill="#5A2A12" class="s-ink" stroke-width="2.5" x="162" y="292" width="116" height="104" rx="6"/>
+              <rect fill="#E2780F" opacity=".35" x="168" y="298" width="104" height="92" rx="4"/>
+              <path stroke="#D9DCE6" stroke-width="2" opacity=".7" d="M168 352 H272 M168 392 H272"/>
+              <use href="#applePie" transform="translate(220,384) scale(1.4)"/>
+              <g class="kit-steam oven-steam" fill="none" stroke="#FFFDF4" stroke-width="2.5">
+                <path d="M210 360 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+                <path d="M220 358 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+                <path d="M230 360 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
+              </g>
+              <g class="oven-door">
+                <rect class="f-trim s-ink" stroke-width="2.5" x="162" y="292" width="116" height="104" rx="6"/>
+                <rect fill="#3B2620" opacity=".85" class="s-ink" stroke-width="2" x="178" y="316" width="84" height="48" rx="6"/>
+                <rect fill="#D9DCE6" class="s-ink" stroke-width="2" x="170" y="280" width="100" height="7" rx="3.5"/>
+              </g>
+            </g>
+            <g class="tag"><rect x="180" y="300" width="80" height="28" rx="14"/><text x="220" y="319" text-anchor="middle">OVEN</text></g>
+          </a>
           <!-- tea kettle: arched handle, round body, curved whistling spout -->
           <path class="s-ink" stroke-width="9" fill="none" d="M202 224 C200 194, 240 194, 238 224"/>
           <path style="stroke: var(--rust)" stroke-width="5" fill="none" d="M202 224 C200 194, 240 194, 238 224"/>
@@ -2173,11 +2206,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <g class="tag"><rect x="30" y="192" width="100" height="28" rx="14"/><text id="kcTime" x="80" y="211" text-anchor="middle">CLOCK</text></g>
         </g>
         <!-- CALENDAR on the wall: shows today's date -->
-        <a class="hot hot-cal" href="#calendar" role="button" transform="translate(790,-152)" aria-label="Wall calendar: see the month, holidays and special events">
+        <a class="hot hot-cal" href="#calendar" role="button" transform="translate(870,10) scale(.85) translate(-80,-158)" aria-label="Wall calendar: see the month, holidays and special events">
           <g class="glow" stroke-linejoin="round">
             <path class="s-ink" stroke-width="2" fill="none" d="M80 160 L40 178 M80 160 L120 178"/><circle class="f-marigold s-ink" stroke-width="2" cx="80" cy="158" r="4.5"/>
             <rect class="f-trim s-ink" stroke-width="3" x="20" y="176" width="120" height="104" rx="5"/>
-            <path class="f-hot s-ink" stroke-width="3" d="M20 196 V181 a5 5 0 0 1 5 -5 H135 a5 5 0 0 1 5 5 V196 Z"/>
+            <path style="fill: #C4570E" class="s-ink" stroke-width="3" d="M20 196 V181 a5 5 0 0 1 5 -5 H135 a5 5 0 0 1 5 5 V196 Z"/>
             <g class="f-trim s-ink" stroke-width="1.5"><circle cx="34" cy="176" r="3"/><circle cx="52" cy="176" r="3"/><circle cx="70" cy="176" r="3"/><circle cx="90" cy="176" r="3"/><circle cx="108" cy="176" r="3"/><circle cx="126" cy="176" r="3"/></g>
             <text id="kcalMon" x="80" y="191" text-anchor="middle" style="font: 400 11px var(--font-display); fill: #FFFDF4; letter-spacing: 1px">OCTOBER</text>
             <g id="kcalGrid" style="font: 800 7.5px var(--font-body)" text-anchor="middle"></g>
@@ -2529,6 +2562,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <div class="cal-grid" id="calGrid"></div>
     <button type="button" class="sdk-new" id="calToday">Today</button>
     <ul class="cal-list" id="calList"></ul>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog pie-dialog" id="pieDialog" aria-label="Birthday pie">
+  <div class="ball-wrap">
+    <button class="lb-close" type="button" id="pieClose" aria-label="Close">×</button>
+    <svg class="pie-art" viewBox="-40 -42 80 56" aria-hidden="true">
+      <g class="kit-steam" fill="none" stroke="#B9A9A0" stroke-width="2" stroke-linecap="round">
+        <path d="M-10 -14 c-4 -5 4 -8 0 -13 c-3 -4 2 -6 1 -9"/>
+        <path d="M0 -16 c-4 -5 4 -8 0 -13 c-3 -4 2 -6 1 -9"/>
+        <path d="M10 -14 c-4 -5 4 -8 0 -13 c-3 -4 2 -6 1 -9"/>
+      </g>
+      <use href="#applePie"/>
+    </svg>
+    <p class="ball-prompt">Coyote's Birthday is August 14th!</p>
+    <p class="ball-hint">Fresh apple pie, straight out of the oven</p>
   </div>
 </dialog>
 
@@ -3766,6 +3815,25 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("sdkClose").addEventListener("click", function () { sdkDialog.close(); });
     sdkDialog.addEventListener("click", function (e) { if (e.target === sdkDialog) sdkDialog.close(); });
+  }
+
+  // ---------- the oven: open the door, out comes a birthday pie ----------
+  var pieDialog = document.getElementById("pieDialog");
+  if (pieDialog) {
+    document.querySelectorAll(".hot-oven").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (a.classList.contains("open")) return;
+        a.classList.add("open");
+        tone("triangle", 220, 180, 150, .08, .35);
+        setTimeout(function () { if (pieDialog.showModal) pieDialog.showModal(); else pieDialog.setAttribute("open", ""); }, reduce ? 0 : 950);
+      });
+    });
+    pieDialog.addEventListener("close", function () {
+      setTimeout(function () { document.querySelectorAll(".hot-oven").forEach(function (a) { a.classList.remove("open"); }); }, 300);
+    });
+    document.getElementById("pieClose").addEventListener("click", function () { pieDialog.close(); });
+    pieDialog.addEventListener("click", function (e) { if (e.target === pieDialog) pieDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
