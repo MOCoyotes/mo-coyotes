@@ -343,6 +343,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .brag-hint { margin: 0; }
 .mag-title { font: 400 13px var(--font-display); fill: var(--trim); }
 .mag-title2 { font-size: 10px; fill: var(--ink); }
+.mag-title3 { font-size: 11px; }
 .news-title { font: 400 9px var(--font-display); fill: var(--ink); }
 .vhs-label { font: 400 11px var(--font-display); fill: #FFFDF4; }
 .scrap-dialog { border: 0; padding: 0; background: transparent; overflow: visible; }
@@ -1700,23 +1701,28 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="f-pink s-ink" stroke-width="2" x="284" y="327" width="88" height="9" rx="1"/>
             <g transform="rotate(-8 412 364)">
               <rect class="f-hot s-ink" stroke-width="2.5" x="386" y="288" width="54" height="76" rx="2"/>
-              <text x="413" y="304" text-anchor="middle" class="mag-title">MAG</text>
-              <circle class="f-blush s-ink" stroke-width="1.5" cx="413" cy="330" r="12"/>
-              <path class="f-marigold s-ink" stroke-width="1.5" d="M401 330 q 12 -20 24 0 q -4 -8 -12 -8 q -8 0 -12 8 z"/>
+              <text x="413" y="304" text-anchor="middle" class="mag-title mag-title3">CRAFT</text>
+              <g stroke-linecap="round"><path class="s-ink" stroke-width="5" d="M408 336 L 421 314 M418 336 L 405 314"/><path stroke="#D9D2DA" stroke-width="2.6" d="M408 336 L 421 314 M418 336 L 405 314"/></g>
+              <g fill="none" class="s-ink" stroke-width="4.5"><circle cx="406" cy="341" r="5"/><circle cx="420" cy="341" r="5"/></g>
+              <g fill="none" style="stroke: var(--marigold)" stroke-width="2.2"><circle cx="406" cy="341" r="5"/><circle cx="420" cy="341" r="5"/></g>
+              <circle class="f-ink" cx="413" cy="327" r="1.6"/>
               <path class="s-trim" stroke-width="2" stroke-linecap="round" d="M394 350 H432 M394 356 H420"/>
             </g>
             <g transform="rotate(5 470 364)">
               <rect class="f-marigold s-ink" stroke-width="2.5" x="444" y="290" width="54" height="74" rx="2"/>
               <text x="471" y="306" text-anchor="middle" class="mag-title mag-title2">STYLE</text>
-              <path class="f-hot s-ink" stroke-width="1.5" d="M460 352 L 466 318 Q 471 312 476 318 L 482 352 Z"/>
-              <circle class="f-blush s-ink" stroke-width="1.5" cx="471" cy="316" r="6"/>
+              <path class="s-ink" stroke-width="1.5" d="M466 318 L 467 312 M476 318 L 475 312"/>
+              <path class="f-hot s-ink" stroke-width="1.5" d="M465 318 H477 L 475 330 Q 471 332 467 330 Z"/>
+              <path class="f-hot s-ink" stroke-width="1.5" d="M467 330 Q 471 332 475 330 L 486 354 Q 471 359 456 354 Z"/>
+              <path class="s-trim" stroke-width="1.4" fill="none" d="M466 331 Q 471 334 476 331"/>
+              <path class="s-ink" stroke-width="1" opacity=".45" fill="none" d="M468 336 L 463 354 M474 336 L 479 354 M471 334 V357"/>
             </g>
           </g>
           <g class="tag"><rect x="356" y="290" width="124" height="28" rx="14"/><text x="418" y="309" text-anchor="middle">MAGAZINES</text></g>
         </a>
 
-        <!-- INTERVIEWS: vintage microphone -->
-        <a class="hot hot-feat" href="#feat-interviews" data-feat="interviews" transform="translate(-76,-40)" role="button" aria-label="Vintage microphone: interviews">
+        <!-- vintage microphone (decor for now) -->
+        <g class="mic" transform="translate(-76,-40)">
           <g class="glow" stroke-linejoin="round" stroke-linecap="round">
             <ellipse fill="#5A3420" class="s-ink" stroke-width="2.5" cx="572" cy="360" rx="26" ry="6"/>
             <path class="s-ink" stroke-width="6" d="M572 356 V328"/><path stroke="#D9D2DA" stroke-width="3" d="M572 356 V328"/>
@@ -1725,8 +1731,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="s-ink" stroke-width="1.2" opacity=".6" d="M562 296 H582 M560 303 H584 M560 310 H584 M562 317 H582 M572 289 V323 M566 290 V322 M578 290 V322"/>
             <rect class="f-hot s-ink" stroke-width="2" x="556" y="302" width="32" height="8" rx="2"/>
           </g>
-          <g class="tag"><rect x="508" y="254" width="128" height="28" rx="14"/><text x="572" y="273" text-anchor="middle">INTERVIEWS</text></g>
-        </a>
+        </g>
 
         <!-- rows of books (decor) -->
         <g class="books" stroke-linejoin="round">
@@ -1748,16 +1753,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="1.5" d="M360 161 H470"/>
           <rect class="f-trim s-ink" stroke-width="1.2" x="372" y="164" width="34" height="8" rx="1"/>
           <path class="f-marigold s-ink" stroke-width="1" d="M446 163 l2 4 l4.4 .6 l-3.2 3 l.8 4.4 l-4 -2.2 l-4 2.2 l.8 -4.4 l-3.2 -3 l4.4 -.6 z"/>
-          <rect class="f-pink s-ink" stroke-width="2.5" x="490" y="166" width="24" height="30" rx="2"/>
-          <path class="s-ink" stroke-width="1.2" d="M490 172 H514"/>
-          <rect class="f-trim s-ink" stroke-width="1.2" x="495" y="176" width="14" height="16" rx="1.5"/>
-          <path class="f-hot" d="M502 188 l -4 -4 a2.6 2.6 0 0 1 4 -3.4 a2.6 2.6 0 0 1 4 3.4 z"/>
-          <g class="mug" transform="translate(534,196)">
-            <path fill="none" class="s-ink" stroke-width="5" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/><path fill="none" style="stroke: var(--trim)" stroke-width="2.4" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/>
-            <path class="f-trim s-ink" stroke-width="2.5" d="M0 -26 H26 V-4 Q 26 0 22 0 H4 Q 0 0 0 -4 Z"/>
-            <ellipse fill="#6B3A16" class="s-ink" stroke-width="1.5" cx="13" cy="-26" rx="13" ry="3"/>
-            <path class="f-hot" d="M13 -9 l -5 -5 a3.2 3.2 0 0 1 5 -4.2 a3.2 3.2 0 0 1 5 4.2 z"/>
-            <path fill="none" stroke="#B9AEB4" stroke-width="1.6" stroke-linecap="round" d="M8 -32 q -3 -4 0 -8 q 3 -4 0 -8 M17 -32 q -3 -4 0 -8 q 3 -4 0 -8"/>
+          <rect class="f-pink s-ink" stroke-width="2.5" x="538" y="166" width="24" height="30" rx="2"/>
+          <path class="s-ink" stroke-width="1.2" d="M538 172 H562"/>
+          <rect class="f-trim s-ink" stroke-width="1.2" x="543" y="176" width="14" height="16" rx="1.5"/>
+          <path class="f-hot" d="M550 188 l -4 -4 a2.6 2.6 0 0 1 4 -3.4 a2.6 2.6 0 0 1 4 3.4 z"/>
+          <g class="mug" transform="translate(486,196) scale(1.35)">
+            <path fill="none" class="s-ink" stroke-width="4" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/><path fill="none" style="stroke: var(--trim)" stroke-width="2" d="M24 -18 q 9 0 9 7 q 0 7 -9 7"/>
+            <path class="f-trim s-ink" stroke-width="2" d="M0 -26 H26 V-4 Q 26 0 22 0 H4 Q 0 0 0 -4 Z"/>
+            <ellipse fill="#E9E1DA" class="s-ink" stroke-width="1.4" cx="13" cy="-26" rx="13" ry="3"/>
+            <path class="f-ink" opacity=".08" d="M18 -23 H24 V-4 Q 24 -2 21 -2 H18 Z"/>
           </g>
         </g>
         <!-- SCRAPBOOK: flip through event photos -->
@@ -1808,7 +1812,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
         </g>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the microphone, the newspaper, the scrapbook or the photos.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the newspaper, the scrapbook or the photos.</p>
     </section>
     <section id="room-sewn" class="room gal-sub" hidden aria-labelledby="sewnTitle">
       <div class="room-nav"><a class="btn" href="#gallery">← Gallery</a></div>
