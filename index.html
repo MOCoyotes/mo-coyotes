@@ -411,12 +411,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes slipOut { from { transform: scaleX(.05); opacity: 0; } to { transform: none; opacity: 1; } }
 #fortuneText { margin: 0; font: 800 1.05rem/1.35 var(--font-body); color: #C2185B; }
 .fortune-lucky { margin: 7px 0 0; font: 700 .76rem var(--font-body); letter-spacing: .08em; color: #8A5A45; }
-.kit-clock { cursor: default; }
-.kit-clock .kc-tail { transform-box: view-box; transform-origin: 80px 128px; animation: kcSwing 1s ease-in-out infinite alternate; }
-.kit-clock .kc-eyes { animation: kcEyes 1s ease-in-out infinite alternate; }
+.kit-clock { cursor: pointer; outline: none; }
+.kc-tail { transform-box: view-box; transform-origin: 80px 128px; animation: kcSwing 1s ease-in-out infinite alternate; }
+.kc-eyes { animation: kcEyes 1s ease-in-out infinite alternate; }
 @keyframes kcSwing { from { transform: rotate(16deg); } to { transform: rotate(-16deg); } }
 @keyframes kcEyes { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
-@media (prefers-reduced-motion: reduce) { .kit-clock .kc-tail, .kit-clock .kc-eyes { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .kc-tail, .kc-eyes { animation: none; } }
 .hot-oven .oven-door { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.4,1.4,.5,1); }
 .hot-oven.open .oven-door { transform: scaleY(-.28); }
 .hot-oven .oven-steam { opacity: 0; transition: opacity .4s .3s; }
@@ -424,6 +424,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .pie-art { display: block; width: min(230px, 62vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes pieOut { from { transform: translateY(40px) scale(.35); opacity: 0; } to { transform: none; opacity: 1; } }
 .gift-qr { display: block; width: min(260px, 70vw); height: auto; border: 3px solid #3B2620; border-radius: 14px; background: #FFFFFF; }
+.big-clock { display: block; width: auto; height: min(330px, 46vh); overflow: visible; }
+.late-tip { padding: 12px 16px; border: 2px dashed #E0218A; border-radius: 12px; background: #FDE6EC; font: 700 1rem/1.4 var(--font-body); color: #3B2620; text-align: center; }
+.late-tip b { display: block; margin-bottom: 4px; font: 400 1.25rem var(--font-display); color: #C2185B; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2216,8 +2219,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <circle class="f-orange" cx="118" cy="406" r="1.8"/><circle class="f-orange" cx="124" cy="403" r="1.4"/>
         </g>
         <!-- cat wall clock: tells the real time, tail swings, eyes shift -->
-        <g class="hot kit-clock" transform="translate(80,22) scale(.8) translate(-80,-6)" stroke-linejoin="round" stroke-linecap="round" aria-label="Cat wall clock">
-          <g class="glow">
+        <g class="hot kit-clock" role="button" tabindex="0" transform="translate(80,22) scale(.8) translate(-80,-6)" stroke-linejoin="round" stroke-linecap="round" aria-label="Cat wall clock">
+          <g class="glow" id="kitClockArt" stroke-linejoin="round" stroke-linecap="round">
             <path class="kc-tail" fill="#2B1E22" stroke="#5A1F0E" stroke-width="2.5" d="M75 128 C73 150, 70 166, 76 184 C80 192, 89 188, 87 179 C83 164, 85 146, 85 128 Z"/>
             <rect fill="#2B1E22" stroke="#5A1F0E" stroke-width="2.5" x="56" y="62" width="48" height="68" rx="15"/>
             <ellipse fill="#FFFDF4" stroke="#5A1F0E" stroke-width="2.5" cx="80" cy="96" rx="15" ry="22"/>
@@ -2296,15 +2299,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path d="M479 364 c-5 -6 5 -10 0 -17 c-4 -5 3 -8 1 -12"/>
           </g>
         </g>
-        <!-- GIFT: a little wallet with money peeking out -->
-        <a class="hot hot-gift" href="#gift" role="button" aria-label="Wallet on the table: send Coyote a gift">
+        <!-- GIFT: a light pink coin purse with money peeking out -->
+        <a class="hot hot-gift" href="#gift" role="button" aria-label="Coin purse on the table: send Coyote a gift">
           <g class="glow" stroke-linejoin="round" stroke-linecap="round">
-            <path fill="#7DBB7A" class="s-ink" stroke-width="1.6" d="M505 414 L531 403 L535 411 L509 422 Z"/>
-            <path fill="#9ED39A" class="s-ink" stroke-width="1.6" d="M510 414 L538 407 L540 415 L512 421 Z"/>
-            <text x="525" y="416.5" text-anchor="middle" transform="rotate(-13 525 414)" style="font: 800 6px var(--font-body); fill: #2F6B32">$</text>
-            <path class="f-hot s-ink" stroke-width="2" d="M500 416 L544 411 Q547 411 548 414 L551 425 Q551 428 548 428 L506 432 Q503 432 502 429 Z"/>
-            <path fill="none" class="s-ink" stroke-width="1" opacity=".4" d="M503 420 L547 415"/>
-            <circle class="f-marigold s-ink" stroke-width="1.2" cx="541" cy="421" r="2"/>
+            <path fill="#7DBB7A" class="s-ink" stroke-width="1.5" d="M512 412 L530 400 L535 406 L517 418 Z"/>
+            <path fill="#9ED39A" class="s-ink" stroke-width="1.5" d="M517 413 L537 405 L540 411 L520 419 Z"/>
+            <path style="fill: #FBD3DC" class="s-ink" stroke-width="2" d="M502 429 C499 416, 508 408, 524 408 C540 408, 549 416, 546 429 C540 432, 508 432, 502 429 Z"/>
+            <g fill="#FFFFFF" opacity=".8"><circle cx="514" cy="420" r="1.3"/><circle cx="524" cy="425" r="1.3"/><circle cx="534" cy="419" r="1.3"/><circle cx="520" cy="415" r="1"/><circle cx="539" cy="425" r="1"/></g>
+            <path fill="none" stroke="#5A1F0E" stroke-width="4.2" d="M504 415 C510 407, 538 407, 544 415"/>
+            <path fill="none" stroke="#E2B13C" stroke-width="2.4" d="M504 415 C510 407, 538 407, 544 415"/>
+            <circle fill="#E2B13C" class="s-ink" stroke-width="1.2" cx="521.5" cy="406.5" r="2.4"/><circle fill="#E2B13C" class="s-ink" stroke-width="1.2" cx="526.5" cy="406.5" r="2.4"/>
           </g>
           <g class="tag"><rect x="478" y="440" width="90" height="28" rx="14"/><text x="523" y="459" text-anchor="middle">$ GIFT</text></g>
         </a>
@@ -2647,6 +2651,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <p class="ball-prompt">Send Coyote a $ Gift</p>
     <img class="gift-qr" src="images/kitchen/venmo-qr.png" alt="Venmo scan code" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
     <p class="ball-hint" hidden>Scan code coming soon</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog clock-dialog" id="clockDialog" aria-label="Cat clock and a tip for late people">
+  <div class="ball-wrap">
+    <button class="lb-close" type="button" id="clockClose" aria-label="Close">×</button>
+    <svg class="big-clock" viewBox="40 0 80 196" aria-hidden="true"><use href="#kitClockArt"/></svg>
+    <div class="late-tip"><b>Tip for Late People</b>Add an extra half hour to your leave time to help prevent being late to appointments.</div>
   </div>
 </dialog>
 
@@ -3913,6 +3925,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("giftClose").addEventListener("click", function () { giftDialog.close(); });
     giftDialog.addEventListener("click", function (e) { if (e.target === giftDialog) giftDialog.close(); });
+  }
+
+  // ---------- the cat clock opens big, with a tip ----------
+  var clockDialog = document.getElementById("clockDialog");
+  if (clockDialog) {
+    var openClock = function () { if (clockDialog.showModal) clockDialog.showModal(); else clockDialog.setAttribute("open", ""); };
+    document.querySelectorAll(".kit-clock").forEach(function (c) {
+      c.addEventListener("click", openClock);
+      c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openClock(); } });
+    });
+    document.getElementById("clockClose").addEventListener("click", function () { clockDialog.close(); });
+    clockDialog.addEventListener("click", function (e) { if (e.target === clockDialog) clockDialog.close(); });
   }
 
   // ---------- kitchen cat clock: real local time ----------
