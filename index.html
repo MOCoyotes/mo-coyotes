@@ -553,6 +553,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 :is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .hint { margin-block: 10px 14px; }
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border: 0; border-block: 3px solid var(--ink); border-radius: 0; }
 #room-kitchen .kitchen-scene { border-bottom: 0; }
+.room h2:not(#aboutTitle) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.room-navbar { display: flex; flex-wrap: wrap; gap: 10px; }
+.room-navbar .room-nav { justify-content: flex-start; margin: 0; }
+.hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border-top: 0; }
+#room-featured > .lede { margin-top: 14px; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -3283,8 +3288,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var prev = roomStack.pop() || "outside";
     goingBack = true; location.hash = prev === "outside" ? "#outside" : "#" + prev;
   });
+  var navBar = document.createElement("div"); navBar.className = "room-navbar";
+  var stageEl = document.getElementById("stage"); stageEl.parentNode.insertBefore(navBar, stageEl);
+  document.querySelectorAll(".room > .room-nav").forEach(function (n) { n.setAttribute("data-room", n.parentNode.id.replace("room-", "")); n.hidden = true; navBar.appendChild(n); });
   function show(name) {
     if (rooms.indexOf(name) < 0) name = "outside";
+    navBar.querySelectorAll(".room-nav").forEach(function (n) { n.hidden = n.getAttribute("data-room") !== name; });
     if (curRoom && curRoom !== name && !goingBack) { roomStack.push(curRoom); if (roomStack.length > 40) roomStack.shift(); }
     goingBack = false; curRoom = name;
     crayonBack.hidden = name === "outside";
