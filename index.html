@@ -69,7 +69,7 @@
 
 [hidden] { display: none !important; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; }
-.wrap { max-width: 1060px; margin: 0 auto; padding-inline: 16px; padding-block: 14px 32px; display: grid; gap: 14px; }
+.wrap { max-width: min(1500px, max(680px, calc((100dvh - 210px) * 1.72))); margin: 0 auto; padding-inline: 16px; padding-block: 14px 32px; display: grid; gap: 14px; }
 
 .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
 .brand { font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2rem); line-height: 1; color: var(--hot); text-shadow: 2px 2px 0 var(--marigold); }
@@ -532,6 +532,27 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hot-kettle.whistling .kettle-steam circle:nth-child(3) { animation-delay: .5s; }
 @keyframes kettlePuff { 0% { opacity: 0; transform: translate(-8px, 8px) scale(.4); } 30% { opacity: .95; } 100% { opacity: 0; transform: translate(10px, -14px) scale(1.3); } }
 @media (prefers-reduced-motion: reduce) { .hot-kettle.whistling .kettle-body { animation: none; } }
+.scrap-photo img { cursor: zoom-in; }
+.attic-link { display: block; text-decoration: none; }
+.attic-link svg { display: block; width: 100%; height: auto; transition: filter .2s; }
+.attic-link:hover svg, .attic-link:focus-visible svg { filter: drop-shadow(0 0 6px var(--hot)) drop-shadow(0 0 2px var(--trim)); }
+.attic-link::after { content: attr(data-label); position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px); white-space: nowrap; font: 800 13px var(--font-body); letter-spacing: .06em; color: var(--bg); background: var(--ink); border-radius: 999px; padding: 5px 12px; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.attic-link:hover::after, .attic-link:focus-visible::after { opacity: 1; }
+.attic-window { z-index: 3; }
+.attic-stairs { position: absolute; left: 3%; bottom: 10px; width: 220px; z-index: 3; }
+.attic-stairs::after { top: auto; bottom: 100%; transform: translate(-50%, -4px); }
+@media (max-width: 640px) { .attic-stairs { width: 150px; } }
+.crayon-back { padding: 0; border: 0; background: none; cursor: pointer; width: 140px; transition: transform .15s; }
+.crayon-back svg { display: block; width: 100%; height: auto; filter: drop-shadow(2px 3px 0 rgba(90, 31, 14, .25)); }
+.crayon-back:hover { transform: translateX(-4px) rotate(-3deg); }
+#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen { padding: 0; gap: 0; min-height: 0; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > :is(.room-nav, h2, .lede, .hint) { margin-inline: clamp(14px, 3vw, 28px); }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .room-nav { margin-top: clamp(12px, 2vw, 18px); }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > h2 { margin-block: 6px 12px; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .lede { margin-bottom: 12px; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .hint { margin-block: 10px 14px; }
+.hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border: 0; border-block: 3px solid var(--ink); border-radius: 0; }
+#room-kitchen .kitchen-scene { border-bottom: 0; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -888,6 +909,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <div class="brand">MO Coyotes</div>
       <div class="tag-note">Handmade &amp; thrifted · Missouri</div>
     </div>
+    <button class="crayon-back" type="button" id="crayonBack" hidden aria-label="Back to the last room">
+      <svg viewBox="0 0 150 40" aria-hidden="true" stroke-linejoin="round"><path d="M4 20 L26 9 V31 Z" fill="#F7C1CC" stroke="#5A1F0E" stroke-width="2.5"/><path d="M4 20 L12 16 V24 Z" fill="#E0218A"/><rect x="26" y="7" width="118" height="26" rx="5" fill="#E0218A" stroke="#5A1F0E" stroke-width="2.5"/><rect x="40" y="7" width="90" height="26" fill="#F48FB8" stroke="#5A1F0E" stroke-width="2"/><path d="M34 7 V33 M136 7 V33" stroke="#5A1F0E" stroke-width="1.5" opacity=".5"/><text x="85" y="27" text-anchor="middle" style="font: 400 19px var(--font-crayon); fill: #5A1F0E">back</text></svg>
+    </button>
   </header>
 
   <main class="stage" id="stage">
@@ -2616,12 +2640,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <section id="room-about" class="room aboutroom attic" hidden aria-labelledby="aboutTitle">
       <div class="attic-slope left" aria-hidden="true"><span></span></div>
       <div class="attic-slope right" aria-hidden="true"><span></span></div>
-      <svg class="attic-window" viewBox="0 0 100 100" aria-hidden="true">
+      <a class="attic-window attic-link" href="#outside" data-label="GO OUTSIDE" aria-label="Round window: go back outside"><svg viewBox="0 0 100 100" aria-hidden="true">
         <circle class="f-sky1" style="fill: var(--sky1)" cx="50" cy="50" r="34"/>
         <path class="s-ink" stroke-width="9" d="M50 16 V84 M16 50 H84"/><path class="s-trim" stroke-width="5" d="M50 16 V84 M16 50 H84"/>
         <circle fill="none" class="s-ink" stroke-width="12" cx="50" cy="50" r="34"/><circle fill="none" class="s-trim" stroke-width="8" cx="50" cy="50" r="34"/>
         <path class="f-blush s-ink" stroke-width="1.4" d="M35.5 72 l-5.8 -5.8 a3.8 3.8 0 0 1 5.8 -5.1 a3.8 3.8 0 0 1 5.8 5.1 z"/>
-      </svg>
+      </svg></a>
 
       <div class="room-nav"><a class="btn" href="#outside">← Back outside</a><a class="btn" href="#foyer">Front hall</a></div>
 
@@ -2639,6 +2663,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       </div>
 
       <div class="attic-floor" aria-hidden="true"></div>
+      <!-- stairs going back down to the front hall -->
+      <a class="attic-stairs attic-link" href="#foyer" data-label="DOWNSTAIRS" aria-label="Stairs: go back down to the front hall">
+        <svg viewBox="0 0 220 150" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M14 112 H206 L186 146 H34 Z" fill="#3B2620" stroke="#5A1F0E" stroke-width="4"/>
+          <clipPath id="stairHole"><path d="M14 112 H206 L186 146 H34 Z"/></clipPath>
+          <g clip-path="url(#stairHole)">
+            <path d="M40 116 H190 V126 H40 Z M54 126 H182 V136 H54 Z M68 136 H174 V146 H68 Z" style="fill: var(--floor)" stroke="#5A1F0E" stroke-width="2"/>
+            <path d="M40 116 H190 M54 126 H182 M68 136 H174" stroke="#FFFDF4" stroke-width="1.5" opacity=".5"/>
+          </g>
+          <path d="M22 50 H198" stroke="#5A1F0E" stroke-width="12"/>
+          <path d="M22 50 H198" style="stroke: var(--trunk)" stroke-width="7"/>
+          <g stroke="#5A1F0E" stroke-width="7"><path d="M44 56 V112 M66 56 V112 M88 56 V112 M110 56 V112 M132 56 V112 M154 56 V112 M176 56 V112"/></g>
+          <g style="stroke: var(--trim)" stroke-width="3.5"><path d="M44 56 V112 M66 56 V112 M88 56 V112 M110 56 V112 M132 56 V112 M154 56 V112 M176 56 V112"/></g>
+          <g style="fill: var(--trunk)" stroke="#5A1F0E" stroke-width="3"><rect x="14" y="44" width="16" height="70" rx="2"/><rect x="190" y="44" width="16" height="70" rx="2"/></g>
+          <g style="fill: var(--trunk)" stroke="#5A1F0E" stroke-width="3"><circle cx="22" cy="38" r="8"/><circle cx="198" cy="38" r="8"/></g>
+        </svg>
+      </a>
       <!-- yarn basket -->
       <svg class="attic-deco yarn" viewBox="626 378 196 140" aria-hidden="true">
             <ellipse class="f-rust s-ink" stroke-width="3" cx="758" cy="446" rx="55" ry="13"/>
@@ -3236,8 +3277,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var hint = document.getElementById("hint");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // remember the rooms visited so the crayon can take you back one step
+  var roomStack = [], curRoom = null, goingBack = false, crayonBack = document.getElementById("crayonBack");
+  crayonBack.addEventListener("click", function () {
+    var prev = roomStack.pop() || "outside";
+    goingBack = true; location.hash = prev === "outside" ? "#outside" : "#" + prev;
+  });
   function show(name) {
     if (rooms.indexOf(name) < 0) name = "outside";
+    if (curRoom && curRoom !== name && !goingBack) { roomStack.push(curRoom); if (roomStack.length > 40) roomStack.shift(); }
+    goingBack = false; curRoom = name;
+    crayonBack.hidden = name === "outside";
     rooms.forEach(function (r) { document.getElementById("room-" + r).hidden = r !== name; });
     scene.classList.remove("zoom");
     document.querySelectorAll(".hot-door").forEach(function (d) { d.classList.remove("open"); });
@@ -3877,7 +3927,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   function drawScrap() {
     var it = scrapPages[scrapAt], ph = document.getElementById("scrapPhoto");
     ph.textContent = "";
-    if (it.src) { var im = document.createElement("img"); im.src = it.src; im.alt = it.caption || "Event photo"; ph.appendChild(im); }
+    if (it.src) {
+      var im = document.createElement("img"); im.src = it.src; im.alt = it.caption || "Event photo"; im.title = "Click to see it bigger"; ph.appendChild(im);
+      im.addEventListener("click", function () {
+        lbImg.hidden = false; lbPh.hidden = true; lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb;
+        lbImg.src = it.src; lbImg.alt = im.alt; lbCap.textContent = it.caption || ""; lightbox.classList.remove("polaroid-mode");
+        if (lbImg.complete) fitLb();
+        if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
+      });
+    }
     else { var sp = document.createElement("span"); sp.className = "scrap-ph"; sp.textContent = "Event photo coming soon"; ph.appendChild(sp); }
     document.getElementById("scrapCap").textContent = it.caption || ("Event #" + (scrapAt + 1));
     document.getElementById("scrapNum").textContent = (scrapAt + 1) + " / " + scrapPages.length;
