@@ -554,8 +554,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border: 0; border-block: 3px solid var(--ink); border-radius: 0; }
 #room-kitchen .kitchen-scene { border-bottom: 0; }
 .room h2:not(#aboutTitle) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-.room-navbar { display: flex; flex-wrap: wrap; gap: 10px; }
-.room-navbar .room-nav { justify-content: flex-start; margin: 0; }
+.room-navbar { display: flex; flex-wrap: nowrap; align-items: center; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-block: 2px 6px; }
+.room-navbar:empty, .room-navbar:not(:has(> :not([hidden]))) { display: none; }
+.room-navbar .room-nav { flex-wrap: nowrap; justify-content: flex-start; margin: 0; }
+.room-navbar .btn { white-space: nowrap; flex: none; }
+.room-navbar .crayon-back { flex: none; }
+@media (max-width: 480px) { .room-navbar { gap: 8px; } .room-navbar .room-nav { gap: 8px; } .room-navbar .btn { font-size: .8rem; padding: .5em .8em; } .room-navbar .crayon-back { width: 96px; } }
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border-top: 0; }
 #room-featured > .lede { margin-top: 14px; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
@@ -3290,6 +3294,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   });
   var navBar = document.createElement("div"); navBar.className = "room-navbar";
   var stageEl = document.getElementById("stage"); stageEl.parentNode.insertBefore(navBar, stageEl);
+  navBar.appendChild(crayonBack);
   document.querySelectorAll(".room > .room-nav").forEach(function (n) { n.setAttribute("data-room", n.parentNode.id.replace("room-", "")); n.hidden = true; navBar.appendChild(n); });
   function show(name) {
     if (rooms.indexOf(name) < 0) name = "outside";
