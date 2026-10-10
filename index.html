@@ -388,7 +388,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .scrap-nav button { font: 800 .95rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
 .scrap-nav button:disabled { opacity: .35; cursor: default; }
 .eight-mini { font: 400 14px var(--font-display); fill: #1E1A1C; }
-.kit-mouse { cursor: pointer; }
+.kit-mouse { cursor: pointer; outline: none; }
 .kit-mouse .km-f1, .kit-mouse .km-f2 { transform-box: fill-box; transform-origin: 50% 50%; }
 .kit-mouse.running .km-f1 { animation: kmStep .14s linear infinite alternate; }
 .kit-mouse.running .km-f2 { animation: kmStep .14s linear infinite alternate-reverse; }
@@ -567,7 +567,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .spider-drop.dropping { animation: spiderDrop 5s ease-in-out 1; }
 .spider-drop.down { transform: translateY(0); }
 .spider-thread { width: 2px; height: 170px; background: #FFFDF4; }
-.spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; pointer-events: auto; cursor: pointer; outline-offset: 2px; }
+.spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; pointer-events: auto; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
 @keyframes spiderDrop { 0% { transform: translateY(-142px); } 30% { transform: translateY(0); } 37% { transform: translateY(-14px); } 44%, 72% { transform: translateY(0); } 100% { transform: translateY(-142px); } }
 @media (max-width: 640px) { .attic-web { width: 76px; height: 76px; } .attic-spider { right: 32px; top: 49px; width: 34px; } .spider-drop svg { width: 34px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
