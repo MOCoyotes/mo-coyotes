@@ -4349,7 +4349,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       // one little note card per page for a mini description (blank until one is written): note: "..." on any photo of the page
       var nt = document.createElement("div"); nt.className = "scrap-note";
       nt.textContent = pg.items.map(function (it) { return it.note || ""; }).filter(Boolean).join(" ");
-      el.appendChild(nt);
+      if (nt.textContent) el.appendChild(nt);   // no blank cards: a page only gets its note card once there are words for it
     } else {
       var bl = document.createElement("div"); bl.className = "scrap-blank"; bl.textContent = "More memories coming soon"; el.appendChild(bl);
     }
