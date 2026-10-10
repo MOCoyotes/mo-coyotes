@@ -389,11 +389,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: repeating-linear-gradient(45deg, #FBD3DC 0 12px, #FDE6EC 12px 24px); box-shadow: 0 0 0 2px var(--ink), 3px 4px 0 rgba(0,0,0,.22); transition: transform .15s; }
 .scrap-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; outline: none; }
 .scrap-btn img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.scrap-note { position: absolute; right: -4cqw; bottom: -4cqw; z-index: 5; box-sizing: border-box; width: 21cqw; min-height: 11cqw; padding: 1.6cqw 1.4cqw 1.2cqw; display: grid; place-items: center; text-align: center; pointer-events: none;
-  font: 400 clamp(.5rem, 3.5cqw, 1rem)/1.15 var(--font-crayon); color: #3B2620; background: #FBE98A; box-shadow: 1px 2px 0 rgba(0,0,0,.25); transform: rotate(4deg); overflow-wrap: anywhere; }
-.scrap-note::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1.6cqw; background: rgba(0,0,0,.07); }
-.scrap-pic:nth-child(2) .scrap-note { background: #F9C6D6; transform: rotate(-5deg); } .scrap-pic:nth-child(3) .scrap-note { background: #BFE8D8; transform: rotate(3deg); }
-.scrap-page.n3:not(.top):not(.alt) .scrap-pic:nth-child(1) .scrap-note, .scrap-page.n2 .scrap-pic:nth-child(1) .scrap-note, .scrap-page.n3.top .scrap-pic:nth-child(2) .scrap-note { right: auto; left: -4cqw; }
+.scrap-note { align-self: center; box-sizing: border-box; width: 78%; min-height: 15cqw; padding: 2.2cqw 3cqw 1.6cqw; display: grid; place-items: center; text-align: center; z-index: 2;
+  font: 400 clamp(.6rem, 4.2cqw, 1.2rem)/1.5 var(--font-crayon); color: #3B2620; overflow-wrap: anywhere;
+  background: #FBE98A repeating-linear-gradient(transparent 0 calc(1.5em - 1px), rgba(138, 90, 69, .28) calc(1.5em - 1px) 1.5em) 0 2.2cqw; box-shadow: 2px 3px 0 rgba(0,0,0,.22); transform: rotate(-1.2deg); position: relative; }
+.scrap-note::before { content: ""; position: absolute; top: -1.6cqw; left: 50%; width: 16cqw; height: 4cqw; transform: translateX(-50%) rotate(-2deg); background: repeating-linear-gradient(90deg, var(--pink) 0 6px, var(--blush) 6px 12px); opacity: .9; }
+.scrap-page.right .scrap-note { background-color: #F9C6D6; transform: rotate(1deg); }
+.scrap-page.right .scrap-note::before { background: repeating-linear-gradient(90deg, var(--marigold) 0 6px, #F8DC7E 6px 12px); }
 .scrap-pic:nth-child(1) { transform: rotate(-2deg); } .scrap-pic:nth-child(2) { transform: rotate(2.5deg); } .scrap-pic:nth-child(3) { transform: rotate(-1.5deg); }
 .scrap-pic:hover, .scrap-pic:focus-within { transform: rotate(0) scale(1.03); z-index: 6; }
 .scrap-page.n1 .scrap-photos { place-items: center; }
@@ -409,7 +410,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .scrap-blank { flex: 1; display: grid; place-items: center; text-align: center; font: 400 clamp(1rem, 6cqw, 1.6rem)/1.3 var(--font-crayon); color: #8A5A45; }
 .scrap-sticker { position: absolute; width: 13cqw; height: 13cqw; z-index: 4; pointer-events: none;
   filter: drop-shadow(1.5px 0 0 #FFFDF4) drop-shadow(-1.5px 0 0 #FFFDF4) drop-shadow(0 1.5px 0 #FFFDF4) drop-shadow(0 -1.5px 0 #FFFDF4) drop-shadow(1px 2px 0 rgba(0,0,0,.22)); }
-.scrap-sticker.s0 { top: 2%; right: 2.5%; transform: rotate(14deg); } .scrap-sticker.s1 { bottom: 2%; left: 2.5%; transform: rotate(-12deg); }
+.scrap-sticker.s0 { top: 2%; right: 2.5%; transform: rotate(14deg); } .scrap-sticker.s1 { bottom: 1.5%; left: 1.5%; transform: rotate(-12deg); }
 .scrap-sticker.s2 { bottom: 2.5%; right: 3%; transform: rotate(8deg); } .scrap-sticker.s3 { top: 15%; left: 1.5%; transform: rotate(-18deg); }
 .scrap-book .scrap-nav { margin-top: 10px; color: #FFFDF4; } .scrap-book .scrap-nav button { background: #FFFDF4; color: var(--ink); }
 @media (max-width: 700px) { .scrap-book { padding: 7px 7px 6px; border-radius: 10px; } .scrap-book .scrap-nav { margin-top: 6px; font-size: .78rem; } .scrap-book .scrap-nav button { font-size: .8rem; padding: .25em .7em; } .scrap-pic { box-shadow: 0 0 0 1.5px var(--ink), 2px 2px 0 rgba(0,0,0,.22); } .scrap-label { border-width: 1.5px; } }
@@ -4226,7 +4227,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the scrapbook on the bottom shelf: flip through event photos. Add photos like
   // { src: "images/events/photo.jpg", caption: "Name of the event, 2026" }
-  // note: "a few words" writes on that photo's sticky note
+  // note: "a few words" writes on the note card of the page that photo is on
   // newPage: true starts a fresh page for the same event at that photo
   // layout: "top" on the first photo of a 3-photo page puts it long across the top with the other two underneath
   var EVENTS = [
@@ -4330,11 +4331,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         var im = document.createElement("img"); im.src = it.src; im.alt = ""; im.loading = "lazy"; b.appendChild(im);
         b.addEventListener("click", function () { scrapBig(it); });
         w.appendChild(b);
-        // a little sticky note for a mini description (blank until one is written)
-        var nt = document.createElement("span"); nt.className = "scrap-note"; nt.textContent = it.note || ""; w.appendChild(nt);
         box.appendChild(w);
       });
       el.appendChild(box);
+      // one little note card per page for a mini description (blank until one is written): note: "..." on any photo of the page
+      var nt = document.createElement("div"); nt.className = "scrap-note";
+      nt.textContent = pg.items.map(function (it) { return it.note || ""; }).filter(Boolean).join(" ");
+      el.appendChild(nt);
     } else {
       var bl = document.createElement("div"); bl.className = "scrap-blank"; bl.textContent = "More memories coming soon"; el.appendChild(bl);
     }
