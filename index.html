@@ -398,6 +398,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .scrap-page.n3 .scrap-pic:nth-child(1) { grid-row: 1 / 3; }
 .scrap-page.n3.alt .scrap-photos { grid-template-columns: 1fr 1.35fr; }
 .scrap-page.n3.alt .scrap-pic:nth-child(1) { grid-column: 2; grid-row: 1 / 3; } .scrap-page.n3.alt .scrap-pic:nth-child(2) { grid-column: 1; grid-row: 1; } .scrap-page.n3.alt .scrap-pic:nth-child(3) { grid-column: 1; grid-row: 2; }
+.scrap-page.n3.top .scrap-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 1.15fr 1fr; }
+.scrap-page.n3.top .scrap-pic:nth-child(1) { grid-column: 1 / 3; grid-row: 1; } .scrap-page.n3.top .scrap-pic:nth-child(2) { grid-column: 1; grid-row: 2; } .scrap-page.n3.top .scrap-pic:nth-child(3) { grid-column: 2; grid-row: 2; }
 .scrap-blank { flex: 1; display: grid; place-items: center; text-align: center; font: 400 clamp(1rem, 6cqw, 1.6rem)/1.3 var(--font-crayon); color: #8A5A45; }
 .scrap-sticker { position: absolute; width: 13cqw; height: 13cqw; z-index: 4; pointer-events: none;
   filter: drop-shadow(1.5px 0 0 #FFFDF4) drop-shadow(-1.5px 0 0 #FFFDF4) drop-shadow(0 1.5px 0 #FFFDF4) drop-shadow(0 -1.5px 0 #FFFDF4) drop-shadow(1px 2px 0 rgba(0,0,0,.22)); }
@@ -4218,6 +4220,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the scrapbook on the bottom shelf: flip through event photos. Add photos like
   // { src: "images/events/photo.jpg", caption: "Name of the event, 2026" }
+  // layout: "top" on the first photo of a 3-photo page puts it long across the top with the other two underneath
   var EVENTS = [
     { src: "images/events/event-01.jpg", caption: "Leo B-day Boogin" },
     { src: "images/events/event-02.jpg", caption: "Galentine's Day" },
@@ -4239,7 +4242,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     { src: "images/events/event-19.jpg", caption: "B-day Party Shenanigans" },
     { src: "images/events/event-20.jpg", caption: "B-day Party Shenanigans" },
     { src: "images/events/event-21.jpg", caption: "B-day Party Shenanigans" },
-    { src: "images/events/event-24.jpg", caption: "Thanksgiving Dinner" },
+    { src: "images/events/event-24.jpg", caption: "Thanksgiving Dinner", layout: "top" },
     { src: "images/events/event-22.jpg", caption: "Thanksgiving Dinner" },
     { src: "images/events/event-23.jpg", caption: "Thanksgiving Dinner" },
     { src: "images/events/event-25.jpg", caption: "Twinkle Twinkle Little Dino Baby Shower" },
@@ -4284,7 +4287,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     groups.forEach(function (g) {
       var n = g.items.length, k = Math.ceil(n / 3), base = Math.floor(n / k), extra = n % k, at = 0;
-      for (var i = 0; i < k; i++) { var size = base + (i < extra ? 1 : 0); scrapPages.push({ title: g.title, items: g.items.slice(at, at + size) }); at += size; }
+      for (var i = 0; i < k; i++) { var size = base + (i < extra ? 1 : 0); var its = g.items.slice(at, at + size); scrapPages.push({ title: g.title, items: its, layout: its[0].layout || "" }); at += size; }
     });
   })();
   var SI = "#5A1F0E";
@@ -4309,7 +4312,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   }
   function drawScrapPage(el, side, idx) {
     var pg = scrapPages[idx], n = pg ? pg.items.length : 0;
-    el.textContent = ""; el.className = "scrap-page " + side + (pg ? " n" + n : "") + (idx % 2 ? " alt" : "");
+    el.textContent = ""; el.className = "scrap-page " + side + (pg ? " n" + n : "") + (pg && pg.layout ? " " + pg.layout : idx % 2 ? " alt" : "");
     if (pg) {
       var lab = document.createElement("div"); lab.className = "scrap-label"; lab.textContent = pg.title || "Event"; el.appendChild(lab);
       var box = document.createElement("div"); box.className = "scrap-photos";
