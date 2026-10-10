@@ -385,11 +385,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   background: #FFFDF4; border: 2px solid var(--ink); border-radius: 4px; box-shadow: 2px 3px 0 rgba(0,0,0,.18), inset 0 -5px 0 var(--blush); transform: rotate(-1.5deg); z-index: 2; }
 .scrap-page.right .scrap-label { transform: rotate(1.2deg); box-shadow: 2px 3px 0 rgba(0,0,0,.18), inset 0 -5px 0 #F8DC7E; }
 .scrap-photos { flex: 1; min-height: 0; display: grid; gap: 3.5cqw; }
-.scrap-pic { position: relative; min-width: 0; min-height: 0; padding: 0; margin: 0; border: 1.5cqw solid #FFFDF4; border-radius: 2px; cursor: zoom-in; overflow: hidden;
+.scrap-pic { position: relative; min-width: 0; min-height: 0; padding: 0; margin: 0; border: 1.5cqw solid #FFFDF4; border-radius: 2px;
   background: repeating-linear-gradient(45deg, #FBD3DC 0 12px, #FDE6EC 12px 24px); box-shadow: 0 0 0 2px var(--ink), 3px 4px 0 rgba(0,0,0,.22); transition: transform .15s; }
-.scrap-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.scrap-btn { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; outline: none; }
+.scrap-btn img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.scrap-note { position: absolute; right: -4cqw; bottom: -4cqw; z-index: 5; box-sizing: border-box; width: 21cqw; min-height: 11cqw; padding: 1.6cqw 1.4cqw 1.2cqw; display: grid; place-items: center; text-align: center; pointer-events: none;
+  font: 400 clamp(.5rem, 3.5cqw, 1rem)/1.15 var(--font-crayon); color: #3B2620; background: #FBE98A; box-shadow: 1px 2px 0 rgba(0,0,0,.25); transform: rotate(4deg); overflow-wrap: anywhere; }
+.scrap-note::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1.6cqw; background: rgba(0,0,0,.07); }
+.scrap-pic:nth-child(2) .scrap-note { background: #F9C6D6; transform: rotate(-5deg); } .scrap-pic:nth-child(3) .scrap-note { background: #BFE8D8; transform: rotate(3deg); }
+.scrap-page.n3:not(.top):not(.alt) .scrap-pic:nth-child(1) .scrap-note, .scrap-page.n2 .scrap-pic:nth-child(1) .scrap-note, .scrap-page.n3.top .scrap-pic:nth-child(2) .scrap-note { right: auto; left: -4cqw; }
 .scrap-pic:nth-child(1) { transform: rotate(-2deg); } .scrap-pic:nth-child(2) { transform: rotate(2.5deg); } .scrap-pic:nth-child(3) { transform: rotate(-1.5deg); }
-.scrap-pic:hover, .scrap-pic:focus-visible { transform: rotate(0) scale(1.03); z-index: 3; outline: none; }
+.scrap-pic:hover, .scrap-pic:focus-within { transform: rotate(0) scale(1.03); z-index: 6; }
 .scrap-page.n1 .scrap-photos { place-items: center; }
 .scrap-page.n1 .scrap-pic { height: 96%; aspect-ratio: 4 / 5; max-width: 86%; }
 .scrap-page.n2 .scrap-photos { grid-template-columns: 1fr 1fr; }
@@ -4220,6 +4226,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the scrapbook on the bottom shelf: flip through event photos. Add photos like
   // { src: "images/events/photo.jpg", caption: "Name of the event, 2026" }
+  // note: "a few words" writes on that photo's sticky note
   // newPage: true starts a fresh page for the same event at that photo
   // layout: "top" on the first photo of a 3-photo page puts it long across the top with the other two underneath
   var EVENTS = [
@@ -4307,7 +4314,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var scrapDialog = document.getElementById("scrapDialog"), scrapL = document.getElementById("scrapL"), scrapR = document.getElementById("scrapR"), scrapAt = 0;
   function scrapBig(it) {
     lbImg.hidden = false; lbPh.hidden = true; lbImg.style.width = lbImg.style.height = ""; lbImg.onload = fitLb;
-    lbImg.src = it.src; lbImg.alt = it.caption || "Event photo"; lbCap.textContent = it.caption || ""; lightbox.classList.remove("polaroid-mode");
+    lbImg.src = it.src; lbImg.alt = it.caption || "Event photo"; lbCap.textContent = (it.caption || "") + (it.note ? " · " + it.note : ""); lightbox.classList.remove("polaroid-mode");
     if (lbImg.complete) fitLb();
     if (lightbox.showModal) lightbox.showModal(); else lightbox.setAttribute("open", "");
   }
@@ -4318,10 +4325,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var lab = document.createElement("div"); lab.className = "scrap-label"; lab.textContent = pg.title || "Event"; el.appendChild(lab);
       var box = document.createElement("div"); box.className = "scrap-photos";
       pg.items.forEach(function (it) {
-        var b = document.createElement("button"); b.type = "button"; b.className = "scrap-pic"; b.setAttribute("aria-label", (it.caption || "Event photo") + ": see it bigger");
+        var w = document.createElement("div"); w.className = "scrap-pic";
+        var b = document.createElement("button"); b.type = "button"; b.className = "scrap-btn"; b.setAttribute("aria-label", (it.note || it.caption || "Event photo") + ": see it bigger");
         var im = document.createElement("img"); im.src = it.src; im.alt = ""; im.loading = "lazy"; b.appendChild(im);
         b.addEventListener("click", function () { scrapBig(it); });
-        box.appendChild(b);
+        w.appendChild(b);
+        // a little sticky note for a mini description (blank until one is written)
+        var nt = document.createElement("span"); nt.className = "scrap-note"; nt.textContent = it.note || ""; w.appendChild(nt);
+        box.appendChild(w);
       });
       el.appendChild(box);
     } else {
