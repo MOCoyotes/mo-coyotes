@@ -561,14 +561,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (max-width: 480px) { .room-navbar { gap: 8px; } .room-navbar .room-nav { gap: 8px; } .room-navbar .btn { font-size: .8rem; padding: .5em .8em; } .room-navbar .crayon-back { width: 96px; } }
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border-top: 0; }
 #room-featured > .lede { margin-top: 14px; }
-.attic-web { position: absolute; right: 30%; top: 0; transform: scaleX(-1); width: 96px; height: 96px; z-index: 1; pointer-events: none; }
-.attic-spider { position: absolute; right: calc(30% + 30px); top: 34px; width: 46px; height: 230px; overflow: hidden; z-index: 3; pointer-events: none; }
+.attic-web { position: absolute; right: 0; top: 0; transform: scaleX(-1); width: 110px; height: 110px; z-index: 2; pointer-events: none; }
+.attic-spider { position: absolute; right: 36px; top: 40px; width: 46px; height: 230px; overflow: hidden; z-index: 3; pointer-events: none; }
 .spider-drop { display: flex; flex-direction: column; align-items: center; transform: translateY(-120px); animation: spiderDrop 7s ease-in-out infinite; }
 .spider-thread { width: 2px; height: 170px; background: #FFFDF4; }
 .spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; }
 @keyframes spiderDrop { 0%, 12% { transform: translateY(-120px); } 45%, 62% { transform: translateY(0); } 70% { transform: translateY(-14px); } 76% { transform: translateY(0); } 100% { transform: translateY(-120px); } }
 @media (prefers-reduced-motion: reduce) { .spider-drop { animation: none; transform: translateY(-60px); } }
-@media (max-width: 640px) { .attic-web { width: 60px; height: 60px; } .attic-spider { right: calc(30% + 14px); top: 20px; width: 34px; } .spider-drop svg { width: 34px; } }
+@media (max-width: 640px) { .attic-web { width: 76px; height: 76px; } .attic-spider { right: 22px; top: 26px; width: 34px; } .spider-drop svg { width: 34px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
