@@ -562,13 +562,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border-top: 0; }
 #room-featured > .lede { margin-top: 14px; }
 .attic-web { position: absolute; right: 0; top: 0; transform: scaleX(-1); width: 110px; height: 110px; z-index: 2; pointer-events: none; }
-.attic-spider { position: absolute; right: 36px; top: 40px; width: 46px; height: 230px; overflow: hidden; z-index: 3; pointer-events: none; }
-.spider-drop { display: flex; flex-direction: column; align-items: center; transform: translateY(-120px); animation: spiderDrop 7s ease-in-out infinite; }
+.attic-spider { position: absolute; right: 48px; top: 71px; width: 46px; height: 230px; overflow: hidden; z-index: 3; pointer-events: none; }
+.spider-drop { display: flex; flex-direction: column; align-items: center; transform: translateY(-142px); }
+.spider-drop.dropping { animation: spiderDrop 5s ease-in-out 1; }
+.spider-drop.down { transform: translateY(0); }
 .spider-thread { width: 2px; height: 170px; background: #FFFDF4; }
-.spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; }
-@keyframes spiderDrop { 0%, 12% { transform: translateY(-120px); } 45%, 62% { transform: translateY(0); } 70% { transform: translateY(-14px); } 76% { transform: translateY(0); } 100% { transform: translateY(-120px); } }
-@media (prefers-reduced-motion: reduce) { .spider-drop { animation: none; transform: translateY(-60px); } }
-@media (max-width: 640px) { .attic-web { width: 76px; height: 76px; } .attic-spider { right: 22px; top: 26px; width: 34px; } .spider-drop svg { width: 34px; } }
+.spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; pointer-events: auto; cursor: pointer; outline-offset: 2px; }
+@keyframes spiderDrop { 0% { transform: translateY(-142px); } 30% { transform: translateY(0); } 37% { transform: translateY(-14px); } 44%, 72% { transform: translateY(0); } 100% { transform: translateY(-142px); } }
+@media (max-width: 640px) { .attic-web { width: 76px; height: 76px; } .attic-spider { right: 32px; top: 49px; width: 34px; } .spider-drop svg { width: 34px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2670,9 +2671,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <g stroke="#FFFDF4" stroke-width="2"><path d="M0 0 H84 M0 0 L74 30 M0 0 L58 58 M0 0 L30 74 M0 0 V84"/></g>
         <g stroke="#FFFDF4" stroke-width="1.6"><path d="M28 0 Q24 6 25 10 Q21 13 19 19 Q14 20 10 25 Q5 24 0 28"/><path d="M54 0 Q46 10 48 19.500 Q40 26 37 37 Q27 39 19.500 48 Q9 46 0 54"/><path d="M80 0 Q68 14 71 29 Q59 38 55 55 Q39 58 29 71 Q13 68 0 80"/></g>
       </svg>
-      <div class="attic-spider" aria-hidden="true"><div class="spider-drop">
+      <div class="attic-spider"><div class="spider-drop" id="spiderDrop">
         <span class="spider-thread"></span>
-        <svg viewBox="0 0 48 44" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="atticSpider" role="button" tabindex="0" aria-label="Little black widow: click her and she drops down" viewBox="0 0 48 44" stroke-linecap="round" stroke-linejoin="round">
           <g fill="none" stroke="#1F1418" stroke-width="2.6"><path d="M17 24 Q8 18 5 9 M16 27 Q6 25 2 19 M16 30 Q7 32 3 39 M18 32 Q12 37 11 43"/><path d="M31 24 Q40 18 43 9 M32 27 Q42 25 46 19 M32 30 Q41 32 45 39 M30 32 Q36 37 37 43"/></g>
           <circle cx="24" cy="16" r="12" fill="#1F1418"/>
           <path d="M19.500 10 H28.500 L24 16 L28.500 22 H19.500 L24 16 Z" fill="#E5263A"/>
@@ -4960,6 +4961,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       setTimeout(function () { a.classList.remove("whistling"); }, 2400);
     });
   });
+
+  // ---------- attic spider: she only drops down when you click her
+  var spiderDrop = document.getElementById("spiderDrop"), atticSpider = document.getElementById("atticSpider");
+  function dropSpider() {
+    if (reduce) { spiderDrop.classList.toggle("down"); return; }
+    if (!spiderDrop.classList.contains("dropping")) spiderDrop.classList.add("dropping");
+  }
+  atticSpider.addEventListener("click", dropSpider);
+  atticSpider.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); dropSpider(); } });
+  spiderDrop.addEventListener("animationend", function () { spiderDrop.classList.remove("dropping"); });
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
