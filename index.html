@@ -404,11 +404,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .scrap-sticker.s0 { top: 2%; right: 2.5%; transform: rotate(14deg); } .scrap-sticker.s1 { bottom: 2%; left: 2.5%; transform: rotate(-12deg); }
 .scrap-sticker.s2 { bottom: 2.5%; right: 3%; transform: rotate(8deg); } .scrap-sticker.s3 { top: 15%; left: 1.5%; transform: rotate(-18deg); }
 .scrap-book .scrap-nav { margin-top: 10px; color: #FFFDF4; } .scrap-book .scrap-nav button { background: #FFFDF4; color: var(--ink); }
-@media (max-width: 700px) {
-  .scrap-book { width: min(430px, 94vw); }
-  .scrap-spread { grid-template-columns: 1fr; max-height: calc(100dvh - 150px); overflow-y: auto; }
-  .scrap-page.left, .scrap-page.right { box-shadow: none; }
-}
+@media (max-width: 700px) { .scrap-book { padding: 7px 7px 6px; border-radius: 10px; } .scrap-book .scrap-nav { margin-top: 6px; font-size: .78rem; } .scrap-book .scrap-nav button { font-size: .8rem; padding: .25em .7em; } .scrap-pic { box-shadow: 0 0 0 1.5px var(--ink), 2px 2px 0 rgba(0,0,0,.22); } .scrap-label { border-width: 1.5px; } }
 .scrap-nav { display: flex; justify-content: space-between; align-items: center; font: 800 .9rem var(--font-body); color: #8A5A45; }
 .scrap-nav button { font: 800 .95rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
 .scrap-nav button:disabled { opacity: .35; cursor: default; }
