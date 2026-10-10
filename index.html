@@ -570,6 +570,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .spider-drop svg { display: block; width: 46px; height: auto; margin-top: -1px; pointer-events: auto; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
 @keyframes spiderDrop { 0% { transform: translateY(-142px); } 30% { transform: translateY(0); } 37% { transform: translateY(-14px); } 44%, 72% { transform: translateY(0); } 100% { transform: translateY(-142px); } }
 @media (max-width: 640px) { .attic-web { width: 76px; height: 76px; } .attic-spider { right: 32px; top: 49px; width: 34px; } .spider-drop svg { width: 34px; } }
+.ball-wrap.goose-wrap { width: min(600px, 94vw); padding-inline: 18px; }
+.goose-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; width: 100%; max-height: 60dvh; overflow-y: auto; padding: 5px; box-sizing: border-box; }
+.goose-opt { display: grid; justify-items: center; gap: 4px; padding: 8px 4px 7px; border: 3px solid var(--ink); border-radius: 14px; background: #FFFDF4; color: var(--ink); font: 800 .68rem/1.15 var(--font-body); letter-spacing: .05em; text-transform: uppercase; cursor: pointer; transition: transform .15s; }
+.goose-opt svg { display: block; width: 62px; height: auto; }
+.goose-opt:hover { transform: translateY(-3px) rotate(-2deg); }
+.goose-opt[aria-pressed="true"] { background: var(--blush); box-shadow: 0 0 0 3px var(--hot); }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -1143,6 +1149,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <rect class="f-trim s-ink" stroke-width="3" x="428" y="484" width="104" height="10" rx="3"/>
           </g>
           <g class="tag"><rect x="408" y="344" width="144" height="28" rx="14"/><text x="480" y="363" text-anchor="middle">COME INSIDE</text></g>
+        </a>
+
+        <!-- PORCH GOOSE: click to dress her -->
+        <a class="hot hot-goose" href="#outside" id="gooseLink" role="button" aria-label="Porch goose: pick her outfit" aria-haspopup="dialog">
+          <g class="glow"><g id="porchGoose" transform="translate(540,420) scale(.9)"></g></g>
+          <g class="tag"><rect x="468" y="506" width="150" height="28" rx="14"/><text x="543" y="525" text-anchor="middle">DRESS THE GOOSE</text></g>
         </a>
 
         <!-- MAILBOX -->
@@ -2771,7 +2783,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </section>
   </main>
 
-  <p class="hint" id="hint">Click the door, the windows, the mailbox, the quilt, the pink bike or the airplane.</p>
+  <p class="hint" id="hint">Click the door, the windows, the mailbox, the goose, the quilt, the pink bike or the airplane.</p>
 </div>
 
 <dialog class="mirror-dialog" id="mirrorDialog" aria-label="Compliment mirror">
@@ -3159,6 +3171,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </button>
     <div class="tarot-read" id="tarotRead" hidden aria-live="polite"><p class="tarot-name" id="tarotName"></p><p class="tarot-mean" id="tarotMean"></p></div>
     <p class="ball-hint" id="tarotHint">Tap the deck to shuffle</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog goose-dialog" id="gooseDialog" aria-label="Dress the porch goose">
+  <div class="ball-wrap goose-wrap">
+    <button class="lb-close" type="button" id="gooseClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Dress the porch goose</p>
+    <div class="goose-grid" id="gooseGrid"></div>
+    <p class="ball-hint">She keeps her outfit on until a new one is picked.</p>
   </div>
 </dialog>
 
@@ -4971,6 +4992,85 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   atticSpider.addEventListener("click", dropSpider);
   atticSpider.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); dropSpider(); } });
   spiderDrop.addEventListener("animationend", function () { spiderDrop.classList.remove("dropping"); });
+
+  // ---------- porch goose: pick an outfit, she keeps it on (remembered in this browser)
+  var gooseHost = document.getElementById("porchGoose"), gooseDialog = document.getElementById("gooseDialog"), gooseGrid = document.getElementById("gooseGrid");
+  if (gooseHost && gooseDialog && gooseGrid) {
+    var GI = "#5A1F0E", GW = "#FFFDF4";
+    var gp = function (d, fill, sw) { return '<path d="' + d + '" fill="' + fill + '" stroke="' + GI + '" stroke-width="' + (sw || 2.2) + '"/>'; };
+    var gl = function (d, col, sw) { return '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + (sw || 2) + '"/>'; };
+    var gc = function (x, y, r, fill, st) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + fill + '"' + (st ? ' stroke="' + GI + '" stroke-width="' + st + '"' : '') + '/>'; };
+    var COAT = "M14 53 C20 46 30 44 40 45.5 C50 48 55 58 54 69 C52 79 41 83 29 83 C19 83 12 75 12 63 C12 59 13 56 14 53 Z";
+    var ROUND = "M12 64 C12 51 22 45 33 45 C46 45 55 54 55 65 C55 77 45 84 33 84 C21 84 12 77 12 64 Z";
+    var COLLAR = "M13 53 Q22 45 32 50 Q24 57 13 53 Z";
+    var GOOSE_BASE =
+      '<g fill="#E2780F" stroke="' + GI + '" stroke-width="2"><path d="M25 78 V85 L18 89 H31 Z"/><path d="M37 79 V85 L31 89 H44 Z"/></g>' +
+      gp("M17 12 L3 17.5 L17 21 Z", "#F2A007", 2) +
+      gp("M47 54 L58 45 L54 64 Z", GW, 3) +
+      '<path d="M24 18 C20 30 19 42 22 54" fill="none" stroke="' + GI + '" stroke-width="14.5"/>' +
+      '<ellipse cx="33" cy="62" rx="20" ry="18" fill="' + GW + '" stroke="' + GI + '" stroke-width="3"/>' +
+      gc(24, 16, 9.5, GW, 3) +
+      '<path d="M24 18 C20 30 19 42 22 54" fill="none" stroke="' + GW + '" stroke-width="11.5"/>' +
+      gp("M30 58 Q42 52 47 62 Q40 72 30 67", "#F3ECDD", 2) +
+      gc(21, 14.5, 1.7, GI) + '<circle cx="25.5" cy="19" r="2.2" fill="#F48FB8" opacity=".7"/>';
+    var GOOSE_OUTFITS = [
+      { k: "none", n: "Just a goose", d: "" },
+      { k: "rain", n: "Raincoat", d: gp(COAT, "#F6D32D") + gp(COLLAR, "#F6D32D") + gc(20, 61, 1.5, GI) + gc(19.5, 68, 1.5, GI) + gc(21.5, 75, 1.5, GI) +
+          gp("M15 11 Q24 -5 33 11 Z", "#F6D32D") + gp("M10 10 Q24 5 41 14 Q26 15 10 10 Z", "#F6D32D") },
+      { k: "pumpkin", n: "Pumpkin", d: gp(ROUND, "#E2780F") + gl("M24 47 Q16 64 24 83 M33 45 V84 M43 47 Q51 64 43 83", "#B9460F", 2) +
+          gp("M13 52 L18 47 L22 52 L26 47 L30 52 L33 48 L31 55 Q22 59 13 52 Z", "#6E9446") + gp("M16 9 Q24 -1 32 9 Q24 12 16 9 Z", "#E2780F") + gp("M22 4 L23 -4 L28 -3 L26 4 Z", "#6E9446") },
+      { k: "santa", n: "Santa", d: gp(COAT, "#D62839") + gp("M12.5 60 Q32 66 54.5 60 L54.5 65.5 Q32 71.5 12.5 65.5 Z", "#1F1418", 1.5) + '<rect x="19" y="61.5" width="7.5" height="6.5" rx="1" fill="#F2B705" stroke="' + GI + '" stroke-width="1.5"/>' +
+          gp("M13.5 72 Q32 80 53 72 Q52 80 42 82.5 Q29 85 18 80 Q14 77 13.5 72 Z", GW) + gp(COLLAR, GW) +
+          gp("M15 10 Q22 -8 39 1 Q31 1 33 11 Z", "#D62839") + gp("M13 8 Q24 4 35 9.5 L34 13.5 Q24 9 13.5 12.5 Z", GW) + gc(40, 1.5, 3.6, GW, 2) },
+      { k: "coat", n: "Coat & hat", d: gp(COAT, "#F48FB8") + gc(20, 62, 1.6, "#F2B705", 1.2) + gc(19.5, 69, 1.6, "#F2B705", 1.2) + gc(21.5, 76, 1.6, "#F2B705", 1.2) +
+          gp("M26 52 L32 52 L34 67 L27.5 67 Z", "#F2B705") + gp("M13 50 Q22 44 32 48 L32 55 Q22 51 13.5 57 Z", "#F2B705") +
+          gp("M15 12 Q15 -1 24 -1 Q33 -1 33 12 Z", "#E0218A") + gp("M13.5 8.5 H34.5 V13 H13.5 Z", "#F7C1CC") + gc(24, -3, 3.6, "#F7C1CC", 2) },
+      { k: "dress", n: "Summer dress", d: gp("M15 52 C22 46 30 45 39 46 C48 49 52 56 54 66 L58 79 Q34 89 8 79 L12 62 C12 58 13 55 15 52 Z", "#BFE8D8") +
+          gc(22, 62, 1.7, "#E0218A") + gc(34, 57, 1.7, "#E0218A") + gc(45, 66, 1.7, "#E0218A") + gc(28, 73, 1.7, "#E0218A") + gc(41, 77, 1.7, "#E0218A") + gc(16, 75, 1.7, "#E0218A") + gc(51, 76, 1.7, "#E0218A") +
+          gp(COLLAR, GW) + gp("M18 7 Q22 -4 32 0 Q40 6 36 19 Q30 23 28 12 Q25 6 18 7 Z", "#F7C1CC") + gp("M13 10 Q19 -1 30 1 Q23 4 18 13 Z", GW) + gl("M30 21 Q27 27 21 26", "#E0218A", 2) },
+      { k: "witch", n: "Witch", d: gp(COAT, "#6B3FA0") + gp("M13 52 L18 48 L21 54 L25 49 L28 55 L32 50 L30 57 Q22 60 13 52 Z", "#2A1A3A") + gc(34, 62, 2, "#F2B705") + gc(43, 70, 1.5, "#F2B705") + gc(26, 72, 1.5, "#F2B705") +
+          gp("M7 10 Q24 3 41 10 Q24 16 7 10 Z", "#2A1A3A") + gp("M16 9 Q22 -8 35 -15 Q30 -2 32 9 Q24 12 16 9 Z", "#2A1A3A") + gp("M16.5 5.5 Q24 8.5 32 5.5 L32 9 Q24 12 16 9 Z", "#E2780F", 1.5) },
+      { k: "party", n: "Birthday", d: gp("M11 66 Q32 57 55 66 L59 78 Q34 87 7 78 Z", "#F48FB8") + gl("M20 64 L17 80 M30 62 L29 83 M40 62 L42 83 M49 64 L53 80", "#E0218A", 1.6) +
+          gp("M12 53 Q15 47 19 51 Q22 45 26 50 Q30 46 33 51 Q31 57 26 56 Q22 60 18 56 Q13 58 12 53 Z", "#F2B705") +
+          gp("M17 9 L25 -14 L32 9 Q24 12 17 9 Z", "#E0218A") + gl("M20 2 L30.5 4 M22.5 -5.5 L28 -4", "#F2B705", 2.2) + gc(25, -14, 3.2, "#F2B705", 1.8) },
+      { k: "bunny", n: "Bunny", d: gp("M18 9 Q13 -12 20 -15 Q26 -12 23 8 Z", GW) + gp("M26 8 Q28 -15 35 -12 Q38 -5 30 10 Z", GW) + gl("M19.5 4 Q18 -6 20.5 -10 M29 5 Q31 -6 33.5 -8", "#F48FB8", 2.4) +
+          gp(COAT, "#CDB9F2") + gc(56, 60, 4.2, GW, 2) + gp("M22 51 L14 46 L15 57 Z", "#F9C59A") + gp("M22 51 L30 46 L30 57 Z", "#F9C59A") + gc(22, 51.5, 2.2, "#F9C59A", 1.5) +
+          gc(33, 63, 1.8, GW) + gc(43, 71, 1.8, GW) + gc(27, 74, 1.8, GW) },
+      { k: "stars", n: "Stars & stripes", d: gp(COAT, "#3B5BA5") + gp("M13.5 70 Q32 78 53.5 70 Q52 80 42 82.5 Q29 85 18 80 Q14 77 13.5 70 Z", "#D62839") + gl("M15 75 Q32 83 51 75", GW, 2) +
+          gc(22, 60, 1.7, GW) + gc(32, 56, 1.7, GW) + gc(43, 60, 1.7, GW) + gc(28, 66, 1.7, GW) + gc(38, 66, 1.7, GW) + gp(COLLAR, GW) +
+          gp("M10 9 Q24 4 38 9 Q24 14 10 9 Z", GW) + gp("M17 8 L16 -11 H32 L31 8 Q24 11 17 8 Z", GW) + gl("M20.5 -10 V2 M24 -10 V2 M27.5 -10 V2", "#D62839", 2.2) + gp("M16.6 1 H31.4 L31 8 Q24 11 17 8 Z", "#3B5BA5", 1.8) },
+      { k: "valentine", n: "Valentine", d: gp(COAT, "#F7C1CC") + gp("M34 60 C34 55 27 55 27 60 C27 64.5 32 67 34 70 C36 67 41 64.5 41 60 C41 55 34 55 34 60 Z", "#D62839", 1.8) +
+          gp("M13 50 Q22 44 32 48 L32 54 Q22 50 13.5 56 Z", "#E0218A") + gp("M24 5 L14 -2 L16 10 Z", "#D62839") + gp("M24 5 L34 -2 L32 10 Z", "#D62839") + gc(24, 5.5, 2.6, "#E0218A", 1.6) },
+      { k: "garden", n: "Gardener", d: gp(COAT, "#5B8DB8") + '<rect x="27" y="56" width="13" height="10" rx="2" fill="#7FA9CF" stroke="' + GI + '" stroke-width="1.6"/>' + gl("M20 49 Q19 60 15 68 M30 47 Q33 51 33 56", "#F8DC8A", 2.4) + gc(33.5, 58.5, 1.4, "#F2B705") +
+          gp("M5 10 Q24 2 43 10 Q24 17 5 10 Z", "#F8DC8A") + gp("M16 9 Q17 -3 24 -3 Q31 -3 32 9 Q24 12 16 9 Z", "#F8DC8A") + gp("M16.3 5 Q24 8 31.7 5 L32 9 Q24 12 16 9 Z", "#E0218A", 1.5) + gc(31, 5, 2.6, "#F2B705", 1.4) },
+      { k: "bee", n: "Bumblebee", d: gp("M36 47 Q42 28 54 35 Q55 47 41 52 Z", "#DFF3F7", 2) + gp(ROUND, "#F2B705") +
+          '<path d="M21 48.5 Q26 46 30 45.3 Q26 64 30 83.8 Q24 83 20 80.5 Q13 64 21 48.5 Z M39 45.8 Q44 47 48 50 Q54 64 46.5 80.5 Q43 83 39 83.6 Q43 64 39 45.8 Z" fill="#1F1418"/>' + gl(ROUND, GI, 2.2) +
+          gl("M21 8 Q18 -2 14 -5 M27 8 Q30 -2 34 -5", GI, 2) + gc(14, -5, 2.2, GI) + gc(34, -5, 2.2, GI) }
+    ];
+    var gooseArt = function (k) {
+      var o = GOOSE_OUTFITS[0]; GOOSE_OUTFITS.forEach(function (x) { if (x.k === k) o = x; });
+      return '<g stroke-linejoin="round" stroke-linecap="round">' + GOOSE_BASE + o.d + '</g>';
+    };
+    var gooseKey = "none";
+    try { gooseKey = localStorage.getItem("mocoyotes-goose") || "none"; } catch (e) {}
+    var dressGoose = function (k) {
+      gooseKey = k; gooseHost.innerHTML = gooseArt(k);
+      gooseGrid.querySelectorAll(".goose-opt").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === k ? "true" : "false"); });
+    };
+    GOOSE_OUTFITS.forEach(function (o) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "goose-opt"; b.setAttribute("data-k", o.k);
+      b.innerHTML = '<svg viewBox="-2 -18 64 110" aria-hidden="true">' + gooseArt(o.k) + '</svg><span>' + o.n + '</span>';
+      b.addEventListener("click", function () {
+        dressGoose(o.k); try { localStorage.setItem("mocoyotes-goose", o.k); } catch (e) {}
+        popSound(); setTimeout(function () { gooseDialog.close(); }, 320);
+      });
+      gooseGrid.appendChild(b);
+    });
+    dressGoose(gooseKey);
+    document.getElementById("gooseLink").addEventListener("click", function (e) { e.preventDefault(); if (gooseDialog.showModal) gooseDialog.showModal(); else gooseDialog.setAttribute("open", ""); });
+    document.getElementById("gooseClose").addEventListener("click", function () { gooseDialog.close(); });
+    gooseDialog.addEventListener("click", function (e) { if (e.target === gooseDialog) gooseDialog.close(); });
+  }
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
