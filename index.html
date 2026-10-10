@@ -4220,6 +4220,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 
   // the scrapbook on the bottom shelf: flip through event photos. Add photos like
   // { src: "images/events/photo.jpg", caption: "Name of the event, 2026" }
+  // newPage: true starts a fresh page for the same event at that photo
   // layout: "top" on the first photo of a 3-photo page puts it long across the top with the other two underneath
   var EVENTS = [
     { src: "images/events/event-01.jpg", caption: "Leo B-day Boogin" },
@@ -4257,7 +4258,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     { src: "images/events/event-34.jpg", caption: "Murder Mystery Birthday Dinner" },
     { src: "images/events/event-35.jpg", caption: "Murder Mystery Birthday Dinner" },
     { src: "images/events/event-36.jpg", caption: "Murder Mystery Birthday Dinner" },
-    { src: "images/events/event-37.jpg", caption: "Murder Mystery Birthday Dinner" },
+    { src: "images/events/event-37.jpg", caption: "Murder Mystery Birthday Dinner", newPage: true },
     { src: "images/events/event-38.jpg", caption: "Bridal Brunch" },
     { src: "images/events/event-39.jpg", caption: "Bridal Brunch" },
     { src: "images/events/event-40.jpg", caption: "Bridal Brunch" },
@@ -4283,7 +4284,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var groups = [];
     EVENTS.forEach(function (e) {
       var last = groups[groups.length - 1];
-      if (last && last.title === e.caption) last.items.push(e); else groups.push({ title: e.caption, items: [e] });
+      if (last && last.title === e.caption && !e.newPage) last.items.push(e); else groups.push({ title: e.caption, items: [e] });
     });
     groups.forEach(function (g) {
       var n = g.items.length, k = Math.ceil(n / 3), base = Math.floor(n / k), extra = n % k, at = 0;
