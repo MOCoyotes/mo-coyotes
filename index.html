@@ -5675,9 +5675,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var starAt = function (x, y, r) { var k = r * .38; return z("M" + x + " " + (y - r) + " l" + k + " " + (r - k) + " l" + (r - k) + " " + k + " l" + (-(r - k)) + " " + k + " l" + (-k) + " " + (r - k) + " l" + (-k) + " " + (-(r - k)) + " l" + (-(r - k)) + " " + (-k) + " l" + (r - k) + " " + (-k) + " Z"); };
     var dressPage = BG +
       // a crown above the dress, with jewels to color
+      '<g transform="translate(150 12) scale(.74) translate(-150 -13)">' +
       z("M118 56 L111 28 L132 44 L150 20 L168 44 L189 28 L182 56 Z") + z("M116 56 H184 V68 H116 Z") + zc(111, 26, 4.6) + zc(150, 18, 5.2) + zc(189, 26, 4.6) +
       zc(132, 62, 3.6) + z("M150 56.500 l5.500 5.500 l-5.500 5.500 l-5.500 -5.500 Z") + zc(168, 62, 3.6) + z("M150 34 l5 7 l-5 7 l-5 -7 Z") +
-      '<g transform="translate(0,16)">' +
+      '</g>' +
+      '<g transform="translate(150 286) scale(1.08) translate(-150 -268)">' +
       z("M123 64 Q101 60 99 82 Q111 94 124 86 Z") + z("M177 64 Q199 60 201 82 Q189 94 176 86 Z") +
       z("M121 64 L137 64 Q150 78 163 64 L179 64 L182 112 Q150 121 118 112 Z") + gores + z("M77 230 Q150 250 223 230 L228 247 Q150 268 72 247 Z") +
       z("M118 112 Q150 121 182 112 L182 125 Q150 134 118 125 Z") + z("M150 122 L131 111 L133 134 Z") + z("M150 122 L169 111 L167 134 Z") + zc(150, 122, 5.5) + zc(150, 92, 3.6) + zc(150, 104, 3.6) +
