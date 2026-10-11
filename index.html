@@ -5627,10 +5627,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     // a knit sweater with fair isle bands to color: diamonds, stripes and a row of peaks
     var fair = BG + z("M90 84 L58 98 L28 198 L58 208 L90 142 Z") + z("M210 84 L242 98 L272 198 L242 208 L210 142 Z") + z("M28 198 L58 208 L54 224 L24 214 Z") + z("M272 198 L242 208 L246 224 L276 214 Z") +
-      z("M90 84 L122 70 Q150 96 178 70 L210 84 V116 H90 Z") + z("M90 116 H210 V152 H90 Z") + z("M90 152 H210 V166 H90 Z") + z("M90 166 H210 V204 H90 Z") + z("M90 204 H210 V218 H90 Z") + z("M90 218 H210 V242 H90 Z") + z("M86 242 H214 V258 H86 Z") +
+      z("M90 84 L122 70 Q150 96 178 70 L210 84 V116 H90 Z") + z("M90 116 H210 V152 H90 Z") + z("M90 152 H210 V166 H90 Z") + z("M90 204 H210 V218 H90 Z") + z("M90 218 H210 V242 H90 Z") + z("M86 242 H214 V258 H86 Z") +
       z("M118 76 Q150 106 182 76 L176 66 Q150 92 124 66 Z");
     [102, 126, 150, 174, 198].forEach(function (x) { fair += z("M" + x + " 121 L" + (x + 10) + " 134 L" + x + " 147 L" + (x - 10) + " 134 Z"); });
-    for (var fx = 90; fx < 210; fx += 20) fair += z("M" + fx + " 204 L" + (fx + 10) + " 168 L" + (fx + 20) + " 204 Z");
+    // the row of peaks: every triangle, pointing up or down, is its own shape to color
+    for (var fx = 90; fx < 210; fx += 20) fair += z("M" + fx + " 204 L" + (fx + 10) + " 166 L" + (fx + 20) + " 204 Z");
+    for (var gx = 100; gx < 200; gx += 20) fair += z("M" + gx + " 166 L" + (gx + 20) + " 166 L" + (gx + 10) + " 204 Z");
+    fair += z("M90 166 H100 L90 204 Z") + z("M200 166 H210 V204 Z");
     [100, 120, 140, 160, 180, 200].forEach(function (x) { fair += zc(x, 159, 3.6) + zc(x, 211, 3.6); });
     fair += ln("M94 246 v9 M104 246 v9 M114 246 v9 M124 246 v9 M134 246 v9 M144 246 v9 M154 246 v9 M164 246 v9 M174 246 v9 M184 246 v9 M194 246 v9 M204 246 v9 M34 203 l-3 12 M44 206 l-3 12 M266 203 l3 12 M256 206 l3 12");
     var rays = "";
