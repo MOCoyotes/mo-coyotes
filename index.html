@@ -5678,9 +5678,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           z("M236.500 191 Q245 186 252.800 187 L253 197 Q245 197 238.500 201 Z") + z("M239.500 207 Q246 204 251.500 205 Q250 213 246 218 Q242 214 238.500 215 Z") + wallHearts +
           // round irises inside the eyes (to color), with the slit pupils drawn back on top
           zc(130, 109, 6.4) + zc(170, 109, 6.4) + '<path class="cf" d="M130 104 Q132.800 109 130 114 Q127.200 109 130 104 Z M170 104 Q172.800 109 170 114 Q167.200 109 170 104 Z"/>' +
-          // a little mouse on the rug
-          ln("M226 272 Q212 282 202 274") + ze(241, 270, 17, 10.5) + zc(253, 259, 5.6) + zc(262, 258, 5) + z("M250 262 Q262 258 272 268 Q264 277 252 276 Q246 270 250 262 Z") +
-          dot(262.5, 266, 1.7) + dot(272, 268.5, 1.8) + ln("M269 270 l7 2 M269 266.500 l7 -2") },
+          // the little mouse from the kitchen, on the rug (same drawing, to color)
+          ln("M226 276 C214 281 210 267 198 272") + '<ellipse class="cz" style="stroke-width:1.8" cx="232" cy="281" rx="4.5" ry="2.5"/><ellipse class="cz" style="stroke-width:1.8" cx="249" cy="281" rx="4.5" ry="2.5"/>' +
+          '<ellipse class="cz" style="stroke-width:2.4" cx="238" cy="271" rx="16" ry="10.5"/>' + '<path class="cz" style="stroke-width:2.4" d="M245 261 C256 259 264 268 269 273 C264 277 254 279 245 277 Z"/>' +
+          '<circle class="cz" style="stroke-width:2.4" cx="249" cy="260" r="6.5"/><circle class="cz" style="stroke-width:1.2" cx="249" cy="260" r="3.6"/>' +
+          '<circle class="cz" style="stroke-width:1.2" cx="269" cy="273" r="2.5"/>' + dot(257, 269, 1.9) + '<path class="cd" style="stroke-width:1.1" d="M265.500 272 l9 -3 M265.500 274 l9 1"/>' +
+          // the kitty's nose, as a shape to color
+          '<path class="cz" style="stroke-width:2" d="M143.500 127.500 h13 l-6.500 7.800 Z"/>' },
       { k: "quilt", n: "Quilt block", d: quilt },
       { k: "sweater", n: "Fair Isle sweater", d: fair },
       { k: "mushroom", n: "Mushrooms", d: BG + z("M-6 258 Q150 240 306 258 V306 H-6 Z") + z("M118 172 Q110 250 102 264 H198 Q190 250 182 172 Q150 184 118 172 Z") + z("M56 170 Q56 66 150 66 Q244 66 244 170 Q150 190 56 170 Z") +
