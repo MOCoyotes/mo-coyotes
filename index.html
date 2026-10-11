@@ -641,10 +641,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .color-palette button { width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2.5px solid var(--ink); cursor: pointer; transition: transform .12s; }
 .color-palette button[aria-pressed="true"] { transform: scale(1.22); box-shadow: 0 0 0 3px #FFFDF4, 0 0 0 5.5px var(--hot); }
 .color-nav { width: 100%; } .color-nav .color-clear { background: #FFFDF4; color: var(--ink); font-size: .82rem; }
-.color-save { display: flex; gap: 8px; width: 100%; }
-.color-save input { flex: 1; min-width: 0; font: 400 1.05rem var(--font-crayon); color: var(--ink); background: #FFFDF4; border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; }
+.color-save { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%; }
+.color-save input { flex: 1 1 100%; min-width: 0; font: 400 1.05rem var(--font-crayon); color: var(--ink); background: #FFFDF4; border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; }
 .color-save input:focus { outline: none; border-color: var(--hot); }
 .color-save button { flex: none; font: 800 .9rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em 1em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
+.color-save #colorTape { background: var(--marigold); color: var(--ink); }
+.ball-wrap.sketch-wrap { width: min(430px, 94vw, calc((100dvh - 190px) * .82)); min-width: 240px; gap: 10px; padding: 20px 20px 14px 34px; background: #F3E3C3 radial-gradient(rgba(138, 90, 69, .16) 1px, transparent 1.4px) 0 0 / 14px 14px; }
+.sketch-wrap::before { content: ""; position: absolute; left: 9px; top: 18px; bottom: 18px; width: 14px; background: radial-gradient(circle at 7px 9px, #3B2620 0 4px, transparent 4.5px) 0 0 / 14px 22px repeat-y; }
+.sketch-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); }
+.sketch-art { position: relative; width: 100%; transform: rotate(-1.5deg); }
+.sketch-art svg { display: block; width: 100%; height: auto; background: #FFFDF4; border: 2px solid var(--ink); box-shadow: 3px 4px 0 rgba(0,0,0,.2); }
+.sketch-art::before, .sketch-art::after { content: ""; position: absolute; top: -9px; width: 74px; height: 22px; opacity: .9; z-index: 1; }
+.sketch-art::before { left: -16px; transform: rotate(-32deg); background: repeating-linear-gradient(90deg, var(--pink) 0 8px, var(--blush) 8px 16px); }
+.sketch-art::after { right: -16px; transform: rotate(30deg); background: repeating-linear-gradient(90deg, var(--marigold) 0 8px, #F8DC7E 8px 16px); }
+.sketch-art svg .cz { fill: #FFFFFF; stroke: #5A1F0E; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; } .sketch-art svg .cd { fill: none; stroke: #5A1F0E; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; } .sketch-art svg .cf { fill: #5A1F0E; }
+.sketch-sign { margin: 4px 0 0; text-align: center; font: 400 clamp(1.1rem, 4.6vw, 1.5rem)/1.2 var(--font-crayon); color: #3B2620; }
+.sketch-empty { margin: 30px 0; text-align: center; font: 400 1.3rem/1.35 var(--font-crayon); color: #8A5A45; }
+.sketch-wrap .scrap-nav { width: 100%; } .sketch-wrap .scrap-nav #sketchRemove { background: #FFFDF4; color: var(--ink); font-size: .8rem; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2307,8 +2320,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           </g>
           <g class="tag"><rect x="428" y="446" width="150" height="28" rx="14"/><text x="503" y="465" text-anchor="middle">COLORING BOOK</text></g>
         </a>
+        <!-- SKETCHBOOK leaning on the shelf: colored pages get taped in here -->
+        <a class="hot hot-sketch" href="#sketchbook" role="button" aria-label="Sketchbook: see the colored pages taped inside">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round" transform="rotate(-7 760 500)">
+            <ellipse class="f-ink" cx="762" cy="541" rx="46" ry="5" opacity=".16"/>
+            <rect class="f-marigold s-ink" stroke-width="2.5" x="722" y="452" width="76" height="88" rx="4"/>
+            <rect fill="#FFFDF4" class="s-ink" stroke-width="2" x="736" y="470" width="50" height="30" rx="3"/>
+            <path class="s-ink" stroke-width="1.6" fill="none" d="M743 481 H779 M743 489 H770"/>
+            <path class="f-hot s-ink" stroke-width="1.6" d="M761 515 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/>
+            <g fill="none" class="s-ink" stroke-width="2.4"><path d="M722 462 h-7 M722 474 h-7 M722 486 h-7 M722 498 h-7 M722 510 h-7 M722 522 h-7 M722 534 h-7"/></g>
+          </g>
+          <g class="tag"><rect x="692" y="412" width="136" height="28" rx="14"/><text x="760" y="431" text-anchor="middle">SKETCHBOOK</text></g>
+        </a>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the books, the cards, the magic 8 ball, the scrapbook or the coloring book.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the books, the cards, the magic 8 ball, the scrapbook, the coloring book or the sketchbook.</p>
     </section>
     <section id="room-kitchen" class="room kitchenroom" hidden aria-labelledby="kitchenTitle">
       <h2 id="kitchenTitle">KITCHEN</h2>
@@ -3300,11 +3325,25 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <div class="color-save">
       <input type="text" id="colorName" maxlength="30" placeholder="Your name (optional)" aria-label="Your name, to sign the picture (optional)" autocomplete="off">
       <button type="button" id="colorSave">Save picture</button>
+      <button type="button" id="colorTape">Tape in sketchbook</button>
     </div>
     <div class="scrap-nav color-nav">
       <button type="button" id="colorPrev" aria-label="Previous page">‹ Back</button>
       <button type="button" id="colorClear" class="color-clear">Start over</button>
       <button type="button" id="colorNext" aria-label="Next page">Next ›</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog sketch-dialog" id="sketchDialog" aria-label="Sketchbook of colored pages">
+  <div class="ball-wrap sketch-wrap">
+    <button class="lb-close" type="button" id="sketchClose" aria-label="Close">×</button>
+    <p class="ball-prompt">Sketchbook</p>
+    <div id="sketchBody"></div>
+    <div class="scrap-nav">
+      <button type="button" id="sketchPrev" aria-label="Previous page">‹ Back</button>
+      <button type="button" id="sketchRemove">Take it out</button>
+      <button type="button" id="sketchNext" aria-label="Next page">Next ›</button>
     </div>
   </div>
 </dialog>
@@ -5581,10 +5620,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var x = 36 + c[0] * 76, y = 36 + c[1] * 76, mx = x + 38, my = y + 38;
       quilt += z("M" + x + " " + y + " h76 L" + mx + " " + my + " Z") + z("M" + (x + 76) + " " + y + " v76 L" + mx + " " + my + " Z") + z("M" + (x + 76) + " " + (y + 76) + " h-76 L" + mx + " " + my + " Z") + z("M" + x + " " + (y + 76) + " v-76 L" + mx + " " + my + " Z");
     });
+    var rays = "";
+    for (var ri = 0; ri < 8; ri++) {
+      var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
+      rays += z("M" + rp(31, -7) + " L" + rp(50, 0) + " L" + rp(31, 7) + " Z");
+    }
     var PAGES = [
-      { k: "goose", n: "Porch goose", d: BG + zc(245, 55, 28) + z("M-6 262 Q150 244 306 262 V306 H-6 Z") + z("M228 176 L264 150 L246 202 Z") + z("M140 238 L140 262 L119 271 H161 Z") + z("M186 240 L186 262 L165 271 H207 Z") +
-          ze(168, 195, 70, 50) + z("M114 188 C100 152 100 112 108 86 C100 60 130 40 150 60 C166 78 150 98 142 110 C138 136 142 160 154 176 Z") + z("M107 78 L72 88 L108 99 Z") + z("M152 186 Q192 164 218 196 Q192 226 152 210 Z") +
-          z("M125 142 L94 122 L97 162 Z") + z("M125 142 L156 122 L153 162 Z") + zc(125, 142, 9) + dot(128, 72, 3.4) + ln("M222 44 l-9 -9 M268 44 l9 -9 M245 18 v-10 M205 60 h-10 M285 60 h10") },
+      { k: "goose", n: "Porch goose", d: BG + rays + zc(236, 64, 25) + z("M-6 262 Q150 244 306 262 V306 H-6 Z") + z("M228 176 L264 150 L246 202 Z") + z("M140 238 L140 262 L119 271 H161 Z") + z("M186 240 L186 262 L165 271 H207 Z") +
+          ze(170, 200, 70, 48) + z("M112 170 C102 140 102 108 108 86 C100 60 130 40 150 60 C166 78 150 98 144 110 C141 130 144 150 152 168 Z") + z("M107 78 L72 88 L108 99 Z") + z("M156 192 Q196 170 222 202 Q196 230 156 214 Z") +
+          z("M131 171 L96 152 L100 194 Z") + z("M131 171 L166 152 L162 194 Z") + zc(131, 171, 10) + dot(128, 72, 3.4) },
       { k: "kitty", n: "Kitty and yarn", d: BG + ze(150, 264, 124, 22) + z("M204 232 Q262 232 252 180 Q246 164 235 180 Q240 216 200 212 Z") + ze(150, 206, 58, 58) + ze(150, 218, 30, 36) +
           z("M100 92 L97 38 L142 66 Z") + z("M200 92 L203 38 L158 66 Z") + z("M106 78 L105 54 L126 68 Z") + z("M194 78 L195 54 L174 68 Z") + zc(150, 116, 58) + z("M106 152 Q150 178 194 152 L191 167 Q150 192 109 167 Z") + zc(150, 181, 9) +
           zc(58, 238, 22) + ln("M40 230 Q58 222 76 232 M38 242 Q58 236 78 244 M46 252 Q60 248 72 254 M80 240 Q100 262 96 274") +
@@ -5649,6 +5693,38 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       };
       img.src = url;
     });
+    // the sketchbook: finished pages get signed, dated and taped in (kept in this browser)
+    var sketchDialog = document.getElementById("sketchDialog"), sketchBody = document.getElementById("sketchBody"), sk = [], skAt = 0;
+    try { sk = JSON.parse(localStorage.getItem("mocoyotes-sketchbook") || "[]") || []; } catch (e) { sk = []; }
+    function keepSk() { try { localStorage.setItem("mocoyotes-sketchbook", JSON.stringify(sk)); } catch (e) {} }
+    function drawSk() {
+      sketchBody.textContent = "";
+      var e = sk[skAt], pg = null; if (e) PAGES.forEach(function (p) { if (p.k === e.k) pg = p; });
+      if (!e || !pg) { var em = document.createElement("p"); em.className = "sketch-empty"; em.textContent = "Nothing taped in yet. Color a page and tape it in!"; sketchBody.appendChild(em); }
+      else {
+        var art = document.createElement("div"); art.className = "sketch-art";
+        art.innerHTML = '<svg viewBox="0 0 300 300" role="img" aria-label="' + pg.n + '">' + pg.d + '</svg>';
+        art.querySelectorAll(".cz").forEach(function (el, i) { if (e.f && e.f[i]) el.style.fill = e.f[i]; });
+        var sign = document.createElement("p"); sign.className = "sketch-sign"; sign.textContent = (e.who || "A mystery artist") + " · " + e.when;
+        sketchBody.appendChild(art); sketchBody.appendChild(sign);
+      }
+      document.getElementById("sketchPrev").disabled = skAt <= 0; document.getElementById("sketchNext").disabled = skAt >= sk.length - 1;
+      document.getElementById("sketchRemove").hidden = !e;
+    }
+    function openSk(i) { skAt = Math.max(0, Math.min(sk.length - 1, i)); drawSk(); if (sketchDialog.showModal) sketchDialog.showModal(); else sketchDialog.setAttribute("open", ""); }
+    document.getElementById("colorTape").addEventListener("click", function () {
+      var pg = PAGES[at], who = nameBox.value.trim(); try { localStorage.setItem("mocoyotes-color-name", who); } catch (e) {}
+      var fills = {}, mine = saved[pg.k] || {}; Object.keys(mine).forEach(function (i) { fills[i] = mine[i]; });
+      sk.push({ k: pg.k, f: fills, who: who, when: new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) });
+      if (sk.length > 60) sk.shift();
+      keepSk(); popSound(); colorDialog.close(); openSk(sk.length - 1);
+    });
+    document.getElementById("sketchPrev").addEventListener("click", function () { if (skAt > 0) { skAt--; drawSk(); } });
+    document.getElementById("sketchNext").addEventListener("click", function () { if (skAt < sk.length - 1) { skAt++; drawSk(); } });
+    document.getElementById("sketchRemove").addEventListener("click", function () { sk.splice(skAt, 1); keepSk(); skAt = Math.max(0, Math.min(sk.length - 1, skAt)); drawSk(); });
+    document.querySelectorAll(".hot-sketch").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); openSk(sk.length - 1); }); });
+    document.getElementById("sketchClose").addEventListener("click", function () { sketchDialog.close(); });
+    sketchDialog.addEventListener("click", function (e) { if (e.target === sketchDialog) sketchDialog.close(); });
     document.querySelectorAll(".hot-color").forEach(function (a) {
       a.addEventListener("click", function (e) { e.preventDefault(); draw(); if (colorDialog.showModal) colorDialog.showModal(); else colorDialog.setAttribute("open", ""); });
     });
