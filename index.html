@@ -5651,10 +5651,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     var jimmy = function (j) { return '<rect class="cz" style="stroke-width:1.6" x="' + (j[0] - 6) + '" y="' + (j[1] - 2.4) + '" width="12" height="4.8" rx="2.4" transform="rotate(' + j[2] + ' ' + j[0] + ' ' + j[1] + ')"/>'; };
     var cake = BG + z("M-6 252 H306 V306 H-6 Z") + ze(150, 264, 40, 7) + z("M140 238 H160 L164 262 H136 Z") + ze(150, 234, 106, 10) +
       z("M62 178 H238 V226 Q150 240 62 226 Z") + drip(62, 238, 178, 8) + z("M88 130 H212 V178 H88 Z") + drip(88, 212, 130, 6) + z("M114 86 H186 V130 H114 Z") + drip(114, 186, 86, 4) +
-      z("M134 86 Q136 74 150 74 Q164 74 166 86 Z") + zc(150, 66, 11) +
+      zc(150, 75, 11) +
       [[80, 214, -25], [104, 218, 20], [128, 214, -15], [152, 219, 30], [176, 214, -30], [200, 218, 15], [222, 212, -20], [104, 166, 25], [128, 162, -20], [152, 167, 15], [176, 162, -30], [198, 166, 25], [132, 119, -20], [152, 121, 25], [171, 118, -15]].map(jimmy).join("") +
       z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M270 122 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M262 68 C234 48 246 28 262 42 C278 28 290 48 262 68 Z") + z("M42 60 C22 46 30 31 42 41 C54 31 62 46 42 60 Z") +
-      ln("M150 55 Q152 42 163 38") + '<path class="cd" style="stroke-width:1.4" d="M146 61 Q148 58 151 58"/>';
+      ln("M150 64 Q152 51 163 47") + '<path class="cd" style="stroke-width:1.4" d="M146 70 Q148 67 151 67"/>';
     var rays = "";
     for (var ri = 0; ri < 8; ri++) {
       var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
