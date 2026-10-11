@@ -5636,6 +5636,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     fair += z("M90 166 H100 L90 204 Z") + z("M200 166 H210 V204 Z");
     [100, 120, 140, 160, 180, 200].forEach(function (x) { fair += zc(x, 159, 3.6) + zc(x, 211, 3.6); });
     fair += ln("M94 246 v9 M104 246 v9 M114 246 v9 M124 246 v9 M134 246 v9 M144 246 v9 M154 246 v9 M164 246 v9 M174 246 v9 M184 246 v9 M194 246 v9 M204 246 v9 M34 203 l-3 12 M44 206 l-3 12 M266 203 l3 12 M256 206 l3 12");
+    // little hearts dotted over the wall behind the kitty, each one its own shape to color
+    var wallHearts = "";
+    [[36, 36], [36, 104], [36, 172], [264, 36], [264, 104], [279, 160], [150, 19], [76, 70], [226, 70]].forEach(function (p) {
+      var x = p[0], y = p[1];
+      wallHearts += z("M" + x + " " + (y + 10) + " C" + (x - 17) + " " + (y - 3) + " " + (x - 9) + " " + (y - 14) + " " + x + " " + (y - 5) + " C" + (x + 9) + " " + (y - 14) + " " + (x + 17) + " " + (y - 3) + " " + x + " " + (y + 10) + " Z");
+    });
     var rays = "";
     for (var ri = 0; ri < 8; ri++) {
       var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
@@ -5656,7 +5662,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           // tabby stripes to color: three on the forehead, two on each side, two on the tail
           z("M144 60 L156 60 Q153 76 150 86 Q147 76 144 60 Z") + z("M126 65 L133 62 Q136 76 135 85 Q129 76 126 65 Z") + z("M174 65 L167 62 Q164 76 165 85 Q171 76 174 65 Z") +
           z("M93.500 194 Q106 194 113 199 Q105 203 92.800 203 Z") + z("M92.500 211 Q105 211 112 217 Q104 221 93.500 220 Z") + z("M206.500 194 Q194 194 187 199 Q195 203 207.200 203 Z") + z("M207.500 211 Q195 211 188 217 Q196 221 206.500 220 Z") +
-          z("M236.500 191 Q245 186 252.800 187 L253 197 Q245 197 238.500 201 Z") + z("M239.500 207 Q246 204 251.500 205 Q250 213 246 218 Q242 214 238.500 215 Z") },
+          z("M236.500 191 Q245 186 252.800 187 L253 197 Q245 197 238.500 201 Z") + z("M239.500 207 Q246 204 251.500 205 Q250 213 246 218 Q242 214 238.500 215 Z") + wallHearts },
       { k: "quilt", n: "Quilt block", d: quilt },
       { k: "sweater", n: "Fair Isle sweater", d: fair },
       { k: "mushroom", n: "Mushrooms", d: BG + z("M-6 258 Q150 240 306 258 V306 H-6 Z") + z("M118 172 Q110 250 102 264 H198 Q190 250 182 172 Q150 184 118 172 Z") + z("M56 170 Q56 66 150 66 Q244 66 244 170 Q150 190 56 170 Z") +
