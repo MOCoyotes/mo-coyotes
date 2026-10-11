@@ -5707,10 +5707,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           z("M34 250 C14 236 22 221 34 231 C46 221 54 236 34 250 Z") + z("M266 250 C246 236 254 221 266 231 C278 221 286 236 266 250 Z") +
           dot(118, 137, 3.400) + dot(182, 137, 3.400) + '<circle cx="116.500" cy="134.500" r="1.300" fill="#FFFDF4" pointer-events="none"/><circle cx="180.500" cy="134.500" r="1.300" fill="#FFFDF4" pointer-events="none"/>' +
           ln("M150 181 V191 M150 191 Q140 202 127 196 M150 191 Q160 202 173 196 M150 200 V211 M104 114 Q116 106 130 113 M170 113 Q184 106 196 114") +
-          '<path class="cd" style="stroke-width:1.600" d="M150 249.500 c-2.300 -2.900 -6.200 -.500 -3.900 2.700 l3.900 3.800 l3.900 -3.800 c2.300 -3.200 -1.600 -5.600 -3.900 -2.700 Z"/>' +
           '<g class="cf"><circle cx="131" cy="183" r="1.300"/><circle cx="137" cy="188" r="1.300"/><circle cx="128" cy="190" r="1.300"/><circle cx="169" cy="183" r="1.300"/><circle cx="163" cy="188" r="1.300"/><circle cx="172" cy="190" r="1.300"/></g>' +
           // the two front legs: an arch each, so they can be a different color from the chest
-          z("M98 308 Q96 264 116 262 Q136 264 134 308 Z") + z("M166 308 Q164 264 184 262 Q204 264 202 308 Z") }
+          z("M98 308 Q96 264 116 262 Q136 264 134 308 Z") + z("M166 308 Q164 264 184 262 Q204 264 202 308 Z") +
+          // the heart on the collar tag (to color) and a twinkle above the puppy's head
+          '<path class="cz" style="stroke-width:1.500" d="M150 249 c-2.600 -3.300 -7 -.600 -4.400 3 l4.400 4.300 l4.400 -4.300 c2.600 -3.600 -1.800 -6.300 -4.400 -3 Z"/>' + z("M150 26 l5 13 l13 5 l-13 5 l-5 13 l-5 -13 l-13 -5 l13 -5 Z") }
     ];
     var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
     var at = 0, color = COLORS[0][0];
