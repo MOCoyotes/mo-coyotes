@@ -647,7 +647,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .color-save button { flex: none; font: 800 .9rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em 1em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
 .color-save #colorTape { background: var(--marigold); color: var(--ink); }
 .ball-wrap.sketch-wrap { width: min(430px, 94vw, calc((100dvh - 190px) * .82)); min-width: 240px; gap: 10px; padding: 20px 20px 14px 34px; background: #F3E3C3 radial-gradient(rgba(138, 90, 69, .16) 1px, transparent 1.4px) 0 0 / 14px 14px; }
-.sketch-wrap::before { content: ""; position: absolute; left: 9px; top: 18px; bottom: 18px; width: 14px; background: radial-gradient(circle at 7px 9px, #3B2620 0 4px, transparent 4.5px) 0 0 / 14px 22px repeat-y; }
+.ball-wrap.sketch-wrap { margin-left: 16px; box-shadow: 5px 5px 0 0 #FBF1DA, 5px 5px 0 2.5px var(--ink), 10px 10px 0 0 #FBF1DA, 10px 10px 0 2.5px var(--ink), 17px 17px 0 0 var(--marigold), 17px 17px 0 3px var(--ink); }
+.sketch-wrap::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 12px; background: radial-gradient(circle at 6px 13px, #3B2620 0 4.5px, transparent 5px) 0 0 / 12px 26px repeat-y; }
+.sketch-wrap::after { content: ""; position: absolute; left: -17px; top: 0; bottom: 0; width: 34px; pointer-events: none; background: radial-gradient(ellipse 15px 8px at 17px 13px, transparent 0 62%, #5A1F0E 64% 86%, transparent 90%) 0 0 / 34px 26px repeat-y; clip-path: inset(0 0 0 0); }
 .sketch-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); }
 .sketch-art { position: relative; width: 100%; transform: rotate(-1.5deg); }
 .sketch-art svg { display: block; width: 100%; height: auto; background: #FFFDF4; border: 2px solid var(--ink); box-shadow: 3px 4px 0 rgba(0,0,0,.2); }
@@ -657,7 +659,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .sketch-art svg .cz { fill: #FFFFFF; stroke: #5A1F0E; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; } .sketch-art svg .cd { fill: none; stroke: #5A1F0E; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; } .sketch-art svg .cf { fill: #5A1F0E; }
 .sketch-sign { margin: 4px 0 0; text-align: center; font: 400 clamp(1.1rem, 4.6vw, 1.5rem)/1.2 var(--font-crayon); color: #3B2620; }
 .sketch-empty { margin: 30px 0; text-align: center; font: 400 1.3rem/1.35 var(--font-crayon); color: #8A5A45; }
-.sketch-wrap .scrap-nav { width: 100%; } .sketch-wrap .scrap-nav #sketchRemove { background: #FFFDF4; color: var(--ink); font-size: .8rem; }
+.sketch-wrap .scrap-nav { width: 100%; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -1839,11 +1841,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <a class="hot hot-sketch" href="#sketchbook" role="button" aria-label="Sketchbook on the rug: see the colored pages taped inside">
           <g class="glow" stroke-linejoin="round" stroke-linecap="round">
             <ellipse class="f-ink" cx="292" cy="521" rx="46" ry="5" opacity=".18"/>
+            <path class="f-marigold s-ink" stroke-width="2.2" d="M264 527 L338 522 L338 526 L265 531 Z"/>
+            <path fill="#FFFDF4" class="s-ink" stroke-width="2" d="M262 520 L336 515 L338 522 L264 527 Z"/>
+            <path class="s-ink" stroke-width="1" fill="none" opacity=".6" d="M263 522.300 L336.700 517.300 M263.500 524.600 L337.400 519.600"/>
             <path class="f-marigold s-ink" stroke-width="2.5" d="M252 487 L322 483 L336 515 L262 520 Z"/>
             <path fill="#FFFDF4" class="s-ink" stroke-width="1.8" d="M274 492 L312 490 L317 502 L278 504 Z"/>
             <path class="s-ink" stroke-width="1.3" fill="none" d="M281 496 L309 494.500 M283 500 L303 499"/>
             <path class="f-hot s-ink" stroke-width="1.4" d="M306 509 c-3.500 -4 -9 -1 -5.500 4 l5.500 5 l5.500 -5 c3.500 -5 -2 -8 -5.500 -4 Z"/>
-            <g fill="none" class="s-ink" stroke-width="2.2"><path d="M254 491 q-6 1 -5 4 M256 496 q-6 1 -5 4 M258 501 q-6 1 -5 4 M259.500 506 q-6 1 -5 4 M261 511 q-6 1 -5 4 M262.500 516 q-6 1 -5 4"/></g>
+            <g fill="none" class="s-ink" stroke-width="2.2"><path d="M253.500 488.500 q-7 1 -5 5 M254.800 492.800 q-7 1 -5 5 M256.100 497.100 q-7 1 -5 5 M257.400 501.400 q-7 1 -5 5 M258.700 505.700 q-7 1 -5 5 M260 510 q-7 1 -5 5 M261.300 514.300 q-7 1 -5 5 M262.600 518.600 q-7 1.500 -4 6 M264 523 q-6 1.500 -3 6"/></g>
           </g>
           <g class="tag"><rect x="224" y="446" width="136" height="28" rx="14"/><text x="292" y="465" text-anchor="middle">SKETCHBOOK</text></g>
         </a>
@@ -3342,7 +3347,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <div id="sketchBody"></div>
     <div class="scrap-nav">
       <button type="button" id="sketchPrev" aria-label="Previous page">‹ Back</button>
-      <button type="button" id="sketchRemove">Take it out</button>
+      <span id="sketchNum"></span>
       <button type="button" id="sketchNext" aria-label="Next page">Next ›</button>
     </div>
   </div>
@@ -5718,7 +5723,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         sketchBody.appendChild(art); sketchBody.appendChild(sign);
       }
       document.getElementById("sketchPrev").disabled = skAt <= 0; document.getElementById("sketchNext").disabled = skAt >= sk.length - 1;
-      document.getElementById("sketchRemove").hidden = !e;
+      document.getElementById("sketchNum").textContent = sk.length ? "Page " + (skAt + 1) + " of " + sk.length : "";
     }
     function openSk(i) { skAt = Math.max(0, Math.min(sk.length - 1, i)); drawSk(); if (sketchDialog.showModal) sketchDialog.showModal(); else sketchDialog.setAttribute("open", ""); }
     document.getElementById("colorTape").addEventListener("click", function () {
@@ -5730,7 +5735,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
     document.getElementById("sketchPrev").addEventListener("click", function () { if (skAt > 0) { skAt--; drawSk(); } });
     document.getElementById("sketchNext").addEventListener("click", function () { if (skAt < sk.length - 1) { skAt++; drawSk(); } });
-    document.getElementById("sketchRemove").addEventListener("click", function () { sk.splice(skAt, 1); keepSk(); skAt = Math.max(0, Math.min(sk.length - 1, skAt)); drawSk(); });
     document.querySelectorAll(".hot-sketch").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); openSk(sk.length - 1); }); });
     document.getElementById("sketchClose").addEventListener("click", function () { sketchDialog.close(); });
     sketchDialog.addEventListener("click", function (e) { if (e.target === sketchDialog) sketchDialog.close(); });
