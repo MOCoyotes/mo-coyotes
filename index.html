@@ -5680,9 +5680,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           z("M76 112 H164 V170 H76 Z") + z("M76 112 H164 V126 Q154 138 144 126 Q134 116 124 128 Q114 140 104 126 Q94 116 84 128 Q80 132 76 126 Z") + zc(94, 152, 5) + zc(120, 156, 5) + zc(146, 152, 5) +
           z("M92 82 h9 v30 h-9 Z") + z("M115.500 78 h9 v34 h-9 Z") + z("M139 82 h9 v30 h-9 Z") +
           z("M96.500 62 Q105 72 96.500 82 Q88 72 96.500 62 Z") + z("M120 58 Q128.500 68 120 78 Q111.500 68 120 58 Z") + z("M143.500 62 Q152 72 143.500 82 Q135 72 143.500 62 Z") +
-          z("M214 206 H282 L273 254 H223 Z") + z("M208 206 Q204 186 226 184 Q224 166 248 166 Q272 166 270 184 Q292 186 288 206 Z") + z("M228 172 Q228 152 248 150 Q268 152 268 172 Q248 180 228 172 Z") + zc(248, 141, 9.500) +
-          zc(226, 196, 3.600) + zc(248, 190, 3.600) + zc(270, 196, 3.600) +
-          ln("M231 208 L235 252 M248 208 V253 M265 208 L261 252 M248 132 Q251 123 260 121") + z("M214 118 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") }
+          z("M214 206 H282 L273 254 H223 Z") + // frosting piped in a swirl: four tilted rings stacked up to a little curled tip
+          '<ellipse class="cz" cx="248" cy="199" rx="42" ry="13" transform="rotate(-9 248 199)"/>' + '<ellipse class="cz" cx="248" cy="184" rx="33" ry="11.500" transform="rotate(-9 248 184)"/>' +
+          '<ellipse class="cz" cx="248" cy="171" rx="24" ry="10" transform="rotate(-9 248 171)"/>' + '<ellipse class="cz" cx="248" cy="160" rx="15" ry="8" transform="rotate(-9 248 160)"/>' +
+          z("M240 157 Q240 143 252 140 Q260 140 258 147 Q252 147 254 156 Q247 160 240 157 Z") + zc(262, 136, 8.500) +
+          zc(222, 203, 3.400) + zc(246, 204, 3.400) + zc(272, 196, 3.400) +
+          ln("M231 208 L235 252 M248 208 V253 M265 208 L261 252 M263 128 Q266 119 275 117 M210 197 Q226 190 244 190 M220 181 Q234 176 250 176 M228 168 Q238 164 250 164") + z("M214 118 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") }
     ];
     var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
     var at = 0, color = COLORS[0][0];
