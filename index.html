@@ -5671,6 +5671,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var t0 = gi / 8, t1 = (gi + 1) / 8;
       gores += z("M" + qd(118, 150, 182, t0) + " " + qd(125, 134, 125, t0) + " L" + qd(118, 150, 182, t1) + " " + qd(125, 134, 125, t1) + " L" + qd(77, 150, 223, t1) + " " + qd(230, 250, 230, t1) + " L" + qd(77, 150, 223, t0) + " " + qd(230, 250, 230, t0) + " Z");
     }
+    // a strip whose top edge follows a curve (a -> b, bending toward c) and whose bottom edge is a row of n scallops
+    var scal = function (ax, ay, cx, cy, bx, by, n, ox, oy) {
+      var P = [], i; for (i = 0; i <= n; i++) P.push([+qd(ax, cx, bx, i / n), +qd(ay, cy, by, i / n)]);
+      var d = "M" + P[0][0] + " " + P[0][1] + " Q" + cx + " " + cy + " " + bx + " " + by;
+      for (i = n; i > 0; i--) d += " Q" + ((P[i][0] + P[i - 1][0]) / 2 + ox).toFixed(1) + " " + ((P[i][1] + P[i - 1][1]) / 2 + oy).toFixed(1) + " " + P[i - 1][0] + " " + P[i - 1][1];
+      return z(d + " Z");
+    };
     var heartAt = function (x, y) { return z("M" + x + " " + (y + 12) + " C" + (x - 20) + " " + (y - 3) + " " + (x - 11) + " " + (y - 17) + " " + x + " " + (y - 6) + " C" + (x + 11) + " " + (y - 17) + " " + (x + 20) + " " + (y - 3) + " " + x + " " + (y + 12) + " Z"); };
     var starAt = function (x, y, r) { var k = r * .38; return z("M" + x + " " + (y - r) + " l" + k + " " + (r - k) + " l" + (r - k) + " " + k + " l" + (-(r - k)) + " " + k + " l" + (-k) + " " + (r - k) + " l" + (-k) + " " + (-(r - k)) + " l" + (-(r - k)) + " " + (-k) + " l" + (r - k) + " " + (-k) + " Z"); };
     var dressPage = BG +
@@ -5685,7 +5692,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       z("M118 112 Q150 121 182 112 L182 125 Q150 134 118 125 Z") + z("M150 122 L131 111 L133 134 Z") + z("M150 122 L169 111 L167 134 Z") + zc(150, 122, 5.5) + zc(150, 92, 3.6) + zc(150, 104, 3.6) +
       '</g>' +
       heartAt(48, 108) + heartAt(252, 108) + heartAt(40, 258) + heartAt(260, 258) + heartAt(78, 34) + heartAt(222, 34) +
-      starAt(34, 44, 15) + starAt(266, 44, 15) + starAt(34, 184, 14) + starAt(266, 184, 14) + starAt(74, 156, 9) + starAt(226, 156, 9);
+      starAt(34, 44, 15) + starAt(266, 44, 15) + starAt(34, 184, 14) + starAt(266, 184, 14) + starAt(74, 156, 9) + starAt(226, 156, 9) +
+      // scalloped trim along the hem and the two sleeve edges (added last so earlier colors keep their places)
+      '<g transform="translate(150 286) scale(1.08) translate(-150 -268)">' + scal(72, 247, 150, 268, 228, 247, 11, 0, 13) + scal(99, 82, 111, 94, 124, 86, 3, -3, 10) + scal(201, 82, 189, 94, 176, 86, 3, 3, 10) + '</g>';
     var rays = "";
     for (var ri = 0; ri < 8; ri++) {
       var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
