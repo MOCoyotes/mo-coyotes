@@ -631,7 +631,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   .hint, .room-foot { font-size: .82rem; } .room-foot { margin-top: 4px; }
 }
 .ball-wrap.color-wrap { width: min(470px, 94vw, calc((100dvh - 240px) * 1)); min-width: 250px; gap: 9px; padding: 18px 18px 14px; }
-.color-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); }
+.color-wrap .ball-prompt { margin: 0; font-size: clamp(1rem, 4vw, 1.35rem); text-transform: uppercase; }
 .color-page { display: block; width: 100%; height: auto; background: #FFFDF4; border: 3px solid var(--ink); border-radius: 10px; touch-action: manipulation; }
 .color-page .cz { fill: #FFFFFF; stroke: #5A1F0E; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; cursor: inherit; }
 .color-page .cz:hover { filter: brightness(.96); }
@@ -650,7 +650,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .ball-wrap.sketch-wrap { margin-left: 16px; box-shadow: 5px 5px 0 0 #FBF1DA, 5px 5px 0 2.5px var(--ink), 10px 10px 0 0 #FBF1DA, 10px 10px 0 2.5px var(--ink), 17px 17px 0 0 var(--marigold), 17px 17px 0 3px var(--ink); }
 .sketch-wrap::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 12px; background: radial-gradient(circle at 6px 13px, #3B2620 0 4.5px, transparent 5px) 0 0 / 12px 26px repeat-y; }
 .sketch-wrap::after { content: ""; position: absolute; left: -17px; top: 0; bottom: 0; width: 34px; pointer-events: none; background: radial-gradient(ellipse 15px 8px at 17px 13px, transparent 0 62%, #5A1F0E 64% 86%, transparent 90%) 0 0 / 34px 26px repeat-y; clip-path: inset(0 0 0 0); }
-.sketch-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); }
+.sketch-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); text-transform: uppercase; }
 .sketch-art { position: relative; width: 100%; transform: rotate(-1.5deg); }
 .sketch-art svg { display: block; width: 100%; height: auto; background: #FFFDF4; border: 2px solid var(--ink); box-shadow: 3px 4px 0 rgba(0,0,0,.2); }
 .sketch-art::before, .sketch-art::after { content: ""; position: absolute; top: -9px; width: 74px; height: 22px; opacity: .9; z-index: 1; }
