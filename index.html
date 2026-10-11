@@ -5655,19 +5655,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       [[80, 214, -25], [104, 218, 20], [128, 214, -15], [152, 219, 30], [176, 214, -30], [200, 218, 15], [222, 212, -20], [104, 166, 25], [128, 162, -20], [152, 167, 15], [176, 162, -30], [198, 166, 25], [132, 119, -20], [152, 121, 25], [171, 118, -15]].map(jimmy).join("") +
       z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M270 122 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M262 68 C234 48 246 28 262 42 C278 28 290 48 262 68 Z") + z("M42 60 C22 46 30 31 42 41 C54 31 62 46 42 60 Z") +
       ln("M150 64 Q152 51 163 47") + '<path class="cd" style="stroke-width:1.4" d="M146 70 Q148 67 151 67"/>';
-    // a party dress on a hanger and a pair of high heels
-    var pump = z("M216 214 Q224 236 244 238 Q262 240 272 248 Q286 250 290 258 Q286 264 270 263 Q248 262 236 252 Q230 248 227 248 L224 268 L216 268 Q212 240 216 214 Z") + zc(268, 247, 5.5) + ln("M222 222 Q230 240 246 242");
-    var dressPage = BG + ze(246, 268, 52, 8) +
-      ln("M125 44 Q124 30 133 29 Q142 30 139 38 M125 44 L90 64 M125 44 L160 64") +
-      z("M98 64 Q76 60 74 82 Q86 94 99 86 Z") + z("M152 64 Q174 60 176 82 Q164 94 151 86 Z") +
-      z("M96 64 L112 64 Q125 78 138 64 L154 64 L157 112 Q125 121 93 112 Z") +
-      z("M93 124 Q125 133 157 124 L198 230 Q125 250 52 230 Z") + z("M52 230 Q125 250 198 230 L203 247 Q125 268 47 247 Z") +
-      z("M93 112 Q125 121 157 112 L157 125 Q125 134 93 125 Z") + z("M125 122 L106 111 L108 134 Z") + z("M125 122 L144 111 L142 134 Z") + zc(125, 122, 5.5) +
-      zc(108, 160, 6) + zc(142, 164, 6) + zc(125, 192, 6) + zc(92, 204, 6) + zc(160, 206, 6) + zc(125, 226, 6) + zc(72, 226, 5) + zc(178, 226, 5) +
-      zc(125, 92, 3.6) + zc(125, 104, 3.6) +
-      '<g transform="translate(-10,-30)">' + pump + '</g>' + pump +
-      z("M262 70 C240 54 250 38 262 49 C274 38 284 54 262 70 Z") + z("M36 34 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5 Z") + z("M252 112 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M32 132 C16 121 23 109 32 117 C41 109 48 121 32 132 Z") +
-      ln("M70 236 l-3 14 M96 242 l-2 15 M125 245 v16 M154 242 l2 15 M180 236 l3 14");
+    // a party dress on a hanger, centered: the skirt is made of stripes that widen from the waistband down to the hem
+    var qd = function (a, c, b, t) { return ((1 - t) * (1 - t) * a + 2 * (1 - t) * t * c + t * t * b).toFixed(1); }, gores = "";
+    for (var gi = 0; gi < 8; gi++) {
+      var t0 = gi / 8, t1 = (gi + 1) / 8;
+      gores += z("M" + qd(118, 150, 182, t0) + " " + qd(125, 134, 125, t0) + " L" + qd(118, 150, 182, t1) + " " + qd(125, 134, 125, t1) + " L" + qd(77, 150, 223, t1) + " " + qd(230, 250, 230, t1) + " L" + qd(77, 150, 223, t0) + " " + qd(230, 250, 230, t0) + " Z");
+    }
+    var heartAt = function (x, y) { return z("M" + x + " " + (y + 12) + " C" + (x - 20) + " " + (y - 3) + " " + (x - 11) + " " + (y - 17) + " " + x + " " + (y - 6) + " C" + (x + 11) + " " + (y - 17) + " " + (x + 20) + " " + (y - 3) + " " + x + " " + (y + 12) + " Z"); };
+    var starAt = function (x, y, r) { var k = r * .38; return z("M" + x + " " + (y - r) + " l" + k + " " + (r - k) + " l" + (r - k) + " " + k + " l" + (-(r - k)) + " " + k + " l" + (-k) + " " + (r - k) + " l" + (-k) + " " + (-(r - k)) + " l" + (-(r - k)) + " " + (-k) + " l" + (r - k) + " " + (-k) + " Z"); };
+    var dressPage = BG +
+      ln("M150 44 Q149 30 158 29 Q167 30 164 38 M150 44 L115 64 M150 44 L185 64") +
+      z("M123 64 Q101 60 99 82 Q111 94 124 86 Z") + z("M177 64 Q199 60 201 82 Q189 94 176 86 Z") +
+      z("M121 64 L137 64 Q150 78 163 64 L179 64 L182 112 Q150 121 118 112 Z") + gores + z("M77 230 Q150 250 223 230 L228 247 Q150 268 72 247 Z") +
+      z("M118 112 Q150 121 182 112 L182 125 Q150 134 118 125 Z") + z("M150 122 L131 111 L133 134 Z") + z("M150 122 L169 111 L167 134 Z") + zc(150, 122, 5.5) + zc(150, 92, 3.6) + zc(150, 104, 3.6) +
+      heartAt(48, 100) + heartAt(252, 100) + heartAt(40, 252) + heartAt(260, 252) + heartAt(92, 30) + heartAt(208, 30) +
+      starAt(38, 40, 16) + starAt(262, 40, 16) + starAt(34, 176, 14) + starAt(266, 176, 14) + starAt(74, 150, 9) + starAt(226, 150, 9) + starAt(150, 284, 9) +
+      ln("M95 236 l-3 14 M121 242 l-2 15 M150 245 v16 M179 242 l2 15 M205 236 l3 14");
     var rays = "";
     for (var ri = 0; ri < 8; ri++) {
       var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
@@ -5726,7 +5729,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           z("M98 308 Q96 264 116 262 Q136 264 134 308 Z") + z("M166 308 Q164 264 184 262 Q204 264 202 308 Z") +
           // the heart on the collar tag (to color) and a twinkle above the puppy's head
           '<path class="cz" style="stroke-width:1.500" d="M150 249 c-2.600 -3.300 -7 -.600 -4.400 3 l4.400 4.300 l4.400 -4.300 c2.600 -3.600 -1.800 -6.300 -4.400 -3 Z"/>' + z("M150 26 l5 13 l13 5 l-13 5 l-5 13 l-5 -13 l-13 -5 l13 -5 Z") },
-      { k: "dress", n: "Dress and high heels", d: dressPage }
+      { k: "dress", n: "Dress", d: dressPage }
     ];
     var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
     var at = 0, color = COLORS[0][0];
