@@ -5605,7 +5605,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
   }
   if (dogBed) dogBed.addEventListener("click", function () {
-    dogBed.classList.remove("glare"); void dogBed.getBoundingClientRect(); dogBed.classList.add("glare"); growl();
+    dogBed.classList.remove("glare"); void dogBed.getBoundingClientRect(); dogBed.classList.add("glare"); bark();
     clearTimeout(dogTimer); dogTimer = setTimeout(function () { dogBed.classList.remove("glare"); }, 2200);
   });
 
