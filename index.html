@@ -5642,6 +5642,19 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var x = p[0], y = p[1];
       wallHearts += z("M" + x + " " + (y + 10) + " C" + (x - 17) + " " + (y - 3) + " " + (x - 9) + " " + (y - 14) + " " + x + " " + (y - 5) + " C" + (x + 9) + " " + (y - 14) + " " + (x + 17) + " " + (y - 3) + " " + x + " " + (y + 10) + " Z");
     });
+    // a three-tier cake on a stand: drippy frosting on every tier, jimmies (rod sprinkles), a cherry on top
+    var drip = function (x0, x1, y, n) {
+      var w = (x1 - x0) / n, d = "M" + x0 + " " + y + " H" + x1 + " V" + (y + 11);
+      for (var i = n; i > 0; i--) { var xr = x0 + i * w; d += " Q" + (xr - w * .25).toFixed(1) + " " + (y + (i % 2 ? 25 : 19)) + " " + (xr - w * .5).toFixed(1) + " " + (y + 12) + " Q" + (xr - w * .75).toFixed(1) + " " + (y + 3) + " " + (xr - w).toFixed(1) + " " + (y + 11); }
+      return z(d + " Z");
+    };
+    var jimmy = function (j) { return '<rect class="cz" style="stroke-width:1.6" x="' + (j[0] - 6) + '" y="' + (j[1] - 2.4) + '" width="12" height="4.8" rx="2.4" transform="rotate(' + j[2] + ' ' + j[0] + ' ' + j[1] + ')"/>'; };
+    var cake = BG + z("M-6 252 H306 V306 H-6 Z") + ze(150, 264, 40, 7) + z("M140 238 H160 L164 262 H136 Z") + ze(150, 234, 106, 10) +
+      z("M62 178 H238 V226 Q150 240 62 226 Z") + drip(62, 238, 178, 8) + z("M88 130 H212 V178 H88 Z") + drip(88, 212, 130, 6) + z("M114 86 H186 V130 H114 Z") + drip(114, 186, 86, 4) +
+      z("M134 86 Q136 74 150 74 Q164 74 166 86 Z") + zc(150, 66, 11) +
+      [[80, 214, -25], [104, 218, 20], [128, 214, -15], [152, 219, 30], [176, 214, -30], [200, 218, 15], [222, 212, -20], [104, 166, 25], [128, 162, -20], [152, 167, 15], [176, 162, -30], [198, 166, 25], [132, 119, -20], [152, 121, 25], [171, 118, -15]].map(jimmy).join("") +
+      z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M270 122 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M262 68 C234 48 246 28 262 42 C278 28 290 48 262 68 Z") + z("M42 60 C22 46 30 31 42 41 C54 31 62 46 42 60 Z") +
+      ln("M150 55 Q152 42 163 38") + '<path class="cd" style="stroke-width:1.4" d="M146 61 Q148 58 151 58"/>';
     var rays = "";
     for (var ri = 0; ri < 8; ri++) {
       var ra = ri * Math.PI / 4, rc = Math.cos(ra), rs = Math.sin(ra), rp = function (r, w) { return (236 + rc * r - rs * w).toFixed(1) + " " + (64 + rs * r + rc * w).toFixed(1); };
@@ -5674,21 +5687,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { k: "sewing", n: "Sewing machine", d: BG + z("M14 246 H286 V266 H14 Z") + zc(250, 126, 22) + z("M118 60 H152 V92 H118 Z") + z("M38 206 Q90 190 150 206 L150 216 H38 Z") + z("M46 214 H256 Q262 214 262 220 V246 H40 V220 Q40 214 46 214 Z") +
           z("M240 214 V110 Q240 92 222 92 H88 Q70 92 70 110 V166 H112 V134 H196 V214 Z") + z("M84 166 H98 V186 H84 Z") + zc(218, 114, 11) + z("M132 106 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z") +
           ln("M91 186 V204 M118 68 H152 M118 76 H152 M118 84 H152 M135 60 V52 Q160 40 196 52 Q214 60 214 92") + dot(250, 126, 4) },
-      { k: "cake", n: "Cake and cupcake", d: BG + z("M-6 252 H306 V306 H-6 Z") + ze(120, 264, 36, 7) + z("M110 236 H130 L134 262 H106 Z") + ze(120, 232, 90, 10) +
-          z("M48 170 H192 V224 Q120 238 48 224 Z") + z("M48 170 H192 V186 Q182 198 172 186 Q162 176 152 188 Q142 200 132 186 Q122 176 112 188 Q102 200 92 186 Q82 176 72 188 Q62 200 48 184 Z") +
-          zc(66, 212, 6) + zc(96, 216, 6) + zc(126, 217, 6) + zc(156, 215, 6) + zc(180, 210, 5) +
-          z("M76 112 H164 V170 H76 Z") + z("M76 112 H164 V126 Q154 138 144 126 Q134 116 124 128 Q114 140 104 126 Q94 116 84 128 Q80 132 76 126 Z") + zc(94, 152, 5) + zc(120, 156, 5) + zc(146, 152, 5) +
-          z("M92 82 h9 v30 h-9 Z") + z("M115.500 78 h9 v34 h-9 Z") + z("M139 82 h9 v30 h-9 Z") +
-          z("M96.500 62 Q105 72 96.500 82 Q88 72 96.500 62 Z") + z("M120 58 Q128.500 68 120 78 Q111.500 68 120 58 Z") + z("M143.500 62 Q152 72 143.500 82 Q135 72 143.500 62 Z") +
-          // frosting piped in three sweeping swirls up to a curled tip, a cherry on top, and a scalloped paper wrapper
-          z("M204 208 Q198 190 220 187 Q262 185 291 175 Q300 192 291 208 Z") + z("M212 189 Q208 172 229 170 Q260 168 283 157 Q292 170 287 181 Q262 187 222 188 Z") +
-          z("M222 171 Q221 156 240 154 Q258 152 273 141 Q281 152 279 162 Q260 170 232 171 Z") + z("M236 155 Q235 140 250 136 Q265 133 267 142 Q259 144 263 150 Q252 157 240 156 Z") + zc(246, 127, 9.500) +
-          z("M212 207 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 L273 254 H221 Z") +
-          ln("M226 208 L230 253 M240 208 L242 253 M254 208 L254 253 M268 208 L264 253 M246 118 Q245 106 254 100") + z("M206 112 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") +
-          // jimmies (little rod sprinkles) on the cupcake frosting, and a heart in the top right corner
-          [[224, 198, -25], [247, 200, 18], [270, 193, -35], [236, 180, 30], [262, 175, -15], [250, 163, 22], [282, 186, 40]].map(function (j) {
-            return '<rect class="cz" style="stroke-width:1.6" x="' + (j[0] - 5.5) + '" y="' + (j[1] - 2.2) + '" width="11" height="4.4" rx="2.2" transform="rotate(' + j[2] + ' ' + j[0] + ' ' + j[1] + ')"/>';
-          }).join("") + z("M262 68 C234 48 246 28 262 42 C278 28 290 48 262 68 Z") }
+      { k: "cake", n: "Cake", d: cake }
     ];
     var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
     var at = 0, color = COLORS[0][0];
