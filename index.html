@@ -2118,18 +2118,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-rust s-ink" stroke-width="2" x="806" y="240" width="15" height="86" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M808 248 H819 M808 312 H819"/><rect class="f-trim s-ink" stroke-width="2" x="821" y="254" width="15" height="72" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M823 262 H834 M823 312 H834"/><rect class="f-hot s-ink" stroke-width="2" x="836" y="241" width="13" height="85" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M838 249 H847 M838 312 H847"/><rect class="f-rust s-ink" stroke-width="2" x="849" y="253" width="15" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M851 261 H862 M851 312 H862"/><rect class="f-marigold s-ink" stroke-width="2" x="864" y="259" width="18" height="67" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M866 267 H880 M866 312 H880"/><rect class="f-orange s-ink" stroke-width="2" x="882" y="248" width="15" height="78" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M884 256 H895 M884 312 H895"/><rect class="f-rust s-ink" stroke-width="2" x="897" y="253" width="18" height="73" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M899 261 H913 M899 312 H913"/>
           <rect class="f-hot s-ink" stroke-width="2" x="924" y="361" width="14" height="95" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M926 369 H936 M926 442 H936"/><rect class="f-marigold s-ink" stroke-width="2" x="938" y="385" width="12" height="71" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M940 393 H948 M940 442 H948"/><rect class="f-marigold s-ink" stroke-width="2" x="950" y="362" width="17" height="94" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M952 370 H965 M952 442 H965"/><rect class="f-trim s-ink" stroke-width="2" x="967" y="380" width="12" height="76" rx="1.5"/><path class="s-ink" stroke-width="1.2" opacity=".45" d="M969 388 H977 M969 442 H977"/>
         </g>
-        <!-- a fancy gold frame on the shelf: the cat on the black and white tile floor (click to see it big) -->
-        <a class="hot hot-qf" href="#photo" role="button" data-plain="1" data-big="images/featured/cat-frame-big.jpg" data-cap="" aria-label="Gold framed photo of Coyote's cat on the tile floor, click to make it bigger">
+        <!-- a plain framed photo on the shelf, turned a little so the stand shows behind: the cat on the black and white tile floor (click to see it big) -->
+        <a class="hot hot-qf" href="#photo" role="button" data-plain="1" data-big="images/featured/cat-frame-big.jpg" data-cap="" aria-label="Framed photo of Coyote's cat on the tile floor, click to make it bigger">
           <g class="glow" stroke-linejoin="round">
-            <path fill="#B9822E" class="s-ink" stroke-width="2" d="M300 326 L312 300 L318 326 Z"/>
-            <rect fill="#D9A441" class="s-ink" stroke-width="2.5" x="248" y="234" width="70" height="92" rx="5"/>
-            <rect fill="none" stroke="#F8DC8A" stroke-width="2.2" x="252.500" y="238.500" width="61" height="83" rx="3"/>
-            <rect fill="none" stroke="#B9822E" stroke-width="1.4" x="256" y="242" width="54" height="76" rx="2"/>
-            <g fill="#F8DC8A" class="s-ink" stroke-width="1.3"><circle cx="250.500" cy="236.500" r="4.500"/><circle cx="315.500" cy="236.500" r="4.500"/><circle cx="250.500" cy="323.500" r="4.500"/><circle cx="315.500" cy="323.500" r="4.500"/></g>
-            <path fill="#F8DC8A" class="s-ink" stroke-width="1.6" d="M269 235 Q271 224 278 229 Q283 219 288 229 Q295 224 297 235 Z"/><circle fill="#E0218A" class="s-ink" stroke-width="1.2" cx="283" cy="230.500" r="2.800"/>
-            <g fill="#F8DC8A" class="s-ink" stroke-width="1.1"><circle cx="283" cy="322.500" r="2.600"/><circle cx="250.500" cy="280" r="2.600"/><circle cx="315.500" cy="280" r="2.600"/></g>
-            <rect class="f-ink" x="258.500" y="244.500" width="49" height="71"/>
-            <image href="images/featured/cat-frame.jpg" x="260" y="246" width="46" height="68" preserveAspectRatio="xMidYMid slice"><title>Coyote's cat on the black and white tile floor</title></image>
+            <path fill="#8E5530" class="s-ink" stroke-width="2" d="M296 326 L312 262 L319 262 L324 326 Z"/>
+            <g transform="translate(250 236) skewY(5)">
+              <rect class="s-ink" style="fill: var(--frame)" stroke-width="2.5" x="0" y="0" width="60" height="84" rx="2"/>
+              <rect fill="#FFFDF4" class="s-ink" stroke-width="1.4" x="7" y="7" width="46" height="70"/>
+              <image href="images/featured/cat-frame.jpg" x="10" y="10" width="40" height="64" preserveAspectRatio="xMidYMid slice"><title>Coyote's cat on the black and white tile floor</title></image>
+              <rect fill="none" class="s-ink" stroke-width="1.2" x="10" y="10" width="40" height="64"/>
+            </g>
           </g>
         </a>
         <!-- top middle: two board game boxes + a pack of cards; a little coffee mug (decor) -->
