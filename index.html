@@ -5684,7 +5684,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           z("M204 208 Q198 190 220 187 Q262 185 291 175 Q300 192 291 208 Z") + z("M212 189 Q208 172 229 170 Q260 168 283 157 Q292 170 287 181 Q262 187 222 188 Z") +
           z("M222 171 Q221 156 240 154 Q258 152 273 141 Q281 152 279 162 Q260 170 232 171 Z") + z("M236 155 Q235 140 250 136 Q265 133 267 142 Q259 144 263 150 Q252 157 240 156 Z") + zc(246, 127, 9.500) +
           z("M212 207 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 q7 -8 14 0 L273 254 H221 Z") +
-          ln("M226 208 L230 253 M240 208 L242 253 M254 208 L254 253 M268 208 L264 253 M246 118 Q245 106 254 100") + z("M214 118 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") }
+          ln("M226 208 L230 253 M240 208 L242 253 M254 208 L254 253 M268 208 L264 253 M246 118 Q245 106 254 100") + z("M206 112 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") + z("M30 92 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z") +
+          // jimmies (little rod sprinkles) on the cupcake frosting, and a heart in the top right corner
+          [[224, 198, -25], [247, 200, 18], [270, 193, -35], [236, 180, 30], [262, 175, -15], [250, 163, 22], [282, 186, 40]].map(function (j) {
+            return '<rect class="cz" style="stroke-width:1.6" x="' + (j[0] - 5.5) + '" y="' + (j[1] - 2.2) + '" width="11" height="4.4" rx="2.2" transform="rotate(' + j[2] + ' ' + j[0] + ' ' + j[1] + ')"/>';
+          }).join("") + z("M262 68 C234 48 246 28 262 42 C278 28 290 48 262 68 Z") }
     ];
     var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
     var at = 0, color = COLORS[0][0];
