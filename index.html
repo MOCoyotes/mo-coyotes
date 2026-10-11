@@ -641,7 +641,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .color-palette button { width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2.5px solid var(--ink); cursor: pointer; transition: transform .12s; }
 .color-palette button[aria-pressed="true"] { transform: scale(1.22); box-shadow: 0 0 0 3px #FFFDF4, 0 0 0 5.5px var(--hot); }
 .color-nav { width: 100%; } .color-nav .color-clear { background: #FFFDF4; color: var(--ink); font-size: .82rem; }
-.color-num { font: 800 .8rem var(--font-body); color: var(--muted); margin: 0; }
+.color-save { display: flex; gap: 8px; width: 100%; }
+.color-save input { flex: 1; min-width: 0; font: 400 1.05rem var(--font-crayon); color: var(--ink); background: #FFFDF4; border: 2px solid var(--ink); border-radius: 999px; padding: .3em .9em; }
+.color-save input:focus { outline: none; border-color: var(--hot); }
+.color-save button { flex: none; font: 800 .9rem var(--font-body); color: #FFFDF4; background: var(--hot); border: 2px solid var(--ink); border-radius: 999px; padding: .3em 1em; box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -3294,6 +3297,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <p class="ball-prompt" id="colorTitle">Coloring book</p>
     <svg class="color-page" id="colorPage" viewBox="0 0 300 300" role="img" aria-label="Coloring page: tap a shape to fill it with the color you picked"></svg>
     <div class="color-palette" id="colorPalette" role="group" aria-label="Pick a color"></div>
+    <div class="color-save">
+      <input type="text" id="colorName" maxlength="30" placeholder="Your name (optional)" aria-label="Your name, to sign the picture (optional)" autocomplete="off">
+      <button type="button" id="colorSave">Save picture</button>
+    </div>
     <div class="scrap-nav color-nav">
       <button type="button" id="colorPrev" aria-label="Previous page">‹ Back</button>
       <button type="button" id="colorClear" class="color-clear">Start over</button>
@@ -5617,6 +5624,31 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     document.getElementById("colorPrev").addEventListener("click", function () { if (at > 0) { at--; draw(); } });
     document.getElementById("colorNext").addEventListener("click", function () { if (at < PAGES.length - 1) { at++; draw(); } });
     document.getElementById("colorClear").addEventListener("click", function () { delete saved[PAGES[at].k]; keep(); draw(); });
+    // save the finished page as a picture, signed with the artist's name and the date
+    var nameBox = document.getElementById("colorName");
+    try { nameBox.value = localStorage.getItem("mocoyotes-color-name") || ""; } catch (e) {}
+    document.getElementById("colorSave").addEventListener("click", function () {
+      var pg = PAGES[at], who = nameBox.value.trim();
+      try { localStorage.setItem("mocoyotes-color-name", who); } catch (e) {}
+      var css = ".cz{fill:#FFFFFF;stroke:#5A1F0E;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}.cd{fill:none;stroke:#5A1F0E;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}.cf{fill:#5A1F0E}";
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 300 300"><style>' + css + '</style>' + page.innerHTML + '</svg>';
+      var url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" })), img = new Image();
+      img.onload = function () {
+        var c = document.createElement("canvas"); c.width = 1200; c.height = 1340; var x = c.getContext("2d");
+        x.fillStyle = "#FFF4D2"; x.fillRect(0, 0, 1200, 1340); x.drawImage(img, 0, 0, 1200, 1200); URL.revokeObjectURL(url);
+        x.strokeStyle = "#5A1F0E"; x.lineWidth = 10; x.strokeRect(5, 5, 1190, 1330); x.beginPath(); x.moveTo(0, 1200); x.lineTo(1200, 1200); x.lineWidth = 6; x.stroke();
+        var when = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+        x.fillStyle = "#5A1F0E"; x.textBaseline = "middle"; x.font = '56px "Schoolbell", "Comic Sans MS", cursive'; x.textAlign = "left";
+        x.fillText((who ? "Colored by " + who : pg.n) + "  ·  " + when, 40, 1272, 820);
+        x.textAlign = "right"; x.fillStyle = "#E0218A"; x.font = '44px "Shrikhand", "Cooper Black", Georgia, serif'; x.fillText("mocoyotes.com", 1160, 1272);
+        c.toBlob(function (b) {
+          if (!b) return; var a = document.createElement("a"); a.href = URL.createObjectURL(b);
+          a.download = "mo-coyotes-" + pg.k + (who ? "-" + who.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "") + ".png";
+          document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+        }, "image/png");
+      };
+      img.src = url;
+    });
     document.querySelectorAll(".hot-color").forEach(function (a) {
       a.addEventListener("click", function (e) { e.preventDefault(); draw(); if (colorDialog.showModal) colorDialog.showModal(); else colorDialog.setAttribute("open", ""); });
     });
