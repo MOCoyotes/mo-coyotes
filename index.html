@@ -630,6 +630,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   .stage { border-radius: 14px; box-shadow: 4px 4px 0 var(--ink); }
   .hint, .room-foot { font-size: .82rem; } .room-foot { margin-top: 4px; }
 }
+.ball-wrap.color-wrap { width: min(470px, 94vw, calc((100dvh - 240px) * 1)); min-width: 250px; gap: 9px; padding: 18px 18px 14px; }
+.color-wrap .ball-prompt { margin: 0; font-size: clamp(1.1rem, 4.4vw, 1.5rem); }
+.color-page { display: block; width: 100%; height: auto; background: #FFFDF4; border: 3px solid var(--ink); border-radius: 10px; touch-action: manipulation; }
+.color-page .cz { fill: #FFFFFF; stroke: #5A1F0E; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; cursor: pointer; }
+.color-page .cz:hover { filter: brightness(.96); }
+.color-page .cd { fill: none; stroke: #5A1F0E; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
+.color-page .cf { fill: #5A1F0E; pointer-events: none; }
+.color-palette { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.color-palette button { width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2.5px solid var(--ink); cursor: pointer; transition: transform .12s; }
+.color-palette button[aria-pressed="true"] { transform: scale(1.22); box-shadow: 0 0 0 3px #FFFDF4, 0 0 0 5.5px var(--hot); }
+.color-nav { width: 100%; } .color-nav .color-clear { background: #FFFDF4; color: var(--ink); font-size: .82rem; }
+.color-num { font: 800 .8rem var(--font-body); color: var(--muted); margin: 0; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -2277,8 +2289,23 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <rect class="f-trim s-ink" stroke-width="1.5" x="678" y="428" width="22" height="14" rx="2"/>
           <path class="f-marigold s-ink" stroke-width="1.5" d="M689 412 q -5 -8 0 -14 q 5 6 0 14 z"/>
         </g>
+        <!-- COLORING BOOK on the carpet: tap a shape to color it in -->
+        <a class="hot hot-color" href="#coloring" role="button" aria-label="Coloring book on the carpet: color a page">
+          <g class="glow" stroke-linejoin="round" stroke-linecap="round">
+            <ellipse class="f-ink" cx="505" cy="541" rx="88" ry="6" opacity=".16"/>
+            <path class="f-hot s-ink" stroke-width="2.5" d="M428 492 L502 488 L578 492 L590 538 L502 534 L416 538 Z"/>
+            <path fill="#FFFDF4" class="s-ink" stroke-width="2" d="M434 495 L500 491 L500 530 L424 534 Z"/>
+            <path fill="#FFFDF4" class="s-ink" stroke-width="2" d="M504 491 L572 495 L582 534 L504 530 Z"/>
+            <path fill="none" class="s-ink" stroke-width="1.8" d="M462 505 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/>
+            <path class="f-pink s-ink" stroke-width="1.8" d="M540 501 l3.200 6.600 l7.200 1 l-5.200 5 l1.200 7.200 l-6.400 -3.400 l-6.400 3.400 l1.200 -7.200 l-5.200 -5 l7.200 -1 Z"/>
+            <g stroke-width="1.8" class="s-ink"><path class="f-marigold" d="M600 512 l34 -8 l2 7 l-34 8 Z"/><path fill="#FFF4D2" d="M600 512 l-7 5 l9 2 Z"/>
+              <path fill="#5B8DB8" d="M606 528 l35 4 l-1 7 l-35 -4 Z"/><path fill="#FFF4D2" d="M606 528 l-8 2 l7 5 Z"/>
+              <path class="f-hot" d="M372 520 l34 9 l-2 7 l-34 -9 Z"/><path fill="#FFF4D2" d="M406 529 l8 5 l-10 2 Z"/></g>
+          </g>
+          <g class="tag"><rect x="428" y="446" width="150" height="28" rx="14"/><text x="503" y="465" text-anchor="middle">COLORING BOOK</text></g>
+        </a>
       </svg>
-      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the books, the cards, the magic 8 ball or the scrapbook.</p>
+      <p class="hint brag-hint">Click the trophy, the certificate, the camcorder, the magazines, the books, the cards, the magic 8 ball, the scrapbook or the coloring book.</p>
     </section>
     <section id="room-kitchen" class="room kitchenroom" hidden aria-labelledby="kitchenTitle">
       <h2 id="kitchenTitle">KITCHEN</h2>
@@ -3258,6 +3285,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <p class="ball-prompt">Dress the porch goose</p>
     <div class="goose-grid" id="gooseGrid"></div>
     <p class="ball-hint">She keeps her outfit on until a new one is picked.</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog color-dialog" id="colorDialog" aria-label="Coloring book">
+  <div class="ball-wrap color-wrap">
+    <button class="lb-close" type="button" id="colorClose" aria-label="Close">×</button>
+    <p class="ball-prompt" id="colorTitle">Coloring book</p>
+    <svg class="color-page" id="colorPage" viewBox="0 0 300 300" role="img" aria-label="Coloring page: tap a shape to fill it with the color you picked"></svg>
+    <div class="color-palette" id="colorPalette" role="group" aria-label="Pick a color"></div>
+    <div class="scrap-nav color-nav">
+      <button type="button" id="colorPrev" aria-label="Previous page">‹ Back</button>
+      <button type="button" id="colorClear" class="color-clear">Start over</button>
+      <button type="button" id="colorNext" aria-label="Next page">Next ›</button>
+    </div>
   </div>
 </dialog>
 
@@ -5516,6 +5557,72 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     dogBed.classList.remove("glare"); void dogBed.getBoundingClientRect(); dogBed.classList.add("glare"); growl();
     clearTimeout(dogTimer); dogTimer = setTimeout(function () { dogBed.classList.remove("glare"); }, 2200);
   });
+
+  // ---------- coloring book on the EXTRA room carpet: pick a color, tap a shape; every page keeps its colors (saved in this browser)
+  var colorDialog = document.getElementById("colorDialog");
+  if (colorDialog) (function () {
+    var page = document.getElementById("colorPage"), pal = document.getElementById("colorPalette"), title = document.getElementById("colorTitle");
+    var COLORS = [["#E0218A", "Barbie pink"], ["#F48FB8", "pink"], ["#F7C1CC", "blush"], ["#D62839", "red"], ["#E2780F", "orange"], ["#F2B705", "marigold"], ["#F8DC8A", "butter"], ["#B5CB72", "grass"], ["#6E9446", "leaf green"],
+      ["#BFE4EC", "sky"], ["#5B8DB8", "blue"], ["#CDB9F2", "lavender"], ["#C9874F", "wood"], ["#8A5A45", "brown"], ["#3B2620", "dark brown"], ["#DAD5D0", "grey"], ["#FFF4D2", "cream"], ["#FFFFFF", "white (eraser)"]];
+    var z = function (d) { return '<path class="cz" d="' + d + '"/>'; }, zc = function (x, y, r) { return '<circle class="cz" cx="' + x + '" cy="' + y + '" r="' + r + '"/>'; },
+      ze = function (x, y, rx, ry) { return '<ellipse class="cz" cx="' + x + '" cy="' + y + '" rx="' + rx + '" ry="' + ry + '"/>'; }, ln = function (d) { return '<path class="cd" d="' + d + '"/>'; },
+      dot = function (x, y, r) { return '<circle class="cf" cx="' + x + '" cy="' + y + '" r="' + r + '"/>'; }, BG = z("M-6 -6 H306 V306 H-6 Z");
+    // an Ohio Star quilt block: border, corner squares, center, and four edge squares cut into triangles
+    var quilt = BG + z("M18 18 H282 V282 H18 Z");
+    [[0, 0], [2, 0], [0, 2], [2, 2], [1, 1]].forEach(function (c) { var x = 36 + c[0] * 76, y = 36 + c[1] * 76; quilt += z("M" + x + " " + y + " h76 v76 h-76 Z"); });
+    [[1, 0], [0, 1], [2, 1], [1, 2]].forEach(function (c) {
+      var x = 36 + c[0] * 76, y = 36 + c[1] * 76, mx = x + 38, my = y + 38;
+      quilt += z("M" + x + " " + y + " h76 L" + mx + " " + my + " Z") + z("M" + (x + 76) + " " + y + " v76 L" + mx + " " + my + " Z") + z("M" + (x + 76) + " " + (y + 76) + " h-76 L" + mx + " " + my + " Z") + z("M" + x + " " + (y + 76) + " v-76 L" + mx + " " + my + " Z");
+    });
+    var PAGES = [
+      { k: "goose", n: "Porch goose", d: BG + zc(245, 55, 28) + z("M-6 262 Q150 244 306 262 V306 H-6 Z") + z("M228 176 L264 150 L246 202 Z") + z("M140 238 L140 262 L119 271 H161 Z") + z("M186 240 L186 262 L165 271 H207 Z") +
+          ze(168, 195, 70, 50) + z("M114 188 C100 152 100 112 108 86 C100 60 130 40 150 60 C166 78 150 98 142 110 C138 136 142 160 154 176 Z") + z("M107 78 L72 88 L108 99 Z") + z("M152 186 Q192 164 218 196 Q192 226 152 210 Z") +
+          z("M125 142 L94 122 L97 162 Z") + z("M125 142 L156 122 L153 162 Z") + zc(125, 142, 9) + dot(128, 72, 3.4) + ln("M222 44 l-9 -9 M268 44 l9 -9 M245 18 v-10 M205 60 h-10 M285 60 h10") },
+      { k: "kitty", n: "Kitty and yarn", d: BG + ze(150, 264, 124, 22) + z("M204 232 Q262 232 252 180 Q246 164 235 180 Q240 216 200 212 Z") + ze(150, 206, 58, 58) + ze(150, 218, 30, 36) +
+          z("M100 92 L97 38 L142 66 Z") + z("M200 92 L203 38 L158 66 Z") + z("M106 78 L105 54 L126 68 Z") + z("M194 78 L195 54 L174 68 Z") + zc(150, 116, 58) + z("M106 152 Q150 178 194 152 L191 167 Q150 192 109 167 Z") + zc(150, 181, 9) +
+          zc(58, 238, 22) + ln("M40 230 Q58 222 76 232 M38 242 Q58 236 78 244 M46 252 Q60 248 72 254 M80 240 Q100 262 96 274") +
+          dot(130, 110, 5) + dot(170, 110, 5) + '<path class="cf" d="M144 126 h12 l-6 7 Z"/>' + ln("M150 133 Q144 142 136 138 M150 133 Q156 142 164 138 M118 124 L92 118 M118 132 L92 136 M182 124 L208 118 M182 132 L208 136") },
+      { k: "quilt", n: "Quilt block", d: quilt },
+      { k: "yarn", n: "Yarn and needles", d: BG + z("M-6 258 H306 V306 H-6 Z") + z("M196 58 L204 50 L86 262 L78 258 Z") + zc(202, 50, 9) + z("M104 50 L112 58 L226 262 L218 266 Z") + zc(106, 52, 9) +
+          zc(150, 178, 82) + z("M70 160 Q150 96 230 160 Q150 128 70 160 Z") + z("M72 198 Q150 258 228 198 Q150 228 72 198 Z") + z("M98 114 Q176 160 196 246 Q158 168 98 114 Z") +
+          zc(252, 236, 26) + ln("M232 226 Q252 216 272 228 M230 240 Q252 232 274 242 M226 254 Q200 278 160 270 Q120 262 96 284") },
+      { k: "mushroom", n: "Mushrooms", d: BG + z("M-6 258 Q150 240 306 258 V306 H-6 Z") + z("M118 172 Q110 250 102 264 H198 Q190 250 182 172 Q150 184 118 172 Z") + z("M56 170 Q56 66 150 66 Q244 66 244 170 Q150 190 56 170 Z") +
+          zc(108, 120, 15) + zc(160, 100, 18) + zc(204, 136, 13) + zc(136, 150, 10) + z("M226 236 Q224 262 220 270 H256 Q252 262 250 236 Z") + z("M204 236 Q204 196 238 196 Q272 196 272 236 Q238 246 204 236 Z") + zc(228, 216, 6) + zc(250, 222, 5) +
+          z("M52 262 Q44 232 30 224 Q52 226 58 250 Q62 226 78 216 Q70 240 68 262 Z") + ln("M36 50 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4 Z M262 78 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z") },
+      { k: "sewing", n: "Sewing machine", d: BG + z("M14 246 H286 V266 H14 Z") + zc(250, 126, 22) + z("M118 60 H152 V92 H118 Z") + z("M38 206 Q90 190 150 206 L150 216 H38 Z") + z("M46 214 H256 Q262 214 262 220 V246 H40 V220 Q40 214 46 214 Z") +
+          z("M240 214 V110 Q240 92 222 92 H88 Q70 92 70 110 V166 H112 V134 H196 V214 Z") + z("M84 166 H98 V186 H84 Z") + zc(218, 114, 11) + z("M132 106 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z") +
+          ln("M91 186 V204 M118 68 H152 M118 76 H152 M118 84 H152 M135 60 V52 Q160 40 196 52 Q214 60 214 92") + dot(250, 126, 4) }
+    ];
+    var saved = {}; try { saved = JSON.parse(localStorage.getItem("mocoyotes-coloring") || "{}") || {}; } catch (e) { saved = {}; }
+    var at = 0, color = COLORS[0][0];
+    function keep() { try { localStorage.setItem("mocoyotes-coloring", JSON.stringify(saved)); } catch (e) {} }
+    function draw() {
+      var pg = PAGES[at], mine = saved[pg.k] || {};
+      page.innerHTML = pg.d;
+      page.querySelectorAll(".cz").forEach(function (el, i) { el.setAttribute("data-i", i); if (mine[i]) el.style.fill = mine[i]; });
+      title.textContent = pg.n + " · page " + (at + 1) + " of " + PAGES.length;
+      document.getElementById("colorPrev").disabled = at === 0; document.getElementById("colorNext").disabled = at === PAGES.length - 1;
+    }
+    COLORS.forEach(function (c, i) {
+      var b = document.createElement("button"); b.type = "button"; b.style.background = c[0]; b.title = c[1]; b.setAttribute("aria-label", c[1]); b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      b.addEventListener("click", function () { color = c[0]; pal.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); });
+      pal.appendChild(b);
+    });
+    page.addEventListener("click", function (e) {
+      var el = e.target.closest ? e.target.closest(".cz") : null; if (!el) return;
+      var k = PAGES[at].k, i = el.getAttribute("data-i"); saved[k] = saved[k] || {};
+      if (color === "#FFFFFF") { delete saved[k][i]; el.style.fill = ""; } else { saved[k][i] = color; el.style.fill = color; }
+      keep();
+    });
+    document.getElementById("colorPrev").addEventListener("click", function () { if (at > 0) { at--; draw(); } });
+    document.getElementById("colorNext").addEventListener("click", function () { if (at < PAGES.length - 1) { at++; draw(); } });
+    document.getElementById("colorClear").addEventListener("click", function () { delete saved[PAGES[at].k]; keep(); draw(); });
+    document.querySelectorAll(".hot-color").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); draw(); if (colorDialog.showModal) colorDialog.showModal(); else colorDialog.setAttribute("open", ""); });
+    });
+    document.getElementById("colorClose").addEventListener("click", function () { colorDialog.close(); });
+    colorDialog.addEventListener("click", function (e) { if (e.target === colorDialog) colorDialog.close(); });
+  })();
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
