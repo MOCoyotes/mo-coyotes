@@ -585,6 +585,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border: 0; border-block: 3px solid var(--ink); border-radius: 0; }
 #room-kitchen .kitchen-scene { border-bottom: 0; }
 .room h2:not(#aboutTitle) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.room-title { flex: 1; min-width: 0; text-align: center; padding-right: 150px; font: 400 clamp(1.25rem, 3.6vw, 2.1rem)/1.05 var(--font-display); color: var(--hot); text-shadow: 2px 2px 0 var(--marigold); text-wrap: balance; }
+.room-foot { display: grid; gap: 4px; margin-top: 14px; text-align: center; } .room-foot:not(:has(> :not([hidden]))) { display: none; }
+.room-foot > .lede, .room-foot > .hint { margin: 0; padding: 0; background: none; border: 0; color: var(--muted); font-weight: 600; }
+@media (max-width: 640px) { .room-title { padding-right: 0; } }
 .room-navbar { display: flex; flex-wrap: nowrap; align-items: center; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-block: 2px 6px; }
 .room-navbar:empty, .room-navbar:not(:has(> :not([hidden]))) { display: none; }
 .room-navbar .room-nav { flex-wrap: nowrap; justify-content: flex-start; margin: 0; }
@@ -3386,10 +3390,21 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   var navBar = document.createElement("div"); navBar.className = "room-navbar";
   var stageEl = document.getElementById("stage"); stageEl.parentNode.insertBefore(navBar, stageEl);
   navBar.appendChild(crayonBack);
+  // the room's name sits above the frame, and its little bits of writing below it, so only the room itself is inside the box
+  var roomTitle = document.createElement("div"); roomTitle.className = "room-title"; roomTitle.setAttribute("aria-hidden", "true"); roomTitle.hidden = true; navBar.appendChild(roomTitle);
+  var roomFoot = document.createElement("div"); roomFoot.className = "room-foot"; stageEl.parentNode.insertBefore(roomFoot, stageEl.nextSibling);
+  var ROOM_NAMES = { about: "The Attic" };
+  document.querySelectorAll(".room").forEach(function (r) {
+    var id = r.id.replace("room-", ""), h = r.querySelector("h2:not(#aboutTitle)");
+    if (h && !ROOM_NAMES[id]) ROOM_NAMES[id] = h.textContent;
+    r.querySelectorAll(":scope > .lede, :scope > .hint").forEach(function (p) { p.setAttribute("data-room", id); p.hidden = true; roomFoot.appendChild(p); });
+  });
   document.querySelectorAll(".room > .room-nav").forEach(function (n) { n.setAttribute("data-room", n.parentNode.id.replace("room-", "")); n.hidden = true; navBar.appendChild(n); });
   function show(name) {
     if (rooms.indexOf(name) < 0) name = "outside";
     navBar.querySelectorAll(".room-nav").forEach(function (n) { n.hidden = n.getAttribute("data-room") !== name; });
+    roomTitle.textContent = ROOM_NAMES[name] || ""; roomTitle.hidden = !ROOM_NAMES[name];
+    roomFoot.querySelectorAll("[data-room]").forEach(function (p) { p.hidden = p.getAttribute("data-room") !== name; });
     if (curRoom && curRoom !== name && !goingBack) { roomStack.push(curRoom); if (roomStack.length > 40) roomStack.shift(); }
     goingBack = false; curRoom = name;
     crayonBack.hidden = name === "outside";
