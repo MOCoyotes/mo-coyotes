@@ -676,6 +676,17 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .bs-cursor { animation: bsBlink 1s steps(1) infinite; } @keyframes bsBlink { 50% { opacity: 0; } }
 .bs-lava { animation: bsLava 6s ease-in-out infinite alternate; transform-box: fill-box; } @keyframes bsLava { to { transform: translateY(-16px) scale(1.15, .85); } }
 @media (prefers-reduced-motion: reduce) { .bs-bulb, .bs-cursor, .bs-lava { animation: none; } .rug-flap, .cellar-lid { transition: none; } }
+/* quick search, top right, outside the frame */
+.site-search { position: relative; margin-left: auto; }
+.site-search input { width: clamp(130px, 22vw, 220px); font: 600 .95rem var(--font-body); color: var(--ink); background: #FFFDF4; border: 2.5px solid var(--ink); border-radius: 999px; padding: .38em 1em; box-shadow: 2px 3px 0 rgba(90, 31, 14, .25); }
+.site-search input::placeholder { color: var(--muted); }
+.site-search input:focus { outline: none; border-color: var(--hot); }
+.site-search-list { position: absolute; right: 0; top: calc(100% + 6px); z-index: 60; width: max(100%, 240px); max-height: 60dvh; overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: #FFFDF4; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 4px 5px 0 rgba(90, 31, 14, .3); }
+.site-search-list li { padding: .45em .7em; border-radius: 9px; cursor: pointer; font: 800 .9rem/1.2 var(--font-body); color: var(--ink); }
+.site-search-list li small { display: block; font: 600 .74rem/1.25 var(--font-body); color: var(--muted); }
+.site-search-list li:hover, .site-search-list li[aria-selected="true"] { background: var(--blush); }
+.site-search-list .none { cursor: default; font-weight: 600; color: var(--muted); } .site-search-list .none:hover { background: none; }
+@media (orientation: landscape) and (max-height: 540px) { .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } .wrap > .topbar { display: flex; flex-wrap: nowrap; gap: 8px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -1031,6 +1042,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     <div>
       <div class="brand">MO Coyotes</div>
       <div class="tag-note">Handmade &amp; thrifted · Missouri</div>
+    </div>
+    <div class="site-search" role="search">
+      <input type="search" id="siteSearch" placeholder="Search…" aria-label="Search the site" autocomplete="off" aria-controls="siteSearchList" aria-expanded="false">
+      <ul class="site-search-list" id="siteSearchList" role="listbox" hidden></ul>
     </div>
     <button class="crayon-back" type="button" id="crayonBack" hidden aria-label="Back to the last room">
       <svg viewBox="0 0 150 40" aria-hidden="true" stroke-linejoin="round"><path d="M4 20 L26 9 V31 Z" fill="#F7C1CC" stroke="#5A1F0E" stroke-width="2.5"/><path d="M4 20 L12 16 V24 Z" fill="#E0218A"/><rect x="26" y="7" width="118" height="26" rx="5" fill="#E0218A" stroke="#5A1F0E" stroke-width="2.5"/><rect x="40" y="7" width="90" height="26" fill="#F48FB8" stroke="#5A1F0E" stroke-width="2"/><path d="M34 7 V33 M136 7 V33" stroke="#5A1F0E" stroke-width="1.5" opacity=".5"/><text x="85" y="27" text-anchor="middle" style="font: 400 19px var(--font-crayon); fill: #5A1F0E">back</text></svg>
@@ -6017,6 +6032,81 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       setTimeout(function () { location.hash = "#basement"; window.scrollTo(0, 0); cellarDoor.classList.remove("open"); }, 520);
     });
   }
+
+  // ---------- quick search: type a word, pick a place, and it takes you there (the secret rooms are left out on purpose)
+  (function () {
+    var box = document.getElementById("siteSearch"), list = document.getElementById("siteSearchList"); if (!box || !list) return;
+    var PLACES = [
+      { t: "Home", s: "Outside the house", k: "home outside house start front yard", go: "outside" },
+      { t: "Hallway", s: "All the doors", k: "hall hallway foyer doors inside mirror compliment dog", go: "foyer" },
+      { t: "Shop", s: "Etsy, eBay and Union Studio", k: "shop store buy purchase sale etsy ebay union studio", go: "shop" },
+      { t: "Gallery", s: "The sewing room", k: "gallery photos pictures portfolio work makes sewing room", go: "gallery" },
+      { t: "Quilting", s: "Quilts and quilted goods", k: "quilt quilts quilting patchwork blocks", go: "quilting" },
+      { t: "Fashion", s: "Clothes and costumes", k: "fashion clothes clothing dress dresses costume outfits wear", go: "fashion" },
+      { t: "Art", s: "Art gallery", k: "art paintings prints embroidery felt wreath floral", go: "art" },
+      { t: "Fiber", s: "Handspun yarn and fiber", k: "fiber fibre yarn spinning handspun wool roving dye dyed batts", go: "fiber" },
+      { t: "Knit, Crochet & Weave", s: "Knitting, crochet and weaving", k: "knit knitting crochet weave weaving granny square hats mitts blanket", go: "knit" },
+      { t: "Stitched", s: "Sewn bags, pouches and more", k: "stitched sewn sewing bags pouch pouches tote stocking potholder", go: "sewn" },
+      { t: "Barbie Land", s: "Coyote in Barbie Land", k: "barbie barbies doll dolls ken airplane plane polaroid youtube", go: "barbie" },
+      { t: "About Coyote", s: "The attic", k: "about coyote who bio attic me info story", go: "about" },
+      { t: "Contact", s: "Send a letter", k: "contact email mail message letter write reach commission custom order", go: "contact" },
+      { t: "Locations", s: "Where to find MO Coyotes", k: "locations location map where find address directions union studio node bike in person", go: "outside", click: "#carLink" },
+      { t: "Powder Room", s: "Bubbles and a rubber duck", k: "powder room bathroom bath bubbles duck toilet audhd", go: "bath" },
+      { t: "EXTRA", s: "The shelf under the stairs", k: "extra featured brag shelf trophy awards fun", go: "featured" },
+      { t: "Scrapbook of Events", s: "Parties, weddings and showers", k: "scrapbook events event party parties wedding weddings shower brunch birthday photos", go: "featured", click: ".hot-scrap" },
+      { t: "Skills", s: "Everything Coyote can make and do", k: "skills skill list can do classes teach learn", go: "featured", click: '[data-feat="accomplishments"]' },
+      { t: "Awards", s: "Ribbons and trophies", k: "awards award ribbon trophy prize won", go: "featured", click: '[data-feat="awards"]' },
+      { t: "Magazines", s: "Participation and features", k: "magazines magazine participation press features published", go: "featured", click: '[data-feat="magazines"]' },
+      { t: "Coloring Book", s: "Color a page", k: "coloring colouring color book paint draw kids game play", go: "featured", click: ".hot-color" },
+      { t: "Sketchbook", s: "Colored pages taped in", k: "sketchbook sketch colored pages saved", go: "gallery", click: ".hot-sketch" },
+      { t: "Dress the Goose", s: "Porch goose outfits", k: "goose porch outfit outfits dress costume", go: "outside", click: "#gooseLink" },
+      { t: "Etsy shop", s: "Opens Etsy", k: "etsy shop handmade buy", url: "https://www.etsy.com/shop/mocoyotesmade" },
+      { t: "eBay shop", s: "Opens eBay", k: "ebay thrift thrifted vintage buy", url: "https://www.ebay.com/str/thegoodoletwo" },
+      { t: "Union Studio", s: "Shop in person in St. Louis", k: "union studio store stl st louis in person", url: "https://stlunionstudio.com" }
+    ];
+    var shown = [], sel = -1;
+    function find(q) {
+      q = q.toLowerCase().trim(); if (!q) return [];
+      var words = q.split(/\s+/);
+      return PLACES.map(function (p) {
+        var title = p.t.toLowerCase(), hay = title + " " + p.s.toLowerCase() + " " + p.k, score = 0;
+        for (var i = 0; i < words.length; i++) { var w = words[i]; if (hay.indexOf(w) < 0) return null; score += title.indexOf(w) === 0 ? 3 : title.indexOf(w) > 0 ? 2 : 1; }
+        return { p: p, score: score };
+      }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 7).map(function (x) { return x.p; });
+    }
+    function close() { list.hidden = true; box.setAttribute("aria-expanded", "false"); sel = -1; }
+    function go(p) {
+      close(); box.value = ""; box.blur();
+      document.querySelectorAll("dialog[open]").forEach(function (d) { d.close(); });
+      if (p.url) { window.open(p.url, "_blank", "noopener"); return; }
+      var there = (location.hash.slice(1) || "outside") === p.go;
+      if (!there) location.hash = "#" + p.go;
+      window.scrollTo(0, 0);
+      if (p.click) setTimeout(function () { var el = document.querySelector(p.click); if (el) el.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true })); }, there ? 60 : 420);
+    }
+    function draw() {
+      shown = find(box.value); list.textContent = ""; sel = shown.length ? 0 : -1;
+      if (!box.value.trim()) { close(); return; }
+      if (!shown.length) { var n = document.createElement("li"); n.className = "none"; n.textContent = "Nothing by that name. Try shop, quilts, yarn or contact."; list.appendChild(n); }
+      shown.forEach(function (p, i) {
+        var li = document.createElement("li"); li.setAttribute("role", "option"); li.setAttribute("aria-selected", i === 0 ? "true" : "false");
+        li.textContent = p.t; var sm = document.createElement("small"); sm.textContent = p.s; li.appendChild(sm);
+        li.addEventListener("mousedown", function (e) { e.preventDefault(); go(p); });
+        list.appendChild(li);
+      });
+      list.hidden = false; box.setAttribute("aria-expanded", "true");
+    }
+    function mark() { list.querySelectorAll("li[role=option]").forEach(function (li, i) { li.setAttribute("aria-selected", i === sel ? "true" : "false"); if (i === sel) li.scrollIntoView({ block: "nearest" }); }); }
+    box.addEventListener("input", draw);
+    box.addEventListener("focus", function () { if (box.value.trim()) draw(); });
+    box.addEventListener("blur", function () { setTimeout(close, 120); });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" && shown.length) { e.preventDefault(); sel = (sel + 1) % shown.length; mark(); }
+      else if (e.key === "ArrowUp" && shown.length) { e.preventDefault(); sel = (sel - 1 + shown.length) % shown.length; mark(); }
+      else if (e.key === "Enter") { e.preventDefault(); if (shown.length) go(shown[Math.max(sel, 0)]); }
+      else if (e.key === "Escape") { close(); box.blur(); }
+    });
+  })();
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
