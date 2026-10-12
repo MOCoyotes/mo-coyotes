@@ -2793,7 +2793,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </section>
     <section id="room-basement" class="room basementroom" hidden aria-labelledby="basementTitle">
       <h2 id="basementTitle">BASEMENT</h2>
-      <svg class="basement-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy secret basement: wooden stairs back up to the kitchen, a craft table under a pegboard of tools, a retro couch with a coffee table on a shag rug, and a desk with an old computer">
+      <svg class="basement-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy secret basement: wooden stairs back up to the kitchen, a craft table under a pegboard of tools, a retro couch with a coffee table on a shag rug, a dog bed, and a desk with an old computer">
         <defs>
           <pattern id="bsPeg" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#F7C1CC"/><circle cx="6" cy="6" r="1.300" fill="#5A1F0E" opacity=".35"/></pattern>
           <pattern id="bsPanel" width="46" height="150" patternUnits="userSpaceOnUse"><rect width="46" height="150" fill="#C98B52"/><path d="M0 0 V150" stroke="#5A1F0E" stroke-width="2" opacity=".45"/></pattern>
@@ -2907,7 +2907,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <!-- a potted plant by the stairs and a cozy floor cushion -->
         <g stroke-linejoin="round" class="s-ink" stroke-width="2.500">
           <path fill="#6E9446" d="M212 398 Q196 356 206 336 Q218 356 216 398 Z M218 398 Q228 344 244 330 Q244 366 226 398 Z M210 398 Q186 372 180 350 Q204 364 214 398 Z"/><path class="f-orange" d="M196 396 H236 L230 430 H202 Z"/><rect class="f-rust" x="192" y="390" width="48" height="10" rx="3"/>
-          <ellipse fill="#CDB9F2" cx="408" cy="486" rx="50" ry="20"/><path fill="none" stroke-width="1.600" d="M368 484 Q408 470 448 484 M408 468 V504"/><circle class="f-hot" cx="408" cy="484" r="4"/>
+          <!-- dog bed, like the one in the hall -->
+          <ellipse class="f-ink" stroke="none" cx="406" cy="504" rx="58" ry="6" opacity=".16"/>
+          <ellipse class="f-pink" stroke-width="3" cx="406" cy="478" rx="58" ry="23"/>
+          <ellipse class="f-blush" stroke-width="2.500" cx="406" cy="474" rx="44" ry="13.500"/>
+          <path class="f-pink" stroke-width="3" d="M348 480 Q406 512 464 480 Q465 495 406 502 Q347 495 348 480 Z"/>
+          <path class="s-trim" stroke-width="2" fill="none" stroke-dasharray="5 5" opacity=".8" d="M357 487 Q406 507 455 487"/>
+          <g fill="#FFFDF4" stroke-width="1.800"><path d="M392 470 a4 4 0 1 1 4 -4 h18 a4 4 0 1 1 4 4 a4 4 0 1 1 -4 4 h-18 a4 4 0 1 1 -4 -4 Z"/></g>
         </g>
       </svg>
       <p class="hint">You found the secret basement! The stairs take you back up to the kitchen.</p>
