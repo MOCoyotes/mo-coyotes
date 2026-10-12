@@ -2796,11 +2796,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       <svg class="basement-scene" viewBox="0 0 1000 560" role="img" aria-label="A cozy secret basement: wooden stairs back up to the kitchen, a craft table under a pegboard of tools, a retro couch with a quilt and a coffee table on a shag rug, a dog bed, and a desk with an old computer under a cross stitch of flowers">
         <defs>
           <pattern id="bsPeg" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#F7C1CC"/><circle cx="6" cy="6" r="1.300" fill="#5A1F0E" opacity=".35"/></pattern>
+          <pattern id="bsWall" width="64" height="64" patternUnits="userSpaceOnUse"><rect width="64" height="64" fill="#F6E3C0"/><g fill="#F2C230"><path d="M16 20 c0 -6 -8 -6 -8 0 c0 4.500 5.500 7.500 8 10.500 c2.500 -3 8 -6 8 -10.500 c0 -6 -8 -6 -8 0 z"/><path d="M48 52 c0 -6 -8 -6 -8 0 c0 4.500 5.500 7.500 8 10.500 c2.500 -3 8 -6 8 -10.500 c0 -6 -8 -6 -8 0 z"/></g></pattern>
           <pattern id="bsPanel" width="46" height="150" patternUnits="userSpaceOnUse"><rect width="46" height="150" fill="#C98B52"/><path d="M0 0 V150" stroke="#5A1F0E" stroke-width="2" opacity=".45"/></pattern>
           <pattern id="bsFloor" width="120" height="40" patternUnits="userSpaceOnUse"><rect width="120" height="40" fill="#CFC6D6"/><path d="M0 0 H120 M30 0 V20 M90 20 V40 M0 20 H120" stroke="#5A1F0E" stroke-width="1.500" opacity=".22" fill="none"/></pattern>
         </defs>
         <!-- walls, wood panelling, ceiling beams, floor -->
-        <rect width="1000" height="400" fill="#F6E3C0"/>
+        <rect width="1000" height="400" fill="url(#bsWall)"/>
         <rect y="252" width="1000" height="148" fill="url(#bsPanel)"/><path class="s-ink" stroke-width="3" d="M0 252 H1000"/><rect y="244" width="1000" height="10" fill="#B5703D" class="s-ink" stroke-width="2.500"/>
         <rect y="400" width="1000" height="160" fill="url(#bsFloor)"/><path class="s-ink" stroke-width="4" d="M0 400 H1000"/>
         <rect width="1000" height="22" fill="#8E5530" class="s-ink" stroke-width="3"/>
@@ -2811,6 +2812,13 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="s-ink" stroke-width="1.300" fill="none" opacity=".55" d="M545 48 Q543 80 541 114 M556 48 Q552 64 548 76 M671 48 Q673 80 675 114 M660 48 Q664 64 668 76"/>
           <path class="f-hot s-ink" stroke-width="1.800" d="M544 72 Q552 70 558 74 L556 80 Q550 77 545 79 Z M672 72 Q664 70 658 74 L660 80 Q666 77 671 79 Z"/>
           <path class="s-ink" stroke-width="4" stroke-linecap="round" d="M530 45 H686"/><circle class="f-marigold s-ink" stroke-width="2" cx="528" cy="45" r="4.500"/><circle class="f-marigold s-ink" stroke-width="2" cx="688" cy="45" r="4.500"/></g>
+        <!-- a big pink bow on the wall under the window -->
+        <g stroke-linejoin="round" class="s-ink" stroke-width="2.500">
+          <path class="f-pink" d="M604 156 L590 196 L600 190 L606 200 L610 160 Z M612 156 L626 196 L616 190 L610 200 L606 160 Z"/>
+          <path class="f-hot" d="M608 150 C592 128 566 128 564 148 C562 168 590 172 608 152 Z M608 150 C624 128 650 128 652 148 C654 168 626 172 608 152 Z"/>
+          <path fill="none" stroke-width="1.400" opacity=".55" d="M574 146 Q588 150 600 150 M642 146 Q628 150 616 150"/>
+          <rect class="f-pink" x="600" y="142" width="16" height="18" rx="5"/>
+        </g>
         <!-- fairy lights strung under the beams -->
         <path class="s-ink" stroke-width="2" fill="none" d="M197 30 Q310 66 427 30 Q540 70 657 30 Q770 70 887 30 Q950 60 1000 36"/>
         <g class="s-ink" stroke-width="1.500"><circle class="bs-bulb f-hot" cx="246" cy="42" r="5"/><circle class="bs-bulb f-marigold" cx="291" cy="47.500" r="5"/><circle class="bs-bulb" fill="#5B8DB8" cx="335" cy="47.500" r="5"/><circle class="bs-bulb f-pink" cx="381" cy="41.500" r="5"/>
