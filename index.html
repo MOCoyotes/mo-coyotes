@@ -674,7 +674,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .bs-bulb { animation: bsTwinkle 2.6s ease-in-out infinite; } .bs-bulb:nth-child(2n) { animation-delay: .9s; } .bs-bulb:nth-child(3n) { animation-delay: 1.7s; }
 @keyframes bsTwinkle { 50% { opacity: .45; } }
 .bs-cursor { animation: bsBlink 1s steps(1) infinite; } @keyframes bsBlink { 50% { opacity: 0; } }
-.bs-lava { animation: bsLava 6s ease-in-out infinite alternate; transform-box: fill-box; } @keyframes bsLava { to { transform: translateY(-16px) scale(1.15, .85); } }
+.bs-lava { transform-box: fill-box; } .bs-lamp.on .bs-lava { animation: bsLava 6s ease-in-out infinite alternate; }
+.bs-lamp { cursor: pointer; outline: none; } .bs-light { opacity: 0; transition: opacity .25s; pointer-events: none; } .bs-lamp.on .bs-light { opacity: .55; } .bs-lamp.on ellipse.bs-light.f-marigold { opacity: 1; } .bs-lamp.on .bs-bulb-off { opacity: 0; } @keyframes bsLava { to { transform: translateY(-16px) scale(1.15, .85); } }
 @media (prefers-reduced-motion: reduce) { .bs-bulb, .bs-cursor, .bs-lava { animation: none; } .rug-flap, .cellar-lid { transition: none; } }
 /* quick search, top right, outside the frame */
 .site-search { position: relative; margin-left: auto; }
@@ -2902,7 +2903,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
             <path class="f-hot" d="M606 444 H654 L648 458 Q630 464 612 458 Z"/><g fill="#FFF4D2"><circle cx="616" cy="442" r="5.500"/><circle cx="626" cy="438" r="6"/><circle cx="637" cy="440" r="5.500"/><circle cx="646" cy="443" r="4.800"/><circle cx="631" cy="445" r="5"/></g></g>
         </g>
         <!-- side table with a lava lamp -->
-        <g stroke-linejoin="round" class="s-ink" stroke-width="2.500">
+        <g stroke-linejoin="round" class="s-ink bs-lamp" stroke-width="2.500" id="bsLavaLamp" role="button" aria-label="Lava lamp: click to switch it on or off" aria-pressed="false">
+          <ellipse class="bs-light" fill="#F7C1F0" stroke="none" cx="780" cy="300" rx="34" ry="46"/>
           <rect x="776" y="356" width="8" height="48" fill="#8E5530"/><ellipse cx="780" cy="354" rx="26" ry="7" style="fill: var(--floor)"/>
           <path fill="#B9B4C6" d="M768 350 L774 330 H786 L792 350 Z"/><path fill="#CDB9F2" d="M772 330 Q766 296 776 272 H784 Q794 296 788 330 Z"/><path fill="#B9B4C6" d="M775 272 L777 262 H783 L785 272 Z"/>
           <g class="f-hot" stroke="none"><ellipse class="bs-lava" cx="780" cy="316" rx="5.500" ry="7"/><ellipse class="bs-lava" cx="778" cy="296" rx="3.600" ry="5" style="animation-delay: -2s"/></g>
@@ -2922,10 +2924,16 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-hot" d="M880 240 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/><text x="893" y="252" style="font: 800 11px monospace; fill: #8FE3B0">HI!</text><rect class="bs-cursor" x="916" y="243" width="6" height="10" fill="#8FE3B0"/>
           <path stroke="#8FE3B0" stroke-width="1.400" opacity=".7" d="M864 264 h40"/>
           <circle fill="#8FE3B0" cx="932" cy="281" r="2"/><rect x="872" y="288" width="44" height="8" fill="#D9CDB2" class="s-ink" stroke-width="2.500"/><rect x="858" y="294" width="72" height="7" rx="2" fill="#EDE3CC" class="s-ink" stroke-width="2.500"/>
-          <path fill="#EDE3CC" class="s-ink" stroke-width="2.500" d="M822 300 L828 288 H892 L898 300 Z"/><path stroke="#5A1F0E" stroke-width="1" opacity=".5" d="M832 292 H888 M830 296 H890"/>
-          <ellipse cx="962" cy="295" rx="9" ry="6" fill="#EDE3CC" class="s-ink" stroke-width="2.200"/><path class="s-ink" stroke-width="1.500" fill="none" d="M953 293 Q944 286 940 296"/>
+          <path fill="#EDE3CC" class="s-ink" stroke-width="2.500" d="M856 300 L862 288 H926 L932 300 Z"/><path stroke="#5A1F0E" stroke-width="1" opacity=".5" d="M866 292 H922 M864 296 H924"/>
+          <path class="s-ink" stroke-width="1.500" fill="none" d="M943 295 Q938 288 933 294"/>
+          <path class="f-pink s-ink" stroke-width="2" d="M942 298 Q941 291 948 290.500 L952 285 H962 L966 290.500 Q972 291 971 298 Z"/><path fill="#DFF3F7" class="s-ink" stroke-width="1.200" d="M951 290 L953.500 286.500 H956.500 V290 Z M958.500 286.500 H961 L963.500 290 H958.500 Z"/>
+          <circle class="f-ink" cx="949" cy="298.500" r="2.800"/><circle class="f-ink" cx="965" cy="298.500" r="2.800"/><circle fill="#FFFDF4" cx="949" cy="298.500" r="1"/><circle fill="#FFFDF4" cx="965" cy="298.500" r="1"/>
           <!-- desk lamp -->
-          <path class="s-ink" stroke-width="4" fill="none" d="M974 300 V262 L956 244"/><path class="f-hot s-ink" stroke-width="2.500" d="M946 232 L966 240 L958 256 L938 246 Z"/><ellipse class="f-marigold" cx="946" cy="252" rx="7" ry="3" opacity=".8"/>
+          <g class="bs-lamp" id="bsDeskLamp" role="button" aria-label="Desk lamp: click to switch it on or off" aria-pressed="false">
+            <path class="bs-light" fill="#F8DC8A" d="M939 248 L957 256 L990 300 H888 Z"/>
+            <path class="s-ink" stroke-width="4" fill="none" d="M982 300 V262 L964 244"/><path class="s-ink" stroke-width="3" d="M974 300 H990"/><path class="f-hot s-ink" stroke-width="2.500" d="M954 232 L974 240 L966 256 L946 246 Z"/>
+            <ellipse class="bs-bulb-off" fill="#D9CDB2" cx="954" cy="252" rx="7" ry="3"/><ellipse class="bs-light f-marigold" cx="954" cy="252" rx="8" ry="3.600"/>
+          </g>
           <!-- swivel chair -->
           <path class="s-ink" stroke-width="6" fill="none" d="M884 392 V430 M856 446 L884 430 L912 446 M884 430 V450"/>
           <g class="f-ink"><circle cx="856" cy="448" r="5"/><circle cx="912" cy="448" r="5"/><circle cx="884" cy="452" r="5"/></g>
@@ -6140,6 +6148,11 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       else if (e.key === "Escape") { close(); box.blur(); }
     });
   })();
+
+  // ---------- basement lamps: click to switch them on and off
+  document.querySelectorAll(".bs-lamp").forEach(function (l) {
+    l.addEventListener("click", function () { var on = l.classList.toggle("on"); l.setAttribute("aria-pressed", on ? "true" : "false"); tone("square", on ? 900 : 500, on ? 1200 : 380, on ? 1200 : 380, .05, .05); });
+  });
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
