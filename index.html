@@ -6117,7 +6117,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
   var kitRug = document.getElementById("kitRug"), cellarDoor = document.getElementById("cellarDoor");
   if (kitRug && cellarDoor) (function () {
     var kitSvg = kitRug.ownerSVGElement, floorKey = document.getElementById("floorKey"), drawerKey = document.getElementById("drawerKey");
-    var chairMoved = false, hasKey = false, unlocked = false;
+    var chairMoved = false, hasKey = false, unlocked = false, tidy = [];
     var svgPoint = function (svg, e) { var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
 
     // 1. the chairs slide around the floor; the left one has to come off the rug before it will fold
@@ -6133,6 +6133,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       var offRug = function () { return [[-30, 54], [-7, 48], [26, 60], [-14, 64]].every(function (ft) { var fx = (x + ft[0] - 540) / 236, fy = (y + ft[1] - 486) / 48; return fx * fx + fy * fy > 1; }); };
       var drop = function () { if (!grab) return; grab = null; ch.classList.remove("dragging"); if (n === 0) chairMoved = offRug(); };
       ch.addEventListener("pointerup", drop); ch.addEventListener("pointercancel", drop);
+      tidy.push(function () { x = bx; y = by; grab = null; ch.classList.remove("dragging"); ch.setAttribute("transform", "translate(" + bx + "," + by + ")" + rest); });
     });
 
     // 2. the rug only folds back once the chair is off it
@@ -6174,8 +6175,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (!kitRug.classList.contains("peeled")) return;
       if (unlocked) goDown(); else rattle();
     });
-    // the door locks itself again behind you: once you are down in the basement the key is back in the junk drawer
-    window.addEventListener("hashchange", function () { if (location.hash === "#basement") { unlocked = false; hasKey = false; cellarDoor.classList.remove("unlocked"); floorKey.classList.remove("out"); if (drawerKey) drawerKey.classList.remove("taken"); } });
+    // everything goes back the way it was behind you: door locked, key in the junk drawer, rug flat, chairs at the table
+    window.addEventListener("hashchange", function () { if (location.hash === "#basement") { unlocked = false; hasKey = false; chairMoved = false; kitRug.classList.remove("peeled"); tidy.forEach(function (t) { t(); }); cellarDoor.classList.remove("unlocked"); floorKey.classList.remove("out"); if (drawerKey) drawerKey.classList.remove("taken"); } });
     var fg = null;
     floorKey.addEventListener("pointerdown", function (e) { var p = svgPoint(kitSvg, e); fg = { dx: p.x - fkx, dy: p.y - fky }; floorKey.classList.add("dragging"); floorKey.setPointerCapture(e.pointerId); e.preventDefault(); });
     floorKey.addEventListener("pointermove", function (e) { if (!fg) return; var p = svgPoint(kitSvg, e); fkx = Math.max(20, Math.min(980, p.x - fg.dx)); fky = Math.max(430, Math.min(548, p.y - fg.dy)); placeKey(); });
