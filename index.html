@@ -662,12 +662,22 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .sketch-wrap .scrap-nav { width: 100%; }
 /* the secret way down: nothing lights up, the rug just folds back when you happen to click it */
 .kit-rug { cursor: default; }
-.rug-flap { transform-origin: 412px 486px; transition: transform .6s ease, filter .6s ease; }
+.rug-flap { transform-origin: 470px 486px; transition: transform .6s ease, filter .6s ease; }
 .rug-fold { opacity: 0; transition: opacity .3s; }
-.kit-rug.peeled .rug-flap { transform: scaleX(-.6); filter: brightness(.8); }
+.kit-rug.peeled .rug-flap { transform: scaleX(-.55); filter: brightness(.8); }
 .kit-rug.peeled .rug-fold { opacity: 1; }
 .cellar-door { cursor: pointer; outline: none; }
 .cellar-lid { transform-origin: 369px 470px; transition: transform .4s ease; }
+.cellar-lock { transition: opacity .35s, transform .35s; transform-box: fill-box; transform-origin: 50% 0; }
+.cellar-door.unlocked .cellar-lock { opacity: 0; transform: translateY(6px) rotate(20deg); }
+.cellar-door.rattle .cellar-lid { animation: lockRattle .32s linear; }
+@keyframes lockRattle { 20% { transform: translateX(-1.6px); } 45% { transform: translateX(1.6px); } 70% { transform: translateX(-1.1px); } }
+.kit-chair { cursor: grab; touch-action: none; } .kit-chair.dragging { cursor: grabbing; }
+.drawer-art { overflow: visible; }
+.drawer-key { cursor: grab; touch-action: none; } .drawer-key.dragging { cursor: grabbing; } .drawer-key.taken { display: none; }
+.key-hand { position: fixed; left: 18px; bottom: 18px; z-index: 45; width: 58px; height: 58px; padding: 6px; border: 3px solid var(--ink); border-radius: 50%; background: #FFFDF4; box-shadow: 3px 4px 0 rgba(90, 31, 14, .3); cursor: grab; touch-action: none; }
+.key-hand svg { display: block; width: 100%; height: 100%; pointer-events: none; } .key-hand.dragging { cursor: grabbing; box-shadow: 5px 8px 0 rgba(90, 31, 14, .25); transition: none; }
+.key-hand:not(.dragging) { transition: left .25s, top .25s; }
 .cellar-door.open .cellar-lid { transform: scaleY(.14); }
 #room-basement { padding: 0; gap: 0; min-height: 0; }
 .basement-scene { display: block; width: 100%; height: auto; border: 0; }
@@ -2613,24 +2623,29 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
           <path class="f-marigold s-ink" stroke-width="1.8" d="M868 290 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z"/>
 
           <rect class="f-ink" x="808" y="406" width="16" height="6" rx="2"/><rect class="f-ink" x="916" y="406" width="16" height="6" rx="2"/>
-          <!-- SECRET: a cellar door hidden under the rug. No glow, no label: click the rug and its left side folds back -->
-          <clipPath id="kitRugL"><rect x="0" y="420" width="412" height="140"/></clipPath>
-          <clipPath id="kitRugR"><rect x="412" y="420" width="600" height="140"/></clipPath>
+          <!-- SECRET: a locked cellar door hidden under the rug. Nothing glows or is labelled. The puzzle: drag the chair off the rug,
+               click the rug so it folds back, take the gold key out of the junk drawer, then use the key on the padlock. -->
+          <clipPath id="kitRugL"><rect x="0" y="420" width="470" height="140"/></clipPath>
+          <clipPath id="kitRugR"><rect x="470" y="420" width="600" height="140"/></clipPath>
           <a class="cellar-door" id="cellarDoor" href="#basement" aria-label="A cellar door in the floor" tabindex="-1">
+            <g transform="translate(26 0)">
             <path fill="#2B1A14" class="s-ink" stroke-width="2.5" stroke-linejoin="round" d="M338 470 H400 L404 502 H332 Z"/>
             <path stroke="#8E5530" stroke-width="3" stroke-linecap="round" fill="none" d="M352 478 L350 500 M386 478 L388 500 M351 484 H387 M350.500 492 H387.500"/>
             <g class="cellar-lid" stroke-linejoin="round">
               <path fill="#B5703D" class="s-ink" stroke-width="2.5" d="M338 470 H400 L404 502 H332 Z"/>
               <path class="s-ink" stroke-width="1.4" fill="none" opacity=".6" d="M353.500 470 L350 502 M369 470 V502 M384.500 470 L388 502"/>
               <path fill="#3B2620" d="M343 468.500 h9 v4 h-9 Z M386 468.500 h9 v4 h-9 Z"/>
-              <ellipse fill="none" stroke="#3B2620" stroke-width="2.4" cx="369" cy="493" rx="6" ry="3.600"/><circle fill="#3B2620" cx="369" cy="489.500" r="1.800"/>
+              <path fill="#3B2620" d="M363 496 h12 v5 h-12 Z"/>
+              <g class="cellar-lock"><path fill="none" stroke="#5A1F0E" stroke-width="4.200" stroke-linecap="round" d="M365.500 489 v-2.500 a3.500 3.500 0 0 1 7 0 v2.500"/><path fill="none" stroke="#D9DCE6" stroke-width="2" stroke-linecap="round" d="M365.500 489 v-2.500 a3.500 3.500 0 0 1 7 0 v2.500"/>
+                <rect x="362.500" y="488.500" width="13" height="10" rx="2" fill="#E2B13C" class="s-ink" stroke-width="1.800"/><circle fill="#5A1F0E" cx="369" cy="492.500" r="1.500"/><path stroke="#5A1F0E" stroke-width="1.300" stroke-linecap="round" d="M369 493 v3"/></g>
+            </g>
             </g>
           </a>
           <!-- round rug: a right part that stays, and a left flap that folds over -->
           <g class="kit-rug" id="kitRug">
             <ellipse class="f-marigold s-ink" stroke-width="3" cx="540" cy="486" rx="232" ry="44" clip-path="url(#kitRugR)"/>
             <g class="rug-flap"><ellipse class="f-marigold s-ink" stroke-width="3" cx="540" cy="486" rx="232" ry="44" clip-path="url(#kitRugL)"/></g>
-            <path class="rug-fold s-ink" stroke-width="3" stroke-linecap="round" d="M412 449.500 V522.500"/>
+            <path class="rug-fold s-ink" stroke-width="3" stroke-linecap="round" d="M470 444.500 V527.500"/>
           </g>
           <!-- a pair of puppy slippers -->
           <use href="#puppySlipper" transform="translate(134,458) rotate(24) scale(1.45)"/>
@@ -3506,8 +3521,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
         <path d="M178 120 l-8 -6 v12 Z M200 120 l8 -6 v12 Z" fill="#F7B6D2"/><ellipse cx="189" cy="120" rx="11" ry="7" fill="#F48FB8"/>
         <path d="M196 146 l-7 -5 v10 Z M216 146 l7 -5 v10 Z" fill="#FFF3A8"/><ellipse cx="206" cy="146" rx="10" ry="6.5" fill="#F2C230"/>
       </g>
-      <!-- a spare gold key with a little heart charm -->
-      <g stroke-width="1.4">
+      <!-- a spare gold key with a little heart charm: it can be dragged out of the drawer -->
+      <g stroke-width="1.4" class="drawer-key" id="drawerKey"><rect x="238" y="92" width="40" height="52" fill="#FFFFFF" fill-opacity="0" stroke="none"/>
         <g transform="translate(0,-18) rotate(8 250 127)">
           <path d="M243.5 126 Q243.5 119.5 250 119.5 Q256.5 119.5 256.5 126 Q256.5 132 252 133 V135 H248 V133 Q243.5 132 243.5 126 Z" fill="#E2B13C"/>
           <circle cx="250" cy="125.5" r="2.8" fill="#E8CFA8"/>
@@ -3601,6 +3616,10 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     </div>
   </div>
 </dialog>
+
+<button class="key-hand" id="keyHand" type="button" hidden aria-label="The gold key from the junk drawer. Drag it onto the lock, or click the lock.">
+  <svg viewBox="0 0 40 40" aria-hidden="true" stroke="#5A1F0E" stroke-width="1.800" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(35 20 20)"><path d="M12 11 Q12 3 20 3 Q28 3 28 11 Q28 18 22.500 19.500 V21 H17.500 V19.500 Q12 18 12 11 Z" fill="#E2B13C"/><circle cx="20" cy="10.500" r="3.400" fill="#FFFDF4"/><path d="M18 21 H22 V37 H19 V34 H16.500 V30.500 H19 V28 H16 V24.500 H19 V22.500 H18 Z" fill="#E2B13C"/></g></svg>
+</button>
 
 <dialog class="sol-dialog" id="solDialog" aria-label="Solitaire">
   <div class="sol-wrap" id="solWrap">
@@ -6090,18 +6109,78 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     colorDialog.addEventListener("click", function (e) { if (e.target === colorDialog) colorDialog.close(); });
   })();
 
-  // ---------- secret basement: click the kitchen rug and it folds back; click the cellar door to go down
+  // ---------- secret basement puzzle: drag the chair off the rug, click the rug, take the key from the junk drawer, unlock the cellar door
   var kitRug = document.getElementById("kitRug"), cellarDoor = document.getElementById("cellarDoor");
-  if (kitRug && cellarDoor) {
-    kitRug.addEventListener("click", function () { kitRug.classList.toggle("peeled"); });
-    cellarDoor.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (!kitRug.classList.contains("peeled")) return;
+  if (kitRug && cellarDoor) (function () {
+    var kitSvg = kitRug.ownerSVGElement, keyHand = document.getElementById("keyHand"), drawerKey = document.getElementById("drawerKey");
+    var chairMoved = false, hasKey = false, unlocked = false;
+    var svgPoint = function (svg, e) { var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+
+    // 1. the chairs slide around the floor; the left one has to come off the rug before it will fold
+    document.querySelectorAll("#room-kitchen .kit-chair").forEach(function (ch, n) {
+      var m = /translate\(([-\d.]+),\s*([-\d.]+)\)(.*)/.exec(ch.getAttribute("transform")), bx = +m[1], by = +m[2], rest = m[3] || "", x = bx, y = by, grab = null;
+      ch.addEventListener("pointerdown", function (e) { var p = svgPoint(kitSvg, e); grab = { dx: p.x - x, dy: p.y - y }; ch.classList.add("dragging"); ch.setPointerCapture(e.pointerId); e.preventDefault(); });
+      ch.addEventListener("pointermove", function (e) {
+        if (!grab) return; var p = svgPoint(kitSvg, e);
+        x = Math.max(70, Math.min(930, p.x - grab.dx)); y = Math.max(424, Math.min(476, p.y - grab.dy));
+        ch.setAttribute("transform", "translate(" + x.toFixed(1) + "," + y.toFixed(1) + ")" + rest);
+      });
+      var drop = function () { if (!grab) return; grab = null; ch.classList.remove("dragging"); if (n === 0) chairMoved = x < 372 || x > 505; };
+      ch.addEventListener("pointerup", drop); ch.addEventListener("pointercancel", drop);
+    });
+
+    // 2. the rug only folds back once the chair is off it
+    kitRug.addEventListener("click", function () {
+      if (!chairMoved && !kitRug.classList.contains("peeled")) return;
+      kitRug.classList.toggle("peeled");
+    });
+
+    // 3. the gold key can be dragged out of the junk drawer; once it is out, it is "in your hand"
+    function showHand() { keyHand.hidden = !(hasKey && (location.hash.slice(1) === "kitchen")); keyHand.style.left = keyHand.style.top = ""; }
+    window.addEventListener("hashchange", showHand);
+    if (drawerKey) {
+      var dSvg = drawerKey.ownerSVGElement, kg = null, kx = 0, ky = 0;
+      drawerKey.addEventListener("pointerdown", function (e) { var p = svgPoint(dSvg, e); kg = { x: p.x, y: p.y }; drawerKey.classList.add("dragging"); drawerKey.setPointerCapture(e.pointerId); e.preventDefault(); });
+      drawerKey.addEventListener("pointermove", function (e) { if (!kg) return; var p = svgPoint(dSvg, e); kx = p.x - kg.x; ky = p.y - kg.y; drawerKey.setAttribute("transform", "translate(" + kx.toFixed(1) + "," + ky.toFixed(1) + ")"); });
+      var letGo = function (e) {
+        if (!kg) return; var p = svgPoint(dSvg, e); kg = null; drawerKey.classList.remove("dragging");
+        if (p.y < 20 || p.y > 166 || p.x < 18 || p.x > 302) {           // out past the edge of the drawer: you have the key
+          hasKey = true; drawerKey.classList.add("taken"); tone("sine", 1200, 1700, 2100, .12, .3);
+          setTimeout(function () { if (drawerDialog && drawerDialog.open) drawerDialog.close(); showHand(); }, 350);
+        }
+        kx = ky = 0; drawerKey.removeAttribute("transform");
+      };
+      drawerKey.addEventListener("pointerup", letGo); drawerKey.addEventListener("pointercancel", function () { kg = null; kx = ky = 0; drawerKey.classList.remove("dragging"); drawerKey.removeAttribute("transform"); });
+    }
+
+    // 4. the lock: without the key it rattles; with the key it opens, and down you go
+    function goDown() {
       if (reduce) { location.hash = "#basement"; return; }
       cellarDoor.classList.add("open"); tone("triangle", 220, 150, 90, .18, .35);
       setTimeout(function () { location.hash = "#basement"; window.scrollTo(0, 0); cellarDoor.classList.remove("open"); }, 520);
-    });
-  }
+    }
+    function tryDoor() {
+      if (!kitRug.classList.contains("peeled")) return;
+      if (unlocked) { goDown(); return; }
+      if (!hasKey) { cellarDoor.classList.remove("rattle"); void cellarDoor.getBoundingClientRect(); cellarDoor.classList.add("rattle"); tone("square", 180, 140, 160, .06, .18); return; }
+      unlocked = true; hasKey = false; showHand(); if (drawerKey) drawerKey.classList.remove("taken");
+      cellarDoor.classList.add("unlocked"); tone("sine", 900, 1400, 1900, .12, .28);
+      setTimeout(goDown, 550);
+    }
+    cellarDoor.addEventListener("click", function (e) { e.preventDefault(); tryDoor(); });
+
+    // the key in your hand can be dragged onto the lock (clicking the lock works too)
+    var hg = null;
+    keyHand.addEventListener("pointerdown", function (e) { var r = keyHand.getBoundingClientRect(); hg = { dx: e.clientX - r.left, dy: e.clientY - r.top }; keyHand.classList.add("dragging"); keyHand.setPointerCapture(e.pointerId); e.preventDefault(); });
+    keyHand.addEventListener("pointermove", function (e) { if (!hg) return; keyHand.style.left = (e.clientX - hg.dx) + "px"; keyHand.style.top = (e.clientY - hg.dy) + "px"; });
+    var handDrop = function (e) {
+      if (!hg) return; hg = null; keyHand.classList.remove("dragging");
+      keyHand.style.visibility = "hidden"; var under = document.elementFromPoint(e.clientX, e.clientY); keyHand.style.visibility = "";
+      if (under && under.closest && under.closest("#cellarDoor") && kitRug.classList.contains("peeled")) tryDoor();
+      else { keyHand.style.left = keyHand.style.top = ""; }
+    };
+    keyHand.addEventListener("pointerup", handDrop); keyHand.addEventListener("pointercancel", function () { hg = null; keyHand.classList.remove("dragging"); keyHand.style.left = keyHand.style.top = ""; });
+  })();
 
   // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here except the secret basement)
   (function () {
