@@ -678,7 +678,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .bs-lamp { cursor: pointer; outline: none; } .bs-light { opacity: 0; transition: opacity .25s; pointer-events: none; } .bs-lamp.on .bs-light { opacity: .55; } .bs-lamp.on ellipse.bs-light.f-marigold { opacity: 1; } .bs-lamp.on .bs-bulb-off { opacity: 0; } @keyframes bsLava { to { transform: translateY(-16px) scale(1.15, .85); } }
 @media (prefers-reduced-motion: reduce) { .bs-bulb, .bs-cursor, .bs-lava { animation: none; } .rug-flap, .cellar-lid { transition: none; } }
 /* quick search, top right, outside the frame */
-.site-search { position: relative; margin-left: auto; }
+.site-search { position: absolute; top: 16px; right: 18px; z-index: 30; }
 .site-search input { width: clamp(130px, 22vw, 220px); font: 600 .95rem var(--font-body); color: var(--ink); background: #FFFDF4; border: 2.5px solid var(--ink); border-radius: 999px; padding: .38em 1em; box-shadow: 2px 3px 0 rgba(90, 31, 14, .25); }
 .site-search input::placeholder { color: var(--muted); }
 .site-search input:focus { outline: none; border-color: var(--hot); }
@@ -687,7 +687,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .site-search-list li small { display: block; font: 600 .74rem/1.25 var(--font-body); color: var(--muted); }
 .site-search-list li:hover, .site-search-list li[aria-selected="true"] { background: var(--blush); }
 .site-search-list .none { cursor: default; font-weight: 600; color: var(--muted); } .site-search-list .none:hover { background: none; }
-@media (orientation: landscape) and (max-height: 540px) { .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } .wrap > .topbar { display: flex; flex-wrap: nowrap; gap: 8px; } }
+@media (orientation: landscape) and (max-height: 540px) { .site-search { top: 6px; right: 10px; } .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } }
+@media (max-width: 520px) { .site-search { top: 12px; right: 12px; } .site-search input { width: 128px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
