@@ -700,6 +700,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (orientation: landscape) and (max-height: 540px) { .site-search { top: 6px; right: 10px; } .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } }
 @media (max-width: 700px) { .topbar { padding-right: 150px; } }
 @media (max-width: 520px) { .site-search { top: 12px; right: 12px; } .site-search input { width: 116px; font-size: .85rem; padding: .34em .85em; } .topbar { padding-right: 126px; } }
+a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
@@ -1053,7 +1054,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 <div class="wrap">
   <header class="topbar">
     <div>
-      <div class="brand">MO Coyotes</div>
+      <a class="brand" href="#outside" aria-label="MO Coyotes: back outside to the main page">MO Coyotes</a>
       <div class="tag-note">Handmade &amp; thrifted · Missouri</div>
     </div>
     <div class="site-search" role="search">
@@ -3800,7 +3801,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       var to = a.getAttribute("data-to");
       if (reduce) { location.hash = to; return; }
       if (a.classList.contains("hot-plane")) {
-        a.classList.add("flyoff");
+        a.classList.add("flyoff"); planeSound();
         setTimeout(function () { location.hash = to; }, 1100);
         return;
       }
@@ -6262,6 +6263,19 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
   document.querySelectorAll(".bs-lamp").forEach(function (l) {
     l.addEventListener("click", function () { var on = l.classList.toggle("on"); l.setAttribute("aria-pressed", on ? "true" : "false"); tone("square", on ? 900 : 500, on ? 1200 : 380, on ? 1200 : 380, .05, .05); });
   });
+
+  // ---------- the little plane's engine: a propeller drone that revs up and fades as it flies off
+  function planeSound() {
+    var c = audio(); if (!c) return;
+    var t = c.currentTime, len = 1.5, o = c.createOscillator(), o2 = c.createOscillator(), chop = c.createOscillator(), cg = c.createGain(), g = c.createGain(), lp = c.createBiquadFilter();
+    o.type = "sawtooth"; o.frequency.setValueAtTime(82, t); o.frequency.exponentialRampToValueAtTime(150, t + .5); o.frequency.exponentialRampToValueAtTime(118, t + len);
+    o2.type = "triangle"; o2.frequency.setValueAtTime(123, t); o2.frequency.exponentialRampToValueAtTime(226, t + .5); o2.frequency.exponentialRampToValueAtTime(176, t + len);
+    chop.type = "sine"; chop.frequency.setValueAtTime(22, t); chop.frequency.linearRampToValueAtTime(40, t + .5); cg.gain.value = .022;
+    lp.type = "lowpass"; lp.frequency.setValueAtTime(700, t); lp.frequency.linearRampToValueAtTime(1100, t + .5); lp.Q.value = .6;
+    g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(.055, t + .15); g.gain.setValueAtTime(.055, t + .6); g.gain.linearRampToValueAtTime(.0001, t + len);
+    chop.connect(cg); cg.connect(g.gain); o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(c.destination);
+    o.start(t); o2.start(t); chop.start(t); o.stop(t + len + .05); o2.stop(t + len + .05); chop.stop(t + len + .05);
+  }
 
   // ---------- kitchen cat clock: real local time ----------
   var kcHour = document.getElementById("kcHour"), kcMin = document.getElementById("kcMin"), kcTime = document.getElementById("kcTime");
