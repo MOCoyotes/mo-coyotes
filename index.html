@@ -6174,6 +6174,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (!kitRug.classList.contains("peeled")) return;
       if (unlocked) goDown(); else rattle();
     });
+    // the door locks itself again behind you: once you are down in the basement the key is back in the junk drawer
+    window.addEventListener("hashchange", function () { if (location.hash === "#basement") { unlocked = false; hasKey = false; cellarDoor.classList.remove("unlocked"); floorKey.classList.remove("out"); if (drawerKey) drawerKey.classList.remove("taken"); } });
     var fg = null;
     floorKey.addEventListener("pointerdown", function (e) { var p = svgPoint(kitSvg, e); fg = { dx: p.x - fkx, dy: p.y - fky }; floorKey.classList.add("dragging"); floorKey.setPointerCapture(e.pointerId); e.preventDefault(); });
     floorKey.addEventListener("pointermove", function (e) { if (!fg) return; var p = svgPoint(kitSvg, e); fkx = Math.max(20, Math.min(980, p.x - fg.dx)); fky = Math.max(430, Math.min(548, p.y - fg.dy)); placeKey(); });
