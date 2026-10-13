@@ -688,7 +688,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .site-search-list li:hover, .site-search-list li[aria-selected="true"] { background: var(--blush); }
 .site-search-list .none { cursor: default; font-weight: 600; color: var(--muted); } .site-search-list .none:hover { background: none; }
 @media (orientation: landscape) and (max-height: 540px) { .site-search { top: 6px; right: 10px; } .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } }
-@media (max-width: 520px) { .site-search { top: 12px; right: 12px; } .site-search input { width: 128px; } }
+@media (max-width: 700px) { .topbar { padding-right: 150px; } }
+@media (max-width: 520px) { .site-search { top: 12px; right: 12px; } .site-search input { width: 116px; font-size: .85rem; padding: .34em .85em; } .topbar { padding-right: 126px; } }
 .kit-steam path { transform-box: fill-box; animation: kitSteam 2.6s ease-in-out infinite; }
 .kit-steam path:nth-child(2) { animation-delay: -.9s; } .kit-steam path:nth-child(3) { animation-delay: -1.7s; }
 @keyframes kitSteam { 0% { transform: translateY(8px); opacity: 0; } 40% { opacity: .9; } 100% { transform: translateY(-10px); opacity: 0; } }
