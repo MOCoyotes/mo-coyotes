@@ -6100,7 +6100,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
     });
   }
 
-  // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here, the kitchen and basement included)
+  // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here except the secret basement)
   (function () {
     var box = document.getElementById("siteSearch"), list = document.getElementById("siteSearchList"); if (!box || !list) return;
     var PLACES = [
@@ -6120,7 +6120,6 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
       { t: "Locations", s: "Where to find MO Coyotes", k: "locations location map where find address directions union studio node bike in person", go: "outside", click: "#carLink" },
       { t: "Powder Room", s: "Bubbles and a rubber duck", k: "room rooms powder room bathroom bath bubbles duck toilet audhd", go: "bath" },
       { t: "Kitchen", s: "Through the little mouse door", k: "room rooms kitchen cook fridge stove oven table sudoku calendar clock tarot fortune cookie mouse coffee kettle", go: "kitchen" },
-      { t: "Basement", s: "The hangout under the kitchen", k: "room rooms basement cellar downstairs hangout craft room living room computer couch den", go: "basement" },
       { t: "EXTRA", s: "The shelf under the stairs", k: "room rooms extra featured brag shelf trophy awards fun", go: "featured" },
       { t: "Scrapbook of Events", s: "Parties, weddings and showers", k: "scrapbook events event party parties wedding weddings shower brunch birthday photos", go: "featured", click: ".hot-scrap" },
       { t: "Skills", s: "Everything Coyote can make and do", k: "skills skill list can do classes teach learn", go: "featured", click: '[data-feat="accomplishments"]' },
