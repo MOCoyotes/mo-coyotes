@@ -672,6 +672,12 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .cellar-door.unlocked .cellar-lock { opacity: 0; transform: translateY(6px) rotate(20deg); }
 .cellar-door.rattle .cellar-lid { animation: lockRattle .32s linear; }
 @keyframes lockRattle { 20% { transform: translateX(-1.6px); } 45% { transform: translateX(1.6px); } 70% { transform: translateX(-1.1px); } }
+.kit-slippers { cursor: grab; touch-action: none; } .kit-slippers.dragging { cursor: grabbing; }
+.rita { cursor: pointer; } .rita [data-slip] { cursor: grab; touch-action: none; }
+.rita-hop { transform-box: fill-box; transform-origin: 50% 100%; }
+.rita-hop.hop { animation: ritaHop .5s cubic-bezier(.3, 0, .5, 1); }
+@keyframes ritaHop { 0% { transform: none; } 20% { transform: scale(1.04, .94); } 55% { transform: translateY(-14%) scale(.97, 1.04); } 80% { transform: scale(1.03, .96); } 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .rita-hop.hop { animation: none; } }
 .kit-chair { cursor: grab; touch-action: none; } .kit-chair.dragging { cursor: grabbing; }
 .drawer-art { overflow: visible; }
 .floor-key { display: none; cursor: grab; touch-action: none; } .floor-key.out { display: inline; } .floor-key.dragging { cursor: grabbing; }
@@ -2648,9 +2654,6 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
             <g class="rug-flap"><ellipse class="f-marigold s-ink" stroke-width="3" cx="540" cy="486" rx="232" ry="44" clip-path="url(#kitRugL)"/></g>
             <path class="rug-fold s-ink" stroke-width="3" stroke-linecap="round" d="M470 444.500 V527.500"/>
           </g>
-          <!-- a pair of puppy slippers -->
-          <use href="#puppySlipper" transform="translate(134,458) rotate(24) scale(1.45)"/>
-          <use href="#puppySlipper" transform="translate(188,458) rotate(-24) scale(1.45)"/>
           <!-- a crumb of cheese by the mouse hole -->
           <path class="f-marigold s-ink" stroke-width="2" d="M104 410 L128 410 L128 398 Z"/>
           <circle class="f-orange" cx="118" cy="406" r="1.8"/><circle class="f-orange" cx="124" cy="403" r="1.4"/>
@@ -2808,6 +2811,14 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
             <path class="s-ink" stroke-width="1" fill="none" d="M25 -10 l9 -3 M25 -8 l9 1"/>
           </g>
         </g>
+        <!-- the puppy slippers: drag them onto Rita's feet; take them off and they go back to this spot -->
+        <g class="kit-slippers" id="kitSlippers" aria-label="Puppy slippers: drag them onto Rita's feet">
+          <rect x="105" y="425" width="112" height="62" fill="#FFFFFF" fill-opacity="0"/>
+          <use href="#puppySlipper" transform="translate(134,458) rotate(24) scale(1.45)"/>
+          <use href="#puppySlipper" transform="translate(188,458) rotate(-24) scale(1.45)"/>
+        </g>
+        <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
+        <g class="rita" id="rita" transform="translate(682.6,364.6) scale(.52)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
         <!-- the gold key from the junk drawer, once it has been dropped on the floor: drag it to the padlock -->
         <g class="floor-key" id="floorKey" transform="translate(250,522)" role="img" aria-label="A gold key lying on the floor">
           <rect x="-22" y="-16" width="44" height="30" fill="#FFFFFF" fill-opacity="0"/>
@@ -6196,6 +6207,142 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       }
     };
     floorKey.addEventListener("pointerup", keyDown); floorKey.addEventListener("pointercancel", function () { fg = null; floorKey.classList.remove("dragging"); });
+  })();
+
+  // ---------- RITA: little cartoon Coyote. Her look is RITA_LOOK below (the picks from the character maker).
+  // Click her and she hops. The puppy slippers on the kitchen floor drag onto her feet; drag them off and they go home.
+  (function () {
+    var body = document.getElementById("ritaBody"), rita = document.getElementById("rita"), pair = document.getElementById("kitSlippers");
+    if (!body || !rita || !pair) return;
+    var RITA_LOOK = { skin: "#F6CBB0", head: "point", hair: "half", bangs: "deep", hc: "#F6A6C8", roots: "#D9739E", ec: "#5A3418", lash: "bold", glasses: "heart", tint: "pink",
+      mouth: "smirk", lips: "#EFA8B3", lip: "gold", blush: "soft", outfit: "tee", top: "#2B2626", socks: "#2B2626", shoes: "#FFFDF4", extra: "bow", neck: true, pose: "peace" };
+    var L = RITA_LOOK, INK = "#5A1F0E", NAIL = "#F0599E", slippersOn = false;
+    function sh(c, a) { var n = parseInt(c.slice(1), 16); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(function (v) { return Math.max(0, Math.min(255, Math.round(v * a))).toString(16).padStart(2, "0"); }).join(""); }
+    function p(d, f, x) { x = x || ""; return '<path d="' + d + '" fill="' + f + '" ' + (/(^|\s)stroke=/.test(x) ? "" : 'stroke="' + INK + '"') + " " + (/stroke-width/.test(x) ? "" : 'stroke-width="2.2"') + ' stroke-linejoin="round" stroke-linecap="round" ' + x + "/>"; }
+    function fl(d, f) { return '<path d="' + d + '" fill="' + f + '"/>'; }
+    function mir(d) { return d.replace(/(-?\d+\.?\d*) (-?\d+\.?\d*)/g, function (m, a, b) { return (240 - a) + " " + b; }); }
+    function R(n) { return (+n).toFixed(2); }
+    function cap(x, y, ang, len, r) { var a = ang * Math.PI / 180, dx = Math.sin(a), dy = -Math.cos(a), x2 = x + dx * len, y2 = y + dy * len, nx = -dy * r, ny = dx * r;
+      return "M" + R(x + nx) + " " + R(y + ny) + " L" + R(x2 + nx) + " " + R(y2 + ny) + " A" + r + " " + r + " 0 0 0 " + R(x2 - nx) + " " + R(y2 - ny) + " L" + R(x - nx) + " " + R(y - ny) + " A" + r + " " + r + " 0 0 0 " + R(x + nx) + " " + R(y + ny) + " Z"; }
+    function tip(x, y, ang, len, r) { var a = ang * Math.PI / 180; return [x + Math.sin(a) * (len + r * .25), y - Math.cos(a) * (len + r * .25)]; }
+    function limb(parts, sk) {
+      var o = parts.map(function (q) { return '<path d="' + q.d + '" ' + (q.t ? 'transform="' + q.t + '"' : "") + ' fill="' + INK + '" stroke="' + INK + '" stroke-width="4.4" stroke-linejoin="round"/>'; }).join("");
+      return o + parts.map(function (q) { return '<path d="' + q.d + '" ' + (q.t ? 'transform="' + q.t + '"' : "") + ' fill="' + sk + '"/>'; }).join(""); }
+    var DOLL = "M-4.6 0 Q-5.6 5 -5.3 9 Q-5.1 13 -4.1 15.6 Q-3.5 17.1 -2.4 16.5 Q-1.6 17.7 -0.4 17.3 Q0.6 18.1 1.6 17.3 Q2.9 17.5 3.1 16 Q3.3 13 3.1 10.2 Q4.9 12.6 6.1 12.7 Q7.5 12.5 6.9 10.7 Q5.9 7.6 4.7 4 L4.6 0 Z";
+    function dollDetail(t) { return '<g transform="' + t + '"><path d="M-2.4 16.3 L-2.6 12.4 M-0.4 17 L-0.5 12.6 M1.6 16.9 L1.6 12.6 M3 10.6 Q3.4 8 4.4 5.5" fill="none" stroke="' + INK + '" stroke-width=".8" stroke-linecap="round" opacity=".5"/><g fill="' + NAIL + '"><ellipse cx="-3.3" cy="15.7" rx=".8" ry="1"/><ellipse cx="-1.3" cy="16.4" rx=".8" ry="1"/><ellipse cx=".7" cy="16.7" rx=".8" ry="1"/><ellipse cx="2.4" cy="16.1" rx=".75" ry=".95"/><ellipse cx="6.1" cy="11.6" rx=".8" ry=".9"/></g></g>'; }
+    var PALM = "M-4.8 0 Q-5.8 -4.5 -5 -8.2 Q0 -9.6 5 -8.2 Q5.8 -4.5 4.8 0 Z";
+    var PF = [[-1.6, -8.2, -13, 10, 1.35], [1.6, -8.2, 13, 10, 1.35]], PT = [-4.4, -2.2, 70, 6, 1.4], PK = [[2.6, -8, 0, 1.4, 1.4], [4.3, -7.2, 8, 1.2, 1.3]];
+    // puppy slipper seen from the front, same colors as the pair on the floor
+    function pup(x, y) { return '<g transform="translate(' + R(x) + " " + R(y) + ')" stroke="#7A4A2A" stroke-linejoin="round" stroke-linecap="round">' +
+      '<path d="M-9 -10 Q-17.5 -9 -16.5 -1 Q-15.5 3 -11.6 0.5 Q-11 -6 -7 -9 Z M9 -10 Q17.5 -9 16.5 -1 Q15.5 3 11.6 0.5 Q11 -6 7 -9 Z" fill="#E8B996" stroke-width="1.3"/>' +
+      '<path d="M-12.5 1 L12.5 1 L12.5 3.6 Q12.5 6 9.6 6 L-9.6 6 Q-12.5 6 -12.5 3.6 Z" fill="#F7C1CC" stroke-width="1.3"/>' +
+      '<path d="M-12 1.5 Q-13 -12.5 0 -13.5 Q13 -12.5 12 1.5 Z" fill="#FBEDE2" stroke-width="1.4"/>' +
+      '<ellipse cx="0" cy="-3.6" rx="5.6" ry="3.8" fill="#F2C4A6" stroke-width=".8"/><ellipse cx="0" cy="-5.1" rx="1.9" ry="1.3" fill="#7A4A2A" stroke="none"/>' +
+      '<path d="M-1.9 -3.1 q.95 1.3 1.9 0 q.95 1.3 1.9 0" fill="none" stroke-width=".8"/>' +
+      '<circle cx="-4.6" cy="-8.4" r="1.35" fill="#5A1F0E" stroke="none"/><circle cx="4.6" cy="-8.4" r="1.35" fill="#5A1F0E" stroke="none"/>' +
+      '<circle cx="-4.1" cy="-8.9" r=".45" fill="#fff" stroke="none"/><circle cx="5.1" cy="-8.9" r=".45" fill="#fff" stroke="none"/>' +
+      '<ellipse cx="-8" cy="-3.4" rx="2" ry="1.2" fill="#F48FB8" stroke="none" opacity=".6"/><ellipse cx="8" cy="-3.4" rx="2" ry="1.2" fill="#F48FB8" stroke="none" opacity=".6"/></g>'; }
+
+    function draw() {
+      var sk = L.skin, sd = sh(sk, .9), hc = L.hc, hl = sh(hc, 1.08), rt = L.roots, lc = L.lips, g = "";
+      g += '<ellipse cx="120" cy="330" rx="44" ry="5" fill="#5A1F0E" opacity=".14"/>';
+      g += p("M84 86 Q80 38 120 36 Q160 38 156 86 Q162 108 157 128 Q163 142 153 152 Q147 145 148 138 L92 138 Q93 145 87 152 Q77 142 83 128 Q78 108 84 86 Z", hc);
+      g += p("M120 30 m-12 0 a12 10 0 1 0 24 0 a12 10 0 1 0 -24 0", hc);
+      // legs, socks and sneakers (the sneakers come off when the slippers go on)
+      var leg = "M96 244 L118 244 L115.5 312 L102.5 312 Z"; g += p(leg, sk) + p(mir(leg), sk);
+      if (!slippersOn) {
+        var sockL = "M102 288 L116 288 L116 309 L102 309 Z"; g += p(sockL, L.socks) + p(mir(sockL), L.socks) + '<path d="M102 292.5 L116 292.5 M124 292.5 L138 292.5" stroke="#55504F" stroke-width="1.3" opacity=".8"/>';
+        var shoeL = "M101 308 Q101 304 105 304 L113 304 Q117 304 117 308 L119.5 318 Q120 322 116 322 L100 322 Q96 322 96.5 318 Z", soleL = "M96 318.5 L120 318.5 L120 322 Q120 325.5 116.5 325.5 L99.5 325.5 Q96 325.5 96 322 Z";
+        g += p(shoeL, L.shoes) + p(mir(shoeL), L.shoes) + p(soleL, "#FFFDF4") + p(mir(soleL), "#FFFDF4") + '<path d="M105.5 308 L112.5 308 M105 311.5 L113 311.5 M127.5 308 L134.5 308 M127 311.5 L135 311.5" stroke="' + INK + '" stroke-width="1.2" stroke-linecap="round" fill="none"/>';
+      } else {
+        var sockL2 = "M102 288 L116 288 L116 306 L102 306 Z"; g += p(sockL2, L.socks) + p(mir(sockL2), L.socks) + '<path d="M102 292.5 L116 292.5 M124 292.5 L138 292.5" stroke="#55504F" stroke-width="1.3" opacity=".8"/>';
+      }
+      // arms: left hangs down, right is up doing a peace sign
+      var arm = "M77 171 L86.5 173 Q83 200 85 229 L75 229 Q71.5 200 77 171 Z", tL = "translate(80 227)", ra = "M164 142.5 L168.5 148.5 Q180 134 181 119 L171 119 Q169.5 132 164 142.5 Z", t = "translate(176 121) rotate(6)";
+      g += limb([{ d: arm }, { d: DOLL, t: tL }], sk) + dollDetail(tL);
+      g += limb([{ d: ra }, { d: PALM, t: t }].concat(PF.concat(PK).map(function (f) { return { d: cap.apply(null, f), t: t }; })).concat([{ d: cap.apply(null, PT), t: t }]), sk) +
+        '<g transform="' + t + '"><path d="M-4.6 -2.4 Q-1 -4.6 2.2 -4.4" fill="none" stroke="' + INK + '" stroke-width=".9" stroke-linecap="round" opacity=".55"/><g fill="' + NAIL + '">' +
+        PF.map(function (f) { var q = tip.apply(null, f); return '<circle cx="' + R(q[0]) + '" cy="' + R(q[1]) + '" r=".9"/>'; }).join("") + "</g></g>";
+      // black tee and bike shorts
+      g += p("M93 218 L147 218 L147 248 L122 248 L120 240 L118 248 L93 248 Z", "#2B2626");
+      g += p("M96 142 Q120 136 144 142 L148 166 L148 222 L92 222 L92 166 L87 176 L73 172 Z", L.top) + '<path d="M104 200 Q110 206 108 220 M136 196 Q132 206 134 220" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1.5"/>';
+      g += p("M143 142 L161 137 L173 151 L149 168 Z", L.top);
+      // neck, necklace, ears, face
+      g += p("M112 116 L128 116 L128 142 Q120 146 112 142 Z", sk) + '<path d="M112 122 Q120 132 128 122 L128 130 Q120 136 112 130 Z" fill="' + sd + '"/>';
+      g += '<path d="M108 141 Q120 158 132 141" fill="none" stroke="#E2B13C" stroke-width="1.4"/><rect x="114" y="150" width="12" height="4" rx="1.5" fill="#E2B13C" stroke="' + INK + '" stroke-width=".8"/>';
+      g += p("M88 92 m-5 0 a5 7 0 1 0 10 0 a5 7 0 1 0 -10 0", sk) + p("M152 92 m-5 0 a5 7 0 1 0 10 0 a5 7 0 1 0 -10 0", sk);
+      g += p("M88 86 Q88 50 120 50 Q152 50 152 86 Q152 108 141 119 Q130 128 120 129 Q110 128 99 119 Q88 108 88 86 Z", sk);
+      g += '<ellipse cx="101" cy="105" rx="7" ry="4" fill="#F0708F" opacity=".32"/><ellipse cx="139" cy="105" rx="7" ry="4" fill="#F0708F" opacity=".32"/>';
+      [107, 133].forEach(function (x) {
+        var y = 92, id = "ritaEye" + x, s = x < 120 ? -1 : 1, al = "M" + (x - 8) + " " + y + " Q" + x + " " + (y - 7) + " " + (x + 8) + " " + y + " Q" + x + " " + (y + 5.5) + " " + (x - 8) + " " + y + " Z";
+        g += '<clipPath id="' + id + '"><path d="' + al + '"/></clipPath><path d="' + al + '" fill="#fff"/>';
+        g += '<g clip-path="url(#' + id + ')"><circle cx="' + x + '" cy="' + (y - .5) + '" r="4.4" fill="' + L.ec + '"/><circle cx="' + x + '" cy="' + (y - .5) + '" r="2" fill="#2B1A10"/><circle cx="' + (x + 1.4) + '" cy="' + (y - 2) + '" r="1.1" fill="#fff"/></g>';
+        g += '<path d="M' + (x - 8.5) + " " + (y + .3) + " Q" + x + " " + (y - 7.6) + " " + (x + 8.5) + " " + (y - .3) + '" fill="none" stroke="' + INK + '" stroke-width="2.6" stroke-linecap="round"/>';
+        g += '<path d="M' + (x + s * 8) + " " + (y - 1.5) + " l" + (s * 3) + " -2.5 M" + (x + s * 6) + " " + (y - 4) + " l" + (s * 2.2) + ' -3" stroke="' + INK + '" stroke-width="1.8" stroke-linecap="round"/>';
+        g += '<path d="M' + (x - 6) + " " + (y + 4.5) + " Q" + x + " " + (y + 6.5) + " " + (x + 6) + " " + (y + 4.5) + '" fill="none" stroke="' + sd + '" stroke-width="1"/>';
+      });
+      g += '<path d="M99 81 Q106 77 114 80 M126 80 Q134 77 141 81" fill="none" stroke="' + sh(rt, .85) + '" stroke-width="2.6" stroke-linecap="round"/>';
+      g += '<path d="M120 94 Q118 102 116.5 104.5 Q119 107 123 105" fill="none" stroke="' + sh(sk, .75) + '" stroke-width="1.5" stroke-linecap="round"/>';
+      // soft smirk, no lip outline, gold hoop through the lower lip
+      var upL = "M112 113 Q116 110.5 120 111.8 Q124 110.5 128 113 Q120 114.3 112 113 Z";
+      g += '<g transform="rotate(-4 120 113)">' + fl(upL, sh(lc, .95)) + fl("M112 113 Q120 119.5 128 113 Q120 114.3 112 113 Z", lc) +
+        '<path d="M113 113 Q120 114.3 127 113" stroke="' + sh(lc, .78) + '" stroke-width=".9" fill="none" stroke-linecap="round"/>' +
+        '<path d="M123.8 115.3 A2 2 0 0 0 127.4 113.6" fill="none" stroke="#E2B13C" stroke-width="1.5" stroke-linecap="round"/><path d="M124.6 116.4 Q125.3 116.9 126.1 116.8" fill="none" stroke="#FFF2B0" stroke-width=".6" stroke-linecap="round" opacity=".9"/></g>' +
+        '<path d="M128.5 111.5 Q130.5 110.5 131 109" fill="none" stroke="' + sh(sk, .82) + '" stroke-width="1" stroke-linecap="round"/>';
+      // extra swoopy bangs, half-up waves
+      g += p("M86 96 Q83 42 120 42 Q157 42 154 96 Q151 82 140 81 Q122 80 121 57 L119 57 Q118 80 100 81 Q89 82 86 96 Z", hc);
+      g += '<path d="M96 54 Q120 36 144 54 Q134 46 120 46 Q106 46 96 54 Z" fill="' + rt + '"/>';
+      g += '<path d="M104 52 Q98 60 93 74 M136 52 Q142 60 147 74" fill="none" stroke="' + hl + '" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>';
+      g += '<path d="M120 45 L120 57" stroke="' + INK + '" stroke-width="1.3" opacity=".6"/><path d="M114 60 Q112 72 104 76 M126 60 Q128 72 136 76" fill="none" stroke="' + INK + '" stroke-width="1.1" stroke-linecap="round" opacity=".45"/>';
+      var lock = "M88 82 Q79 104 85 122 Q81 138 89 148 Q94 138 93 126 Q98 106 94 86 Z";
+      g += p(lock, hc) + p(mir(lock), hc) + '<path d="M86 104 Q84 116 88 126 M154 104 Q156 116 152 126" fill="none" stroke="' + INK + '" stroke-width="1" opacity=".45"/>';
+      // pink heart glasses with a rosy tint
+      var heart = function (x) { return '<path d="M' + x + " 104 C" + (x - 6) + " 100 " + (x - 14) + " 94 " + (x - 13.5) + " 87.5 C" + (x - 13) + " 81.5 " + (x - 4.5) + " 80.5 " + x + " 85.5 C" + (x + 4.5) + " 80.5 " + (x + 13) + " 81.5 " + (x + 13.5) + " 87.5 C" + (x + 14) + " 94 " + (x + 6) + " 100 " + x + ' 104 Z"/>'; };
+      g += '<g fill="#F48FB8" fill-opacity=".3" stroke="#E0218A" stroke-width="2.8" stroke-linejoin="round">' + heart(107) + heart(133) + '<path d="M118.5 88 Q120 86.5 121.5 88 M93.5 88 L89 87 M146.5 88 L151 87" fill="none"/></g>';
+      g += '<path d="M99 86 q1.5 -2 3.5 -1.6 M125 86 q1.5 -2 3.5 -1.6" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>';
+      // pink bow
+      g += p("M146 52 L134 45 L136 59 Z M146 52 L158 45 L156 59 Z", "#F0599E") + p("M146 52 m-3.5 0 a3.5 3.5 0 1 0 7 0 a3.5 3.5 0 1 0 -7 0", "#E0218A");
+      if (slippersOn) g += '<g data-slip="1"><rect x="88" y="300" width="64" height="30" fill="#fff" fill-opacity="0"/>' + pup(108, 318) + pup(132, 318) + "</g>";
+      body.innerHTML = g;
+    }
+    draw();
+
+    // click Rita and she hops
+    rita.addEventListener("click", function (e) {
+      if (e.target.closest("[data-slip]")) return;
+      body.classList.remove("hop"); void body.getBoundingClientRect(); body.classList.add("hop");
+    });
+
+    // the slippers
+    var svg = pair.ownerSVGElement, HOME = { x: 161, y: 458 }, dx = 0, dy = 0, grab = null, anim = 0;
+    function pt(e) { var q = svg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; return q.matrixTransform(svg.getScreenCTM().inverse()); }
+    function feet() { return { x: 682.6 + 120 * .52, y: 364.6 + 318 * .52 }; }   // where her feet are, in kitchen units
+    function place() { pair.setAttribute("transform", "translate(" + dx.toFixed(1) + "," + dy.toFixed(1) + ")"); }
+    function goHome() {
+      cancelAnimationFrame(anim); var fx = dx, fy = dy, t0 = performance.now();
+      if (reduce) { dx = dy = 0; place(); return; }
+      (function step(t) { var k = Math.min(1, (t - t0) / 420), e = 1 - Math.pow(1 - k, 3); dx = fx * (1 - e); dy = fy * (1 - e) - Math.sin(k * Math.PI) * 18; place(); if (k < 1) anim = requestAnimationFrame(step); else { dx = dy = 0; place(); } })(t0);
+    }
+    function start(e, fromFeet) {
+      cancelAnimationFrame(anim);
+      var q = pt(e);
+      if (fromFeet) { slippersOn = false; draw(); pair.style.display = ""; dx = q.x - HOME.x; dy = q.y - HOME.y; place(); }
+      grab = { x: q.x - dx, y: q.y - dy }; pair.classList.add("dragging");
+      window.addEventListener("pointermove", move); window.addEventListener("pointerup", end); window.addEventListener("pointercancel", end);
+      e.preventDefault(); e.stopPropagation();
+    }
+    function move(e) { if (!grab) return; var q = pt(e); dx = q.x - grab.x; dy = q.y - grab.y; place(); }
+    function end() {
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", end); window.removeEventListener("pointercancel", end);
+      if (!grab) return; grab = null; pair.classList.remove("dragging");
+      var f = feet(), cx = HOME.x + dx, cy = HOME.y + dy;
+      if (Math.hypot(cx - f.x, cy - f.y) < 48) { slippersOn = true; pair.style.display = "none"; dx = dy = 0; place(); draw(); popSound(); }
+      else goHome();                                            // anywhere else: back to their spot in the kitchen
+    }
+    pair.addEventListener("pointerdown", function (e) { start(e, false); });
+    rita.addEventListener("pointerdown", function (e) { if (e.target.closest("[data-slip]")) start(e, true); });
+    // leaving the kitchen with the slippers off the floor: they are back home next time
+    window.addEventListener("hashchange", function () { if (!slippersOn && !grab) { cancelAnimationFrame(anim); dx = dy = 0; place(); } });
   })();
 
   // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here except the secret basement)
