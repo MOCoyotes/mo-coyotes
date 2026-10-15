@@ -230,6 +230,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .tv-knobs span + span::after { transform: rotate(50deg); transform-origin: 50% 9px; }
 .tv-knobs i { width: 28px; height: 30px; border-radius: 6px; background: repeating-linear-gradient(#5C0634 0 3px, transparent 3px 7px); opacity: .55; }
 .barbieroom > h2, .barbieroom > .lede { justify-self: center; text-align: center; }
+.tv-link { text-decoration: none; cursor: pointer; transition: transform .15s; } .tv-link:hover { transform: translateY(-3px) rotate(-1deg); }
+.tv-play { display: block; width: 0; height: 0; margin: 0 auto .25em; border-style: solid; border-width: 16px 0 16px 28px; border-color: transparent transparent transparent #FFFFFF; filter: drop-shadow(0 2px 0 #9C0F5C); }
+.tv-link:hover .tv-play { transform: scale(1.12); }
 .screen { aspect-ratio: 16 / 9; border-radius: 16px; border: 4px solid #5C0634; display: grid; place-items: center; text-align: center; background: radial-gradient(ellipse 30% 22% at 24% 22%, rgba(255,255,255,.45), transparent 70%), #FF7CC0; font-family: var(--font-script); font-size: clamp(1.2rem, 4vw, 1.7rem); color: #FFFFFF; text-shadow: 0 2px 0 #9C0F5C; padding: 10px; }
 .polaroids { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 .polaroid { width: 130px; background: #FFFFFF; padding: 8px 8px 26px; box-shadow: 4px 4px 0 #5C0634; color: #9C0F5C; font: 400 .9rem var(--font-script); text-align: center; }
@@ -3030,7 +3033,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     <!-- CREATING WITH COYOTE (was Barbie Land) -->
     <section id="room-barbie" class="room barbieroom" hidden aria-labelledby="barbieTitle">
       <h2 id="barbieTitle">Creating with Coyote</h2>
-      <div class="tv"><div class="screen">YouTube channel<br>coming soon</div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></div>
+      <a class="tv tv-link" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Watch Creating with Coyote on YouTube (opens YouTube)"><div class="screen"><span class="tv-play" aria-hidden="true"></span>YouTube channel</div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></a>
       <div class="polaroids">
         <div class="polaroid"><img src="images/barbie/barbie-01.jpg" alt="Coyote with a pile of Barbie dolls" loading="lazy">♥</div>
         <div class="polaroid"><img src="images/barbie/barbie-02.jpg" alt="Barbie and Ken dolls in outfits" loading="lazy">♥</div>
@@ -3099,7 +3102,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <h2 id="aboutTitle">Hi, I'm Coyote</h2>
           <p><b>MO Coyotes</b> (Missouri Coyotes) is a blend of thrifted, altered, and handmade. I'm a STL Neurodivergent Leo who wanders in the land of textiles.</p>
           <p>Specialties include sewing, knitting, weaving, crocheting, felting, fashion &amp; Barbies. You will mostly find me in my studio with Ca$h at Node 0.</p>
-          <p>You can shop in person at <a href="https://stlunionstudio.com" target="_blank" rel="noopener">Union Studio</a>, check my <a href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">Etsy</a> for other pieces, or find thrifted items in our <a href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">eBay shop</a>. Check out <a href="#barbie">Creating with Coyote</a> on YouTube.</p>
+          <p>You can shop in person at <a href="https://stlunionstudio.com" target="_blank" rel="noopener">Union Studio</a>, check my <a href="https://www.etsy.com/shop/mocoyotesmade" target="_blank" rel="noopener">Etsy</a> for other pieces, or find thrifted items in our <a href="https://www.ebay.com/str/thegoodoletwo" target="_blank" rel="noopener">eBay shop</a>. Check out <a href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener">Creating with Coyote</a> on YouTube.</p>
           <p class="signoff">Ok Byeeeeeeee</p>
         </div>
       </div>
@@ -6373,6 +6376,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       { t: "Coloring Book", s: "Color a page", k: "coloring colouring color book paint draw kids game play", go: "featured", click: ".hot-color" },
       { t: "Sketchbook", s: "Colored pages taped in", k: "sketchbook sketch colored pages saved", go: "gallery", click: ".hot-sketch" },
       { t: "Dress the Goose", s: "Porch goose outfits", k: "goose porch outfit outfits dress costume", go: "outside", click: "#gooseLink" },
+      { t: "YouTube", s: "Creating with Coyote on YouTube", k: "youtube video videos channel watch creating crafting coyote", url: "https://www.youtube.com/@MoCoyotes" },
       { t: "Etsy shop", s: "Opens Etsy", k: "etsy shop handmade buy", url: "https://www.etsy.com/shop/mocoyotesmade" },
       { t: "eBay shop", s: "Opens eBay", k: "ebay thrift thrifted vintage buy", url: "https://www.ebay.com/str/thegoodoletwo" },
       { t: "Union Studio", s: "Shop in person in St. Louis", k: "union studio store stl st louis in person", url: "https://stlunionstudio.com" }
