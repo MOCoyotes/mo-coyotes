@@ -3031,7 +3031,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <circle fill="none" stroke-width="1.600" cx="346" cy="471.500" r="5.500"/><circle fill="none" stroke-width="1.600" cx="466" cy="471.500" r="5.500"/>
         </g>
         <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
-        <g class="rita" id="rita" transform="translate(189.6,316.9) scale(.67)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
+        <g class="rita" id="rita" transform="translate(14,254.7) scale(.85)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
       </svg>
       <p class="hint">You found the secret basement! The stairs take you back up to the kitchen.</p>
     </section>
@@ -6351,7 +6351,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     // the slippers
     var svg = pair.ownerSVGElement, HOME = { x: 161, y: 458 }, dx = 0, dy = 0, grab = null, anim = 0;
     function pt(e) { var q = svg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; return q.matrixTransform(svg.getScreenCTM().inverse()); }
-    function feet() { return { x: 189.6 + 120 * .67, y: 316.9 + 318 * .67 }; }   // where her feet are, in kitchen units
+    function feet() { return { x: 14 + 120 * .85, y: 254.7 + 318 * .85 }; }   // where her feet are, in kitchen units
     function place() { pair.setAttribute("transform", "translate(" + dx.toFixed(1) + "," + dy.toFixed(1) + ")"); }
     function goHome() {
       cancelAnimationFrame(anim); var fx = dx, fy = dy, t0 = performance.now();
