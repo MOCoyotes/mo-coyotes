@@ -4685,7 +4685,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     var news = key === "news";
     featDialog.classList.toggle("news-mode", news);
     var paper = key === "magazines", postit = key === "accomplishments";
-    featDialog.classList.toggle("postit-mode", postit);
+    featDialog.classList.toggle("postit-mode", postit); featDialog.classList.toggle("paper-mode", paper);
     if (postit) {
       var wall = document.createElement("div"); wall.className = "postits";
       set.chips.forEach(function (w) { var n = document.createElement("div"); n.className = "postit"; n.textContent = w; wall.appendChild(n); });
