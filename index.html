@@ -876,6 +876,21 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
 .paper-doodles { position: absolute; inset: 0; pointer-events: none; }
 .paper-doodles svg { position: absolute; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 520px) { .paper-list.two { columns: 1; } .feat-dialog.paper-mode .feat-card { padding-left: 56px; } }
+/* skills: a wall of mini post-it notes, each one handwritten */
+.feat-dialog.postit-mode .feat-card { width: min(620px, 94vw); }
+.feat-dialog.postit-mode .feat-card h3 { font: 400 2.3rem/1.1 "Caveat Brush", var(--font-script); color: #D61F69; }
+.feat-dialog.postit-mode .feat-list { display: block; max-height: min(62vh, 520px); padding: 8px 10px 14px 6px; }
+.postits { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px 12px; }
+.postit { position: relative; aspect-ratio: 1; display: grid; place-items: center; padding: 10px 8px 12px; box-sizing: border-box; text-align: center;
+  font: 400 1rem/1.15 "Schoolbell", "Comic Sans MS", cursive; color: #2F3E8F; background: var(--pi, #FFF3A6);
+  box-shadow: 2px 4px 0 rgba(59, 38, 32, .22); transform: rotate(var(--r, -2deg)); transition: transform .15s; overflow-wrap: anywhere; }
+.postit::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 14%; background: rgba(0, 0, 0, .05); }
+.postit::after { content: ""; position: absolute; right: 0; bottom: 0; width: 16px; height: 16px; background: linear-gradient(135deg, var(--pi, #FFF3A6) 50%, rgba(59, 38, 32, .18) 50%); }
+.postit:hover { transform: rotate(0deg) scale(1.06); z-index: 1; }
+.postit:nth-child(6n+1) { --pi: #FFF3A6; --r: -2.5deg; } .postit:nth-child(6n+2) { --pi: #FBC7D9; --r: 2deg; } .postit:nth-child(6n+3) { --pi: #C9E8F5; --r: -1deg; }
+.postit:nth-child(6n+4) { --pi: #D8F2C4; --r: 3deg; } .postit:nth-child(6n+5) { --pi: #FFD8B0; --r: -3deg; } .postit:nth-child(6n) { --pi: #E3D4F7; --r: 1.5deg; }
+.postit:nth-child(4n+3) { color: #3B2620; } .postit:nth-child(7n+2) { font-size: 1.08rem; }
+@media (prefers-reduced-motion: reduce) { .postit { transition: none; } }
 .news-clip { position: relative; display: grid; gap: 10px; padding: 26px 24px 30px; transform: rotate(var(--tilt, -1.4deg)); color: #2B2018;
   background: #F4EEE0; filter: drop-shadow(3px 4px 0 rgba(59,38,32,.35));
   clip-path: polygon(0% 3%, 4% 0%, 9% 2.5%, 15% .5%, 21% 3%, 27% 0%, 34% 2%, 40% .5%, 47% 3%, 53% 0%, 60% 2.5%, 66% .5%, 73% 3%, 79% 0%, 86% 2%, 92% .5%, 97% 2.5%, 100% 1%,
@@ -4669,7 +4684,16 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     featList.textContent = "";
     var news = key === "news";
     featDialog.classList.toggle("news-mode", news);
-    var paper = key === "accomplishments" || key === "magazines";
+    var paper = key === "magazines", postit = key === "accomplishments";
+    featDialog.classList.toggle("postit-mode", postit);
+    if (postit) {
+      var wall = document.createElement("div"); wall.className = "postits";
+      set.chips.forEach(function (w) { var n = document.createElement("div"); n.className = "postit"; n.textContent = w; wall.appendChild(n); });
+      featList.appendChild(wall);
+      var od = featDialog.querySelector(".paper-doodles"); if (od) od.remove();
+      if (featDialog.showModal) featDialog.showModal(); else featDialog.setAttribute("open", "");
+      return;
+    }
     featDialog.classList.toggle("paper-mode", paper);
     var oldD = featDialog.querySelector(".paper-doodles"); if (oldD) oldD.remove();
     if (paper) {
