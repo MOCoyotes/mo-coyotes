@@ -2831,7 +2831,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <use href="#puppySlipper" transform="translate(188,458) rotate(-24) scale(1.45)"/>
         </g>
         <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
-        <g class="rita" id="rita" transform="translate(656.2,294.7) scale(.74)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
+        <g class="rita" id="rita" transform="translate(637,243.8) scale(.9)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
         <!-- the gold key from the junk drawer, once it has been dropped on the floor: drag it to the padlock -->
         <g class="floor-key" id="floorKey" transform="translate(250,522)" role="img" aria-label="A gold key lying on the floor">
           <rect x="-22" y="-16" width="44" height="30" fill="#FFFFFF" fill-opacity="0"/>
@@ -6351,7 +6351,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     // the slippers
     var svg = pair.ownerSVGElement, HOME = { x: 161, y: 458 }, dx = 0, dy = 0, grab = null, anim = 0;
     function pt(e) { var q = svg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; return q.matrixTransform(svg.getScreenCTM().inverse()); }
-    function feet() { return { x: 656.2 + 120 * .74, y: 294.7 + 318 * .74 }; }   // where her feet are, in kitchen units
+    function feet() { return { x: 637 + 120 * .9, y: 243.8 + 318 * .9 }; }   // where her feet are, in kitchen units
     function place() { pair.setAttribute("transform", "translate(" + dx.toFixed(1) + "," + dy.toFixed(1) + ")"); }
     function goHome() {
       cancelAnimationFrame(anim); var fx = dx, fy = dy, t0 = performance.now();
