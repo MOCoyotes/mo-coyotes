@@ -685,7 +685,7 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .cellar-door.unlocked .cellar-lock { opacity: 0; transform: translateY(6px) rotate(20deg); }
 .cellar-door.rattle .cellar-lid { animation: lockRattle .32s linear; }
 @keyframes lockRattle { 20% { transform: translateX(-1.6px); } 45% { transform: translateX(1.6px); } 70% { transform: translateX(-1.1px); } }
-.kit-slippers { cursor: grab; touch-action: none; } .kit-slippers.dragging { cursor: grabbing; }
+.kit-slippers { cursor: grab; touch-action: none; } .kit-slippers.still { cursor: default; touch-action: auto; } .kit-slippers.dragging { cursor: grabbing; }
 .rita { cursor: pointer; } .rita [data-slip] { cursor: grab; touch-action: none; }
 .rita-hop { transform-box: fill-box; transform-origin: 50% 100%; }
 .rita-hop.hop { animation: ritaHop .5s cubic-bezier(.3, 0, .5, 1); }
@@ -2830,8 +2830,6 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <use href="#puppySlipper" transform="translate(134,458) rotate(24) scale(1.45)"/>
           <use href="#puppySlipper" transform="translate(188,458) rotate(-24) scale(1.45)"/>
         </g>
-        <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
-        <g class="rita" id="rita" transform="translate(637,243.8) scale(.9)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
         <!-- the gold key from the junk drawer, once it has been dropped on the floor: drag it to the padlock -->
         <g class="floor-key" id="floorKey" transform="translate(250,522)" role="img" aria-label="A gold key lying on the floor">
           <rect x="-22" y="-16" width="44" height="30" fill="#FFFFFF" fill-opacity="0"/>
@@ -3165,6 +3163,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
             <path class="s-ink" stroke-width="8" fill="none" stroke-linecap="round" d="M703 446 Q 758 464 813 446"/>
             <path stroke-width="4.5" fill="none" stroke-linecap="round" style="stroke: var(--orange)" d="M703 446 Q 758 464 813 446"/>
             <ellipse class="f-ink" cx="758" cy="507" rx="50" ry="5" opacity=".18"/>
+        <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
+        <g class="rita" id="rita" transform="translate(189.6,316.9) scale(.67)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
       </svg>
     </section>
 
@@ -6351,7 +6351,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     // the slippers
     var svg = pair.ownerSVGElement, HOME = { x: 161, y: 458 }, dx = 0, dy = 0, grab = null, anim = 0;
     function pt(e) { var q = svg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; return q.matrixTransform(svg.getScreenCTM().inverse()); }
-    function feet() { return { x: 637 + 120 * .9, y: 243.8 + 318 * .9 }; }   // where her feet are, in kitchen units
+    function feet() { return { x: 189.6 + 120 * .67, y: 316.9 + 318 * .67 }; }   // where her feet are, in kitchen units
     function place() { pair.setAttribute("transform", "translate(" + dx.toFixed(1) + "," + dy.toFixed(1) + ")"); }
     function goHome() {
       cancelAnimationFrame(anim); var fx = dx, fy = dy, t0 = performance.now();
@@ -6374,7 +6374,9 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (Math.hypot(cx - f.x, cy - f.y) < 48) { slippersOn = true; pair.style.display = "none"; dx = dy = 0; place(); draw(); popSound(); }
       else goHome();                                            // anywhere else: back to their spot in the kitchen
     }
-    pair.addEventListener("pointerdown", function (e) { start(e, false); });
+    var together = pair.ownerSVGElement === rita.ownerSVGElement;
+    if (!together) pair.classList.add("still");
+    pair.addEventListener("pointerdown", function (e) { if (together) start(e, false); });
     rita.addEventListener("pointerdown", function (e) { if (e.target.closest("[data-slip]")) start(e, true); });
     // leaving the kitchen with the slippers off the floor: they are back home next time
     window.addEventListener("hashchange", function () { if (!slippersOn && !grab) { cancelAnimationFrame(anim); dx = dy = 0; place(); } });
