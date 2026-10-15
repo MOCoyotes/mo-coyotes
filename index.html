@@ -6342,7 +6342,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     if (!body || !rita || !pair) return;
     var RITA_LOOK = { skin: "#F6CBB0", head: "point", hair: "half", bangs: "deep", hc: "#F6A6C8", roots: "#D9739E", ec: "#5A3418", lash: "bold", glasses: "heart", tint: "pink",
       mouth: "smirk", lips: "#EFA8B3", lip: "gold", blush: "soft", outfit: "tee", top: "#2B2626", socks: "#2B2626", shoes: "#FFFDF4", extra: "bow", neck: true, pose: "peace" };
-    var L = RITA_LOOK, INK = "#5A1F0E", NAIL = "#F0599E", slippersOn = false;
+    var L = RITA_LOOK, INK = "#5A1F0E", NAIL = "#F0599E", slippersOn = true;   // she wears her puppy slippers
+    var slipDrag = pair.ownerSVGElement === rita.ownerSVGElement;   // they only come off by dragging when she and the kitchen pair are in the same room
     function sh(c, a) { var n = parseInt(c.slice(1), 16); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(function (v) { return Math.max(0, Math.min(255, Math.round(v * a))).toString(16).padStart(2, "0"); }).join(""); }
     function p(d, f, x) { x = x || ""; return '<path d="' + d + '" fill="' + f + '" ' + (/(^|\s)stroke=/.test(x) ? "" : 'stroke="' + INK + '"') + " " + (/stroke-width/.test(x) ? "" : 'stroke-width="2.2"') + ' stroke-linejoin="round" stroke-linecap="round" ' + x + "/>"; }
     function fl(d, f) { return '<path d="' + d + '" fill="' + f + '"/>'; }
@@ -6436,7 +6437,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       g += '<path d="M99 86 q1.5 -2 3.5 -1.6 M125 86 q1.5 -2 3.5 -1.6" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>';
       // pink bow
       g += p("M146 52 L134 45 L136 59 Z M146 52 L158 45 L156 59 Z", "#F0599E") + p("M146 52 m-3.5 0 a3.5 3.5 0 1 0 7 0 a3.5 3.5 0 1 0 -7 0", "#E0218A");
-      if (slippersOn && mode !== "nap") g += '<g data-slip="1"><rect x="88" y="300" width="64" height="30" fill="#fff" fill-opacity="0"/>' + pup(108, 318) + pup(132, 318) + "</g>";
+      if (slippersOn) g += '<g' + (slipDrag ? ' data-slip="1"' : "") + '><rect x="88" y="300" width="64" height="30" fill="#fff" fill-opacity="0"/>' + pup(108, 318) + pup(132, 318) + "</g>";
       return g;
     }
     function draw() { body.innerHTML = art(pose); }
