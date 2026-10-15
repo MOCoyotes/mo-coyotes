@@ -231,6 +231,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .tv-knobs i { width: 28px; height: 30px; border-radius: 6px; background: repeating-linear-gradient(#5C0634 0 3px, transparent 3px 7px); opacity: .55; }
 .barbieroom > h2, .barbieroom > .lede { justify-self: center; text-align: center; }
 .tv-link { text-decoration: none; cursor: pointer; transition: transform .15s; } .tv-link:hover { transform: translateY(-3px) rotate(-1deg); }
+.tv-link .screen { position: relative; overflow: hidden; }
+.tv-yt { display: block; width: 34%; margin: 0 auto .25em; filter: drop-shadow(0 2px 0 #9C0F5C); transition: transform .15s; } .tv-link:hover .tv-yt { transform: scale(1.08); }
+.tv-static { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.35) 0 2px, rgba(92,6,52,.25) 2px 3px, transparent 3px 5px); mix-blend-mode: normal; }
+.tv-static svg { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; }
+.tv-link.fuzz .tv-static { animation: tvFlicker .09s steps(2) infinite; opacity: 1; } .tv-link.fuzz .tv-static svg { animation: tvRoll .35s linear infinite; }
+.tv-link.fuzz .tv-yt, .tv-link.fuzz .screen { animation: tvWobble .12s steps(3) infinite; }
+@keyframes tvFlicker { 0% { opacity: .95; } 50% { opacity: .65; } 100% { opacity: .9; } }
+@keyframes tvRoll { 0% { transform: translate(0, -8%) skewX(0); } 25% { transform: translate(-3%, 0) skewX(8deg); } 50% { transform: translate(2%, 6%) skewX(-6deg); } 75% { transform: translate(-1%, -4%) skewX(4deg); } 100% { transform: translate(0, -8%) skewX(0); } }
+@keyframes tvWobble { 0% { transform: skewX(0) translateX(0); } 33% { transform: skewX(4deg) translateX(-2px); } 66% { transform: skewX(-3deg) translateX(2px); } 100% { transform: skewX(0); } }
 .tv-play { display: block; width: 0; height: 0; margin: 0 auto .25em; border-style: solid; border-width: 16px 0 16px 28px; border-color: transparent transparent transparent #FFFFFF; filter: drop-shadow(0 2px 0 #9C0F5C); }
 .tv-sub { display: block; font-size: .62em; margin-top: .15em; letter-spacing: .02em; }
 .tv-link:hover .tv-play { transform: scale(1.12); }
@@ -3034,7 +3043,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     <!-- CREATING WITH COYOTE (was Barbie Land) -->
     <section id="room-barbie" class="room barbieroom" hidden aria-labelledby="barbieTitle">
       <h2 id="barbieTitle">Creating with Coyote</h2>
-      <a class="tv tv-link" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Watch Creating with Coyote on YouTube (opens YouTube)"><div class="screen"><span class="tv-play" aria-hidden="true"></span>YouTube</div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></a>
+      <a class="tv tv-link" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Watch Creating with Coyote on YouTube (opens YouTube)"><div class="screen"><svg class="tv-yt" viewBox="0 0 28 20" aria-hidden="true"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 25 .6C22.8 0 14 0 14 0S5.2 0 3 .6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9A3.5 3.5 0 0 0 3 19.4C5.2 20 14 20 14 20s8.8 0 11-.6a3.5 3.5 0 0 0 2.4-2.5c.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg>YouTube<span class="tv-static" aria-hidden="true"><svg viewBox="0 0 100 56" preserveAspectRatio="none" fill="none"><path d="M-10 6 Q-7.0 7.2 -4.0 6.0 Q-1.0 4.8 2.0 6.0 Q5.0 4.8 8.0 6.0 Q11.0 7.2 14.0 6.0 Q17.0 4.8 20.0 6.0 Q23.0 7.2 26.0 6.0 Q29.0 4.8 32.0 6.0 Q35.0 7.2 38.0 6.0 Q41.0 4.8 44.0 6.0 Q47.0 7.2 50.0 6.0 Q53.0 4.8 56.0 6.0 Q59.0 7.2 62.0 6.0 Q65.0 4.8 68.0 6.0 Q71.0 7.2 74.0 6.0 Q77.0 4.8 80.0 6.0 Q83.0 7.2 86.0 6.0 Q89.0 4.8 92.0 6.0 Q95.0 7.2 98.0 6.0 Q101.0 4.8 104.0 6.0 Q107.0 7.2 110.0 6.0" stroke="#5C0634" stroke-width="2" opacity=".7"/><path d="M-10 13 Q-7.0 15.1 -4.0 13.0 Q-1.0 10.9 2.0 13.0 Q5.0 10.9 8.0 13.0 Q11.0 15.1 14.0 13.0 Q17.0 10.9 20.0 13.0 Q23.0 15.1 26.0 13.0 Q29.0 10.9 32.0 13.0 Q35.0 15.1 38.0 13.0 Q41.0 10.9 44.0 13.0 Q47.0 15.1 50.0 13.0 Q53.0 10.9 56.0 13.0 Q59.0 15.1 62.0 13.0 Q65.0 10.9 68.0 13.0 Q71.0 15.1 74.0 13.0 Q77.0 10.9 80.0 13.0 Q83.0 15.1 86.0 13.0 Q89.0 10.9 92.0 13.0 Q95.0 15.1 98.0 13.0 Q101.0 10.9 104.0 13.0 Q107.0 15.1 110.0 13.0" stroke="#FFFFFF" stroke-width="1.1" opacity=".7"/><path d="M-10 19 Q-7.0 22.0 -4.0 19.0 Q-1.0 16.0 2.0 19.0 Q5.0 16.0 8.0 19.0 Q11.0 22.0 14.0 19.0 Q17.0 16.0 20.0 19.0 Q23.0 22.0 26.0 19.0 Q29.0 16.0 32.0 19.0 Q35.0 22.0 38.0 19.0 Q41.0 16.0 44.0 19.0 Q47.0 22.0 50.0 19.0 Q53.0 16.0 56.0 19.0 Q59.0 22.0 62.0 19.0 Q65.0 16.0 68.0 19.0 Q71.0 22.0 74.0 19.0 Q77.0 16.0 80.0 19.0 Q83.0 22.0 86.0 19.0 Q89.0 16.0 92.0 19.0 Q95.0 22.0 98.0 19.0 Q101.0 16.0 104.0 19.0 Q107.0 22.0 110.0 19.0" stroke="#5C0634" stroke-width="1.1" opacity=".7"/><path d="M-10 27 Q-7.0 28.2 -4.0 27.0 Q-1.0 25.8 2.0 27.0 Q5.0 25.8 8.0 27.0 Q11.0 28.2 14.0 27.0 Q17.0 25.8 20.0 27.0 Q23.0 28.2 26.0 27.0 Q29.0 25.8 32.0 27.0 Q35.0 28.2 38.0 27.0 Q41.0 25.8 44.0 27.0 Q47.0 28.2 50.0 27.0 Q53.0 25.8 56.0 27.0 Q59.0 28.2 62.0 27.0 Q65.0 25.8 68.0 27.0 Q71.0 28.2 74.0 27.0 Q77.0 25.8 80.0 27.0 Q83.0 28.2 86.0 27.0 Q89.0 25.8 92.0 27.0 Q95.0 28.2 98.0 27.0 Q101.0 25.8 104.0 27.0 Q107.0 28.2 110.0 27.0" stroke="#FFFFFF" stroke-width="2" opacity=".7"/><path d="M-10 34 Q-7.0 36.1 -4.0 34.0 Q-1.0 31.9 2.0 34.0 Q5.0 31.9 8.0 34.0 Q11.0 36.1 14.0 34.0 Q17.0 31.9 20.0 34.0 Q23.0 36.1 26.0 34.0 Q29.0 31.9 32.0 34.0 Q35.0 36.1 38.0 34.0 Q41.0 31.9 44.0 34.0 Q47.0 36.1 50.0 34.0 Q53.0 31.9 56.0 34.0 Q59.0 36.1 62.0 34.0 Q65.0 31.9 68.0 34.0 Q71.0 36.1 74.0 34.0 Q77.0 31.9 80.0 34.0 Q83.0 36.1 86.0 34.0 Q89.0 31.9 92.0 34.0 Q95.0 36.1 98.0 34.0 Q101.0 31.9 104.0 34.0 Q107.0 36.1 110.0 34.0" stroke="#5C0634" stroke-width="1.1" opacity=".7"/><path d="M-10 41 Q-7.0 44.0 -4.0 41.0 Q-1.0 38.0 2.0 41.0 Q5.0 38.0 8.0 41.0 Q11.0 44.0 14.0 41.0 Q17.0 38.0 20.0 41.0 Q23.0 44.0 26.0 41.0 Q29.0 38.0 32.0 41.0 Q35.0 44.0 38.0 41.0 Q41.0 38.0 44.0 41.0 Q47.0 44.0 50.0 41.0 Q53.0 38.0 56.0 41.0 Q59.0 44.0 62.0 41.0 Q65.0 38.0 68.0 41.0 Q71.0 44.0 74.0 41.0 Q77.0 38.0 80.0 41.0 Q83.0 44.0 86.0 41.0 Q89.0 38.0 92.0 41.0 Q95.0 44.0 98.0 41.0 Q101.0 38.0 104.0 41.0 Q107.0 44.0 110.0 41.0" stroke="#FFFFFF" stroke-width="1.1" opacity=".7"/><path d="M-10 49 Q-7.0 50.2 -4.0 49.0 Q-1.0 47.8 2.0 49.0 Q5.0 47.8 8.0 49.0 Q11.0 50.2 14.0 49.0 Q17.0 47.8 20.0 49.0 Q23.0 50.2 26.0 49.0 Q29.0 47.8 32.0 49.0 Q35.0 50.2 38.0 49.0 Q41.0 47.8 44.0 49.0 Q47.0 50.2 50.0 49.0 Q53.0 47.8 56.0 49.0 Q59.0 50.2 62.0 49.0 Q65.0 47.8 68.0 49.0 Q71.0 50.2 74.0 49.0 Q77.0 47.8 80.0 49.0 Q83.0 50.2 86.0 49.0 Q89.0 47.8 92.0 49.0 Q95.0 50.2 98.0 49.0 Q101.0 47.8 104.0 49.0 Q107.0 50.2 110.0 49.0" stroke="#5C0634" stroke-width="2" opacity=".7"/></svg></span></div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></a>
       <div class="polaroids">
         <div class="polaroid"><img src="images/barbie/barbie-01.jpg" alt="Coyote with a pile of Barbie dolls" loading="lazy">♥</div>
         <div class="polaroid"><img src="images/barbie/barbie-02.jpg" alt="Barbie and Ken dolls in outfits" loading="lazy">♥</div>
@@ -3834,6 +3843,19 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (a.classList.contains("hot-door")) a.classList.add("open");
       setTimeout(function () { scene.classList.add("zoom"); }, a.classList.contains("hot-door") ? 250 : 0);
       setTimeout(function () { location.hash = to; }, 800);
+    });
+  });
+
+  // the TV: click it and the picture goes squiggly like fiddling with the antenna, then YouTube opens
+  document.querySelectorAll(".tv-link").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (reduce || a.classList.contains("fuzz")) return;
+      e.preventDefault(); a.classList.add("fuzz");
+      setTimeout(function () {
+        a.classList.remove("fuzz");
+        var w = window.open(a.href, "_blank");
+        if (w) w.opener = null; else location.href = a.href;                       // if the browser blocks the new tab, just go there
+      }, 750);
     });
   });
 
