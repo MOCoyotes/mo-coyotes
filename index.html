@@ -880,16 +880,16 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
 .feat-dialog.postit-mode .feat-card { width: min(620px, 94vw); }
 .feat-dialog.postit-mode .feat-card h3 { font: 400 2.3rem/1.1 "Caveat Brush", var(--font-script); color: #D61F69; }
 .feat-dialog.postit-mode .feat-list { display: block; max-height: min(62vh, 520px); padding: 8px 10px 14px 6px; }
-.postits { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px 12px; }
-.postit { position: relative; aspect-ratio: 1; display: grid; place-items: center; padding: 10px 8px 12px; box-sizing: border-box; text-align: center;
-  font: 400 1rem/1.15 "Schoolbell", "Comic Sans MS", cursive; color: #2F3E8F; background: var(--pi, #FFF3A6);
+.postits { display: grid; grid-template-columns: repeat(auto-fill, 86px); justify-content: center; gap: 12px 10px; }
+.postit { position: relative; aspect-ratio: 1; display: grid; place-items: center; padding: 9px 5px 8px; box-sizing: border-box; text-align: center;
+  font: 400 .86rem/1.1 "Schoolbell", "Comic Sans MS", cursive; color: #2F3E8F; background: var(--pi, #FFF3A6);
   box-shadow: 2px 4px 0 rgba(59, 38, 32, .22); transform: rotate(var(--r, -2deg)); transition: transform .15s; overflow-wrap: anywhere; }
 .postit::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 14%; background: rgba(0, 0, 0, .05); }
-.postit::after { content: ""; position: absolute; right: 0; bottom: 0; width: 16px; height: 16px; background: linear-gradient(135deg, var(--pi, #FFF3A6) 50%, rgba(59, 38, 32, .18) 50%); }
+.postit::after { content: ""; position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; background: linear-gradient(135deg, var(--pi, #FFF3A6) 50%, rgba(59, 38, 32, .18) 50%); }
 .postit:hover { transform: rotate(0deg) scale(1.06); z-index: 1; }
 .postit:nth-child(6n+1) { --pi: #FFF3A6; --r: -2.5deg; } .postit:nth-child(6n+2) { --pi: #FBC7D9; --r: 2deg; } .postit:nth-child(6n+3) { --pi: #C9E8F5; --r: -1deg; }
 .postit:nth-child(6n+4) { --pi: #D8F2C4; --r: 3deg; } .postit:nth-child(6n+5) { --pi: #FFD8B0; --r: -3deg; } .postit:nth-child(6n) { --pi: #E3D4F7; --r: 1.5deg; }
-.postit:nth-child(4n+3) { color: #3B2620; } .postit:nth-child(7n+2) { font-size: 1.08rem; }
+.postit:nth-child(4n+3) { color: #3B2620; } .postit:nth-child(7n+2) { font-size: .92rem; }
 @media (prefers-reduced-motion: reduce) { .postit { transition: none; } }
 .news-clip { position: relative; display: grid; gap: 10px; padding: 26px 24px 30px; transform: rotate(var(--tilt, -1.4deg)); color: #2B2018;
   background: #F4EEE0; filter: drop-shadow(3px 4px 0 rgba(59,38,32,.35));
