@@ -698,6 +698,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .rita-nap.sleeping .nap-zzz text { animation: napZzz 2.7s ease-in infinite; }
 .rita-nap.sleeping .nap-zzz text:nth-child(2) { animation-delay: .9s; } .rita-nap.sleeping .nap-zzz text:nth-child(3) { animation-delay: 1.8s; }
 @keyframes napZzz { 0% { opacity: 0; transform: translate(0, 0) scale(.5); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(28px, -46px) scale(1.25); } }
+.rita-say { opacity: 0; pointer-events: none; transform: scale(.5); transform-box: fill-box; transform-origin: 0% 100%; transition: opacity .2s, transform .25s cubic-bezier(.3, 1.5, .5, 1); }
+.rita-say.on { opacity: 1; transform: none; }
+.rita-say text { font: 800 17px var(--font-body); fill: #5A1F0E; }
 .rita-hop.walking { animation: ritaWalk .44s ease-in-out infinite; }
 @keyframes ritaWalk { 0%, 50%, 100% { transform: none; } 25% { transform: translateY(-2.5%) rotate(-2deg); } 75% { transform: translateY(-2.5%) rotate(2deg); } }
 @media (prefers-reduced-motion: reduce) { .rita-nap.on .nap-person, .rita-nap.sleeping .nap-zzz text, .rita-hop.walking { animation: none; } .nap-quilt { transition: none; } }
@@ -3062,6 +3065,12 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
         </g>
         <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
         <g class="rita" id="rita" transform="translate(-4,222.9) scale(.95)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
+        <!-- what Rita says when you bug her right after her nap -->
+        <g class="rita-say" id="ritaSay" stroke-linejoin="round">
+          <path fill="#FFFDF4" stroke="#5A1F0E" stroke-width="3" d="M156 172 H404 Q422 172 422 190 V232 Q422 250 404 250 H182 L136 300 L158 250 H156 Q138 250 138 232 V190 Q138 172 156 172 Z"/>
+          <text x="280" y="205" text-anchor="middle">Sorry, I'm overwhelmed right now,</text>
+          <text x="280" y="230" text-anchor="middle">I don't want to talk.</text>
+        </g>
       </svg>
       <p class="hint">You found the secret basement! The stairs take you back up to the kitchen.</p>
     </section>
@@ -6382,7 +6391,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
 
     // click Rita: she walks over to the couch, lies down and pulls the quilt over herself. Click her again to wake her up.
     var nap = document.getElementById("ritaNap"), napBody = document.getElementById("ritaNapBody"), couchQuilt = document.getElementById("bsCouchQuilt");
-    var HOMEX = -4, Y = 222.9, SC = .95, COUCHX = 486, state = "home", busy = false;
+    var HOMEX = -4, Y = 222.9, SC = .95, COUCHX = 486, state = "home", busy = false, woke = false, talked = false, sayT = 0, say = document.getElementById("ritaSay") || document.createElement("i");
     if (napBody) napBody.innerHTML = art("nap");
     function setX(x) { rita.setAttribute("transform", "translate(" + x.toFixed(1) + "," + Y + ") scale(" + SC + ")"); }
     function walk(from, to, done) {
@@ -6394,6 +6403,11 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (e.target.closest("[data-slip]")) return;
       if (!nap || !couchQuilt) { body.classList.remove("hop"); void body.getBoundingClientRect(); body.classList.add("hop"); return; }
       if (busy || state !== "home") return;
+      if (woke && !talked) {                                   // just woke up: she is not in the mood
+        talked = true; say.classList.add("on"); clearTimeout(sayT); sayT = setTimeout(function () { say.classList.remove("on"); }, 4000);
+        return;
+      }
+      clearTimeout(sayT); say.classList.remove("on");
       busy = true; pose = "stand"; draw();
       walk(HOMEX, COUCHX, function () {
         rita.classList.add("away"); nap.classList.add("on");
@@ -6406,7 +6420,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       busy = true; nap.classList.remove("sleeping", "covered"); couchQuilt.classList.remove("gone");
       setTimeout(function () {
         nap.classList.remove("on"); rita.classList.remove("away");
-        setTimeout(function () { walk(COUCHX, HOMEX, function () { pose = "peace"; draw(); state = "home"; busy = false; }); }, 300);
+        setTimeout(function () { walk(COUCHX, HOMEX, function () { pose = "peace"; draw(); state = "home"; busy = false; woke = true; talked = false; }); }, 300);
       }, 750);
     });
 
