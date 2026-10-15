@@ -687,6 +687,20 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @keyframes lockRattle { 20% { transform: translateX(-1.6px); } 45% { transform: translateX(1.6px); } 70% { transform: translateX(-1.1px); } }
 .kit-slippers { cursor: grab; touch-action: none; } .kit-slippers.still { cursor: default; touch-action: auto; } .kit-slippers.dragging { cursor: grabbing; }
 .rita { cursor: pointer; } .rita [data-slip] { cursor: grab; touch-action: none; }
+.rita { transition: opacity .25s; } .rita.away { opacity: 0; pointer-events: none; }
+.rita-nap { opacity: 0; pointer-events: none; transition: opacity .3s; } .rita-nap.on { opacity: 1; pointer-events: auto; cursor: pointer; }
+.nap-person { transform-box: fill-box; transform-origin: 50% 100%; } .rita-nap.on .nap-person { animation: napFlop .45s cubic-bezier(.3, 0, .5, 1.4); }
+@keyframes napFlop { 0% { transform: translateY(-30px); } 70% { transform: translateY(3px); } 100% { transform: none; } }
+.nap-quilt { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform .75s cubic-bezier(.3, .7, .4, 1); }
+.rita-nap.covered .nap-quilt { transform: scaleY(1); }
+.couch-quilt { transition: opacity .35s; } .couch-quilt.gone { opacity: 0; }
+.nap-zzz text { font: 800 22px var(--font-body); opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+.rita-nap.sleeping .nap-zzz text { animation: napZzz 2.7s ease-in infinite; }
+.rita-nap.sleeping .nap-zzz text:nth-child(2) { animation-delay: .9s; } .rita-nap.sleeping .nap-zzz text:nth-child(3) { animation-delay: 1.8s; }
+@keyframes napZzz { 0% { opacity: 0; transform: translate(0, 0) scale(.5); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(28px, -46px) scale(1.25); } }
+.rita-hop.walking { animation: ritaWalk .44s ease-in-out infinite; }
+@keyframes ritaWalk { 0%, 50%, 100% { transform: none; } 25% { transform: translateY(-2.5%) rotate(-2deg); } 75% { transform: translateY(-2.5%) rotate(2deg); } }
+@media (prefers-reduced-motion: reduce) { .rita-nap.on .nap-person, .rita-nap.sleeping .nap-zzz text, .rita-hop.walking { animation: none; } .nap-quilt { transition: none; } }
 .rita-hop { transform-box: fill-box; transform-origin: 50% 100%; }
 .rita-hop.hop { animation: ritaHop .5s cubic-bezier(.3, 0, .5, 1); }
 @keyframes ritaHop { 0% { transform: none; } 20% { transform: scale(1.04, .94); } 55% { transform: translateY(-14%) scale(.97, 1.04); } 80% { transform: scale(1.03, .96); } 100% { transform: none; } }
@@ -2941,10 +2955,12 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <path class="f-rust s-ink" stroke-width="3" d="M438 318 Q438 300 456 300 Q474 300 474 318 V410 H438 Z M726 318 Q726 300 744 300 Q762 300 762 318 V410 H726 Z"/>
           <g transform="rotate(-8 512 331)"><g class="f-blush s-ink" stroke-width="1.800"><circle cx="488.0" cy="310.0" r="5.6"/><circle cx="488.0" cy="352.0" r="5.6"/><circle cx="496.0" cy="310.0" r="5.6"/><circle cx="496.0" cy="352.0" r="5.6"/><circle cx="504.0" cy="310.0" r="5.6"/><circle cx="504.0" cy="352.0" r="5.6"/><circle cx="512.0" cy="310.0" r="5.6"/><circle cx="512.0" cy="352.0" r="5.6"/><circle cx="520.0" cy="310.0" r="5.6"/><circle cx="520.0" cy="352.0" r="5.6"/><circle cx="528.0" cy="310.0" r="5.6"/><circle cx="528.0" cy="352.0" r="5.6"/><circle cx="536.0" cy="310.0" r="5.6"/><circle cx="536.0" cy="352.0" r="5.6"/><circle cx="488.0" cy="318.4" r="5.6"/><circle cx="536.0" cy="318.4" r="5.6"/><circle cx="488.0" cy="326.8" r="5.6"/><circle cx="536.0" cy="326.8" r="5.6"/><circle cx="488.0" cy="335.2" r="5.6"/><circle cx="536.0" cy="335.2" r="5.6"/><circle cx="488.0" cy="343.6" r="5.6"/><circle cx="536.0" cy="343.6" r="5.6"/></g><rect class="f-pink s-ink" stroke-width="2.500" x="486" y="308" width="52" height="46" rx="9"/><path class="s-ink" stroke-width="1.200" fill="none" opacity=".7" d="M512 331 L494 314 M512 331 L530 314 M512 331 L494 348 M512 331 L530 348 M512 331 V311 M512 331 V351 M512 331 H489 M512 331 H535"/><circle class="f-hot s-ink" stroke-width="1.500" cx="512" cy="331" r="3.600"/></g>
           <g transform="rotate(9 684 333)"><path class="f-hot s-ink" stroke-width="1.400" d="M662.0 314.0 L653.2 310.1 L658.2 305.2 Z"/><path class="s-ink" stroke-width=".9" fill="none" d="M662.0 314.0 L655.7 307.7"/><circle class="f-pink s-ink" stroke-width="1.200" cx="662.0" cy="314.0" r="2.600"/><path class="f-hot s-ink" stroke-width="1.400" d="M706.0 314.0 L709.8 305.2 L714.8 310.1 Z"/><path class="s-ink" stroke-width=".9" fill="none" d="M706.0 314.0 L712.3 307.7"/><circle class="f-pink s-ink" stroke-width="1.200" cx="706.0" cy="314.0" r="2.600"/><path class="f-hot s-ink" stroke-width="1.400" d="M662.0 352.0 L658.2 360.8 L653.2 355.9 Z"/><path class="s-ink" stroke-width=".9" fill="none" d="M662.0 352.0 L655.7 358.3"/><circle class="f-pink s-ink" stroke-width="1.200" cx="662.0" cy="352.0" r="2.600"/><path class="f-hot s-ink" stroke-width="1.400" d="M706.0 352.0 L714.8 355.9 L709.8 360.8 Z"/><path class="s-ink" stroke-width=".9" fill="none" d="M706.0 352.0 L712.3 358.3"/><circle class="f-pink s-ink" stroke-width="1.200" cx="706.0" cy="352.0" r="2.600"/><rect class="f-marigold s-ink" stroke-width="2.500" x="660" y="312" width="48" height="42" rx="9"/><path class="f-hot s-ink" stroke-width="1.500" d="M684 329 c-4.500 -6 -12.500 -1 -8 6 l8 8.500 l8 -8.500 c4.500 -7 -3.500 -12 -8 -6 Z"/></g>
+          <g class="couch-quilt" id="bsCouchQuilt">
           <clipPath id="bsQuilt"><path d="M560 268 H640 L650 372 Q600 384 550 372 Z"/></clipPath>
           <g clip-path="url(#bsQuilt)"><rect x="548" y="266" width="21" height="20" fill="#FFF8E7"/><path fill="#F48FB8" d="M548 266 h21 l-21 20 Z"/><rect x="569" y="266" width="21" height="20" fill="#FFF8E7"/><path fill="#E2780F" d="M569 266 h21 v20 Z"/><rect x="590" y="266" width="21" height="20" fill="#FFF8E7"/><path fill="#5B8DB8" d="M590 266 h21 l-21 20 Z"/><rect x="611" y="266" width="21" height="20" fill="#FFF8E7"/><path fill="#BFE4EC" d="M611 266 h21 v20 Z"/><rect x="632" y="266" width="21" height="20" fill="#FFF8E7"/><path fill="#6E9446" d="M632 266 h21 l-21 20 Z"/><rect x="548" y="286" width="21" height="20" fill="#FFF8E7"/><path fill="#CDB9F2" d="M548 286 h21 v20 Z"/><rect x="569" y="286" width="21" height="20" fill="#FFF8E7"/><path fill="#F48FB8" d="M569 286 h21 l-21 20 Z"/><rect x="590" y="286" width="21" height="20" fill="#FFF8E7"/><path fill="#E2780F" d="M590 286 h21 v20 Z"/><rect x="611" y="286" width="21" height="20" fill="#FFF8E7"/><path fill="#5B8DB8" d="M611 286 h21 l-21 20 Z"/><rect x="632" y="286" width="21" height="20" fill="#FFF8E7"/><path fill="#BFE4EC" d="M632 286 h21 v20 Z"/><rect x="548" y="306" width="21" height="20" fill="#FFF8E7"/><path fill="#E0218A" d="M548 306 h21 l-21 20 Z"/><rect x="569" y="306" width="21" height="20" fill="#FFF8E7"/><path fill="#CDB9F2" d="M569 306 h21 v20 Z"/><rect x="590" y="306" width="21" height="20" fill="#FFF8E7"/><path fill="#F48FB8" d="M590 306 h21 l-21 20 Z"/><rect x="611" y="306" width="21" height="20" fill="#FFF8E7"/><path fill="#E2780F" d="M611 306 h21 v20 Z"/><rect x="632" y="306" width="21" height="20" fill="#FFF8E7"/><path fill="#5B8DB8" d="M632 306 h21 l-21 20 Z"/><rect x="548" y="326" width="21" height="20" fill="#FFF8E7"/><path fill="#F2B705" d="M548 326 h21 v20 Z"/><rect x="569" y="326" width="21" height="20" fill="#FFF8E7"/><path fill="#E0218A" d="M569 326 h21 l-21 20 Z"/><rect x="590" y="326" width="21" height="20" fill="#FFF8E7"/><path fill="#CDB9F2" d="M590 326 h21 v20 Z"/><rect x="611" y="326" width="21" height="20" fill="#FFF8E7"/><path fill="#F48FB8" d="M611 326 h21 l-21 20 Z"/><rect x="632" y="326" width="21" height="20" fill="#FFF8E7"/><path fill="#E2780F" d="M632 326 h21 v20 Z"/><rect x="548" y="346" width="21" height="20" fill="#FFF8E7"/><path fill="#6E9446" d="M548 346 h21 l-21 20 Z"/><rect x="569" y="346" width="21" height="20" fill="#FFF8E7"/><path fill="#F2B705" d="M569 346 h21 v20 Z"/><rect x="590" y="346" width="21" height="20" fill="#FFF8E7"/><path fill="#E0218A" d="M590 346 h21 l-21 20 Z"/><rect x="611" y="346" width="21" height="20" fill="#FFF8E7"/><path fill="#CDB9F2" d="M611 346 h21 v20 Z"/><rect x="632" y="346" width="21" height="20" fill="#FFF8E7"/><path fill="#F48FB8" d="M632 346 h21 l-21 20 Z"/><rect x="548" y="366" width="21" height="20" fill="#FFF8E7"/><path fill="#BFE4EC" d="M548 366 h21 v20 Z"/><rect x="569" y="366" width="21" height="20" fill="#FFF8E7"/><path fill="#6E9446" d="M569 366 h21 l-21 20 Z"/><rect x="590" y="366" width="21" height="20" fill="#FFF8E7"/><path fill="#F2B705" d="M590 366 h21 v20 Z"/><rect x="611" y="366" width="21" height="20" fill="#FFF8E7"/><path fill="#E0218A" d="M611 366 h21 l-21 20 Z"/><rect x="632" y="366" width="21" height="20" fill="#FFF8E7"/><path fill="#CDB9F2" d="M632 366 h21 v20 Z"/><path stroke="#5A1F0E" stroke-width="1" opacity=".45" fill="none" d="M548 286 H654 M548 306 H654 M548 326 H654 M548 346 H654 M548 366 H654 M569 266 V386 M590 266 V386 M611 266 V386 M632 266 V386"/><path stroke="#5A1F0E" stroke-width=".8" opacity=".4" fill="none" d="M569 266 l-21 20 M569 266 l21 20 M611 266 l-21 20 M611 266 l21 20 M653 266 l-21 20 M548 286 l21 20 M590 286 l-21 20 M590 286 l21 20 M632 286 l-21 20 M632 286 l21 20 M569 306 l-21 20 M569 306 l21 20 M611 306 l-21 20 M611 306 l21 20 M653 306 l-21 20 M548 326 l21 20 M590 326 l-21 20 M590 326 l21 20 M632 326 l-21 20 M632 326 l21 20 M569 346 l-21 20 M569 346 l21 20 M611 346 l-21 20 M611 346 l21 20 M653 346 l-21 20 M548 366 l21 20 M590 366 l-21 20 M590 366 l21 20 M632 366 l-21 20 M632 366 l21 20 "/></g>
           <path fill="none" class="s-ink" stroke-width="2.500" d="M560 268 H640 L650 372 Q600 384 550 372 Z"/>
           <path fill="none" stroke="#E0218A" stroke-width="3" d="M552.500 369.500 Q600 381 647.500 369.500"/>
+          </g>
         </g>
         <!-- coffee table with a mug and a bowl of popcorn -->
         <g stroke-linejoin="round" stroke-linecap="round">
@@ -3030,8 +3046,22 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <path class="f-pink" stroke-width="3" d="M334 474 Q334 460 346 460 Q358 460 358 474 V506 H334 Z M454 474 Q454 460 466 460 Q478 460 478 474 V506 H454 Z"/>
           <circle fill="none" stroke-width="1.600" cx="346" cy="471.500" r="5.500"/><circle fill="none" stroke-width="1.600" cx="466" cy="471.500" r="5.500"/>
         </g>
+        <!-- RITA NAPPING: she walks over, lies down on the couch and pulls the quilt over herself -->
+        <g class="rita-nap" id="ritaNap" aria-label="Rita napping on the couch under the quilt">
+          <defs><pattern id="napQuiltPat" width="42" height="40" patternUnits="userSpaceOnUse" x="548" y="266">
+            <rect width="42" height="40" fill="#FFF8E7"/><path fill="#F48FB8" d="M0 0 h21 l-21 20 Z"/><path fill="#E2780F" d="M21 0 h21 v20 Z"/><path fill="#BFE4EC" d="M0 20 h21 v20 Z"/><path fill="#CDB9F2" d="M21 40 h21 v-20 Z"/>
+            <path fill="none" stroke="#5A1F0E" stroke-width="1" opacity=".35" d="M0 20 H42 M21 0 V40 M0 0 H42 M0 0 V40"/>
+          </pattern></defs>
+          <g class="nap-person"><g id="ritaNapBody" transform="translate(461.8,434) rotate(-90) scale(.9)"></g></g>
+          <g class="nap-quilt" id="ritaNapQuilt" stroke-linejoin="round" stroke-linecap="round">
+            <path fill="url(#napQuiltPat)" stroke="#5A1F0E" stroke-width="2.500" d="M590 284 Q622 270 662 275 Q702 270 740 283 L744 398 Q728 405 713 398 Q697 405 681 398 Q665 405 649 398 Q633 405 617 398 Q601 405 586 398 Z"/>
+            <path fill="none" stroke="#E0218A" stroke-width="3" d="M588 394 Q601 400 617 394 Q633 400 649 394 Q665 400 681 394 Q697 400 713 394 Q728 400 742 394"/>
+            <path fill="#FFF8E7" stroke="#5A1F0E" stroke-width="1.800" d="M590 284 Q596 281 603 283 L601 399 Q593 401 586 398 Z"/>
+          </g>
+          <g class="nap-zzz" fill="#5A1F0E"><text x="508" y="292">z</text><text x="520" y="280">z</text><text x="532" y="266">Z</text></g>
+        </g>
         <!-- RITA: cartoon Coyote, drawn by script from her picks (see RITA_LOOK) -->
-        <g class="rita" id="rita" transform="translate(14,254.7) scale(.85)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
+        <g class="rita" id="rita" transform="translate(-4,222.9) scale(.95)" aria-label="Cartoon Rita, waving a peace sign"><g class="rita-hop" id="ritaBody"></g></g>
       </svg>
       <p class="hint">You found the secret basement! The stairs take you back up to the kitchen.</p>
     </section>
@@ -6278,9 +6308,10 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       '<circle cx="-4.1" cy="-8.9" r=".45" fill="#fff" stroke="none"/><circle cx="5.1" cy="-8.9" r=".45" fill="#fff" stroke="none"/>' +
       '<ellipse cx="-8" cy="-3.4" rx="2" ry="1.2" fill="#F48FB8" stroke="none" opacity=".6"/><ellipse cx="8" cy="-3.4" rx="2" ry="1.2" fill="#F48FB8" stroke="none" opacity=".6"/></g>'; }
 
-    function draw() {
+    var pose = "peace";
+    function art(mode) {
       var sk = L.skin, sd = sh(sk, .9), hc = L.hc, hl = sh(hc, 1.08), rt = L.roots, lc = L.lips, g = "";
-      g += '<ellipse cx="120" cy="330" rx="44" ry="5" fill="#5A1F0E" opacity=".14"/>';
+      if (mode !== "nap") g += '<ellipse cx="120" cy="330" rx="44" ry="5" fill="#5A1F0E" opacity=".14"/>';
       g += p("M84 86 Q80 38 120 36 Q160 38 156 86 Q162 108 157 128 Q163 142 153 152 Q147 145 148 138 L92 138 Q93 145 87 152 Q77 142 83 128 Q78 108 84 86 Z", hc);
       g += p("M120 30 m-12 0 a12 10 0 1 0 24 0 a12 10 0 1 0 -24 0", hc);
       // legs, socks and sneakers (the sneakers come off when the slippers go on)
@@ -6292,16 +6323,17 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       } else {
         var sockL2 = "M102 288 L116 288 L116 306 L102 306 Z"; g += p(sockL2, L.socks) + p(mir(sockL2), L.socks) + '<path d="M102 292.5 L116 292.5 M124 292.5 L138 292.5" stroke="#55504F" stroke-width="1.3" opacity=".8"/>';
       }
-      // arms: left hangs down, right is up doing a peace sign
-      var arm = "M77 171 L86.5 173 Q83 200 85 229 L75 229 Q71.5 200 77 171 Z", tL = "translate(80 227)", ra = "M164 142.5 L168.5 148.5 Q180 134 181 119 L171 119 Q169.5 132 164 142.5 Z", t = "translate(176 121) rotate(6)";
+      // arms: left hangs down; right is up doing a peace sign (or hangs down too when she walks or naps)
+      var arm = "M77 171 L86.5 173 Q83 200 85 229 L75 229 Q71.5 200 77 171 Z", tL = "translate(80 227)", tR = "translate(160 227) scale(-1 1)", ra = "M164 142.5 L168.5 148.5 Q180 134 181 119 L171 119 Q169.5 132 164 142.5 Z", t = "translate(176 121) rotate(6)";
       g += limb([{ d: arm }, { d: DOLL, t: tL }], sk) + dollDetail(tL);
-      g += limb([{ d: ra }, { d: PALM, t: t }].concat(PF.concat(PK).map(function (f) { return { d: cap.apply(null, f), t: t }; })).concat([{ d: cap.apply(null, PT), t: t }]), sk) +
+      if (mode !== "peace") g += limb([{ d: mir(arm) }, { d: DOLL, t: tR }], sk) + dollDetail(tR);
+      else g += limb([{ d: ra }, { d: PALM, t: t }].concat(PF.concat(PK).map(function (f) { return { d: cap.apply(null, f), t: t }; })).concat([{ d: cap.apply(null, PT), t: t }]), sk) +
         '<g transform="' + t + '"><path d="M-4.6 -2.4 Q-1 -4.6 2.2 -4.4" fill="none" stroke="' + INK + '" stroke-width=".9" stroke-linecap="round" opacity=".55"/><g fill="' + NAIL + '">' +
         PF.map(function (f) { var q = tip.apply(null, f); return '<circle cx="' + R(q[0]) + '" cy="' + R(q[1]) + '" r=".9"/>'; }).join("") + "</g></g>";
       // black tee and bike shorts
       g += p("M93 218 L147 218 L147 248 L122 248 L120 240 L118 248 L93 248 Z", "#2B2626");
-      g += p("M96 142 Q120 136 144 142 L148 166 L148 222 L92 222 L92 166 L87 176 L73 172 Z", L.top) + '<path d="M104 200 Q110 206 108 220 M136 196 Q132 206 134 220" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1.5"/>';
-      g += p("M143 142 L161 137 L173 151 L149 168 Z", L.top);
+      g += p(mode === "peace" ? "M96 142 Q120 136 144 142 L148 166 L148 222 L92 222 L92 166 L87 176 L73 172 Z" : "M96 142 Q120 136 144 142 L167 172 L153 176 L148 166 L148 222 L92 222 L92 166 L87 176 L73 172 Z", L.top) + '<path d="M104 200 Q110 206 108 220 M136 196 Q132 206 134 220" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1.5"/>';
+      if (mode === "peace") g += p("M143 142 L161 137 L173 151 L149 168 Z", L.top);
       // neck, necklace, ears, face
       g += p("M112 116 L128 116 L128 142 Q120 146 112 142 Z", sk) + '<path d="M112 122 Q120 132 128 122 L128 130 Q120 136 112 130 Z" fill="' + sd + '"/>';
       g += '<path d="M108 141 Q120 158 132 141" fill="none" stroke="#E2B13C" stroke-width="1.4"/><rect x="114" y="150" width="12" height="4" rx="1.5" fill="#E2B13C" stroke="' + INK + '" stroke-width=".8"/>';
@@ -6309,7 +6341,12 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       g += p("M88 86 Q88 50 120 50 Q152 50 152 86 Q152 108 141 119 Q130 128 120 129 Q110 128 99 119 Q88 108 88 86 Z", sk);
       g += '<ellipse cx="101" cy="105" rx="7" ry="4" fill="#F0708F" opacity=".32"/><ellipse cx="139" cy="105" rx="7" ry="4" fill="#F0708F" opacity=".32"/>';
       [107, 133].forEach(function (x) {
-        var y = 92, id = "ritaEye" + x, s = x < 120 ? -1 : 1, al = "M" + (x - 8) + " " + y + " Q" + x + " " + (y - 7) + " " + (x + 8) + " " + y + " Q" + x + " " + (y + 5.5) + " " + (x - 8) + " " + y + " Z";
+        var y = 92, id = "ritaEye" + mode + x, s = x < 120 ? -1 : 1, al = "M" + (x - 8) + " " + y + " Q" + x + " " + (y - 7) + " " + (x + 8) + " " + y + " Q" + x + " " + (y + 5.5) + " " + (x - 8) + " " + y + " Z";
+        if (mode === "nap") {                                   // sleepy closed eyes
+          g += '<path d="M' + (x - 8) + " " + (y + .5) + " Q" + x + " " + (y + 5.5) + " " + (x + 8) + " " + (y + .5) + '" fill="none" stroke="' + INK + '" stroke-width="2.4" stroke-linecap="round"/>';
+          g += '<path d="M' + (x + s * 7.5) + " " + (y + 1.5) + " l" + (s * 2.6) + " 1.6 M" + (x + s * 5) + " " + (y + 3.6) + " l" + (s * 1.8) + ' 2.2" stroke="' + INK + '" stroke-width="1.5" stroke-linecap="round"/>';
+          return;
+        }
         g += '<clipPath id="' + id + '"><path d="' + al + '"/></clipPath><path d="' + al + '" fill="#fff"/>';
         g += '<g clip-path="url(#' + id + ')"><circle cx="' + x + '" cy="' + (y - .5) + '" r="4.4" fill="' + L.ec + '"/><circle cx="' + x + '" cy="' + (y - .5) + '" r="2" fill="#2B1A10"/><circle cx="' + (x + 1.4) + '" cy="' + (y - 2) + '" r="1.1" fill="#fff"/></g>';
         g += '<path d="M' + (x - 8.5) + " " + (y + .3) + " Q" + x + " " + (y - 7.6) + " " + (x + 8.5) + " " + (y - .3) + '" fill="none" stroke="' + INK + '" stroke-width="2.6" stroke-linecap="round"/>';
@@ -6337,21 +6374,46 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       g += '<path d="M99 86 q1.5 -2 3.5 -1.6 M125 86 q1.5 -2 3.5 -1.6" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>';
       // pink bow
       g += p("M146 52 L134 45 L136 59 Z M146 52 L158 45 L156 59 Z", "#F0599E") + p("M146 52 m-3.5 0 a3.5 3.5 0 1 0 7 0 a3.5 3.5 0 1 0 -7 0", "#E0218A");
-      if (slippersOn) g += '<g data-slip="1"><rect x="88" y="300" width="64" height="30" fill="#fff" fill-opacity="0"/>' + pup(108, 318) + pup(132, 318) + "</g>";
-      body.innerHTML = g;
+      if (slippersOn && mode !== "nap") g += '<g data-slip="1"><rect x="88" y="300" width="64" height="30" fill="#fff" fill-opacity="0"/>' + pup(108, 318) + pup(132, 318) + "</g>";
+      return g;
     }
+    function draw() { body.innerHTML = art(pose); }
     draw();
 
-    // click Rita and she hops
+    // click Rita: she walks over to the couch, lies down and pulls the quilt over herself. Click her again to wake her up.
+    var nap = document.getElementById("ritaNap"), napBody = document.getElementById("ritaNapBody"), couchQuilt = document.getElementById("bsCouchQuilt");
+    var HOMEX = -4, Y = 222.9, SC = .95, COUCHX = 486, state = "home", busy = false;
+    if (napBody) napBody.innerHTML = art("nap");
+    function setX(x) { rita.setAttribute("transform", "translate(" + x.toFixed(1) + "," + Y + ") scale(" + SC + ")"); }
+    function walk(from, to, done) {
+      if (reduce) { setX(to); done(); return; }
+      body.classList.add("walking"); var t0 = performance.now(), dur = Math.abs(to - from) / 260 * 1000;
+      (function step(t) { var k = Math.min(1, (t - t0) / dur); setX(from + (to - from) * k); if (k < 1) requestAnimationFrame(step); else { body.classList.remove("walking"); done(); } })(t0);
+    }
     rita.addEventListener("click", function (e) {
       if (e.target.closest("[data-slip]")) return;
-      body.classList.remove("hop"); void body.getBoundingClientRect(); body.classList.add("hop");
+      if (!nap || !couchQuilt) { body.classList.remove("hop"); void body.getBoundingClientRect(); body.classList.add("hop"); return; }
+      if (busy || state !== "home") return;
+      busy = true; pose = "stand"; draw();
+      walk(HOMEX, COUCHX, function () {
+        rita.classList.add("away"); nap.classList.add("on");
+        setTimeout(function () { couchQuilt.classList.add("gone"); nap.classList.add("covered"); }, 380);
+        setTimeout(function () { nap.classList.add("sleeping"); state = "nap"; busy = false; }, 1150);
+      });
+    });
+    if (nap) nap.addEventListener("click", function () {
+      if (busy || state !== "nap") return;
+      busy = true; nap.classList.remove("sleeping", "covered"); couchQuilt.classList.remove("gone");
+      setTimeout(function () {
+        nap.classList.remove("on"); rita.classList.remove("away");
+        setTimeout(function () { walk(COUCHX, HOMEX, function () { pose = "peace"; draw(); state = "home"; busy = false; }); }, 300);
+      }, 750);
     });
 
     // the slippers
     var svg = pair.ownerSVGElement, HOME = { x: 161, y: 458 }, dx = 0, dy = 0, grab = null, anim = 0;
     function pt(e) { var q = svg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; return q.matrixTransform(svg.getScreenCTM().inverse()); }
-    function feet() { return { x: 14 + 120 * .85, y: 254.7 + 318 * .85 }; }   // where her feet are, in kitchen units
+    function feet() { return { x: -4 + 120 * .95, y: 222.9 + 318 * .95 }; }   // where her feet are, in kitchen units
     function place() { pair.setAttribute("transform", "translate(" + dx.toFixed(1) + "," + dy.toFixed(1) + ")"); }
     function goHome() {
       cancelAnimationFrame(anim); var fx = dx, fy = dy, t0 = performance.now();
