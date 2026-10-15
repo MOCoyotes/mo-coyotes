@@ -1212,7 +1212,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
         </g>
 
         <!-- AIRPLANE to Creating with Coyote -->
-        <a class="hot hot-plane" href="#barbie" data-to="barbie" aria-label="Pink airplane: take me to Creating with Coyote">
+        <a class="hot hot-plane" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Pink airplane: take me to YouTube (opens YouTube)">
           <g class="glow">
             <g transform="translate(190,100) scale(1.45) rotate(11) translate(-190,-100)">
             <!-- little single-seat crop duster, seen from the front corner: low wings, bubble canopy, fixed wheels, swept tail -->
@@ -1236,7 +1236,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
             <circle class="f-marigold s-ink" stroke-width="2" cx="148" cy="96" r="4"/>
             </g>
           </g>
-          <g class="tag"><rect x="34" y="142" width="372" height="28" rx="14"/><text x="220" y="161" text-anchor="middle">TAKE ME TO CREATING WITH COYOTE</text></g>
+          <g class="tag"><rect x="105" y="142" width="230" height="28" rx="14"/><text x="220" y="161" text-anchor="middle">TAKE ME TO YOUTUBE</text></g>
         </a>
 
         <!-- ABOUT: round attic window -->
@@ -3034,7 +3034,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     <!-- CREATING WITH COYOTE (was Barbie Land) -->
     <section id="room-barbie" class="room barbieroom" hidden aria-labelledby="barbieTitle">
       <h2 id="barbieTitle">Creating with Coyote</h2>
-      <a class="tv tv-link" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Watch Creating with Coyote on YouTube (opens YouTube)"><div class="screen"><span class="tv-play" aria-hidden="true"></span>Creating with Coyote<small class="tv-sub">YouTube</small></div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></a>
+      <a class="tv tv-link" href="https://www.youtube.com/@MoCoyotes" target="_blank" rel="noopener" aria-label="Watch Creating with Coyote on YouTube (opens YouTube)"><div class="screen"><span class="tv-play" aria-hidden="true"></span>YouTube</div><div class="tv-knobs" aria-hidden="true"><span></span><span></span><i></i></div></a>
       <div class="polaroids">
         <div class="polaroid"><img src="images/barbie/barbie-01.jpg" alt="Coyote with a pile of Barbie dolls" loading="lazy">♥</div>
         <div class="polaroid"><img src="images/barbie/barbie-02.jpg" alt="Barbie and Ken dolls in outfits" loading="lazy">♥</div>
@@ -3834,6 +3834,15 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (a.classList.contains("hot-door")) a.classList.add("open");
       setTimeout(function () { scene.classList.add("zoom"); }, a.classList.contains("hot-door") ? 250 : 0);
       setTimeout(function () { location.hash = to; }, 800);
+    });
+  });
+
+  // the airplane flies off to YouTube (the link opens in a new tab right away; the plane comes back afterward)
+  document.querySelectorAll(".hot-plane").forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (reduce) return;
+      a.classList.add("flyoff"); planeSound();
+      setTimeout(function () { a.classList.remove("flyoff"); }, 2200);
     });
   });
 
