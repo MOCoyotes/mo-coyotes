@@ -738,7 +738,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 @media (max-width: 600px) and (orientation: portrait) {
   .pan { overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .pan::-webkit-scrollbar { display: none; }
-  .pan > svg { width: auto !important; height: min(66svh, 560px) !important; max-width: none !important; }
+  .pan > .bath-wrap { width: max-content; }
+  .pan > svg, .pan > .bath-wrap > svg { width: auto !important; height: min(66svh, 560px) !important; max-width: none !important; }
   .pan-hint { display: flex; align-items: center; gap: 8px; position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 3; pointer-events: none; white-space: nowrap;
     font: 800 .82rem var(--font-body); letter-spacing: .04em; color: var(--bg); background: var(--ink); border-radius: 999px; padding: 6px 14px; box-shadow: 2px 3px 0 rgba(0,0,0,.25); transition: opacity .4s; }
   .pan-hint i { font-style: normal; display: inline-block; animation: panNudge 1.2s ease-in-out infinite; } .pan-hint i:last-child { animation-direction: reverse; }
@@ -6555,9 +6556,10 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     var phone = window.matchMedia("(max-width: 600px) and (orientation: portrait)"), swiped = false;
     try { swiped = sessionStorage.getItem("mocoyotes-swiped") === "1"; } catch (e) {}
     var pans = [];
-    ["#room-outside > svg.scene", "#room-kitchen > svg.kitchen-scene", "#room-basement > svg.basement-scene", "#room-gallery > svg.gallery-scene", "#room-bath > svg.bath-scene", "#room-featured > svg.brag-scene"].forEach(function (sel) {
+    ["#room-outside > svg.scene", "#room-kitchen > svg.kitchen-scene", "#room-basement > svg.basement-scene", "#room-gallery > svg.gallery-scene", "#room-bath > .bath-wrap", "#room-featured > svg.brag-scene"].forEach(function (sel) {
       var svg = document.querySelector(sel); if (!svg) return;
-      var vb = (svg.getAttribute("viewBox") || "0 0 1000 560").split(/\s+/); svg.style.aspectRatio = vb[2] + " / " + vb[3];
+      var art = svg.tagName.toLowerCase() === "svg" ? svg : svg.querySelector("svg");
+      var vb = (art.getAttribute("viewBox") || "0 0 1000 560").split(/\s+/); art.style.aspectRatio = vb[2] + " / " + vb[3];
       var wrap = document.createElement("div"), pan = document.createElement("div"), hint = document.createElement("span");
       wrap.className = "pan-wrap"; pan.className = "pan"; hint.className = "pan-hint" + (swiped ? " gone" : ""); hint.setAttribute("aria-hidden", "true");
       hint.innerHTML = "<i>&larr;</i> SWIPE TO LOOK AROUND <i>&rarr;</i>";
