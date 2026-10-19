@@ -6581,6 +6581,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     window.addEventListener("hashchange", function () { setTimeout(center, 30); });
     window.addEventListener("load", center); setTimeout(center, 60);
     if (phone.addEventListener) phone.addEventListener("change", center);
+    // on touch screens the room tips say Tap instead of Click
+    if (window.matchMedia("(hover: none)").matches) document.querySelectorAll(".hint, .lede").forEach(function (p) { p.childNodes.forEach(function (n) { if (n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/Click/g, "Tap").replace(/click/g, "tap"); }); });
   })();
 
   // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here except the secret basement)
