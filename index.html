@@ -590,14 +590,14 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .crayon-back { padding: 0; border: 0; background: none; cursor: pointer; width: 140px; transition: transform .15s; }
 .crayon-back svg { display: block; width: 100%; height: auto; filter: drop-shadow(2px 3px 0 rgba(90, 31, 14, .25)); }
 .crayon-back:hover { transform: translateX(-4px) rotate(-3deg); }
-#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen { padding: 0; gap: 0; min-height: 0; }
-:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > :is(.room-nav, h2, .lede, .hint) { margin-inline: clamp(14px, 3vw, 28px); }
-:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .room-nav { margin-top: clamp(12px, 2vw, 18px); }
-:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > h2 { margin-block: 6px 12px; }
-:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .lede { margin-bottom: 12px; }
-:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen) > .hint { margin-block: 10px 14px; }
+#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop { padding: 0; gap: 0; min-height: 0; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop) > :is(.room-nav, h2, .lede, .hint) { margin-inline: clamp(14px, 3vw, 28px); }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop) > .room-nav { margin-top: clamp(12px, 2vw, 18px); }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop) > h2 { margin-block: 6px 12px; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop) > .lede { margin-bottom: 12px; }
+:is(#room-foyer, #room-gallery, #room-bath, #room-featured, #room-kitchen, #room-shop) > .hint { margin-block: 10px 14px; }
 .hall-scene, .gallery-scene, .bath-scene, .brag-scene, .kitchen-scene { border: 0; border-block: 3px solid var(--ink); border-radius: 0; }
-#room-kitchen .kitchen-scene { border-bottom: 0; }
+#room-kitchen .kitchen-scene, #room-shop .shop-scene { border-bottom: 0; }
 .room h2:not(#aboutTitle) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .room-title { flex: 1; min-width: 0; text-align: center; padding-right: 150px; font: 400 clamp(1.25rem, 3.6vw, 2.1rem)/1.05 var(--font-display); color: var(--ink); text-shadow: 2px 2px 0 var(--marigold); text-wrap: balance; }
 .room-foot { display: grid; gap: 4px; margin-top: 14px; text-align: center; } .room-foot:not(:has(> :not([hidden]))) { display: none; }
@@ -1766,7 +1766,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
         <!-- floor -->
         <rect x="0" y="530" width="1000" height="30" fill="url(#storeFloor)"/><path d="M0 530 H1000" stroke="#5A1F0E" stroke-width="3"/>
         <!-- RITA behind the counter, at the register (drawn by script) -->
-        <g class="rita-shop" id="ritaShop" transform="translate(501.6,271.2) scale(.82)" aria-label="Cartoon Coyote behind the counter"></g>
+        <g class="rita-shop" id="ritaShop" transform="translate(501.6,258) scale(.82)" aria-label="Cartoon Coyote behind the counter"></g>
         <!-- the counter -->
         <g stroke-linejoin="round">
           <rect x="240" y="442" width="580" height="90" fill="#C98E5A" stroke="#5A1F0E" stroke-width="3"/>
