@@ -733,6 +733,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .site-search-list li small { display: block; font: 600 .74rem/1.25 var(--font-body); color: var(--muted); }
 .site-search-list li:hover, .site-search-list li[aria-selected="true"] { background: var(--blush); }
 .site-search-list .none { cursor: default; font-weight: 600; color: var(--muted); } .site-search-list .none:hover { background: none; }
+/* phones held upright: the picture rooms fill the screen and you swipe sideways to look around */
+.pan-wrap { position: relative; } .pan-hint { display: none; }
+@media (max-width: 600px) and (orientation: portrait) {
+  .pan { overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .pan::-webkit-scrollbar { display: none; }
+  .pan > svg { width: auto !important; height: min(66svh, 560px) !important; max-width: none !important; }
+  .pan-hint { display: flex; align-items: center; gap: 8px; position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 3; pointer-events: none; white-space: nowrap;
+    font: 800 .82rem var(--font-body); letter-spacing: .04em; color: var(--bg); background: var(--ink); border-radius: 999px; padding: 6px 14px; box-shadow: 2px 3px 0 rgba(0,0,0,.25); transition: opacity .4s; }
+  .pan-hint i { font-style: normal; display: inline-block; animation: panNudge 1.2s ease-in-out infinite; } .pan-hint i:last-child { animation-direction: reverse; }
+  .pan-hint.gone { opacity: 0; }
+  @keyframes panNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-4px); } }
+}
 @media (orientation: landscape) and (max-height: 540px) { .site-search { top: 6px; right: 10px; } .site-search input { width: 120px; font-size: .8rem; padding: .25em .8em; } }
 @media (max-width: 700px) { .topbar { padding-right: 150px; } }
 @media (max-width: 520px) { .site-search { top: 12px; right: 12px; } .site-search input { width: 116px; font-size: .85rem; padding: .34em .85em; } .topbar { padding-right: 126px; } }
@@ -6536,6 +6548,37 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     rita.addEventListener("pointerdown", function (e) { if (e.target.closest("[data-slip]")) start(e, true); });
     // leaving the kitchen with the slippers off the floor: they are back home next time
     window.addEventListener("hashchange", function () { if (!slippersOn && !grab) { cancelAnimationFrame(anim); dx = dy = 0; place(); } });
+  })();
+
+  // ---------- phones held upright: each picture room sits in a sideways-scrolling strip, starting in the middle
+  (function () {
+    var phone = window.matchMedia("(max-width: 600px) and (orientation: portrait)"), swiped = false;
+    try { swiped = sessionStorage.getItem("mocoyotes-swiped") === "1"; } catch (e) {}
+    var pans = [];
+    ["#room-outside > svg.scene", "#room-kitchen > svg.kitchen-scene", "#room-basement > svg.basement-scene", "#room-gallery > svg.gallery-scene", "#room-bath > svg.bath-scene", "#room-featured > svg.brag-scene"].forEach(function (sel) {
+      var svg = document.querySelector(sel); if (!svg) return;
+      var vb = (svg.getAttribute("viewBox") || "0 0 1000 560").split(/\s+/); svg.style.aspectRatio = vb[2] + " / " + vb[3];
+      var wrap = document.createElement("div"), pan = document.createElement("div"), hint = document.createElement("span");
+      wrap.className = "pan-wrap"; pan.className = "pan"; hint.className = "pan-hint" + (swiped ? " gone" : ""); hint.setAttribute("aria-hidden", "true");
+      hint.innerHTML = "<i>&larr;</i> SWIPE TO LOOK AROUND <i>&rarr;</i>";
+      svg.parentNode.insertBefore(wrap, svg); pan.appendChild(svg); wrap.appendChild(pan); wrap.appendChild(hint);
+      pan.addEventListener("scroll", function () {
+        if (pan.dataset.centering) return;
+        if (!swiped) { swiped = true; try { sessionStorage.setItem("mocoyotes-swiped", "1"); } catch (e) {} pans.forEach(function (p) { p.hint.classList.add("gone"); }); }
+      }, { passive: true });
+      pans.push({ pan: pan, hint: hint });
+    });
+    function center() {
+      if (!phone.matches) return;
+      pans.forEach(function (p) {
+        if (!p.pan.offsetParent) return;                           // only the room that is showing
+        p.pan.dataset.centering = "1"; p.pan.scrollLeft = (p.pan.scrollWidth - p.pan.clientWidth) / 2;
+        setTimeout(function () { delete p.pan.dataset.centering; }, 80);
+      });
+    }
+    window.addEventListener("hashchange", function () { setTimeout(center, 30); });
+    window.addEventListener("load", center); setTimeout(center, 60);
+    if (phone.addEventListener) phone.addEventListener("change", center);
   })();
 
   // ---------- quick search: type a word, pick a place, and it takes you there (every room is in here except the secret basement)
