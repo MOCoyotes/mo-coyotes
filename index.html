@@ -6858,6 +6858,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     var state = "awake", timer = 0;
     function set(st) { state = st; dog.classList.remove("belly", "rub", "nap"); if (st !== "awake") dog.classList.add(st); if (paws) paws.style.display = (st === "belly" || st === "rub") ? "none" : ""; }
     function next() {
+      if (state === "belly" || state === "rub") return;            // rubbing is handled by press-and-drag (don't cancel her nap timer)
       clearTimeout(timer);
       if (state === "awake") { set("belly"); popSound(); }
       else if (state === "nap") set("awake");
@@ -6881,7 +6882,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       if (state === "rub" && moved > 30) timer = setTimeout(function () { set("nap"); }, 250);
       else set("belly");
     };
-    dog.addEventListener("pointerup", letGo); dog.addEventListener("pointercancel", letGo);
+    dog.addEventListener("pointerup", letGo); dog.addEventListener("pointercancel", letGo); dog.addEventListener("lostpointercapture", letGo);
     dog.addEventListener("keydown", function (e) {
       if (e.key !== "Enter" && e.key !== " ") return; e.preventDefault();
       if (state === "belly") { set("rub"); timer = setTimeout(function () { set("nap"); }, 1800); } else next();
