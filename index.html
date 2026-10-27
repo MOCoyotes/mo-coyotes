@@ -315,6 +315,9 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .dog-zzz text:nth-child(2) { animation-delay: .9s; } .dog-zzz text:nth-child(3) { animation-delay: 1.8s; }
 @keyframes dogZzz { 0% { opacity: 0; transform: translate(0, 0) scale(.5); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(18px, -30px) scale(1.2); } }
 @media (prefers-reduced-motion: reduce) { .bs-dog *, .bs-dog { animation: none !important; } }
+/* the mouse is a pointing hand everywhere (drag spots still show the grabbing hand; typing boxes keep the text bar) */
+html, body, body * { cursor: pointer; }
+input[type="search"], input[type="text"], input[type="email"], input:not([type]), textarea, [contenteditable="true"] { cursor: text; }
 .kitchen-scene { display: block; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; }
 .tunnel { position: fixed; inset: 0; z-index: 9999; background: #2A1810; overflow: hidden; pointer-events: none; animation: tunIn .25s ease-out both; }
 .tunnel.out { animation: tunOut .35s ease-in both; }
