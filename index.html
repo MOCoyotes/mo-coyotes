@@ -471,6 +471,18 @@ body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f
 .hot-oven.open .oven-steam { opacity: 1; }
 .pie-art { display: block; width: min(230px, 62vw); height: auto; overflow: visible; animation: pieOut .6s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes pieOut { from { transform: translateY(40px) scale(.35); opacity: 0; } to { transform: none; opacity: 1; } }
+.ball-wrap.pc-wrap { width: min(440px, 92vw); background: #EDE3CC; border-radius: 18px; padding: 30px 18px 18px; }
+.pc-screen { width: 100%; box-sizing: border-box; display: grid; gap: 10px; padding: 16px 14px 14px; border-radius: 12px; background: #1F3B3A; border: 3px solid #3B2620; box-shadow: inset 0 0 18px rgba(0, 0, 0, .45); font-family: ui-monospace, Consolas, "Courier New", monospace; color: #8FE3B0; }
+.pc-title { margin: 0 0 4px; font-weight: 800; font-size: 1rem; }
+.pc-cursor { display: inline-block; width: .55em; height: 1em; margin-left: 3px; vertical-align: -2px; background: #8FE3B0; animation: pc-blink 1s steps(1) infinite; }
+@keyframes pc-blink { 50% { opacity: 0; } }
+.pc-prog { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border: 2px solid #8FE3B0; border-radius: 10px; color: #8FE3B0; text-decoration: none; }
+.pc-prog:hover, .pc-prog:focus-visible { background: #8FE3B0; color: #1F3B3A; outline: none; }
+.pc-prog b { display: block; font-size: 1.05rem; }
+.pc-prog small { display: block; font-size: .78rem; opacity: .85; }
+.pc-icon { font-size: 1.8rem; line-height: 1; }
+.pc-note { margin: 2px 0 0; font-size: .75rem; opacity: .75; }
+@media (prefers-reduced-motion: reduce) { .pc-cursor { animation: none; } }
 .gift-qr { display: block; width: min(280px, 72vw); height: auto; border: 3px solid #3B2620; border-radius: 14px; background: #FFFFFF; }
 .big-clock { display: block; width: auto; height: min(330px, 46vh); overflow: visible; }
 .late-tip { padding: 12px 16px; border: 2px dashed #E0218A; border-radius: 12px; background: #FDE6EC; font: 700 1rem/1.4 var(--font-body); color: #3B2620; text-align: center; }
@@ -1149,8 +1161,6 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
-</head>
-<body>
 
 <div class="wrap">
   <header class="topbar">
@@ -3131,8 +3141,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <rect x="812" y="300" width="176" height="14" rx="3" class="s-ink" style="fill: var(--floor)" stroke-width="3"/>
           <rect x="822" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/><rect x="966" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/>
           <rect x="936" y="314" width="42" height="60" fill="#B5703D" class="s-ink" stroke-width="2.500"/><path class="s-ink" stroke-width="2" d="M936 344 H978"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="329" r="3"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="359" r="3"/>
-          <!-- the old computer opens Coyote's Pattern Studio (members only: Cloudflare asks for an email login) -->
-          <a class="hot" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener" aria-label="Old computer: Coyote's Pattern Studio, members only (opens in a new tab)">
+          <!-- the old computer opens a menu: Coyote's Pattern Studio or the Burnout card game (members only: Cloudflare asks for an email login) -->
+          <a class="hot hot-pc" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener" aria-label="Old computer: choose Coyote's Pattern Studio or the Burnout game, members only" aria-haspopup="dialog">
             <g class="glow">
             <rect x="846" y="214" width="96" height="74" rx="8" fill="#EDE3CC" class="s-ink" stroke-width="3"/><rect x="856" y="222" width="76" height="52" rx="6" fill="#1F3B3A" class="s-ink" stroke-width="2.500"/>
             <path class="f-hot" d="M880 240 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/><text x="893" y="252" style="font: 800 11px monospace; fill: #8FE3B0">HI!</text><rect class="bs-cursor" x="916" y="243" width="6" height="10" fill="#8FE3B0"/>
@@ -3140,7 +3150,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
             <circle fill="#8FE3B0" cx="932" cy="281" r="2"/><rect x="872" y="288" width="44" height="8" fill="#D9CDB2" class="s-ink" stroke-width="2.500"/><rect x="858" y="294" width="72" height="7" rx="2" fill="#EDE3CC" class="s-ink" stroke-width="2.500"/>
             <path fill="#EDE3CC" class="s-ink" stroke-width="2.500" d="M856 300 L862 288 H926 L932 300 Z"/><path stroke="#5A1F0E" stroke-width="1" opacity=".5" d="M866 292 H922 M864 296 H924"/>
             </g>
-            <g class="tag"><rect x="740" y="180" width="186" height="28" rx="14"/><text x="833" y="199" text-anchor="middle">PATTERN STUDIO</text></g>
+            <g class="tag"><rect x="740" y="180" width="186" height="28" rx="14"/><text x="833" y="199" text-anchor="middle">PATTERNS &amp; GAMES</text></g>
           </a>
           <path class="s-ink" stroke-width="1.500" fill="none" d="M943 295 Q938 288 933 294"/>
           <path class="f-pink s-ink" stroke-width="2" d="M942 298 Q941 291 948 290.500 L952 285 H962 L966 290.500 Q972 291 971 298 Z"/><path fill="#DFF3F7" class="s-ink" stroke-width="1.200" d="M951 290 L953.500 286.500 H956.500 V290 Z M958.500 286.500 H961 L963.500 290 H958.500 Z"/>
@@ -3547,6 +3557,22 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     <p class="ball-prompt">Send Coyote a $ Gift</p>
     <img class="gift-qr" src="images/kitchen/venmo-qr.jpg" alt="Venmo scan code" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
     <p class="ball-hint" hidden>Scan code coming soon</p>
+  </div>
+</dialog>
+
+<dialog class="ball-dialog pc-dialog" id="pcDialog" aria-labelledby="pcTitle">
+  <div class="ball-wrap pc-wrap">
+    <button class="lb-close" type="button" id="pcClose" aria-label="Close">×</button>
+    <div class="pc-screen">
+      <p class="pc-title" id="pcTitle">C:\COYOTE&gt; pick a program<span class="pc-cursor" aria-hidden="true"></span></p>
+      <a class="pc-prog" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener">
+        <span class="pc-icon" aria-hidden="true">🧵</span><span><b>Coyote's Pattern Studio</b><small>Doll and goose sewing patterns</small></span>
+      </a>
+      <a class="pc-prog" href="https://coyotepatternstudio.pages.dev/burnout/" target="_blank" rel="noopener">
+        <span class="pc-icon" aria-hidden="true">🕯️</span><span><b>Burnout</b><small>A card game about life with an AuDHD brain (play-test)</small></span>
+      </a>
+      <p class="pc-note">Members only: you'll be asked for your email, then a code.</p>
+    </div>
   </div>
 </dialog>
 
@@ -5518,6 +5544,17 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     pieDialog.addEventListener("click", function (e) { if (e.target === pieDialog) pieDialog.close(); });
   }
 
+  // ---------- the old computer: pick Pattern Studio or Burnout ----------
+  var pcDialog = document.getElementById("pcDialog");
+  if (pcDialog) {
+    document.querySelectorAll(".hot-pc").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); if (pcDialog.showModal) pcDialog.showModal(); else pcDialog.setAttribute("open", ""); });
+    });
+    document.getElementById("pcClose").addEventListener("click", function () { pcDialog.close(); });
+    pcDialog.addEventListener("click", function (e) { if (e.target === pcDialog) pcDialog.close(); });
+    pcDialog.querySelectorAll(".pc-prog").forEach(function (a) { a.addEventListener("click", function () { pcDialog.close(); }); });
+  }
+
   // ---------- the wallet: a gift pop-up ----------
   var giftDialog = document.getElementById("giftDialog");
   if (giftDialog) {
@@ -6942,6 +6979,9 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
 
 })();
 </script>
+</style>
+</head>
+<body>
 
 </body>
 </html>
