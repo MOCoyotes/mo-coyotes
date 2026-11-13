@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Custom Order Form · MO Coyotes</title>
+<meta name="description" content="Ready for custom work from MO Coyotes? Fill out the custom order form.">
+<link rel="icon" href="images/mo-coyotes-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Pacifico&family=Nunito:wght@400;600;800&display=swap">
+<style>
+:root {
+  --bg: #FFF4D2; --ink: #5A1F0E; --muted: #8A5A45; --card: #FFFDF4; --trim: #FFFDF4;
+  --marigold: #F2B705; --orange: #E2780F; --rust: #B9460F; --blush: #F7C1CC; --pink: #F48FB8; --hot: #E0218A;
+  --font-display: "Shrikhand", "Cooper Black", Georgia, serif;
+  --font-script: "Pacifico", "Brush Script MT", cursive;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #21101C; --ink: #FCE7D6; --muted: #D7B3A6; --card: #301A2A; --trim: #FFFDF4; color-scheme: dark; }
+}
+* { box-sizing: border-box; cursor: pointer; }
+input, textarea { cursor: text; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 600 16px/1.5 var(--font-body); padding: 0 16px 48px; }
+.stripes div { height: 6px; } .stripes div:nth-child(1) { background: var(--marigold); } .stripes div:nth-child(2) { background: var(--orange); }
+.stripes div:nth-child(3) { background: var(--rust); } .stripes div:nth-child(4) { background: var(--pink); }
+.stripes { margin: 0 -16px; }
+header { max-width: 760px; margin: 24px auto 8px; display: flex; align-items: center; gap: 18px; }
+header a.home img { width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--ink); display: block; }
+header h1 { margin: 0; font: 400 clamp(2rem, 6vw, 3rem)/1.05 var(--font-display); color: var(--hot); text-wrap: balance; }
+header p { margin: 4px 0 0; font: 400 1.25rem var(--font-script); }
+.back { display: inline-block; margin: 6px 0 0; font-weight: 800; font-size: .8rem; letter-spacing: .1em; color: var(--hot); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+form { max-width: 760px; margin: 18px auto 0; display: grid; gap: 18px; }
+fieldset { margin: 0; background: var(--card); border: 3px solid var(--ink); border-radius: 10px; padding: 18px 18px 20px; display: grid; gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); position: relative; }
+fieldset::after { content: ""; position: absolute; inset: 7px; border: 2px dashed var(--blush); border-radius: 6px; pointer-events: none; }
+legend { font: 400 1.35rem var(--font-display); color: var(--trim); background: var(--hot); border: 3px solid var(--ink); border-radius: 999px; padding: 2px 16px; }
+label { font-weight: 800; font-size: .78rem; letter-spacing: .08em; display: grid; gap: 4px; align-content: start; }
+label.wide, .wide { grid-column: 1 / -1; }
+.req { color: var(--hot); }
+input, textarea, select { font: 600 1rem var(--font-body); color: var(--ink); background: transparent; border: 0; border-bottom: 2px solid var(--ink);
+  padding: .35em .1em; width: 100%; min-width: 0; letter-spacing: 0; }
+select { border: 2px solid var(--ink); border-radius: 8px; padding: .35em .4em; background: var(--card); }
+textarea { border: 2px solid var(--ink); border-radius: 8px; padding: .5em .6em; resize: vertical; min-height: 96px; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--hot); }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.checks label { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: .9rem; letter-spacing: 0; border: 2px solid var(--ink);
+  border-radius: 999px; padding: 5px 12px 5px 8px; background: var(--bg); }
+.checks input { width: auto; accent-color: var(--hot); }
+.checks label:has(input:checked) { background: var(--pink); color: #5A1F0E; }
+.group-title { grid-column: 1 / -1; font-weight: 800; font-size: .78rem; letter-spacing: .08em; margin-bottom: -4px; }
+.note { grid-column: 1 / -1; margin: 0; font-size: .85rem; font-weight: 600; color: var(--muted); font-style: italic; }
+.agree { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; font-size: .95rem; letter-spacing: 0; }
+.agree input { width: auto; margin-top: 4px; accent-color: var(--hot); }
+.foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.seal { width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--ink); background: var(--hot); color: #FFFDF4;
+  font: 400 1.1rem var(--font-display); box-shadow: 0 4px 0 var(--ink); transition: transform .12s; }
+.seal:hover { transform: rotate(-6deg) scale(1.05); }
+.seal:disabled { opacity: .6; }
+.status { font-weight: 800; margin: 0; flex: 1; min-width: 200px; }
+.honey { position: absolute; left: -9999px; }
+.done { max-width: 760px; margin: 24px auto; text-align: center; background: var(--card); border: 3px solid var(--ink); border-radius: 10px; padding: 32px 20px; }
+.done h2 { font: 400 2.2rem var(--font-script); color: var(--hot); margin: 0 0 8px; }
+.done a { color: var(--hot); font-weight: 800; }
+@media (max-width: 600px) { fieldset { grid-template-columns: 1fr; } header a.home img { width: 70px; height: 70px; } }
+</style>
+</head>
+<body>
+<div class="stripes"><div></div><div></div><div></div><div></div></div>
+<header>
+  <a class="home" href="./" aria-label="Back to MO Coyotes"><img src="images/mo-coyotes-logo.jpg" alt="MO Coyotes logo"></a>
+  <div>
+    <h1>Custom Order Form</h1>
+    <p>MO Coyotes</p>
+    <a class="back" href="./#contact">← BACK TO THE HOUSE</a>
+  </div>
+</header>
+
+<form id="orderForm" novalidate>
+  <fieldset>
+    <legend>About you</legend>
+    <label><span>NAME <span class="req">*</span></span><input name="Name" autocomplete="name" required></label>
+    <label><span>EMAIL <span class="req">*</span></span><input name="email" type="email" autocomplete="email" required></label>
+    <label>PHONE<input name="Phone" type="tel" autocomplete="tel"></label>
+    <label>BEST WAY TO REACH YOU
+      <select name="Best way to reach">
+        <option>Email</option><option>Text</option><option>Phone call</option><option>Instagram</option>
+      </select>
+    </label>
+    <label class="wide">STREET ADDRESS<input name="Street address" autocomplete="street-address"></label>
+    <label>CITY<input name="City" autocomplete="address-level2"></label>
+    <label>STATE &amp; ZIP<input name="State and ZIP" autocomplete="postal-code"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>The project</legend>
+    <div class="group-title">WHAT KIND OF WORK? <span class="req">*</span></div>
+    <div class="checks wide" id="types">
+      <label><input type="checkbox" name="type" value="Custom piece">Custom piece</label>
+      <label><input type="checkbox" name="type" value="Alterations">Alterations</label>
+      <label><input type="checkbox" name="type" value="Creative Consulting">Creative Consulting</label>
+      <label><input type="checkbox" name="type" value="Event work">Event work</label>
+      <label><input type="checkbox" name="type" value="Private Lessons">Private Lessons</label>
+      <label><input type="checkbox" name="type" value="Sewing Machine Repair">Sewing Machine Repair</label>
+      <label><input type="checkbox" name="type" value="Something else">Something else</label>
+    </div>
+    <label class="wide"><span>TELL ME ABOUT IT <span class="req">*</span></span><textarea name="Project details" required placeholder="What would you like made, fixed or planned?"></textarea></label>
+    <label>HOW MANY?<input name="Quantity" inputmode="numeric"></label>
+    <label>SIZE OR MEASUREMENTS<input name="Size or measurements"></label>
+    <label class="wide">COLORS, FABRICS OR MATERIALS<input name="Colors and materials"></label>
+    <label class="wide">INSPIRATION LINKS<input name="Inspiration links" placeholder="Pinterest, Instagram, photos, etc."></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Dates &amp; budget</legend>
+    <label><span>NEEDED BY <span class="req">*</span></span><input name="Needed by" type="date" required></label>
+    <label>IS THAT DATE FLEXIBLE?
+      <select name="Date flexible">
+        <option>Yes, a little</option><option>Yes, very</option><option>No, it's firm</option>
+      </select>
+    </label>
+    <label>EVENT DATE (IF ANY)<input name="Event date" type="date"></label>
+    <label>BUDGET
+      <select name="Budget">
+        <option>Not sure yet</option><option>Under $50</option><option>$50 to $100</option><option>$100 to $250</option>
+        <option>$250 to $500</option><option>$500 to $1,000</option><option>Over $1,000</option>
+      </select>
+    </label>
+    <label>PICKUP OR SHIPPING?
+      <select name="Pickup or shipping">
+        <option>Not sure yet</option><option>Local pickup</option><option>Ship it to me</option><option>Local delivery</option>
+      </select>
+    </label>
+    <label>HOW DID YOU FIND ME?<input name="How they found MO Coyotes"></label>
+    <label class="wide">ANYTHING ELSE?<textarea name="Anything else" style="min-height:70px"></textarea></label>
+  </fieldset>
+
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honey" aria-hidden="true">
+  <label class="agree"><input type="checkbox" id="agree" required>I understand this is a request, not a confirmed order. Coyote will reply with a quote.</label>
+  <div class="foot">
+    <button class="seal" type="submit">SEND</button>
+    <p class="status" id="status" role="status"></p>
+  </div>
+</form>
+
+<div class="done" id="done" hidden>
+  <h2>Got it, thank you!</h2>
+  <p>Your custom order request is in Coyote's inbox. You'll hear back soon with a quote.</p>
+  <p><a href="./">← Back to the house</a></p>
+</div>
+
+<script>
+(function () {
+  var ENDPOINT = "https://formsubmit.co/ajax/ritagoodbook@gmail.com";
+  var form = document.getElementById("orderForm"), status = document.getElementById("status");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var types = [].map.call(form.querySelectorAll('input[name="type"]:checked'), function (c) { return c.value; });
+    if (!form.checkValidity() || !types.length) {
+      status.textContent = !types.length ? "Please pick what kind of work it is." : "Please fill in the boxes marked with a pink star.";
+      var bad = form.querySelector(":invalid"); if (bad) bad.focus();
+      return;
+    }
+    var data = {};
+    new FormData(form).forEach(function (v, k) { if (k !== "type") data[k] = v; });
+    data["Kind of work"] = types.join(", ");
+    data._subject = "New custom order request: " + data.Name + " (" + data["Kind of work"] + ")";
+    data._template = "table";
+    var btn = form.querySelector(".seal");
+    btn.disabled = true; status.textContent = "Sending…";
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "Send failed"); }); })
+      .then(function () { form.hidden = true; document.getElementById("done").hidden = false; window.scrollTo(0, 0); })
+      .catch(function () { status.textContent = "That didn't send. Please try again, or message @mo_coyotes_made on Instagram."; })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
