@@ -83,12 +83,7 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--h
     <legend>About you</legend>
     <label><span>NAME <span class="req">*</span></span><input name="Name" autocomplete="name" required></label>
     <label><span>EMAIL <span class="req">*</span></span><input name="email" type="email" autocomplete="email" required></label>
-    <label>PHONE<input name="Phone" type="tel" autocomplete="tel"></label>
-    <label>BEST WAY TO REACH YOU
-      <select name="Best way to reach">
-        <option>Email</option><option>Text</option><option>Phone call</option><option>Instagram</option>
-      </select>
-    </label>
+    <label class="wide">PHONE<input name="Phone" type="tel" autocomplete="tel"></label>
     <label class="wide">STREET ADDRESS<input name="Street address" autocomplete="street-address"></label>
     <label>CITY<input name="City" autocomplete="address-level2"></label>
     <label>STATE &amp; ZIP<input name="State and ZIP" autocomplete="postal-code"></label>
@@ -107,9 +102,7 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--h
       <label><input type="checkbox" name="type" value="Something else">Something else</label>
     </div>
     <label class="wide"><span>TELL ME ABOUT IT <span class="req">*</span></span><textarea name="Project details" required placeholder="What would you like made, fixed or planned?"></textarea></label>
-    <label>HOW MANY?<input name="Quantity" inputmode="numeric"></label>
-    <label>SIZE OR MEASUREMENTS<input name="Size or measurements"></label>
-    <label class="wide">COLORS, FABRICS OR MATERIALS<input name="Colors and materials"></label>
+    <label class="wide">HOW MANY?<input name="Quantity" inputmode="numeric"></label>
     <label class="wide">INSPIRATION LINKS<input name="Inspiration links" placeholder="Pinterest, Instagram, photos, etc."></label>
   </fieldset>
 
