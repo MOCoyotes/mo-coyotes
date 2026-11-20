@@ -3221,8 +3221,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <rect x="812" y="300" width="176" height="14" rx="3" class="s-ink" style="fill: var(--floor)" stroke-width="3"/>
           <rect x="822" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/><rect x="966" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/>
           <rect x="936" y="314" width="42" height="60" fill="#B5703D" class="s-ink" stroke-width="2.500"/><path class="s-ink" stroke-width="2" d="M936 344 H978"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="329" r="3"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="359" r="3"/>
-          <!-- the old computer opens a menu: Coyote's Pattern Studio or the Burnout card game (members only: Cloudflare asks for an email login) -->
-          <a class="hot hot-pc" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener" aria-label="Old computer: choose Coyote's Pattern Studio or the Burnout game, members only" aria-haspopup="dialog">
+          <!-- the old computer opens a menu: Coyote's Pattern Studio, the Burnout card game (members only: Cloudflare asks for an email login) or Coyote Collage Studio (password) -->
+          <a class="hot hot-pc" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener" aria-label="Old computer: choose Coyote's Pattern Studio, the Burnout game (members only) or Coyote Collage Studio (password)" aria-haspopup="dialog">
             <g class="glow">
             <rect x="846" y="214" width="96" height="74" rx="8" fill="#EDE3CC" class="s-ink" stroke-width="3"/><rect x="856" y="222" width="76" height="52" rx="6" fill="#1F3B3A" class="s-ink" stroke-width="2.500"/>
             <path class="f-hot" d="M880 240 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/><text x="893" y="252" style="font: 800 11px monospace; fill: #8FE3B0">HI!</text><rect class="bs-cursor" x="916" y="243" width="6" height="10" fill="#8FE3B0"/>
@@ -3678,7 +3678,10 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
       <a class="pc-prog" href="https://coyotepatternstudio.pages.dev/burnout/" target="_blank" rel="noopener">
         <span class="pc-icon pc-candle" aria-hidden="true"><svg viewBox="20 36 60 88" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Melted candle">     <ellipse cx="50" cy="117" rx="27" ry="5" fill="#a87810" opacity=".35"/>     <path d="M27 113 Q50 121 73 113 Q76 109 69 108 L31 108 Q24 109 27 113Z" fill="#fbf0d6" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M34 60 L34 110 Q50 115 66 110 L66 60Z" fill="#fdf5e2" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M58 60 L66 60 L66 110 Q62 112 58 112Z" fill="#ead5aa"/>     <path d="M32 59 Q36 51 50 52 Q64 51 68 59 Q69 64 66 65 Q63 65 63 74 Q63 80 60 80 Q57 80 57 70 Q56 64 53 65 Q50 66 50 70 L50 90 Q50 95 46.5 95 Q43 95 43 90 L43 68 Q42 63 39 65 Q36 67 35 72 Q35 76 33 76 Q31 76 31 70 Q31 63 32 59Z" fill="#fffbf1" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M38 56 Q50 53 62 56" stroke="#e2cfa4" stroke-width="1.4" fill="none"/>     <path d="M50 54 Q48.5 47 51.5 42" stroke="#3a2a1a" stroke-width="2.6" fill="none" stroke-linecap="round"/>   </svg></span><span><b>Burnout</b><small>A card game about life with an AuDHD brain (play-test)</small></span>
       </a>
-      <p class="pc-note">Members only: you'll be asked for your email, then a code.</p>
+      <a class="pc-prog" href="https://coyote-collage-studio.pages.dev" target="_blank" rel="noopener">
+        <span class="pc-icon" aria-hidden="true">✂️</span><span><b>Coyote Collage Studio</b><small>Paper collage table · password needed</small></span>
+      </a>
+      <p class="pc-note">Burnout is members only: you'll be asked for your email, then a code.</p>
     </div>
   </div>
 </dialog>
@@ -5651,7 +5654,7 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     pieDialog.addEventListener("click", function (e) { if (e.target === pieDialog) pieDialog.close(); });
   }
 
-  // ---------- the old computer: pick Pattern Studio or Burnout ----------
+  // ---------- the old computer: pick Pattern Studio, Burnout or Collage Studio ----------
   var pcDialog = document.getElementById("pcDialog");
   if (pcDialog) {
     document.querySelectorAll(".hot-pc").forEach(function (a) {
