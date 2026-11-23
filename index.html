@@ -513,6 +513,16 @@ input[type="search"], input[type="text"], input[type="email"], input:not([type])
 .pc-candle svg { width: 100%; height: 100%; display: block; }
 .pc-note { margin: 2px 0 0; font-size: .75rem; opacity: .75; }
 @media (prefers-reduced-motion: reduce) { .pc-cursor { animation: none; } }
+.pc-login { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-weight: 800; }
+.pc-login input { flex: 1; min-width: 0; font: 800 1.05rem ui-monospace, Consolas, "Courier New", monospace; letter-spacing: .15em; color: #8FE3B0; background: transparent;
+  border: 0; border-bottom: 2px solid #8FE3B0; padding: 4px 2px; cursor: text; caret-color: #8FE3B0; }
+.pc-login input:focus { outline: none; border-bottom-color: #FFF4D2; }
+.pc-login button { font: 800 .9rem ui-monospace, Consolas, "Courier New", monospace; color: #1F3B3A; background: #8FE3B0; border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+.pc-msg { margin: 0; min-height: 1.2em; font-weight: 800; letter-spacing: .1em; }
+.pc-msg:empty { display: none; }
+.pc-apps { display: grid; gap: 10px; }
+.pc-shake { animation: pc-shake .4s; }
+@keyframes pc-shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
 .gift-qr { display: block; width: min(280px, 72vw); height: auto; border: 3px solid #3B2620; border-radius: 14px; background: #FFFFFF; }
 .big-clock { display: block; width: auto; height: min(330px, 46vh); overflow: visible; }
 .late-tip { padding: 12px 16px; border: 2px dashed #E0218A; border-radius: 12px; background: #FDE6EC; font: 700 1rem/1.4 var(--font-body); color: #3B2620; text-align: center; }
@@ -3222,8 +3232,8 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
           <rect x="812" y="300" width="176" height="14" rx="3" class="s-ink" style="fill: var(--floor)" stroke-width="3"/>
           <rect x="822" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/><rect x="966" y="314" width="12" height="86" fill="#8E5530" class="s-ink" stroke-width="3"/>
           <rect x="936" y="314" width="42" height="60" fill="#B5703D" class="s-ink" stroke-width="2.500"/><path class="s-ink" stroke-width="2" d="M936 344 H978"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="329" r="3"/><circle class="f-marigold s-ink" stroke-width="1.500" cx="957" cy="359" r="3"/>
-          <!-- the old computer opens a menu: Coyote's Pattern Studio, the Burnout card game (members only: Cloudflare asks for an email login) or Coyote Collage Studio (password) -->
-          <a class="hot hot-pc" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener" aria-label="Old computer: choose Coyote's Pattern Studio, the Burnout game (members only) or Coyote Collage Studio (password)" aria-haspopup="dialog">
+          <!-- the old computer asks for a password, then shows Coyote's apps (the list lives scrambled in the page; see pc-apps.html). -->
+          <a class="hot hot-pc" href="#" aria-label="Old computer: type the password to see Coyote's apps" aria-haspopup="dialog">
             <g class="glow">
             <rect x="846" y="214" width="96" height="74" rx="8" fill="#EDE3CC" class="s-ink" stroke-width="3"/><rect x="856" y="222" width="76" height="52" rx="6" fill="#1F3B3A" class="s-ink" stroke-width="2.500"/>
             <path class="f-hot" d="M880 240 c-5 -6 -13 -1 -8 6 l8 8 l8 -8 c5 -7 -3 -12 -8 -6 Z"/><text x="893" y="252" style="font: 800 11px monospace; fill: #8FE3B0">HI!</text><rect class="bs-cursor" x="916" y="243" width="6" height="10" fill="#8FE3B0"/>
@@ -3672,17 +3682,15 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
   <div class="ball-wrap pc-wrap">
     <button class="lb-close" type="button" id="pcClose" aria-label="Close">×</button>
     <div class="pc-screen">
-      <p class="pc-title" id="pcTitle">C:\COYOTE&gt; pick a program<span class="pc-cursor" aria-hidden="true"></span></p>
-      <a class="pc-prog" href="https://coyotepatternstudio.pages.dev" target="_blank" rel="noopener">
-        <span class="pc-icon" aria-hidden="true">🧵</span><span><b>Coyote's Pattern Studio</b><small>Doll and goose sewing patterns</small></span>
-      </a>
-      <a class="pc-prog" href="https://coyotepatternstudio.pages.dev/burnout/" target="_blank" rel="noopener">
-        <span class="pc-icon pc-candle" aria-hidden="true"><svg viewBox="20 36 60 88" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Melted candle">     <ellipse cx="50" cy="117" rx="27" ry="5" fill="#a87810" opacity=".35"/>     <path d="M27 113 Q50 121 73 113 Q76 109 69 108 L31 108 Q24 109 27 113Z" fill="#fbf0d6" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M34 60 L34 110 Q50 115 66 110 L66 60Z" fill="#fdf5e2" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M58 60 L66 60 L66 110 Q62 112 58 112Z" fill="#ead5aa"/>     <path d="M32 59 Q36 51 50 52 Q64 51 68 59 Q69 64 66 65 Q63 65 63 74 Q63 80 60 80 Q57 80 57 70 Q56 64 53 65 Q50 66 50 70 L50 90 Q50 95 46.5 95 Q43 95 43 90 L43 68 Q42 63 39 65 Q36 67 35 72 Q35 76 33 76 Q31 76 31 70 Q31 63 32 59Z" fill="#fffbf1" stroke="#5a3a1a" stroke-width="1.6"/>     <path d="M38 56 Q50 53 62 56" stroke="#e2cfa4" stroke-width="1.4" fill="none"/>     <path d="M50 54 Q48.5 47 51.5 42" stroke="#3a2a1a" stroke-width="2.6" fill="none" stroke-linecap="round"/>   </svg></span><span><b>Burnout</b><small>A card game about life with an AuDHD brain (play-test)</small></span>
-      </a>
-      <a class="pc-prog" href="https://coyote-collage-studio.pages.dev" target="_blank" rel="noopener">
-        <span class="pc-icon" aria-hidden="true">✂️</span><span><b>Coyote Collage Studio</b><small>Paper collage table · password needed</small></span>
-      </a>
-      <p class="pc-note">Burnout is members only: you'll be asked for your email, then a code.</p>
+      <p class="pc-title" id="pcTitle">C:\COYOTE&gt; <span id="pcPrompt">locked</span><span class="pc-cursor" aria-hidden="true"></span></p>
+      <form class="pc-login" id="pcLogin" autocomplete="off">
+        <label for="pcPass">PASSWORD:</label>
+        <input id="pcPass" type="password" autocomplete="off" spellcheck="false" aria-describedby="pcMsg">
+        <button type="submit">ENTER</button>
+      </form>
+      <p class="pc-msg" id="pcMsg" role="status"></p>
+      <div class="pc-apps" id="pcApps" hidden></div>
+      <script type="application/json" id="pcVault">{"n": 250000, "s": "KQyDF6Mp4Ch+Ni1kICFB8w==", "i": "VS7MovbsAN0XAGje", "c": "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"}</script>
     </div>
   </div>
 </dialog>
@@ -5663,7 +5671,42 @@ a.brand { display: inline-block; text-decoration: none; cursor: pointer; }
     });
     document.getElementById("pcClose").addEventListener("click", function () { pcDialog.close(); });
     pcDialog.addEventListener("click", function (e) { if (e.target === pcDialog) pcDialog.close(); });
-    pcDialog.querySelectorAll(".pc-prog").forEach(function (a) { a.addEventListener("click", function () { pcDialog.close(); }); });
+    // password screen: the apps list is scrambled with the password, so it only exists once the right one is typed
+    var pcLogin = document.getElementById("pcLogin"), pcPass = document.getElementById("pcPass"), pcMsg = document.getElementById("pcMsg"),
+        pcApps = document.getElementById("pcApps"), pcPrompt = document.getElementById("pcPrompt"), pcScreen = pcDialog.querySelector(".pc-screen");
+    var b64 = function (t) { return Uint8Array.from(atob(t), function (c) { return c.charCodeAt(0); }); };
+    function unlock(pw) {
+      var v = JSON.parse(document.getElementById("pcVault").textContent), enc = new TextEncoder();
+      return crypto.subtle.importKey("raw", enc.encode(pw.trim().toLowerCase()), "PBKDF2", false, ["deriveKey"])
+        .then(function (k) { return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(v.s), iterations: v.n, hash: "SHA-256" }, k, { name: "AES-GCM", length: 256 }, false, ["decrypt"]); })
+        .then(function (key) { return crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(v.i) }, key, b64(v.c)); })
+        .then(function (buf) { return new TextDecoder().decode(buf); });
+    }
+    function showApps(html) {
+      pcApps.innerHTML = html; pcApps.hidden = false; pcLogin.hidden = true; pcMsg.textContent = ""; pcPrompt.textContent = "pick a program";
+      pcApps.querySelectorAll(".pc-prog").forEach(function (a) { a.addEventListener("click", function () { pcDialog.close(); }); });
+    }
+    function lockAgain() { pcApps.hidden = true; pcApps.innerHTML = ""; pcLogin.hidden = false; pcPrompt.textContent = "locked"; pcPass.value = ""; pcMsg.textContent = ""; }
+    pcLogin.addEventListener("submit", function (e) {
+      e.preventDefault(); var pw = pcPass.value; if (!pw) return;
+      pcMsg.textContent = "CHECKING...";
+      unlock(pw).then(function (html) {
+        try { sessionStorage.setItem("mocoyotes-pc", pw); } catch (err) {}
+        showApps(html);
+      }, function () {
+        pcMsg.textContent = "ACCESS DENIED"; pcPass.value = ""; pcPass.focus();
+        pcScreen.classList.remove("pc-shake"); void pcScreen.offsetWidth; pcScreen.classList.add("pc-shake");
+      });
+    });
+    // stays unlocked until this browser tab is closed
+    pcDialog.addEventListener("close", function () { if (!pcApps.hidden) return; lockAgain(); });
+    document.querySelectorAll(".hot-pc").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var saved = null; try { saved = sessionStorage.getItem("mocoyotes-pc"); } catch (err) {}
+        if (saved && pcApps.hidden) unlock(saved).then(showApps, function () { try { sessionStorage.removeItem("mocoyotes-pc"); } catch (err) {} });
+        else if (pcApps.hidden) setTimeout(function () { pcPass.focus(); }, 60);
+      });
+    });
   }
 
   // ---------- the wallet: a gift pop-up ----------
